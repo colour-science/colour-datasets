@@ -1,0 +1,10 @@
+include LICENSE
+include *.bib
+include *.rst
+graft colour_datasets/examples
+prune colour_datasets/examples/.ipynb_checkpoints
+global-exclude __pycache__
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude ._*
+global-exclude .DS_Store

@@ -92,7 +92,7 @@ definition:
     =======================
 
     Datasets : 4
-    Owned    : 2
+    Synced   : 2
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
     Datasets

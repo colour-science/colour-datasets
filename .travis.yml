@@ -39,7 +39,7 @@ before_install:
 install:
   - conda create --yes --quiet -n colour-datasets-test ${PACKAGES} pip setuptools nose
   - source activate colour-datasets-test
-  - pip install colour-science coverage coveralls flake8 mock==1.0.1 tqdm
+  - pip install colour-science coverage coveralls flake8 mock==1.0.1 tqdm xlrd
 
 script:
   - flake8 colour_datasets

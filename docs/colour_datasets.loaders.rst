@@ -37,6 +37,15 @@ New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
     XRite2016DatasetLoader
     build_XRite2016
 
+Observer Function Database - Asano (2015)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    Asano2015DatasetLoader
+    build_Asano2015
+
 Loading the Datasets
 --------------------
 

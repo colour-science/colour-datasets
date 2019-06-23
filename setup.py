@@ -30,7 +30,7 @@ SHORT_DESCRIPTION = 'Colour Science - Datasets'
 
 LONG_DESCRIPTION = open('README.rst').read()
 
-INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.12', 'tqdm']
+INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.12', 'tqdm', 'xlrd']
 
 if os.environ.get('READTHEDOCS') == 'True':
     INSTALLATION_REQUIREMENTS += [

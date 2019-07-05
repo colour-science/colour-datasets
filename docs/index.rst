@@ -20,6 +20,30 @@ It is open source and freely available under the
 Features
 --------
 
+**Colour - Datasets** was created to overcome issues encountered frequently
+when trying to access or use colour science datasets:
+
+-   No straightforward ingestion path for a given dataset content.
+-   No simple loading mechanism for dataset content.
+-   Unavailability of the dataset, e.g. download urls are down, dataset
+    content is passed directly from hand to hand.
+-   No information regarding the definitive origination of the dataset.
+
+**Colour - Datasets** offers all the above, it allows users to ingest and load
+colour science datasets with a single call. The datasets information
+is hosted on `Zenodo <https://zenodo.org/communities/colour-science-datasets/>`_
+where the record for a dataset will typically contain:
+
+-   An *urls.txt* file describing the urls to source the dataset files from.
+-   A copy of those files in the eventuality where the source files are not
+    available or the content has changed without notification.
+-   Information about the authors, content and licensing.
+
+If there is no explicit licensing information, the dataset will adopt the
+**Other (Not Open)** licensing scheme, implying that assessing usage conditions
+is at the sole discretion of the users. In any case, we do not take any
+responsibility for that.
+
 Installation
 ------------
 

@@ -319,7 +319,7 @@ colour-science-datasets
 =======================
 
 Datasets : 4
-Owned    : 0
+Synced   : 0
 URL      : https://zenodo.org/communities/colour-science-datasets/
 
 Datasets

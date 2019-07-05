@@ -620,7 +620,7 @@ class Community(Mapping):
         =======================
         <BLANKLINE>
         Datasets : ...
-        Owned    : ...
+        Synced   : ...
         URL      : https://zenodo.org/communities/colour-science-datasets/
         """
 
@@ -632,7 +632,7 @@ class Community(Mapping):
         representation = ('{0}\n'
                           '{1}\n\n'
                           'Datasets : {2}\n'
-                          'Owned    : {3}\n'
+                          'Synced   : {3}\n'
                           'URL      : {4}\n\n'
                           'Datasets\n--------\n\n'
                           '{5}'.format(

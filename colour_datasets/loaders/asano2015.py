@@ -112,11 +112,14 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
 
     def load(self):
         """
-        Syncs, parses, converts and returns the dataset content.
+        Syncs, parses, converts and returns the *Asano (2015)*
+        *Observer Function Database* dataset content.
 
         Returns
         -------
         OrderedDict
+            Dataset content as an :class:`OrderedDict` of categorical and
+            colour normal observers and their specifications.
 
         Examples
         --------

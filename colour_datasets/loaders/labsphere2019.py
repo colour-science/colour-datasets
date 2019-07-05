@@ -67,7 +67,8 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
 
     def load(self):
         """
-        Syncs, parses, converts and returns the dataset content.
+        Syncs, parses, converts and returns the *Labsphere (2019)*
+        *Labsphere SRS-99-020* dataset content.
 
         Returns
         -------

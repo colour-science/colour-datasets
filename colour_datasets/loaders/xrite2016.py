@@ -73,7 +73,9 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
 
     def load(self):
         """
-        Syncs, parses, converts and returns the dataset content.
+        Syncs, parses, converts and returns the *X-Rite (2016)*
+        *New Color Specifications for ColorChecker SG and Classic Charts*
+        dataset content.
 
         Returns
         -------

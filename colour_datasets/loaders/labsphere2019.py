@@ -79,8 +79,11 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
 
         Examples
         --------
+        >>> from colour_datasets.utilities import suppress_stdout
         >>> dataset = Labsphere2019DatasetLoader()
-        >>> len(dataset.load().keys())
+        >>> with suppress_stdout():
+        ...     dataset.load()
+        >>> len(dataset.data.keys())
         1
         """
 

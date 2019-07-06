@@ -381,6 +381,8 @@ class Record(object):
         True
         """
 
+        print('Pulling "{0}" record content...'.format(self.id))
+
         if not os.path.exists(self._configuration.repository):
             os.makedirs(self._configuration.repository)
 
@@ -414,8 +416,9 @@ class Record(object):
                     os.path.join(downloads_directory,
                                  self._configuration.urls_txt_file))
             else:
-                raise ValueError('"{0}" file was not found!'.format(
-                    self._configuration.urls_txt_file))
+                raise ValueError(
+                    '"{0}" file was not found in record data!'.format(
+                        self._configuration.urls_txt_file))
         except (urllib.error.URLError, ValueError) as error:
             warning('An error occurred using urls from "{0}" file: {1}'
                     ', switching to record urls...'.format(

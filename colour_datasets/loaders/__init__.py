@@ -2,6 +2,8 @@
 
 from __future__ import absolute_import
 
+import sys
+
 from colour.utilities import CaseInsensitiveMapping, warning
 
 from colour_datasets.records import datasets
@@ -14,6 +16,7 @@ from .xrite2016 import XRite2016DatasetLoader, build_XRite2016
 
 __all__ = ['AbstractDatasetLoader']
 __all__ += ['Asano2015DatasetLoader', 'build_Asano2015']
+__all__ += ['Jiang2013DatasetLoader', 'build_Jiang2013']
 __all__ += ['Jiang2013DatasetLoader', 'build_Jiang2013']
 __all__ += ['Labsphere2019DatasetLoader', 'build_Labsphere2019']
 __all__ += ['XRite2016DatasetLoader', 'build_XRite2016']
@@ -29,6 +32,23 @@ Dataset loaders ids and callables.
 
 DATASET_LOADERS : CaseInsensitiveMapping
 """
+
+from .kuopio import KUOPIO_UNIVERSITY_DATASET_LOADERS  # noqa
+
+DATASET_LOADERS.update(KUOPIO_UNIVERSITY_DATASET_LOADERS)
+
+from . import kuopio  # noqa
+
+_module = sys.modules['colour_datasets.loaders']
+
+for _export in kuopio.__all__:
+    if _export.endswith('DatasetLoader') or _export.startswith('build'):
+
+        setattr(_module, _export, getattr(kuopio, _export))
+
+        __all__ += [_export]
+
+del _module, _export
 
 _HAS_TITLE_KEYS = False
 """
@@ -68,7 +88,11 @@ def load(dataset):
 
     if not _HAS_TITLE_KEYS:
         for key in list(DATASET_LOADERS.keys())[:]:
-            title = datasets()[key].title
+            dataset_loader = datasets().get(key)
+            if not dataset_loader:
+                continue
+
+            title = dataset_loader.title
             if title in DATASET_LOADERS:
                 warning('"{0}" key is already defined in the dataset loaders!'.
                         format(title))

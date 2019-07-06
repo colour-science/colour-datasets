@@ -384,6 +384,11 @@ class Record(object):
         if not os.path.exists(self._configuration.repository):
             os.makedirs(self._configuration.repository)
 
+        downloads_directory = os.path.join(
+            self.repository, self._configuration.downloads_directory)
+        if not os.path.exists(downloads_directory):
+            os.makedirs(downloads_directory)
+
         # As much as possible, the original file urls are used, those are
         # given by the content of :attr:`URLS_TXT_FILE` attribute file.
         urls_txt = None
@@ -403,8 +408,14 @@ class Record(object):
                     urls_txt_json = json.load(json_file)
                     for url, md5 in urls_txt_json['urls'].items():
                         urls[url] = md5.split(':')[-1]
+
+                shutil.copyfile(
+                    urls_txt_file,
+                    os.path.join(downloads_directory,
+                                 self._configuration.urls_txt_file))
             else:
-                raise ValueError('"{0}" file was not found!')
+                raise ValueError('"{0}" file was not found!'.format(
+                    self._configuration.urls_txt_file))
         except (urllib.error.URLError, ValueError) as error:
             warning('An error occurred using urls from "{0}" file: {1}'
                     ', switching to record urls...'.format(
@@ -415,11 +426,6 @@ class Record(object):
 
                 urls[file_data['links']['self']] = (
                     file_data['checksum'].split(':')[-1])
-
-        downloads_directory = os.path.join(
-            self.repository, self._configuration.downloads_directory)
-        if not os.path.exists(downloads_directory):
-            os.makedirs(downloads_directory)
 
         for url, md5 in urls.items():
             filename = os.path.join(downloads_directory,
@@ -441,9 +447,11 @@ class Record(object):
             basename, extension = os.path.splitext(filename)
             basename = os.path.basename(basename)
             if extension.lower() in ('.zip', '.tar', '.gz', '.bz2'):
+                if basename.lower().endswith('.tar'):
+                    basename = basename.rsplit('.', 1)[0]
+
+                basename = basename.replace('.', '_')
                 unpacking_directory = os.path.join(deflate_directory, basename)
-                if unpacking_directory.lower().endswith('.tar'):
-                    unpacking_directory = unpacking_directory.rsplit('.', 1)[0]
 
                 print('Unpacking "{0}" archive...'.format(filename))
                 setuptools.archive_util.unpack_archive(filename,
@@ -613,15 +621,16 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
         >>> print('\\n'.join(str(community).splitlines()[:6]))
         ... # doctest: +ELLIPSIS
-        colour-science-datasets
-        =======================
+        colour-science-datasets-tests
+        =============================
         <BLANKLINE>
         Datasets : ...
         Synced   : ...
-        URL      : https://zenodo.org/communities/colour-science-datasets/
+        URL      : https://zenodo.org/communities/\
+colour-science-datasets-tests/
         """
 
         datasets = '\n'.join([
@@ -663,7 +672,7 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
 
         # Doctests skip for Python 2.x compatibility.
         >>> print('\\n'.join(repr(community).splitlines()[:4]))
@@ -699,7 +708,7 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
 
         # Doctests skip for Python 2.x compatibility.
         >>> community['3245883'].title  # doctest: +SKIP
@@ -720,7 +729,7 @@ class Community(Mapping):
         Examples
         --------
         # Doctests skip for Python 2.x compatibility.
-        >>> for record in Community.from_id('colour-science-datasets'):
+        >>> for record in Community.from_id('colour-science-datasets-tests'):
         ...     print(record) # doctest: +SKIP
         """
 
@@ -738,7 +747,8 @@ class Community(Mapping):
         Examples
         --------
         # Doctests skip for Python 2.x compatibility.
-        >>> len(Community.from_id('colour-science-datasets')) # doctest: +SKIP
+        >>> len(Community.from_id('colour-science-datasets-tests'))
+        ... # doctest: +SKIP
         3
         """
 
@@ -767,7 +777,7 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
 
         # Doctests skip for Python 2.x compatibility.
         >>> community['3245883'].title  # doctest: +SKIP
@@ -783,7 +793,10 @@ class Community(Mapping):
 
         community_url = '{0}/communities/{1}'.format(configuration.api_url,
                                                      configuration.community)
-        records_url = '{0}/records/?q=communities:{1}'.format(
+        # NOTE: Retrieving 512 datasets at most. This should cover needs for
+        # the foreseeable future. There is likely an undocumented hard limit on
+        # "Zenodo" server side.
+        records_url = '{0}/records/?q=communities:{1}&size=512'.format(
             configuration.api_url, configuration.community)
 
         community_json_filename = os.path.join(
@@ -840,7 +853,7 @@ class Community(Mapping):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
         >>> with suppress_stdout():
         ...     community.pull()
         >>> community.synced()
@@ -870,7 +883,7 @@ class Community(Mapping):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
         >>> community.remove()
         >>> with suppress_stdout():
         ...     community.pull()
@@ -891,7 +904,7 @@ class Community(Mapping):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
         >>> with suppress_stdout():
         ...     community.pull()
         >>> community.remove()

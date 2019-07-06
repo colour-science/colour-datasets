@@ -228,7 +228,7 @@ class TestCommunity(unittest.TestCase):
             'https://zenodo.org/api/communities/colour-science-datasets')
         records_data = json_open(
             'https://zenodo.org/api/records/?q=communities:'
-            'colour-science-datasets')
+            'colour-science-datasets-tests')
 
         self._data = {
             'community': community_data,

@@ -10,6 +10,15 @@ Datasets
 
 .. currentmodule:: colour_datasets.loaders
 
+Agfa IT8.7/2 Set
+~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    AgfaIT872SetDatasetLoader
+    build_AgfaIT872Set
+
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -19,6 +28,15 @@ Camera Spectral Sensitivity Database - Jiang et al. (2013)
     Jiang2013DatasetLoader
     build_Jiang2013
 
+Forest Colors
+~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    ForestColorsDatasetLoader
+    build_ForestColors
+
 Labsphere SRS-99-020 - Labsphere (2019)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -27,6 +45,51 @@ Labsphere SRS-99-020 - Labsphere (2019)
 
     Labsphere2019DatasetLoader
     build_Labsphere2019
+
+Lumber Spectra
+~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    LumberSpectraDatasetLoader
+    build_LumberSpectra
+
+Munsell Colors Glossy (All) (Spectrofotometer Measured)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    MunsellColorsGlossyAllSpectrofotometerMeasuredDatasetLoader
+    build_MunsellColorsGlossyAllSpectrofotometerMeasured
+
+Munsell Colors Glossy (Spectrofotometer Measured)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    MunsellColorsGlossySpectrofotometerMeasuredDatasetLoader
+    build_MunsellColorsGlossySpectrofotometerMeasured
+
+Munsell Colors Matt (AOTF Measured)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    MunsellColorsMattAOTFMeasuredDatasetLoader
+    build_MunsellColorsMattAOTFMeasured
+
+Munsell Colors Matt (Spectrofotometer Measured)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    MunsellColorsMattSpectrofotometerMeasuredDatasetLoader
+    build_MunsellColorsMattSpectrofotometerMeasured
 
 New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,6 +108,15 @@ Observer Function Database - Asano (2015)
 
     Asano2015DatasetLoader
     build_Asano2015
+
+Paper Spectra
+~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    PaperSpectraDatasetLoader
+    build_PaperSpectra
 
 Loading the Datasets
 --------------------

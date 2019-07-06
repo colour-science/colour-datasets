@@ -1,7 +1,7 @@
-colour\_datasets.records.Configuration
-======================================
+colour\_datasets.Configuration
+==============================
 
-.. currentmodule:: colour_datasets.records
+.. currentmodule:: colour_datasets
 
 .. autoclass:: Configuration
 

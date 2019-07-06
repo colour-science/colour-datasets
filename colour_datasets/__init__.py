@@ -24,7 +24,9 @@ import subprocess  # nosec
 
 import colour
 
-from .records import datasets, sandbox
+from .records import Configuration
+from .records import Community, Record, datasets
+from .records import sandbox
 from .loaders import load
 
 __author__ = 'Colour Developers'
@@ -34,7 +36,9 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['datasets', 'sandbox']
+__all__ = ['Configuration']
+__all__ += ['Community', 'Record', 'datasets']
+__all__ += ['sandbox']
 __all__ += ['load']
 
 __application_name__ = 'Colour - Datasets'

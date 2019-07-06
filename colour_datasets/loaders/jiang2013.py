@@ -75,7 +75,7 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
     def load(self):
         """
         Syncs, parses, converts and returns the *Jiang et al. (2013)*
-        *Camera Spectral Sensitivity Database*dataset content.
+        *Camera Spectral Sensitivity Database* dataset content.
 
         Returns
         -------

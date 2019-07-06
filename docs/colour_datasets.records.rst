@@ -13,6 +13,7 @@ Configuration
 .. autosummary::
     :toctree: generated/
 
+    Configuration
     sandbox
 
 ``colour_datasets.records``
@@ -22,15 +23,14 @@ Configuration
 .. autosummary::
     :toctree: generated/
 
-    Configuration
     use_sandbox
 
 Record
 ------
 
-``colour_datasets.records``
+``colour_datasets``
 
-.. currentmodule:: colour_datasets.records
+.. currentmodule:: colour_datasets
 
 .. autosummary::
     :toctree: generated/
@@ -47,13 +47,5 @@ Community
 .. autosummary::
     :toctree: generated/
 
-    datasets
-
-``colour_datasets.records``
-
-.. currentmodule:: colour_datasets.records
-
-.. autosummary::
-    :toctree: generated/
-
     Community
+    datasets

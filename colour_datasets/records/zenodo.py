@@ -6,8 +6,8 @@ Zenodo
 Defines the objects implementing support for a *Zenodo* community and its
 records:
 
--   :class:`colour_datasets.records.Record`
--   :class:`colour_datasets.records.Community`
+-   :class:`colour_datasets.Record`
+-   :class:`colour_datasets.Community`
 """
 
 from __future__ import division, unicode_literals
@@ -291,8 +291,8 @@ class Record(object):
     @staticmethod
     def from_id(id_, configuration=None, retries=3):
         """
-        :class:`colour_datasets.records.Record` class factory that builds an
-        instance using given *Zenodo* record id.
+        :class:`colour_datasets.Record` class factory that builds an instance
+        using given *Zenodo* record id.
 
         Parameters
         ----------
@@ -757,7 +757,7 @@ colour-science-datasets-tests/
     @staticmethod
     def from_id(id_, configuration=None, retries=3):
         """
-        :class:`colour_datasets.records.Community` class factory that builds an
+        :class:`colour_datasets.Community` class factory that builds an
         instance using given *Zenodo* community id.
 
         Parameters

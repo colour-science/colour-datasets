@@ -1,7 +1,7 @@
-colour\_datasets.records.Record
-===============================
+colour\_datasets.Record
+=======================
 
-.. currentmodule:: colour_datasets.records
+.. currentmodule:: colour_datasets
 
 .. autoclass:: Record
 

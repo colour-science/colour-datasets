@@ -1,7 +1,7 @@
-colour\_datasets.records.Community
-==================================
+colour\_datasets.Community
+==========================
 
-.. currentmodule:: colour_datasets.records
+.. currentmodule:: colour_datasets
 
 .. autoclass:: Community
 

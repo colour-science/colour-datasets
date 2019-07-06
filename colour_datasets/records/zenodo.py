@@ -424,8 +424,8 @@ class Record(object):
                     '"{0}" file was not found in record data!'.format(
                         self._configuration.urls_txt_file))
         except (urllib.error.URLError, ValueError) as error:
-            warning('An error occurred using urls from "{0}" file: {1}'
-                    ', switching to record urls...'.format(
+            warning('An error occurred using urls from "{0}" file: {1}\n'
+                    'Switching to record urls...'.format(
                         self._configuration.urls_txt_file, error))
             for file_data in self.data['files']:
                 if file_data['key'] == self._configuration.urls_txt_file:

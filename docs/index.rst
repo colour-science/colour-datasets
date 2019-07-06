@@ -115,17 +115,25 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 4
-    Synced   : 2
+    Datasets : 12
+    Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
     Datasets
     --------
 
+    [ ] 3269926 : Agfa IT8.7/2 Set
     [ ] 3245883 : Camera Spectral Sensitivity Database
+    [ ] 3269920 : Forest Colors
     [x] 3245875 : Labsphere SRS-99-020
+    [ ] 3269924 : Lumber Spectra
+    [ ] 3269918 : Munsell Colors Glossy (All) (Spectrofotometer Measured)
+    [ ] 3269916 : Munsell Colors Glossy (Spectrofotometer Measured)
+    [ ] 3269914 : Munsell Colors Matt (AOTF Measured)
+    [ ] 3269912 : Munsell Colors Matt (Spectrofotometer Measured)
     [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts
-    [x] 3252742 : Observer Function Database
+    [ ] 3252742 : Observer Function Database
+    [ ] 3269922 : Paper Spectra
 
 A ticked checkbox means that the particular dataset has been synced locally.
 A dataset is loaded by using its unique number: *3245895*:

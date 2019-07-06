@@ -43,6 +43,12 @@ When no explicit licensing information is available, the dataset adopts the
 **Other (Not Open)** licensing scheme, implying that assessing usage conditions
 is at the sole discretion of the users.
 
+Online
+------
+
+**Colour - Datasets** can be used online with
+`Google Colab <https://colab.research.google.com/notebook#fileId=1YwIfDTBVP3XUYJAyZVEDWj92DJCB0_3v&offline=true&sandboxMode=true>`__.
+
 Installation
 ------------
 

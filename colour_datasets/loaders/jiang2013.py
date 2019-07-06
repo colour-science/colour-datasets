@@ -85,8 +85,11 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
 
         Examples
         --------
+        >>> from colour_datasets.utilities import suppress_stdout
         >>> dataset = Jiang2013DatasetLoader()
-        >>> len(dataset.load().keys())
+        >>> with suppress_stdout():
+        ...     dataset.load()
+        >>> len(dataset.data.keys())
         28
         """
 

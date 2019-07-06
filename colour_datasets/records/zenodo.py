@@ -339,8 +339,10 @@ class Record(object):
 
         Examples
         --------
+        >>> from colour_datasets.utilities import suppress_stdout
         >>> record = Record.from_id('3245883')
-        >>> record.pull()
+        >>> with suppress_stdout():
+        ...     record.pull()
         >>> record.synced()
         True
         >>> record.remove()
@@ -374,9 +376,11 @@ class Record(object):
 
         Examples
         --------
+        >>> from colour_datasets.utilities import suppress_stdout
         >>> record = Record.from_id('3245883')
         >>> record.remove()
-        >>> record.pull()
+        >>> with suppress_stdout():
+        ...     record.pull()
         >>> record.synced()
         True
         """
@@ -471,8 +475,10 @@ class Record(object):
 
         Examples
         --------
+        >>> from colour_datasets.utilities import suppress_stdout
         >>> record = Record.from_id('3245883')
-        >>> record.pull()
+        >>> with suppress_stdout():
+        ...     record.pull()
         >>> record.remove()
         >>> record.synced()
         False

@@ -385,7 +385,7 @@ class Record(object):
         True
         """
 
-        print('Pulling "{0}" record content...'.format(self.id))
+        print('Pulling "{0}" record content...'.format(self.title))
 
         if not os.path.exists(self._configuration.repository):
             os.makedirs(self._configuration.repository)

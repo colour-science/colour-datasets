@@ -120,7 +120,7 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 12
+    Datasets : 13
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
@@ -129,6 +129,7 @@ definition:
 
     [ ] 3269926 : Agfa IT8.7/2 Set
     [ ] 3245883 : Camera Spectral Sensitivity Database
+    [ ] 3270903 : Corresponding-Colour Datasets
     [ ] 3269920 : Forest Colors
     [x] 3245875 : Labsphere SRS-99-020
     [ ] 3269924 : Lumber Spectra
@@ -149,11 +150,12 @@ A dataset is loaded by using its unique number: *3245895*:
 
 ::
 
-    Downloading "urls.txt" file: 8.19kB [00:01, 4.49kB/s]
-    Downloading "ColorChecker24_After_Nov2014.zip" file: 8.19kB [00:01, 5.20kB/s]
-    Downloading "ColorChecker24_Before_Nov2014.zip" file: 8.19kB [00:01, 5.19kB/s]
-    Downloading "ColorCheckerSG_After_Nov2014.zip" file: 8.19kB [00:01, 6.27kB/s]
-    Downloading "ColorCheckerSG_Before_Nov2014.zip" file: 8.19kB [00:01, 7.48kB/s]
+    Pulling "New Color Specifications for ColorChecker SG and Classic Charts" record content...
+    Downloading "urls.txt" file: 8.19kB [00:01, 5.05kB/s]
+    Downloading "ColorChecker24_After_Nov2014.zip" file: 8.19kB [00:01, 6.52kB/s]
+    Downloading "ColorChecker24_Before_Nov2014.zip" file: 8.19kB [00:01, 7.66kB/s]
+    Downloading "ColorCheckerSG_After_Nov2014.zip" file: 8.19kB [00:01, 7.62kB/s]
+    Downloading "ColorCheckerSG_Before_Nov2014.zip" file: 8.19kB [00:00, 9.39kB/s]
     Unpacking "/Users/kelsolaar/.colour-science/colour-datasets/3245895/dataset/ColorCheckerSG_Before_Nov2014.zip" archive...
     Unpacking "/Users/kelsolaar/.colour-science/colour-datasets/3245895/dataset/ColorCheckerSG_After_Nov2014.zip" archive...
     Unpacking "/Users/kelsolaar/.colour-science/colour-datasets/3245895/dataset/ColorChecker24_After_Nov2014.zip" archive...

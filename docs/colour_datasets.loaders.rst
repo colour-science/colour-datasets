@@ -28,6 +28,15 @@ Camera Spectral Sensitivity Database - Jiang et al. (2013)
     Jiang2013DatasetLoader
     build_Jiang2013
 
+Corresponding-Colour Datasets - Luo and Rhodes (1999)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    Luo1999DatasetLoader
+    build_Luo1999
+
 Forest Colors
 ~~~~~~~~~~~~~
 

@@ -64,14 +64,25 @@ __all__ = [
     'KUOPIO_UNIVERSITY_DATASET_LOADERS'
 ]
 
-KuopioUniversityMatFileMetadata = namedtuple(
-    'KuopioUniversityMatFileMetadata',
-    ('key', 'shape', 'transpose', 'identifiers'))
-"""
-Metadata storage for an *University of Kuopio* dataset.
 
-KuopioUniversityMatFileMetadata : namedtuple
-"""
+class KuopioUniversityMatFileMetadata(
+        namedtuple('KuopioUniversityMatFileMetadata',
+                   ('key', 'shape', 'transpose', 'identifiers'))):
+    """
+    Metadata storage for an *University of Kuopio* dataset spectral
+    distributions.
+
+    Parameters
+    ----------
+    key : unicode
+        *Matlab* *.mat* file key to extract the data from.
+    shape : SpectralShape
+        Spectral distributions shape.
+    transpose : bool
+        Whether to transpose the data.
+    identifiers : array_like
+        Identifiers for the spectral distributions.
+    """
 
 
 def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):

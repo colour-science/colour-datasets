@@ -2,6 +2,7 @@
 
 from __future__ import absolute_import
 
+import six
 import sys
 
 from colour.utilities import CaseInsensitiveMapping, warning
@@ -68,7 +69,7 @@ def load(dataset):
 
     Parameters
     ----------
-    dataset : unicode
+    dataset : unicode or int
         Dataset id, i.e. the *Zenodo* record number or title.
 
     Returns
@@ -99,7 +100,7 @@ def load(dataset):
             DATASET_LOADERS[title] = DATASET_LOADERS[key]
         _HAS_TITLE_KEYS = True
 
-    return DATASET_LOADERS[dataset]().data
+    return DATASET_LOADERS[six.text_type(dataset)]().data
 
 
 __all__ += ['DATASET_LOADERS', 'load']

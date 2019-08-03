@@ -11,14 +11,23 @@ Defines the objects implementing support for *Luo and Rhodes (1999)*
 
 References
 ----------
+-   :cite:`Breneman1987b` : Breneman, E. J. (1987). Corresponding
+    chromaticities for different states of adaptation to complex visual fields.
+    Journal of the Optical Society of America A, 4(6), 1115.
+    doi:10.1364/JOSAA.4.001115
 -   :cite:`Luo1999` : Luo, M. R., & Rhodes, P. A. (1999). Corresponding-colour
     datasets. Color Research & Application, 24(4), 295–296.
     doi:10.1002/(SICI)1520-6378(199908)24:4<295::AID-COL10>3.0.CO;2-K
+-   :cite:`McCann1976` : McCann, J. J., McKee, S. P., & Taylor, T. H. (1976).
+    Quantitative studies in retinex theory a comparison between theoretical
+    predictions and observer responses to the “color mondrian” experiments.
+    Vision Research, 16(5), 445-IN3. doi:10.1016/0042-6989(76)90020-1
 """
 
 from __future__ import division, unicode_literals
 
 import codecs
+import numpy as np
 import os
 from collections import OrderedDict, namedtuple
 from colour.utilities import as_float_array
@@ -34,14 +43,15 @@ __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
 __all__ = [
-    'CorrespondingColourDataset', 'Luo1999DatasetLoader', 'build_Luo1999'
+    'CorrespondingColourDatasetLuo1999', 'Luo1999DatasetLoader',
+    'build_Luo1999'
 ]
 
 
-class CorrespondingColourDataset(
-        namedtuple(
-            'CorrespondingColourDataset',
-            ('name', 'XYZ_r', 'XYZ_t', 'XYZ_cr', 'XYZ_ct', 'metadata'))):
+class CorrespondingColourDatasetLuo1999(
+        namedtuple('CorrespondingColourDatasetLuo1999',
+                   ('name', 'XYZ_r', 'XYZ_t', 'XYZ_cr', 'XYZ_ct', 'Y_r', 'Y_t',
+                    'B_r', 'B_t', 'metadata'))):
     """
     Defines a *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset.
 
@@ -58,6 +68,16 @@ class CorrespondingColourDataset(
         illuminant.
     XYZ_ct : array_like
         Corresponding *CIE XYZ* tristimulus values under the test illuminant.
+    Y_r : numeric
+        Reference white luminance :math:`Y_r` in :math:`cd/m^2`.
+    Y_t : numeric
+        Test white luminance :math:`Y_t` in :math:`cd/m^2`.
+    B_r : numeric
+         Luminance factor :math:`B_r` of reference achromatic background as
+         percentage.
+    B_t : numeric
+         Luminance factor :math:`B_t` of test achromatic background as
+         percentage.
     metadata : dict
         Dataset metadata.
     """
@@ -79,7 +99,7 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
 
     References
     ----------
-    :cite:`Luo1999`
+    :cite:`Breneman1987b`, :cite:`Luo1999`
     """
 
     ID = '3270903'
@@ -102,8 +122,21 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
         -------
         OrderedDict
             Dataset content as an :class:`OrderedDict` of
-            *Colour Checkers* and their
-            :class:`colour.characterisation.ColourChecker` class instances.
+            *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* datasets.
+
+        Notes
+        -----
+        -   *Brene.p6.dat* has only 11 samples while *Breneman (1987)* has 12
+            results.
+        -   The illuminance in :math:`Lux` for *Breneman (1987)* datasets given
+            by *Luo and Rhodes (1999)* is in domain [50, 3870] while
+            *Breneman (1987)* reports luminance in :math:`cd/m^2` in domain
+            [15, 11100], i.e. [47, 34871.69] in :math:`Lux`. The metadata has
+            been corrected accordingly.
+        -   The illuminance values, i.e. 14 and 40, for
+            *McCann, McKee and Taylor (1976)* datasets given by
+            *Luo and Rhodes (1999)* were not found in :cite:`McCann1976`. The
+            values in use are the average of both.
 
         Examples
         --------
@@ -136,8 +169,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                             87,
                             'D65',
                             'A',
-                            '1000',
-                            20,
+                            np.tile(1000, [1, 2]),
+                            np.tile(20, [1, 2]),
                             'S',
                             'Refl.',
                             'Haploscopic',
@@ -153,8 +186,9 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                20,
                                'D65',
                                'D65',
-                               '10-3000',
-                               20,
+                               np.repeat([10, 50, 1000, 3000], 2, -1).reshape(
+                                   -1, 2),
+                               np.tile(20, [4, 2]),
                                'S',
                                'Refl.',
                                'Haploscopic',
@@ -170,8 +204,9 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                   19,
                                   'D65',
                                   'D65',
-                                  '10-3000',
-                                  20,
+                                  np.repeat([10, 50, 1000, 3000], 2,
+                                            -1).reshape(-1, 2),
+                                  np.tile(20, [4, 2]),
                                   'S',
                                   'Refl.',
                                   'Haploscopic',
@@ -182,8 +217,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                             59,
                             'D65',
                             'A',
-                            '1000',
-                            20,
+                            np.tile(1000, [1, 2]),
+                            np.tile(20, [1, 2]),
                             'S',
                             'Refl.',
                             'Memory',
@@ -194,8 +229,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                 58,
                                 'D65',
                                 'A',
-                                '1000',
-                                20,
+                                np.tile(1000, [1, 2]),
+                                np.tile(20, [1, 2]),
                                 'L',
                                 'Refl.',
                                 'Memory',
@@ -206,8 +241,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                 43,
                                 'D65',
                                 'A',
-                                '1000',
-                                20,
+                                np.tile(1000, [1, 2]),
+                                np.tile(20, [1, 2]),
                                 'S',
                                 'Refl.',
                                 'Magnitude',
@@ -218,8 +253,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                   44,
                                   'D65',
                                   'D50',
-                                  '1000',
-                                  20,
+                                  np.tile(1000, [1, 2]),
+                                  np.tile(20, [1, 2]),
                                   'S',
                                   'Refl.',
                                   'Magnitude',
@@ -230,8 +265,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                  41,
                                  'D65',
                                  'WF',
-                                 '1000',
-                                 20,
+                                 np.tile(1000, [1, 2]),
+                                 np.tile(20, [1, 2]),
                                  'S',
                                  'Refl.',
                                  'Magnitude',
@@ -242,8 +277,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                    40,
                                    'D65',
                                    'A',
-                                   '1000',
-                                   20,
+                                   np.tile(1000, [1, 2]),
+                                   np.tile(20, [1, 2]),
                                    'L',
                                    'Refl.',
                                    'Magnitude',
@@ -254,34 +289,36 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                       41,
                                       'D65',
                                       'TL84',
-                                      '1000',
-                                      20,
+                                      np.tile(1000, [1, 2]),
+                                      np.tile(20, [1, 2]),
                                       'S',
                                       'Refl.',
                                       'Magnitude',
                                   )]),
-            ('Breneman-C', [(
-                'Brene.p1.dat',
-                'Brene.p2.dat',
-                'Brene.p3.dat',
-                'Brene.p4.dat',
-                'Brene.p6.dat',
-                'Brene.p8.dat',
-                'Brene.p9.dat',
-                'Brene.p11.dat',
-                'Brene.p12.dat',
-            ),
-                            (
-                                9,
-                                107,
-                                'D65, 55',
-                                'A, P, G',
-                                '50-3870',
-                                30,
-                                'S',
-                                'Trans.',
-                                'Magnitude',
-                            )]),
+            ('Breneman-C',
+             [(
+                 'Brene.p1.dat',
+                 'Brene.p2.dat',
+                 'Brene.p3.dat',
+                 'Brene.p4.dat',
+                 'Brene.p6.dat',
+                 'Brene.p8.dat',
+                 'Brene.p9.dat',
+                 'Brene.p11.dat',
+                 'Brene.p12.dat',
+             ),
+              (
+                  9,
+                  107,
+                  'D65, 55',
+                  'A, P, G',
+                  np.repeat([1500, 1500, 75, 75, 11100, 350, 15, 1560, 75], 2,
+                            -1).reshape(-1, 2),
+                  np.tile(30, [9, 2]),
+                  'S',
+                  'Trans.',
+                  'Magnitude',
+              )]),
             ('Breneman-L', [(
                 'Brene.p5.dat',
                 'Brene.p7.dat',
@@ -292,8 +329,9 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                 36,
                                 'D55',
                                 'D55',
-                                '50-3870',
-                                30,
+                                np.array([[130, 2120], [850, 11100], [15,
+                                                                      270]]),
+                                np.tile(30, [3, 2]),
                                 'S',
                                 'Trans.',
                                 'Haploscopic',
@@ -309,8 +347,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                                        66,
                                        'D65',
                                        'D30, 65, 95',
-                                       '129',
-                                       20,
+                                       np.tile(129, [4, 2]),
+                                       np.tile(20, [4, 2]),
                                        'S',
                                        'Mon., Refl.',
                                        'Matching',
@@ -327,8 +365,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                             85,
                             'D65',
                             'R, Y, G, B',
-                            '14-40',
-                            30,
+                            np.tile((14 + 40) / 2, [5, 2]),
+                            np.tile(30, [5, 2]),
                             'S',
                             'Refl.',
                             'Haploscopic',
@@ -338,7 +376,7 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
         self._data = OrderedDict()
         for key, (filenames,
                   metadata) in corresponding_colour_datasets.items():
-            for filename in filenames:
+            for i, filename in enumerate(filenames):
                 path = os.path.join(self.record.repository, 'dataset',
                                     filename)
 
@@ -347,30 +385,42 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                 with codecs.open(path, encoding='utf-8') as dat_file:
                     lines = filter(
                         None, (line.strip() for line in dat_file.readlines()))
-                    for i, line in enumerate(lines):
+                    for j, line in enumerate(lines):
                         values = line.split()
-                        if i == 0:
-                            XYZ_r = as_float_array(
-                                list(map(float, values[:3])))
-                            XYZ_t = as_float_array(
-                                list(map(float, values[3:])))
+                        if j == 0:
+                            XYZ_r = list(map(float, values[:3]))
+                            XYZ_t = list(map(float, values[3:]))
                         elif len(values) == 1:
                             continue
                         else:
-                            XYZ_cr.append(
-                                as_float_array(list(map(float, values[:3]))))
-                            XYZ_ct.append(
-                                as_float_array(list(map(float, values[3:]))))
+                            XYZ_cr.append(list(map(float, values[:3])))
+                            XYZ_ct.append(list(map(float, values[3:])))
 
                 name = '{0} - {1}'.format(key, filename.split('.')[1])
+                dataset_metadata = OrderedDict(zip(metadata_headers, metadata))
 
-                self._data[name] = CorrespondingColourDataset(
+                Y_r = dataset_metadata['Illuminance (lux)'][i][0]
+                Y_t = dataset_metadata['Illuminance (lux)'][i][1]
+
+                B_r = dataset_metadata['Background (Y%)'][i][0]
+                B_t = dataset_metadata['Background (Y%)'][i][1]
+
+                dataset_metadata['Illuminance (lux)'] = (
+                    dataset_metadata['Illuminance (lux)'][i])
+                dataset_metadata['Background (Y%)'] = (
+                    dataset_metadata['Background (Y%)'][i])
+
+                self._data[name] = CorrespondingColourDatasetLuo1999(
                     name,
-                    XYZ_r,
-                    XYZ_t,
-                    as_float_array(XYZ_cr),
-                    as_float_array(XYZ_ct),
-                    OrderedDict(zip(metadata_headers, metadata)),
+                    as_float_array(XYZ_r) / 100,
+                    as_float_array(XYZ_t) / 100,
+                    as_float_array(XYZ_cr) / 100,
+                    as_float_array(XYZ_ct) / 100,
+                    Y_r * np.pi,
+                    Y_t * np.pi,
+                    B_r,
+                    B_t,
+                    dataset_metadata,
                 )
 
         return self._data

@@ -104,8 +104,8 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of hue and their colour
-            matches data.
+            Dataset content as an :class:`OrderedDict` of :class:`OrderedDict`
+            of hue and their colour matches data.
 
         Examples
         --------
@@ -114,12 +114,13 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.data.keys())
-        15
+        1
         """
 
         super(Ebner1998DatasetLoader, self).sync()
 
-        self._data = OrderedDict()
+        self._data = OrderedDict([('Constant Perceived-Hue Data',
+                                   OrderedDict())])
 
         datafile_path = os.path.join(self.record.repository, 'dataset',
                                      'Ebner_Constant_Hue_Data.txt')
@@ -147,7 +148,7 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
                     hue, data = line.split('\t', 1)
                     hue, data = int(hue), _parse_float_values(data)
 
-                    self._data[hue] = (
+                    self._data['Constant Perceived-Hue Data'][hue] = (
                         ConstantPerceivedHueColourMatchesEbner1998(
                             'Reference Hue Angle - {0}'.format(hue), XYZ_r,
                             data[0], data[1:], {'h': hue}))

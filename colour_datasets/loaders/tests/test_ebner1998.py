@@ -54,7 +54,10 @@ load` method.
 
         dataset = Ebner1998DatasetLoader()
         self.assertEqual(
-            sorted(dataset.load().keys()), [
+            sorted(dataset.load().keys()), ['Constant Perceived-Hue Data'])
+
+        self.assertEqual(
+            sorted(dataset.load()['Constant Perceived-Hue Data'].keys()), [
                 0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312,
                 336
             ])
@@ -62,7 +65,7 @@ load` method.
         np.set_printoptions(
             formatter={'float': '{:0.15f}'.format}, suppress=True)
         np.testing.assert_almost_equal(
-            dataset.load()[96].XYZ_r,
+            dataset.load()['Constant Perceived-Hue Data'][96].XYZ_r,
             np.array([
                 0.950100000000000,
                 1.000000000000000,
@@ -70,7 +73,7 @@ load` method.
             ]),
             decimal=7)
         np.testing.assert_almost_equal(
-            dataset.load()[96].XYZ_cr,
+            dataset.load()['Constant Perceived-Hue Data'][96].XYZ_cr,
             np.array([
                 0.518400000000000,
                 0.566800000000000,
@@ -78,7 +81,7 @@ load` method.
             ]),
             decimal=7)
         np.testing.assert_almost_equal(
-            dataset.load()[96].XYZ_ct,
+            dataset.load()['Constant Perceived-Hue Data'][96].XYZ_ct,
             np.array([
                 [0.028909000000000, 0.029891000000000, 0.010142000000000],
                 [0.059861000000000, 0.062359000000000, 0.028395000000000],

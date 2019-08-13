@@ -53,17 +53,15 @@ load` method.
         """
 
         dataset = Ebner1998DatasetLoader()
-        self.assertEqual(
+        self.assertListEqual(
             sorted(dataset.load().keys()), ['Constant Perceived-Hue Data'])
 
-        self.assertEqual(
+        self.assertListEqual(
             sorted(dataset.load()['Constant Perceived-Hue Data'].keys()), [
                 0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 264, 288, 312,
                 336
             ])
 
-        np.set_printoptions(
-            formatter={'float': '{:0.15f}'.format}, suppress=True)
         np.testing.assert_almost_equal(
             dataset.load()['Constant Perceived-Hue Data'][96].XYZ_r,
             np.array([

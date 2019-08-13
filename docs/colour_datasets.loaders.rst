@@ -28,6 +28,15 @@ Camera Spectral Sensitivity Database - Jiang et al. (2013)
     Jiang2013DatasetLoader
     build_Jiang2013
 
+Constant Hue Loci Data - Hung and Berns (1995)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    Hung1995DatasetLoader
+    build_Hung1995
+
 Constant Perceived-Hue Data - Ebner and Fairchild (1998)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

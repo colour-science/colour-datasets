@@ -152,7 +152,7 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
             ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['C'])
 
         for table, experiment in [('Table III', 'CL'), ('Table IV', 'VL')]:
-            key = 'Constant Hue Loci - {0}'.format(experiment)
+            key = 'Constant Hue Loci Data - {0}'.format(experiment)
             self._data[key] = OrderedDict()
             for hue in hues:
                 for sample_r in self._data['Table I']:

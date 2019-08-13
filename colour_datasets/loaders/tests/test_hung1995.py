@@ -56,17 +56,17 @@ load` method.
         self.assertListEqual(
             list(dataset.load().keys()), [
                 'Table I', 'Table II', 'Table III', 'Table IV',
-                'Constant Hue Loci - CL', 'Constant Hue Loci - VL'
+                'Constant Hue Loci Data - CL', 'Constant Hue Loci Data - VL'
             ])
         self.assertListEqual(
-            list(dataset.load()['Constant Hue Loci - CL'].keys()), [
+            list(dataset.load()['Constant Hue Loci Data - CL'].keys()), [
                 'Red', 'Red-yellow', 'Yellow', 'Yellow-green', 'Green',
                 'Green-cyan', 'Cyan', 'Cyan-blue', 'Blue', 'Blue-magenta',
                 'Magenta', 'Magenta-red'
             ])
 
         np.testing.assert_almost_equal(
-            dataset.load()['Constant Hue Loci - CL']['Cyan'].XYZ_r,
+            dataset.load()['Constant Hue Loci Data - CL']['Cyan'].XYZ_r,
             np.array([
                 0.980705971659919,
                 1.000000000000000,
@@ -74,7 +74,7 @@ load` method.
             ]),
             decimal=7)
         np.testing.assert_almost_equal(
-            dataset.load()['Constant Hue Loci - CL']['Cyan'].XYZ_cr,
+            dataset.load()['Constant Hue Loci Data - CL']['Cyan'].XYZ_cr,
             np.array([
                 0.495450736980020,
                 0.722700000000000,
@@ -82,7 +82,7 @@ load` method.
             ]),
             decimal=7)
         np.testing.assert_almost_equal(
-            dataset.load()['Constant Hue Loci - CL']['Cyan'].XYZ_ct,
+            dataset.load()['Constant Hue Loci Data - CL']['Cyan'].XYZ_ct,
             np.array(
                 [[0.655100000000000, 0.722700000000000, 0.916200000000000],
                  [0.603500000000000, 0.722700000000000, 0.995100000000000],

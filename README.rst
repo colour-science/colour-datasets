@@ -133,7 +133,7 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 14
+    Datasets : 15
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
@@ -142,6 +142,7 @@ definition:
 
     [ ] 3269926 : Agfa IT8.7/2 Set
     [ ] 3245883 : Camera Spectral Sensitivity Database
+    [ ] 3367463 : Constant Hue Loci Data
     [ ] 3362536 : Constant Perceived-Hue Data
     [ ] 3270903 : Corresponding-Colour Datasets
     [ ] 3269920 : Forest Colors

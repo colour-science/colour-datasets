@@ -62,8 +62,6 @@ load` method.
                 336
             ])
 
-        np.set_printoptions(
-            formatter={'float': '{:0.15f}'.format}, suppress=True)
         np.testing.assert_almost_equal(
             dataset.load()['Constant Perceived-Hue Data'][96].XYZ_r,
             np.array([

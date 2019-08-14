@@ -3559,7 +3559,7 @@ KuopioUniversityDatasetLoader.load` method.
         for dataset_loader, values in dataset_loaders.items():
             self.assertEqual(len(dataset_loader.load()[values[0]]), values[1])
             np.testing.assert_array_almost_equal(
-                dataset_loader.data[values[0]][values[2]].values,
+                dataset_loader.content[values[0]][values[2]].values,
                 values[3],
                 decimal=7)
 

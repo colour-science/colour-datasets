@@ -103,8 +103,7 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of :class:`OrderedDict`
-            of hue and their colour matches data.
+            *Hung and Berns (1995)* *Constant Hue Loci Data* dataset content.
 
         Examples
         --------
@@ -112,13 +111,13 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
         >>> dataset = Hung1995DatasetLoader()
         >>> with suppress_stdout():
         ...     dataset.load()
-        >>> len(dataset.data.keys())
+        >>> len(dataset.content.keys())
         6
         """
 
         super(Hung1995DatasetLoader, self).sync()
 
-        self._data = OrderedDict()
+        self._content = OrderedDict()
 
         filenames = OrderedDict([
             ('Table I.csv', 'Reference colors.'),
@@ -135,7 +134,7 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
             datafile_path = os.path.join(self.record.repository, 'dataset',
                                          filename)
 
-            self._data[filename.split('.')[0]] = np.genfromtxt(
+            self._content[filename.split('.')[0]] = np.genfromtxt(
                 datafile_path,
                 delimiter=',',
                 names=True,
@@ -153,9 +152,9 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
 
         for table, experiment in [('Table III', 'CL'), ('Table IV', 'VL')]:
             key = 'Constant Hue Loci Data - {0}'.format(experiment)
-            self._data[key] = OrderedDict()
+            self._content[key] = OrderedDict()
             for hue in hues:
-                for sample_r in self._data['Table I']:
+                for sample_r in self._content['Table I']:
                     sample_r = sample_r.tolist()
                     if sample_r[0] == hue:
                         XYZ_cr = xyY_to_XYZ(sample_r[1:4]) / 100
@@ -166,7 +165,7 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
                     'Color name': [],
                     'C*uv': [],
                 }
-                for sample_t in self._data[table]:
+                for sample_t in self._content[table]:
                     sample_t = sample_t.tolist()
                     if not sample_t[0] == hue:
                         continue
@@ -175,12 +174,12 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
                     metadata['Color name'].append(sample_t[0])
                     metadata['C*uv'].append(sample_t[1])
 
-                self._data[key][hue] = (
+                self._content[key][hue] = (
                     ConstantPerceivedHueColourMatchesHung1995(
                         hue, XYZ_r, XYZ_cr,
                         np.vstack(XYZ_ct) / 100, metadata))
 
-        return self._data
+        return self._content
 
 
 _HUNG1995_DATASET_LOADER = None

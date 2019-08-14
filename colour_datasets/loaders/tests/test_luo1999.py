@@ -59,7 +59,7 @@ load` method.
             formatter={'float': '{:0.8f}'.format}, suppress=True)
 
         np.testing.assert_almost_equal(
-            dataset.data['CSAJ-C - da'].XYZ_ct,
+            dataset.content['CSAJ-C - da'].XYZ_ct,
             np.array([
                 [9.31000000, 7.33000000, 2.12000000],
                 [8.85000000, 7.26000000, 1.73000000],
@@ -152,7 +152,7 @@ load` method.
             decimal=7)
 
         self.assertEqual(
-            dataset.data['CSAJ-C - da'].metadata['Experimental Method'],
+            dataset.content['CSAJ-C - da'].metadata['Experimental Method'],
             'Haploscopic')
 
 

@@ -114,9 +114,9 @@ def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):
         table = np.transpose(table)
 
     for i, data in enumerate(table):
-        identifier = six.text_type(
-            i + 1 if metadata.identifiers is None else matlab_data[
-                metadata.identifiers][i].strip())
+        identifier = six.text_type(i + 1 if metadata.identifiers is None else
+                                   matlab_data[metadata.identifiers][
+                                       i].strip())
 
         if identifier in sds:
             identifier = '{0} ({1})'.format(identifier, i)
@@ -174,15 +174,16 @@ class KuopioUniversityDatasetLoader(AbstractDatasetLoader):
 
         super(KuopioUniversityDatasetLoader, self).sync()
 
-        self._data = OrderedDict()
+        self._content = OrderedDict()
 
         for path, metadata in self.METADATA.items():
             mat_path = os.path.join(self.record.repository, 'dataset', *path)
 
-            self._data[metadata.key] = read_sds_from_mat_file_KuopioUniversity(
-                mat_path, metadata)
+            self._content[
+                metadata.key] = read_sds_from_mat_file_KuopioUniversity(
+                    mat_path, metadata)
 
-        return self._data
+        return self._content
 
 
 def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
@@ -292,8 +293,7 @@ def build_KuopioUniversity(dataset_loader_class, load=True):
 # http://www.uef.fi/web/spectral/natural-colors
 KUOPIO_UNIVERSITY_DATASETS_DATA = {
     '3269912': [
-        'Munsell Colors Matt (Spectrofotometer Measured)', 'Hauta-Kasari',
-        {
+        'Munsell Colors Matt (Spectrofotometer Measured)', 'Hauta-Kasari', {
             ('munsell380_800_1_mat', 'munsell380_800_1.mat'):
                 KuopioUniversityMatFileMetadata('munsell',
                                                 SpectralShape(380, 800, 1),
@@ -301,8 +301,7 @@ KUOPIO_UNIVERSITY_DATASETS_DATA = {
         }
     ],
     '3269914': [
-        'Munsell Colors Matt (AOTF Measured)', 'Hauta-Kasaria',
-        {
+        'Munsell Colors Matt (AOTF Measured)', 'Hauta-Kasaria', {
             ('munsell400_700_5_mat', 'munsell400_700_5.mat'):
                 KuopioUniversityMatFileMetadata('munsell',
                                                 SpectralShape(400, 700, 5),
@@ -310,8 +309,7 @@ KUOPIO_UNIVERSITY_DATASETS_DATA = {
         }
     ],
     '3269916': [
-        'Munsell Colors Glossy (Spectrofotometer Measured)', 'Haanpalo',
-        {
+        'Munsell Colors Glossy (Spectrofotometer Measured)', 'Haanpalo', {
             ('munsell400_700_10_mat', 'munsell400_700_10.mat'):
                 KuopioUniversityMatFileMetadata('munsell',
                                                 SpectralShape(400, 700, 10),
@@ -319,16 +317,14 @@ KUOPIO_UNIVERSITY_DATASETS_DATA = {
         }
     ],
     '3269918': [
-        'Munsell Colors Glossy (All) (Spectrofotometer Measured)', 'Orava',
-        {
+        'Munsell Colors Glossy (All) (Spectrofotometer Measured)', 'Orava', {
             ('munsell380_780_1_glossy_mat', 'munsell380_780_1_glossy.mat'):
                 KuopioUniversityMatFileMetadata('X', SpectralShape(
                     380, 780, 1), True, None)
         }
     ],
     '3269920': [
-        'Forest Colors', 'Silvennoinen',
-        {
+        'Forest Colors', 'Silvennoinen', {
             ('forest_matlab', 'birch.mat'):
                 KuopioUniversityMatFileMetadata('birch',
                                                 SpectralShape(380, 850, 5),
@@ -344,8 +340,7 @@ KUOPIO_UNIVERSITY_DATASETS_DATA = {
         }
     ],
     '3269922': [
-        'Paper Spectra', 'Haanpaloa',
-        {
+        'Paper Spectra', 'Haanpaloa', {
             ('paper_matlab', 'cardboardsce.mat'):
                 KuopioUniversityMatFileMetadata('cardboardsce',
                                                 SpectralShape(400, 700, 10),
@@ -377,8 +372,7 @@ KUOPIO_UNIVERSITY_DATASETS_DATA = {
         }
     ],
     '3269924': [
-        'Lumber Spectra', 'Hiltunen',
-        {
+        'Lumber Spectra', 'Hiltunen', {
             ('lumber_matlab', 'aspenWb.mat'):
                 KuopioUniversityMatFileMetadata('aspenWb',
                                                 SpectralShape(380, 2700, 1),
@@ -414,8 +408,7 @@ KUOPIO_UNIVERSITY_DATASETS_DATA = {
         }
     ],
     '3269926': [
-        'Agfa IT8.7/2 Set', 'Marszalec',
-        {
+        'Agfa IT8.7/2 Set', 'Marszalec', {
             ('agfait872_mat', 'agfait872.mat'):
                 KuopioUniversityMatFileMetadata('agfa',
                                                 SpectralShape(400, 700, 10),

@@ -57,7 +57,7 @@ Labsphere2019DatasetLoader.load` method.
         dataset = Labsphere2019DatasetLoader()
         self.assertEqual(
             sorted(dataset.load().keys()), ['Labsphere SRS-99-020'])
-        self.assertEqual(dataset.data['Labsphere SRS-99-020'].shape,
+        self.assertEqual(dataset.content['Labsphere SRS-99-020'].shape,
                          SpectralShape(250, 2500, 1))
 
 

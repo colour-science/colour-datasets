@@ -80,9 +80,8 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of
-            *Colour Checkers* and their
-            :class:`colour.characterisation.ColourChecker` class instances.
+            *X-Rite (2016)* *New Color Specifications for ColorChecker SG and
+            Classic Charts* dataset content.
 
         Examples
         --------
@@ -90,7 +89,7 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
         >>> dataset = XRite2016DatasetLoader()
         >>> with suppress_stdout():
         ...     dataset.load()
-        >>> len(dataset.data.keys())
+        >>> len(dataset.content.keys())
         4
         """
 
@@ -114,7 +113,7 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
         # TODO: Add "ICC D50" to "Colour".
         illuminant = XYZ_to_xy([96.42, 100, 82.49])
 
-        self._data = OrderedDict()
+        self._content = OrderedDict()
         for key, filename in zip(keys, filenames):
             directory = os.path.splitext(filename)[0]
             path = os.path.join(self.record.repository, 'dataset', directory,
@@ -147,10 +146,11 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
             samples = np.transpose(samples.reshape([i, j, 2]), [1, 0, 2])
             keys, values = zip(*samples.reshape([-1, 2]))
             values = XYZ_to_xyY(Lab_to_XYZ(values, illuminant))
-            self._data[key] = ColourChecker(key, OrderedDict(
-                zip(keys, values)), illuminant)
+            self._content[key] = ColourChecker(key,
+                                               OrderedDict(zip(keys, values)),
+                                               illuminant)
 
-        return self._data
+        return self._content
 
 
 _XRITE2016_DATASET_LOADER = None

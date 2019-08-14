@@ -73,9 +73,7 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of
-            *Spectralon SRS-99-020* diffuse reflectance standard and its
-            spectral distribution.
+            *Labsphere (2019)* *Labsphere SRS-99-020* dataset content.
 
         Examples
         --------
@@ -83,7 +81,7 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
         >>> dataset = Labsphere2019DatasetLoader()
         >>> with suppress_stdout():
         ...     dataset.load()
-        >>> len(dataset.data.keys())
+        >>> len(dataset.content.keys())
         1
         """
 
@@ -93,13 +91,13 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
                                'SRS-99-020.txt')
 
         values = tsplit(np.loadtxt(sd_path, delimiter='\t', skiprows=2))
-        self._data = OrderedDict([
+        self._content = OrderedDict([
             ('Labsphere SRS-99-020',
              SpectralDistribution(
                  values[1], values[0], name='Labsphere SRS-99-020')),
         ])
 
-        return self._data
+        return self._content
 
 
 _LABSPHERE2019_DATASET_LOADER = None

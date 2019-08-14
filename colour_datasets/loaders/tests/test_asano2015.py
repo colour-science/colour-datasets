@@ -59,11 +59,12 @@ load` method.
             sorted(dataset.load().keys()),
             ['Categorical Observers', 'Colour Normal Observers'])
 
-        self.assertEqual(dataset.data['Categorical Observers'][1].XYZ_2.shape,
-                         SpectralShape(390, 780, 5))
+        self.assertEqual(
+            dataset.content['Categorical Observers'][1].XYZ_2.shape,
+            SpectralShape(390, 780, 5))
 
         np.testing.assert_almost_equal(
-            dataset.data['Categorical Observers'][1].XYZ_2[390],
+            dataset.content['Categorical Observers'][1].XYZ_2[390],
             np.array([
                 0.003774670254076,
                 0.000033807427536,
@@ -72,7 +73,7 @@ load` method.
             decimal=7)
 
         np.testing.assert_almost_equal(
-            dataset.data['Categorical Observers'][10].LMS_10[780],
+            dataset.content['Categorical Observers'][10].LMS_10[780],
             np.array([
                 0.000101460310461,
                 9.67131698024335e-06,
@@ -81,17 +82,17 @@ load` method.
             decimal=7)
 
         self.assertAlmostEqual(
-            dataset.data['Categorical Observers']
-            [5].parameters['Shift in S [nm]'],
+            dataset.content['Categorical Observers'][5].parameters[
+                'Shift in S [nm]'],
             0.233255808,
             places=7)
 
         self.assertEqual(
-            dataset.data['Colour Normal Observers'][1].XYZ_2.shape,
+            dataset.content['Colour Normal Observers'][1].XYZ_2.shape,
             SpectralShape(390, 780, 5))
 
         np.testing.assert_almost_equal(
-            dataset.data['Colour Normal Observers'][1].XYZ_2[390],
+            dataset.content['Colour Normal Observers'][1].XYZ_2[390],
             np.array([
                 0.001627436785620,
                 0.000021871064674,
@@ -100,7 +101,7 @@ load` method.
             decimal=7)
 
         np.testing.assert_almost_equal(
-            dataset.data['Colour Normal Observers'][10].LMS_10[780],
+            dataset.content['Colour Normal Observers'][10].LMS_10[780],
             np.array([
                 0.000092440377130,
                 6.93870146211108e-06,
@@ -109,13 +110,13 @@ load` method.
             decimal=7)
 
         self.assertAlmostEqual(
-            dataset.data['Colour Normal Observers']
-            [5].parameters['Shift in S [nm]'],
+            dataset.content['Colour Normal Observers'][5].parameters[
+                'Shift in S [nm]'],
             0.000649602695013,
             places=7)
 
         self.assertEqual(
-            dataset.data['Colour Normal Observers'][151].others['Location'],
+            dataset.content['Colour Normal Observers'][151].others['Location'],
             'Darmstadt')
 
 

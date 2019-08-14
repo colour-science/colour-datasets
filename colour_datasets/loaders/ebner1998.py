@@ -113,14 +113,14 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
         >>> dataset = Ebner1998DatasetLoader()
         >>> with suppress_stdout():
         ...     dataset.load()
-        >>> len(dataset.data.keys())
+        >>> len(dataset.content.keys())
         1
         """
 
         super(Ebner1998DatasetLoader, self).sync()
 
-        self._data = OrderedDict([('Constant Perceived-Hue Data',
-                                   OrderedDict())])
+        self._content = OrderedDict([('Constant Perceived-Hue Data',
+                                      OrderedDict())])
 
         datafile_path = os.path.join(self.record.repository, 'dataset',
                                      'Ebner_Constant_Hue_Data.txt')
@@ -148,12 +148,12 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
                     hue, data = line.split('\t', 1)
                     hue, data = int(hue), _parse_float_values(data)
 
-                    self._data['Constant Perceived-Hue Data'][hue] = (
+                    self._content['Constant Perceived-Hue Data'][hue] = (
                         ConstantPerceivedHueColourMatchesEbner1998(
                             'Reference Hue Angle - {0}'.format(hue), XYZ_r,
                             data[0], data[1:], {'h': hue}))
 
-        return self._data
+        return self._content
 
 
 _EBNER1998_DATASET_LOADER = None

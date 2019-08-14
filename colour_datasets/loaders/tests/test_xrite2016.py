@@ -62,7 +62,7 @@ load` method.
                 'ColorCheckerSG - Before November 2014',
             ])
         self.assertIsInstance(
-            dataset.data['ColorChecker24 - After November 2014'],
+            dataset.content['ColorChecker24 - After November 2014'],
             ColourChecker)
 
 

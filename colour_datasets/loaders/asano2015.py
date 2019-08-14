@@ -126,13 +126,13 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
         >>> dataset = Asano2015DatasetLoader()
         >>> with suppress_stdout():
         ...     dataset.load()
-        >>> len(dataset.data.keys())
+        >>> len(dataset.content.keys())
         2
         """
 
         super(Asano2015DatasetLoader, self).sync()
 
-        self._data = OrderedDict([
+        self._content = OrderedDict([
             ('Categorical Observers', OrderedDict()),
             ('Colour Normal Observers', OrderedDict()),
         ])
@@ -145,7 +145,7 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
         template = 'Asano 2015 {0} Categorical Observer No. {1} {2}'
         for index, observer in self.parse_workbook_Asano2015(
                 workbook_path, template, observers).items():
-            self._data['Categorical Observers'][index] = (
+            self._content['Categorical Observers'][index] = (
                 Asano2015_Specification(
                     observer['XYZ_2'],
                     observer['XYZ_10'],
@@ -178,7 +178,7 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
         for i, (index, observer) in enumerate(
                 self.parse_workbook_Asano2015(workbook_path, template,
                                               observers).items()):
-            self._data['Colour Normal Observers'][index] = (
+            self._content['Colour Normal Observers'][index] = (
                 Asano2015_Specification(
                     observer['XYZ_2'],
                     observer['XYZ_10'],
@@ -188,7 +188,7 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
                     OrderedDict(zip(header, values[i])),
                 ))
 
-        return self._data
+        return self._content
 
     @staticmethod
     def parse_workbook_Asano2015(workbook, template, observers=(1, 10)):

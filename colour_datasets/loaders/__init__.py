@@ -109,7 +109,7 @@ def load(dataset):
             DATASET_LOADERS[title] = DATASET_LOADERS[key]
         _HAS_TITLE_KEYS = True
 
-    return DATASET_LOADERS[six.text_type(dataset)]().data
+    return DATASET_LOADERS[six.text_type(dataset)]().content
 
 
 __all__ += ['DATASET_LOADERS', 'load']

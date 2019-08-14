@@ -89,7 +89,7 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
         >>> dataset = Jiang2013DatasetLoader()
         >>> with suppress_stdout():
         ...     dataset.load()
-        >>> len(dataset.data.keys())
+        >>> len(dataset.content.keys())
         28
         """
 
@@ -97,7 +97,7 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
 
         shape = SpectralShape(400, 720, 10)
 
-        self._data = OrderedDict()
+        self._content = OrderedDict()
         database_path = os.path.join(self.record.repository, 'dataset',
                                      'camspec_database.txt')
         with codecs.open(database_path, encoding='utf-8') as database_file:
@@ -107,19 +107,19 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
             for line in lines:
                 if re.match('[a-zA-Z]+', line):
                     camera = line
-                    self._data[camera] = []
+                    self._content[camera] = []
                     continue
 
-                self._data[camera].extend(
+                self._content[camera].extend(
                     [float(value) for value in line.split('\t')])
 
-        for camera, values in self._data.items():
-            self._data[camera] = RGB_SpectralSensitivities(
+        for camera, values in self._content.items():
+            self._content[camera] = RGB_SpectralSensitivities(
                 np.transpose(as_float_array(values).reshape([3, 33])),
                 shape.range(),
                 name=camera)
 
-        return self._data
+        return self._content
 
 
 _JIANG2013_DATASET_LOADER = None

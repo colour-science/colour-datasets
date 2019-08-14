@@ -80,8 +80,8 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of cameras and their
-            spectral sensitivities.
+            *Jiang et al. (2013)* *Camera Spectral Sensitivity Database*
+            dataset content.
 
         Examples
         --------

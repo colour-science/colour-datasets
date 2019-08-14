@@ -103,8 +103,7 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of :class:`OrderedDict`
-            of hue and their colour matches data.
+            *Hung and Berns (1995)* *Constant Hue Loci Data* dataset content.
 
         Examples
         --------

@@ -121,8 +121,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of
-            *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* datasets.
+            *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset
+            content.
 
         Notes
         -----

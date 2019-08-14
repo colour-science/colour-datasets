@@ -104,8 +104,8 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of :class:`OrderedDict`
-            of hue and their colour matches data.
+            *Ebner and Fairchild (1998)* Constant Perceived-Hue Data* dataset
+            content.
 
         Examples
         --------

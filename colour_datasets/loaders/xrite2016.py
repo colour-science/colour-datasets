@@ -80,9 +80,8 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of
-            *Colour Checkers* and their
-            :class:`colour.characterisation.ColourChecker` class instances.
+            *X-Rite (2016)* *New Color Specifications for ColorChecker SG and
+            Classic Charts* dataset content.
 
         Examples
         --------

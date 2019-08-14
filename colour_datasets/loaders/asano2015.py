@@ -118,8 +118,7 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of categorical and
-            colour normal observers and their specifications.
+            *Asano (2015)* *Observer Function Database* dataset content.
 
         Examples
         --------

@@ -73,9 +73,7 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
         Returns
         -------
         OrderedDict
-            Dataset content as an :class:`OrderedDict` of
-            *Spectralon SRS-99-020* diffuse reflectance standard and its
-            spectral distribution.
+            *Labsphere (2019)* *Labsphere SRS-99-020* dataset content.
 
         Examples
         --------

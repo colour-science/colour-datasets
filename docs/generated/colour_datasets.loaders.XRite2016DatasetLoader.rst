@@ -26,7 +26,7 @@ colour\_datasets.loaders.XRite2016DatasetLoader
    .. autosummary::
    
       ~XRite2016DatasetLoader.ID
-      ~XRite2016DatasetLoader.data
+      ~XRite2016DatasetLoader.content
       ~XRite2016DatasetLoader.id
       ~XRite2016DatasetLoader.record
    

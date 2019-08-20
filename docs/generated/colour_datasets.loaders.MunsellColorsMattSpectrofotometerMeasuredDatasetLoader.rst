@@ -27,7 +27,7 @@ colour\_datasets.loaders.MunsellColorsMattSpectrofotometerMeasuredDatasetLoader
    
       ~MunsellColorsMattSpectrofotometerMeasuredDatasetLoader.ID
       ~MunsellColorsMattSpectrofotometerMeasuredDatasetLoader.METADATA
-      ~MunsellColorsMattSpectrofotometerMeasuredDatasetLoader.data
+      ~MunsellColorsMattSpectrofotometerMeasuredDatasetLoader.content
       ~MunsellColorsMattSpectrofotometerMeasuredDatasetLoader.id
       ~MunsellColorsMattSpectrofotometerMeasuredDatasetLoader.record
    

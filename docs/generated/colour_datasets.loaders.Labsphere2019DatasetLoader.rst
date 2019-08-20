@@ -26,7 +26,7 @@ colour\_datasets.loaders.Labsphere2019DatasetLoader
    .. autosummary::
    
       ~Labsphere2019DatasetLoader.ID
-      ~Labsphere2019DatasetLoader.data
+      ~Labsphere2019DatasetLoader.content
       ~Labsphere2019DatasetLoader.id
       ~Labsphere2019DatasetLoader.record
    

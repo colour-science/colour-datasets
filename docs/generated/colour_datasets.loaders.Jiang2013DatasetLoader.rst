@@ -26,7 +26,7 @@ colour\_datasets.loaders.Jiang2013DatasetLoader
    .. autosummary::
    
       ~Jiang2013DatasetLoader.ID
-      ~Jiang2013DatasetLoader.data
+      ~Jiang2013DatasetLoader.content
       ~Jiang2013DatasetLoader.id
       ~Jiang2013DatasetLoader.record
    

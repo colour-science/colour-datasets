@@ -26,7 +26,7 @@ colour\_datasets.loaders.AbstractDatasetLoader
    .. autosummary::
    
       ~AbstractDatasetLoader.ID
-      ~AbstractDatasetLoader.data
+      ~AbstractDatasetLoader.content
       ~AbstractDatasetLoader.id
       ~AbstractDatasetLoader.record
    

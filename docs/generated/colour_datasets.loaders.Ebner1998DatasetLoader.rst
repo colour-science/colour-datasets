@@ -26,7 +26,7 @@ colour\_datasets.loaders.Ebner1998DatasetLoader
    .. autosummary::
    
       ~Ebner1998DatasetLoader.ID
-      ~Ebner1998DatasetLoader.data
+      ~Ebner1998DatasetLoader.content
       ~Ebner1998DatasetLoader.id
       ~Ebner1998DatasetLoader.record
    

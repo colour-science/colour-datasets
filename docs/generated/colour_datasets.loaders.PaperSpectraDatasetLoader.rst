@@ -27,7 +27,7 @@ colour\_datasets.loaders.PaperSpectraDatasetLoader
    
       ~PaperSpectraDatasetLoader.ID
       ~PaperSpectraDatasetLoader.METADATA
-      ~PaperSpectraDatasetLoader.data
+      ~PaperSpectraDatasetLoader.content
       ~PaperSpectraDatasetLoader.id
       ~PaperSpectraDatasetLoader.record
    

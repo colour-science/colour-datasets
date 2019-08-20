@@ -27,7 +27,7 @@ colour\_datasets.loaders.LumberSpectraDatasetLoader
    
       ~LumberSpectraDatasetLoader.ID
       ~LumberSpectraDatasetLoader.METADATA
-      ~LumberSpectraDatasetLoader.data
+      ~LumberSpectraDatasetLoader.content
       ~LumberSpectraDatasetLoader.id
       ~LumberSpectraDatasetLoader.record
    

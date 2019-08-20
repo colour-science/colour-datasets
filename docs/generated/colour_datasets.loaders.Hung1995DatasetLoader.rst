@@ -26,7 +26,7 @@ colour\_datasets.loaders.Hung1995DatasetLoader
    .. autosummary::
    
       ~Hung1995DatasetLoader.ID
-      ~Hung1995DatasetLoader.data
+      ~Hung1995DatasetLoader.content
       ~Hung1995DatasetLoader.id
       ~Hung1995DatasetLoader.record
    

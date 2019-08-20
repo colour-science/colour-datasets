@@ -27,7 +27,7 @@ colour\_datasets.loaders.ForestColorsDatasetLoader
    
       ~ForestColorsDatasetLoader.ID
       ~ForestColorsDatasetLoader.METADATA
-      ~ForestColorsDatasetLoader.data
+      ~ForestColorsDatasetLoader.content
       ~ForestColorsDatasetLoader.id
       ~ForestColorsDatasetLoader.record
    

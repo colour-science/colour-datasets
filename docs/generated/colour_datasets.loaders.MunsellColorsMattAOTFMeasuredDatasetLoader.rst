@@ -27,7 +27,7 @@ colour\_datasets.loaders.MunsellColorsMattAOTFMeasuredDatasetLoader
    
       ~MunsellColorsMattAOTFMeasuredDatasetLoader.ID
       ~MunsellColorsMattAOTFMeasuredDatasetLoader.METADATA
-      ~MunsellColorsMattAOTFMeasuredDatasetLoader.data
+      ~MunsellColorsMattAOTFMeasuredDatasetLoader.content
       ~MunsellColorsMattAOTFMeasuredDatasetLoader.id
       ~MunsellColorsMattAOTFMeasuredDatasetLoader.record
    

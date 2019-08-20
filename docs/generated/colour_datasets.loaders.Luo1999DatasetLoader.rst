@@ -26,7 +26,7 @@ colour\_datasets.loaders.Luo1999DatasetLoader
    .. autosummary::
    
       ~Luo1999DatasetLoader.ID
-      ~Luo1999DatasetLoader.data
+      ~Luo1999DatasetLoader.content
       ~Luo1999DatasetLoader.id
       ~Luo1999DatasetLoader.record
    

@@ -27,7 +27,7 @@ colour\_datasets.loaders.Asano2015DatasetLoader
    .. autosummary::
    
       ~Asano2015DatasetLoader.ID
-      ~Asano2015DatasetLoader.data
+      ~Asano2015DatasetLoader.content
       ~Asano2015DatasetLoader.id
       ~Asano2015DatasetLoader.record
    

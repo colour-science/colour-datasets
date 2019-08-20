@@ -27,7 +27,7 @@ colour\_datasets.loaders.AgfaIT872SetDatasetLoader
    
       ~AgfaIT872SetDatasetLoader.ID
       ~AgfaIT872SetDatasetLoader.METADATA
-      ~AgfaIT872SetDatasetLoader.data
+      ~AgfaIT872SetDatasetLoader.content
       ~AgfaIT872SetDatasetLoader.id
       ~AgfaIT872SetDatasetLoader.record
    

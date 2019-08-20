@@ -145,6 +145,15 @@ Paper Spectra
     PaperSpectraDatasetLoader
     build_PaperSpectra
 
+RAW to ACES Utility Data - Dyer et al. (2017)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+
+    Dyer2017DatasetLoader
+    build_Dyer2017
+
 Loading the Datasets
 --------------------
 

@@ -133,7 +133,7 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 15
+    Datasets : 16
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
@@ -155,6 +155,7 @@ definition:
     [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts
     [ ] 3252742 : Observer Function Database
     [ ] 3269922 : Paper Spectra
+    [ ] 3372171 : RAW to ACES Utility Data
 
 A ticked checkbox means that the particular dataset has been synced locally.
 A dataset is loaded by using its unique number: *3245895*:

@@ -26,10 +26,11 @@ from collections import OrderedDict
 from colour import SpectralDistribution
 # TODO: Update accordingly whenever "Colour 0.3.14" is released.
 try:
-    from colour import MultiSpectralDistributions
+    from colour import MultiSignals, MultiSpectralDistributions
 except ImportError:
+    from colour import MultiSignal as MultiSignals
     from colour import MultiSpectralDistribution as MultiSpectralDistributions
-from colour.continuous import Signal, MultiSignal
+from colour.continuous import Signal
 from colour.utilities import is_numeric, is_string
 
 from colour_datasets.records import datasets
@@ -774,8 +775,13 @@ class AMPAS_SpectralDataMixin(object):
                 {k: v[0]
                  for k, v in data.items()})
         else:
-            self.signals = MultiSignal.multi_signal_unpack_data(
-                data, labels=index)
+            # TODO: Update accordingly whenever "Colour 0.3.14" is released.
+            try:
+                self.signals = MultiSignals.multi_signals_unpack_data(
+                    data, labels=index)
+            except AttributeError:
+                self.signals = MultiSignals.multi_signal_unpack_data(
+                    data, labels=index)
 
         # TODO: Re-instate "manufacturer", "model", "illuminant" and "type"
         # attributes according to outcome of

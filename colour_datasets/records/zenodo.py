@@ -403,9 +403,20 @@ class Record(object):
                 urls_txt = file_data
                 break
 
+        def _urls_download(urls):
+            """
+            Downloads given urls.
+            """
+
+            for url, md5 in urls.items():
+                filename = os.path.join(
+                    downloads_directory,
+                    urllib.parse.unquote(url.split('/')[-1]))
+                url_download(url, filename, md5.split(':')[-1], retries)
+
         try:
-            urls = {}
             if use_urls_txt_file and urls_txt:
+                urls = {}
                 urls_txt_file = tempfile.mktemp()
                 url_download(urls_txt['links']['self'], urls_txt_file,
                              urls_txt['checksum'].split(':')[-1], retries)
@@ -419,6 +430,8 @@ class Record(object):
                     urls_txt_file,
                     os.path.join(downloads_directory,
                                  self._configuration.urls_txt_file))
+
+                _urls_download(urls)
             else:
                 raise ValueError(
                     '"{0}" file was not found in record data!'.format(
@@ -427,6 +440,8 @@ class Record(object):
             warning('An error occurred using urls from "{0}" file: {1}\n'
                     'Switching to record urls...'.format(
                         self._configuration.urls_txt_file, error))
+
+            urls = {}
             for file_data in self.data['files']:
                 if file_data['key'] == self._configuration.urls_txt_file:
                     continue
@@ -434,10 +449,7 @@ class Record(object):
                 urls[file_data['links']['self']] = (
                     file_data['checksum'].split(':')[-1])
 
-        for url, md5 in urls.items():
-            filename = os.path.join(downloads_directory,
-                                    urllib.parse.unquote(url.split('/')[-1]))
-            url_download(url, filename, md5.split(':')[-1], retries)
+            _urls_download(urls)
 
         deflate_directory = os.path.join(self.repository,
                                          self._configuration.deflate_directory)

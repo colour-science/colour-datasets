@@ -99,7 +99,7 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
 
     References
     ----------
-    :cite:`Breneman1987b`, :cite:`Luo1999`
+    :cite:`Breneman1987b`, :cite:`Luo1999`, :cite:`McCann1976`
     """
 
     ID = '3270903'
@@ -435,7 +435,7 @@ def build_Luo1999(load=True):
 
     References
     ----------
-    :cite:`Luo1999`
+    :cite:`Breneman1987b`, :cite:`Luo1999`, :cite:`McCann1976`
     """
 
     global _LUO1999_DATASET_LOADER

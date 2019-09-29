@@ -16,6 +16,7 @@ import os
 import six
 import shutil
 import setuptools.archive_util
+import stat
 import tempfile
 import textwrap
 from collections import Mapping
@@ -454,7 +455,7 @@ class Record(object):
         deflate_directory = os.path.join(self.repository,
                                          self._configuration.deflate_directory)
         if os.path.exists(deflate_directory):
-            shutil.rmtree(deflate_directory)
+            shutil.rmtree(deflate_directory, onerror=_remove_readonly)
 
         shutil.copytree(downloads_directory, deflate_directory)
 
@@ -497,7 +498,7 @@ class Record(object):
         """
 
         if os.path.exists(self.repository):
-            shutil.rmtree(self.repository)
+            shutil.rmtree(self.repository, onerror=_remove_readonly)
 
 
 class Community(Mapping):
@@ -876,8 +877,8 @@ colour-science-datasets-tests/
         >>> from colour_datasets.utilities import suppress_stdout
         >>> community = Community.from_id('colour-science-datasets-tests')
         >>> with suppress_stdout():
-        ...     community.pull()
-        >>> community.synced()
+        ...     community.pull()  # doctest: +SKIP
+        >>> community.synced()  # doctest: +SKIP
         True
         >>> community.remove()
         >>> community.synced()
@@ -907,8 +908,8 @@ colour-science-datasets-tests/
         >>> community = Community.from_id('colour-science-datasets-tests')
         >>> community.remove()
         >>> with suppress_stdout():
-        ...     community.pull()
-        >>> community.synced()
+        ...     community.pull()  # doctest: +SKIP
+        >>> community.synced()  # doctest: +SKIP
         True
         """
 
@@ -927,11 +928,22 @@ colour-science-datasets-tests/
         >>> from colour_datasets.utilities import suppress_stdout
         >>> community = Community.from_id('colour-science-datasets-tests')
         >>> with suppress_stdout():
-        ...     community.pull()
+        ...     community.pull()  # doctest: +SKIP
         >>> community.remove()
         >>> community.synced()
         False
         """
 
         if os.path.exists(self.repository):
-            shutil.rmtree(self.repository)
+            shutil.rmtree(self.repository, onerror=_remove_readonly)
+
+
+def _remove_readonly(function, path, excinfo):
+    """
+    Error handler for :func:`shutil.rmtree` definition that removes read-only
+    files.
+    """
+
+    os.chmod(path, stat.S_IWRITE)
+
+    function(path)

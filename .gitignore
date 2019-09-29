@@ -10,3 +10,4 @@ dist
 docs/_build
 references
 zenodo
+poetry.lock

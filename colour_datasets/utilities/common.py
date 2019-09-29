@@ -18,6 +18,7 @@ import shutil
 import sys
 from six.moves import urllib
 from tqdm import tqdm
+from cachetools import cached, TTLCache
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019 - Colour Developers'
@@ -177,9 +178,10 @@ def url_download(url, filename, md5=None, retries=3):
                 raise error
 
 
+@cached(cache=TTLCache(maxsize=256, ttl=300))
 def json_open(url, retries=3):
     """
-    Opens given url and return its content as "JSON".
+    Opens given url and return its content as *JSON*.
 
     Parameters
     ----------
@@ -187,6 +189,10 @@ def json_open(url, retries=3):
         Url to open.
     retries : int, optional
         Number of retries in case where a networking error occurs.
+
+    Notes
+    -----
+    -   The definition caches the request *JSON* output for 5 minutes.
 
     Examples
     --------

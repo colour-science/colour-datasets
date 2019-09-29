@@ -15,7 +15,7 @@ Colour - Datasets
     :target: https://www.codacy.com/app/colour-science/colour-datasets
     :alt: Code Grade
 .. |version| image:: https://img.shields.io/pypi/v/colour-datasets.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/colour-datasets
+    :target: https://pypi.org/project/colour-datasets
     :alt: Package Version
 
 .. end-badges

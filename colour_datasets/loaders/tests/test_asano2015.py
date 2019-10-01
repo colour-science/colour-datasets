@@ -82,8 +82,8 @@ load` method.
             decimal=7)
 
         self.assertAlmostEqual(
-            dataset.content['Categorical Observers'][5].parameters[
-                'Shift in S [nm]'],
+            dataset.content['Categorical Observers']
+            [5].parameters['Shift in S [nm]'],
             0.233255808,
             places=7)
 
@@ -110,8 +110,8 @@ load` method.
             decimal=7)
 
         self.assertAlmostEqual(
-            dataset.content['Colour Normal Observers'][5].parameters[
-                'Shift in S [nm]'],
+            dataset.content['Colour Normal Observers']
+            [5].parameters['Shift in S [nm]'],
             0.000649602695013,
             places=7)
 

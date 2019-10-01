@@ -3,10 +3,10 @@ Colour - Datasets
 
 .. start-badges
 
-|travis| |coveralls| |codacy| |version|
+|actions| |coveralls| |codacy| |version|
 
-.. |travis| image:: https://img.shields.io/travis/colour-science/colour-datasets/develop.svg?style=flat-square
-    :target: https://travis-ci.org/colour-science/colour-datasets
+.. |actions| image:: https://github.com/colour-science/colour-datasets/workflows/Continuous%20Integration/badge.svg
+    :target: https://github.com/colour-science/colour-datasets/actions
     :alt: Develop Build Status
 .. |coveralls| image:: http://img.shields.io/coveralls/colour-science/colour-datasets/develop.svg?style=flat-square
     :target: https://coveralls.io/r/colour-science/colour-datasets
@@ -76,8 +76,8 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
--  `Python 2.7 <https://www.python.org/download/releases/>`_ or
-   `Python 3.7 <https://www.python.org/download/releases/>`_
+-  `Python >=2.7 <https://www.python.org/download/releases/>`_ or
+   `Python >=3.5 <https://www.python.org/download/releases/>`_
 -  `Colour Science <https://www.colour-science.org>`_
 -  `tqdm <https://tqdm.github.io/>`_
 -  `xlrd <https://xlrd.readthedocs.io/>`_
@@ -90,14 +90,6 @@ the `Python Package Index <http://pypi.python.org/pypi/colour-datasets>`_ by
 issuing this command in a shell::
 
 	pip install colour-datasets
-
-The tests suite dependencies are installed as follows::
-
-    pip install 'colour-datasets[tests]'
-
-The documentation building dependencies are installed as follows::
-
-    pip install 'colour-datasets[docs]'
 
 The overall development dependencies are installed as follows::
 

@@ -21,14 +21,14 @@ Colour - Datasets
 .. end-badges
 
 Colour science datasets for use with
-`Colour <https://github.com/colour-science/colour>`_ or any Python package
-manipulating colours. The datasets are hosted in `Zenodo <https://zenodo.org>`_
+`Colour <https://github.com/colour-science/colour>`__ or any Python package
+manipulating colours. The datasets are hosted in `Zenodo <https://zenodo.org>`__
 under the
-`Colour Science - Datasets <https://zenodo.org/communities/colour-science-datasets/>`_
+`Colour Science - Datasets <https://zenodo.org/communities/colour-science-datasets/>`__
 community.
 
 It is open source and freely available under the
-`New BSD License <https://opensource.org/licenses/BSD-3-Clause>`_ terms.
+`New BSD License <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
 
 .. contents:: **Table of Contents**
     :backlinks: none
@@ -50,7 +50,7 @@ when trying to access or use colour science datasets:
 
 **Colour - Datasets** offers all the above: it allows users to ingest and load
 colour science datasets with a single function call. The datasets information
-is hosted on `Zenodo <https://zenodo.org/communities/colour-science-datasets/>`_
+is hosted on `Zenodo <https://zenodo.org/communities/colour-science-datasets/>`__
 where the record for a dataset typically contain:
 
 -   An *urls.txt* file describing the urls to source the dataset files from.
@@ -76,17 +76,17 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
--  `Python >=2.7 <https://www.python.org/download/releases/>`_ or
-   `Python >=3.5 <https://www.python.org/download/releases/>`_
--  `Colour Science <https://www.colour-science.org>`_
--  `tqdm <https://tqdm.github.io/>`_
--  `xlrd <https://xlrd.readthedocs.io/>`_
+-  `Python >=2.7 <https://www.python.org/download/releases/>`__ or
+   `Python >=3.5 <https://www.python.org/download/releases/>`__
+-  `Colour Science <https://www.colour-science.org>`__
+-  `tqdm <https://tqdm.github.io/>`__
+-  `xlrd <https://xlrd.readthedocs.io/>`__
 
 Pypi
 ^^^^
 
 Once the dependencies satisfied, **Colour - Datasets** can be installed from
-the `Python Package Index <http://pypi.python.org/pypi/colour-datasets>`_ by
+the `Python Package Index <http://pypi.python.org/pypi/colour-datasets>`__ by
 issuing this command in a shell::
 
 	pip install colour-datasets
@@ -101,8 +101,8 @@ Usage
 API
 ^^^
 
-The main reference for `Colour - Datasets <https://github.com/colour-science/colour-datasets>`_
-is the `Colour - Datasets Manual <https://colour-datasets.readthedocs.io/en/latest/manual.html>`_.
+The main reference for `Colour - Datasets <https://github.com/colour-science/colour-datasets>`__
+is the `Colour - Datasets Manual <https://colour-datasets.readthedocs.io/en/latest/manual.html>`__.
 
 Examples
 ^^^^^^^^
@@ -181,27 +181,27 @@ Alternatively, a dataset can be loaded by using its full title:
 Contributing
 ------------
 
-If you would like to contribute to `Colour - Datasets <https://github.com/colour-science/colour-datasets>`_,
-please refer to the following `Contributing <https://www.colour-science.org/contributing/>`_
-guide for `Colour <https://github.com/colour-science/colour>`_.
+If you would like to contribute to `Colour - Datasets <https://github.com/colour-science/colour-datasets>`__,
+please refer to the following `Contributing <https://www.colour-science.org/contributing/>`__
+guide for `Colour <https://github.com/colour-science/colour>`__.
 
 Bibliography
 ------------
 
 The bibliography is available in the repository in
-`BibTeX <https://github.com/colour-science/colour-datasets/blob/develop/BIBLIOGRAPHY.bib>`_
+`BibTeX <https://github.com/colour-science/colour-datasets/blob/develop/BIBLIOGRAPHY.bib>`__
 format.
 
 Code of Conduct
 ---------------
 
-The *Code of Conduct*, adapted from the `Contributor Covenant 1.4 <https://www.contributor-covenant.org/version/1/4/code-of-conduct.html>`_,
-is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct/>`_ page.
+The *Code of Conduct*, adapted from the `Contributor Covenant 1.4 <https://www.contributor-covenant.org/version/1/4/code-of-conduct.html>`__,
+is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct/>`__ page.
 
 About
 -----
 
 | **Colour - Datasets** by Colour Developers
-| Copyright © 2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`_
+| Copyright © 2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`__
 | This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
-| `https://github.com/colour-science/colour-datasets <https://github.com/colour-science/colour-datasets>`_
+| `https://github.com/colour-science/colour-datasets <https://github.com/colour-science/colour-datasets>`__

@@ -8,9 +8,11 @@ from __future__ import division, unicode_literals
 import os
 import unittest
 import tempfile
+import shutil
 
 from colour_datasets.loaders import build_Labsphere2019
-from colour_datasets.utilities import hash_md5, url_download, json_open
+from colour_datasets.utilities import (hash_md5, url_download, json_open,
+                                       unpack_gzipfile)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019 - Colour Developers'
@@ -19,7 +21,9 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['TestHashMd5', 'TestUrlDownload', 'TestJsonOpen']
+__all__ = [
+    'TestHashMd5', 'TestUrlDownload', 'TestJsonOpen', 'TestUnpackGzipfile'
+]
 
 
 class TestHashMd5(unittest.TestCase):
@@ -116,6 +120,45 @@ class TestJsonOpen(unittest.TestCase):
         self.assertEqual(data['id'], 3245883)
 
         self.assertRaises(IOError, lambda: json_open('https://nemo.io'))
+
+
+class TestUnpackGzipfile(unittest.TestCase):
+    """
+    Defines :func:`colour_datasets.utilities.common.unpack_gzipfile` definition
+    unit tests methods.
+    """
+
+    def setUp(self):
+        """
+        Initialises common tests attributes.
+        """
+
+        self._temporary_directory = tempfile.mkdtemp()
+
+    def tearDown(self):
+        """
+        After tests actions.
+        """
+
+        shutil.rmtree(self._temporary_directory)
+
+    def test_unpack_gzipfile(self):
+        """
+        Tests :func:`colour_datasets.utilities.common.unpack_gzipfile`
+        definition.
+        """
+
+        unpack_gzipfile(
+            os.path.join(
+                os.path.dirname(__file__), 'resources', 'example.txt.gz'),
+            self._temporary_directory)
+
+        with open(os.path.join(self._temporary_directory,
+                               'example.txt')) as file_handle:
+            self.assertEqual(
+                file_handle.read(),
+                'This is the content of a text file stored '
+                'inside a "GZIP" file.')
 
 
 if __name__ == '__main__':

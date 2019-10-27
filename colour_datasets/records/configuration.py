@@ -26,7 +26,7 @@ __all__ = ['DEFAULT_CONFIGURATION', 'Configuration', 'use_sandbox', 'sandbox']
 DEFAULT_CONFIGURATION = DocstringDict({
     'repository':
         os.environ.get(
-            'COLOUR_SCIENCE__COLOUR_DATASETS',
+            'COLOUR_SCIENCE__COLOUR_DATASETS__REPOSITORY',
             os.path.join(
                 os.path.expanduser('~'),
                 '.colour-science',

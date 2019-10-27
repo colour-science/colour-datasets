@@ -41,7 +41,7 @@ class AbstractDatasetLoader:
     ID
     record
     id
-    data
+    content
 
     Methods
     -------
@@ -63,7 +63,7 @@ class AbstractDatasetLoader:
 
     def __init__(self, record):
         self._record = record
-        self._data = None
+        self._content = None
 
     @property
     def record(self):
@@ -102,22 +102,22 @@ class AbstractDatasetLoader:
         return self.__class__.ID
 
     @property
-    def data(self):
+    def content(self):
         """
-        Getter and setter property for the dataset data.
+        Getter and setter property for the dataset content.
 
         Parameters
         ----------
         value : object
-            Value to set the dataset data with.
+            Value to set the dataset content with.
 
         Returns
         -------
         unicode
-           Dataset data.
+           Dataset content.
         """
 
-        return self._data
+        return self._content
 
     @abstractmethod
     def load(self):

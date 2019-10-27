@@ -30,7 +30,7 @@ class TestAbstractDatasetLoader(unittest.TestCase):
         Tests presence of required attributes.
         """
 
-        required_attributes = ('ID', 'record', 'id', 'data')
+        required_attributes = ('ID', 'record', 'id', 'content')
 
         for attribute in required_attributes:
             self.assertIn(attribute, dir(AbstractDatasetLoader))

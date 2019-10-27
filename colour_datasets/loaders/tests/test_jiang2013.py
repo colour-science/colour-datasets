@@ -65,7 +65,7 @@ load` method.
                 'Phase One', 'Point Grey Grasshopper 50S5C',
                 'Point Grey Grasshopper2 14S5C', 'SONY NEX-5N'
             ])
-        self.assertEqual(dataset.data['Canon 1DMarkIII'].shape,
+        self.assertEqual(dataset.content['Canon 1DMarkIII'].shape,
                          SpectralShape(400, 720, 10))
 
 

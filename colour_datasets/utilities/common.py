@@ -9,12 +9,16 @@ Defines common utilities objects that don't fall in any specific category.
 from __future__ import division, unicode_literals
 
 import functools
+import gzip
 import hashlib
 import json
 import os
+import setuptools.archive_util
+import shutil
 import sys
 from six.moves import urllib
 from tqdm import tqdm
+from cachetools import cached, TTLCache
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019 - Colour Developers'
@@ -24,7 +28,8 @@ __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
 __all__ = [
-    'suppress_stdout', 'TqdmUpTo', 'hash_md5', 'url_download', 'json_open'
+    'suppress_stdout', 'TqdmUpTo', 'hash_md5', 'url_download', 'json_open',
+    'unpack_gzipfile'
 ]
 
 
@@ -173,9 +178,10 @@ def url_download(url, filename, md5=None, retries=3):
                 raise error
 
 
+@cached(cache=TTLCache(maxsize=256, ttl=300))
 def json_open(url, retries=3):
     """
-    Opens given url and return its content as "JSON".
+    Opens given url and return its content as *JSON*.
 
     Parameters
     ----------
@@ -183,6 +189,10 @@ def json_open(url, retries=3):
         Url to open.
     retries : int, optional
         Number of retries in case where a networking error occurs.
+
+    Notes
+    -----
+    -   The definition caches the request *JSON* output for 5 minutes.
 
     Examples
     --------
@@ -204,3 +214,57 @@ def json_open(url, retries=3):
                   'during attempt {1}, retrying...'.format(url, attempt))
             if attempt == retries:
                 raise error
+
+
+def unpack_gzipfile(filename, extraction_directory, *args):
+    """
+    Unpacks given *GZIP* file to given extraction directory.
+
+    Parameters
+    ----------
+    filename : unicode
+        *GZIP* file to extract.
+    extraction_directory : unicode
+        Directory where to extract the *GZIP* file.
+
+    Other Parameters
+    ----------------
+    \\*args : list, optional
+        Arguments.
+
+    Returns
+    -------
+    bool
+        Definition success.
+
+    Notes
+    -----
+    -   This definition is used as an extra driver for
+        :func:`setuptools.archive_util.unpack archive` definition.
+    """
+
+    extraction_path = os.path.join(
+        extraction_directory,
+        os.path.splitext(os.path.basename(filename))[0])
+
+    if not os.path.exists(extraction_directory):
+        os.makedirs(extraction_directory)
+
+    try:
+        with gzip.open(filename) as gzip_file, open(extraction_path,
+                                                    'wb') as output_file:
+            shutil.copyfileobj(gzip_file, output_file)
+    except Exception as e:
+        print(e)
+        raise setuptools.archive_util.UnrecognizedFormat(
+            '{0} is not a "GZIP" file!'.format(filename))
+
+    return True
+
+
+setuptools.archive_util.extraction_drivers = (
+    setuptools.archive_util.unpack_directory,
+    setuptools.archive_util.unpack_zipfile,
+    setuptools.archive_util.unpack_tarfile,
+    unpack_gzipfile,
+)

@@ -228,7 +228,7 @@ class TestCommunity(unittest.TestCase):
             'https://zenodo.org/api/communities/colour-science-datasets')
         records_data = json_open(
             'https://zenodo.org/api/records/?q=communities:'
-            'colour-science-datasets')
+            'colour-science-datasets-tests')
 
         self._data = {
             'community': community_data,
@@ -318,8 +318,8 @@ class TestCommunity(unittest.TestCase):
 colour-science-datasets
 =======================
 
-Datasets : 3
-Owned    : 0
+Datasets : 4
+Synced   : 0
 URL      : https://zenodo.org/communities/colour-science-datasets/
 
 Datasets
@@ -328,7 +328,8 @@ Datasets
 [ ] 3245883 : Camera Spectral Sensitivity Database
 [ ] 3245875 : Labsphere SRS-99-020
 [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic \
-Charts""")[1:])
+Charts
+[ ] 3252742 : Observer Function Database""")[1:])
 
     def test__repr__(self):
         """

@@ -6,8 +6,8 @@ Zenodo
 Defines the objects implementing support for a *Zenodo* community and its
 records:
 
--   :class:`colour_datasets.records.Record`
--   :class:`colour_datasets.records.Community`
+-   :class:`colour_datasets.Record`
+-   :class:`colour_datasets.Community`
 """
 
 from __future__ import division, unicode_literals
@@ -16,6 +16,7 @@ import os
 import six
 import shutil
 import setuptools.archive_util
+import stat
 import tempfile
 import textwrap
 from collections import Mapping
@@ -291,8 +292,8 @@ class Record(object):
     @staticmethod
     def from_id(id_, configuration=None, retries=3):
         """
-        :class:`colour_datasets.records.Record` class factory that builds an
-        instance using given *Zenodo* record id.
+        :class:`colour_datasets.Record` class factory that builds an instance
+        using given *Zenodo* record id.
 
         Parameters
         ----------
@@ -339,8 +340,10 @@ class Record(object):
 
         Examples
         --------
+        >>> from colour_datasets.utilities import suppress_stdout
         >>> record = Record.from_id('3245883')
-        >>> record.pull()
+        >>> with suppress_stdout():
+        ...     record.pull()
         >>> record.synced()
         True
         >>> record.remove()
@@ -374,15 +377,24 @@ class Record(object):
 
         Examples
         --------
+        >>> from colour_datasets.utilities import suppress_stdout
         >>> record = Record.from_id('3245883')
         >>> record.remove()
-        >>> record.pull()
+        >>> with suppress_stdout():
+        ...     record.pull()
         >>> record.synced()
         True
         """
 
+        print('Pulling "{0}" record content...'.format(self.title))
+
         if not os.path.exists(self._configuration.repository):
             os.makedirs(self._configuration.repository)
+
+        downloads_directory = os.path.join(
+            self.repository, self._configuration.downloads_directory)
+        if not os.path.exists(downloads_directory):
+            os.makedirs(downloads_directory)
 
         # As much as possible, the original file urls are used, those are
         # given by the content of :attr:`URLS_TXT_FILE` attribute file.
@@ -392,9 +404,20 @@ class Record(object):
                 urls_txt = file_data
                 break
 
+        def _urls_download(urls):
+            """
+            Downloads given urls.
+            """
+
+            for url, md5 in urls.items():
+                filename = os.path.join(
+                    downloads_directory,
+                    urllib.parse.unquote(url.split('/')[-1]))
+                url_download(url, filename, md5.split(':')[-1], retries)
+
         try:
-            urls = {}
             if use_urls_txt_file and urls_txt:
+                urls = {}
                 urls_txt_file = tempfile.mktemp()
                 url_download(urls_txt['links']['self'], urls_txt_file,
                              urls_txt['checksum'].split(':')[-1], retries)
@@ -403,12 +426,23 @@ class Record(object):
                     urls_txt_json = json.load(json_file)
                     for url, md5 in urls_txt_json['urls'].items():
                         urls[url] = md5.split(':')[-1]
+
+                shutil.copyfile(
+                    urls_txt_file,
+                    os.path.join(downloads_directory,
+                                 self._configuration.urls_txt_file))
+
+                _urls_download(urls)
             else:
-                raise ValueError('"{0}" file was not found!')
+                raise ValueError(
+                    '"{0}" file was not found in record data!'.format(
+                        self._configuration.urls_txt_file))
         except (urllib.error.URLError, ValueError) as error:
-            warning('An error occurred using urls from "{0}" file: {1}'
-                    ', switching to record urls...'.format(
+            warning('An error occurred using urls from "{0}" file: {1}\n'
+                    'Switching to record urls...'.format(
                         self._configuration.urls_txt_file, error))
+
+            urls = {}
             for file_data in self.data['files']:
                 if file_data['key'] == self._configuration.urls_txt_file:
                     continue
@@ -416,20 +450,12 @@ class Record(object):
                 urls[file_data['links']['self']] = (
                     file_data['checksum'].split(':')[-1])
 
-        downloads_directory = os.path.join(
-            self.repository, self._configuration.downloads_directory)
-        if not os.path.exists(downloads_directory):
-            os.makedirs(downloads_directory)
-
-        for url, md5 in urls.items():
-            filename = os.path.join(downloads_directory,
-                                    urllib.parse.unquote(url.split('/')[-1]))
-            url_download(url, filename, md5.split(':')[-1], retries)
+            _urls_download(urls)
 
         deflate_directory = os.path.join(self.repository,
                                          self._configuration.deflate_directory)
         if os.path.exists(deflate_directory):
-            shutil.rmtree(deflate_directory)
+            shutil.rmtree(deflate_directory, onerror=_remove_readonly)
 
         shutil.copytree(downloads_directory, deflate_directory)
 
@@ -441,9 +467,11 @@ class Record(object):
             basename, extension = os.path.splitext(filename)
             basename = os.path.basename(basename)
             if extension.lower() in ('.zip', '.tar', '.gz', '.bz2'):
+                if basename.lower().endswith('.tar'):
+                    basename = basename.rsplit('.', 1)[0]
+
+                basename = basename.replace('.', '_')
                 unpacking_directory = os.path.join(deflate_directory, basename)
-                if unpacking_directory.lower().endswith('.tar'):
-                    unpacking_directory = unpacking_directory.rsplit('.', 1)[0]
 
                 print('Unpacking "{0}" archive...'.format(filename))
                 setuptools.archive_util.unpack_archive(filename,
@@ -460,15 +488,17 @@ class Record(object):
 
         Examples
         --------
+        >>> from colour_datasets.utilities import suppress_stdout
         >>> record = Record.from_id('3245883')
-        >>> record.pull()
+        >>> with suppress_stdout():
+        ...     record.pull()
         >>> record.remove()
         >>> record.synced()
         False
         """
 
         if os.path.exists(self.repository):
-            shutil.rmtree(self.repository)
+            shutil.rmtree(self.repository, onerror=_remove_readonly)
 
 
 class Community(Mapping):
@@ -613,15 +643,16 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
         >>> print('\\n'.join(str(community).splitlines()[:6]))
         ... # doctest: +ELLIPSIS
-        colour-science-datasets
-        =======================
+        colour-science-datasets-tests
+        =============================
         <BLANKLINE>
         Datasets : ...
-        Owned    : ...
-        URL      : https://zenodo.org/communities/colour-science-datasets/
+        Synced   : ...
+        URL      : https://zenodo.org/communities/\
+colour-science-datasets-tests/
         """
 
         datasets = '\n'.join([
@@ -632,7 +663,7 @@ class Community(Mapping):
         representation = ('{0}\n'
                           '{1}\n\n'
                           'Datasets : {2}\n'
-                          'Owned    : {3}\n'
+                          'Synced   : {3}\n'
                           'URL      : {4}\n\n'
                           'Datasets\n--------\n\n'
                           '{5}'.format(
@@ -663,7 +694,7 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
 
         # Doctests skip for Python 2.x compatibility.
         >>> print('\\n'.join(repr(community).splitlines()[:4]))
@@ -699,7 +730,7 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
 
         # Doctests skip for Python 2.x compatibility.
         >>> community['3245883'].title  # doctest: +SKIP
@@ -720,7 +751,7 @@ class Community(Mapping):
         Examples
         --------
         # Doctests skip for Python 2.x compatibility.
-        >>> for record in Community.from_id('colour-science-datasets'):
+        >>> for record in Community.from_id('colour-science-datasets-tests'):
         ...     print(record) # doctest: +SKIP
         """
 
@@ -738,7 +769,8 @@ class Community(Mapping):
         Examples
         --------
         # Doctests skip for Python 2.x compatibility.
-        >>> len(Community.from_id('colour-science-datasets')) # doctest: +SKIP
+        >>> len(Community.from_id('colour-science-datasets-tests'))
+        ... # doctest: +SKIP
         3
         """
 
@@ -747,7 +779,7 @@ class Community(Mapping):
     @staticmethod
     def from_id(id_, configuration=None, retries=3):
         """
-        :class:`colour_datasets.records.Community` class factory that builds an
+        :class:`colour_datasets.Community` class factory that builds an
         instance using given *Zenodo* community id.
 
         Parameters
@@ -767,7 +799,7 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
 
         # Doctests skip for Python 2.x compatibility.
         >>> community['3245883'].title  # doctest: +SKIP
@@ -783,7 +815,10 @@ class Community(Mapping):
 
         community_url = '{0}/communities/{1}'.format(configuration.api_url,
                                                      configuration.community)
-        records_url = '{0}/records/?q=communities:{1}'.format(
+        # NOTE: Retrieving 512 datasets at most. This should cover needs for
+        # the foreseeable future. There is likely an undocumented hard limit on
+        # "Zenodo" server side.
+        records_url = '{0}/records/?q=communities:{1}&size=512'.format(
             configuration.api_url, configuration.community)
 
         community_json_filename = os.path.join(
@@ -840,10 +875,10 @@ class Community(Mapping):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
         >>> with suppress_stdout():
-        ...     community.pull()
-        >>> community.synced()
+        ...     community.pull()  # doctest: +SKIP
+        >>> community.synced()  # doctest: +SKIP
         True
         >>> community.remove()
         >>> community.synced()
@@ -870,11 +905,11 @@ class Community(Mapping):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
         >>> community.remove()
         >>> with suppress_stdout():
-        ...     community.pull()
-        >>> community.synced()
+        ...     community.pull()  # doctest: +SKIP
+        >>> community.synced()  # doctest: +SKIP
         True
         """
 
@@ -891,13 +926,24 @@ class Community(Mapping):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets')
+        >>> community = Community.from_id('colour-science-datasets-tests')
         >>> with suppress_stdout():
-        ...     community.pull()
+        ...     community.pull()  # doctest: +SKIP
         >>> community.remove()
         >>> community.synced()
         False
         """
 
         if os.path.exists(self.repository):
-            shutil.rmtree(self.repository)
+            shutil.rmtree(self.repository, onerror=_remove_readonly)
+
+
+def _remove_readonly(function, path, excinfo):
+    """
+    Error handler for :func:`shutil.rmtree` definition that removes read-only
+    files.
+    """
+
+    os.chmod(path, stat.S_IWRITE)
+
+    function(path)

@@ -9,7 +9,7 @@ import unittest
 
 from colour.characterisation import ColourChecker
 
-from colour_datasets.loaders import (XRite2016DatasetLoader, build_XRite2016)
+from colour_datasets.loaders import XRite2016DatasetLoader, build_XRite2016
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019 - Colour Developers'
@@ -62,7 +62,7 @@ load` method.
                 'ColorCheckerSG - Before November 2014',
             ])
         self.assertIsInstance(
-            dataset.data['ColorChecker24 - After November 2014'],
+            dataset.content['ColorChecker24 - After November 2014'],
             ColourChecker)
 
 

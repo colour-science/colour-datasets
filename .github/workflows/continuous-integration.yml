@@ -42,7 +42,6 @@ jobs:
     - name: Install Package Dependencies
       run: |
         poetry install
-        poetry env use $CI_PYTHON_VERSION
     - name: Lint with flake8
       run: |
         source $(poetry env info -p)/bin/activate

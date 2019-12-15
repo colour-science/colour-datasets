@@ -16,7 +16,7 @@ __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = ['TestAsano2015DatasetLoader', 'TestBuildAsano2015']
@@ -82,8 +82,8 @@ load` method.
             decimal=7)
 
         self.assertAlmostEqual(
-            dataset.content['Categorical Observers']
-            [5].parameters['Shift in S [nm]'],
+            dataset.content['Categorical Observers'][5].parameters[
+                'Shift in S [nm]'],
             0.233255808,
             places=7)
 
@@ -110,8 +110,8 @@ load` method.
             decimal=7)
 
         self.assertAlmostEqual(
-            dataset.content['Colour Normal Observers']
-            [5].parameters['Shift in S [nm]'],
+            dataset.content['Colour Normal Observers'][5].parameters[
+                'Shift in S [nm]'],
             0.000649602695013,
             places=7)
 

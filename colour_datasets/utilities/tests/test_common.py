@@ -85,23 +85,25 @@ class TestUrlDownload(unittest.TestCase):
             os.path.join(dataset.record.repository, 'dataset',
                          'SRS-99-020.txt'))
         url_download(
-            'https://zenodo.org/api/files/a1f87\
-ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt', self._temporary_file)
+            'https://zenodo.org/api/files/'
+            'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
+            self._temporary_file)
 
         self.assertEqual(md5, hash_md5(self._temporary_file))
 
         url_download(
-            'https://zenodo.org/api/files/a1f87\
-ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt', self._temporary_file, md5)
+            'https://zenodo.org/api/files/'
+            'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
+            self._temporary_file, md5)
 
         self.assertRaises(
-            IOError, lambda: url_download('https://nemo.io', self.
-                                          _temporary_file))
+            IOError,
+            lambda: url_download('https://nemo.io', self._temporary_file))
         self.assertRaises(
             ValueError, lambda: url_download(
-                'https://zenodo.org/api/files/a1f87\
-ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt', self._temporary_file,
-                '7c7a7b76c399e5c4e3afbd32e22b2b2f'))
+                'https://zenodo.org/api/files/'
+                'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
+                self._temporary_file, '7c7a7b76c399e5c4e3afbd32e22b2b2f'))
 
 
 class TestJsonOpen(unittest.TestCase):

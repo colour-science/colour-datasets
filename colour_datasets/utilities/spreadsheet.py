@@ -19,7 +19,7 @@ import six
 from colour.utilities import CaseInsensitiveMapping
 
 __author__ = 'Colour Developers, Openpyxl Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __copyright__ += ', '
 __copyright__ = 'Copyright (C) 2010 openpyxl'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'

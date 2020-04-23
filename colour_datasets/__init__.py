@@ -4,10 +4,10 @@ Colour - Datasets
 =================
 
 Colour science datasets for use with
-`Colour <https://github.com/colour-science/colour>`_ or any Python package
-manipulating colours. The datasets are hosted in `Zenodo <https://zenodo.org>`_
-under the `Colour Science - Datasets \
-<https://zenodo.org/communities/colour-science-datasets/>`_ community.
+`Colour <https://github.com/colour-science/colour>`__ or any Python package
+manipulating colours. The datasets are hosted in
+`Zenodo <https://zenodo.org>`__ under the `Colour Science - Datasets \
+<https://zenodo.org/communities/colour-science-datasets/>`__ community.
 
 Subpackages
 -----------

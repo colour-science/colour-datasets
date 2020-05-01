@@ -3,9 +3,8 @@
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
 ==========================================================
 
-Defines the objects implementing support for
-*Jiang, Liu, Gu and Süsstrunk (2013)* *Camera Spectral Sensitivity Database*
-dataset loading:
+Defines the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
+(2013)* *Camera Spectral Sensitivity Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.Jiang2013DatasetLoader`
 -   :func:`colour_datasets.loaders.build_Jiang2013`
@@ -14,8 +13,8 @@ References
 ----------
 -   :cite:`Jiang2013` : Jiang, J., Liu, D., Gu, J., & Susstrunk, S. (2013).
     What is the space of spectral sensitivity functions for digital color
-    cameras? In 2013 IEEE Workshop on Applications of Computer Vision (WACV)
-    (pp. 168–179). IEEE. doi:10.1109/WACV.2013.6475015
+    cameras? 2013 IEEE Workshop on Applications of Computer Vision (WACV),
+    168-179. doi:10.1109/WACV.2013.6475015
 """
 
 from __future__ import division, unicode_literals

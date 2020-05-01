@@ -14,7 +14,7 @@ References
 -   :cite:`Ebner1998` : Ebner, F., & Fairchild, M. D. (1998). Finding constant
     hue surfaces in color space. In G. B. Beretta & R. Eschbach (Eds.), Proc.
     SPIE 3300, Color Imaging: Device-Independent Color, Color Hardcopy, and
-    Graphic Arts III, (2 January 1998) (pp. 107–117). doi:10.1117/12.298269
+    Graphic Arts III, (2 January 1998) (pp. 107-117). doi:10.1117/12.298269
 """
 
 from __future__ import division, unicode_literals

@@ -16,22 +16,22 @@ Notes
 
 References
 ----------
--   :cite:`Hauta-Kasari` : Hauta-Kasari, M., & University of Kuopio. (n.d.).
-    Munsell Colors Matt (Spectrofotometer Measured). doi:10.5281/zenodo.3269912
--   :cite:`Hauta-Kasaria` : Hauta-Kasari, M., & University of Kuopio. (n.d.).
-    Munsell Colors Matt (AOTF Measured). doi:10.5281/zenodo.3269914
--   :cite:`Haanpalo` : Haanpalo, J., & University of Kuopio. (n.d.). Munsell
+-   :cite:`Haanpalo` : Haanpalo, J., & University of Kuopio. (n.d.-a). Munsell
     Colors Glossy (Spectrofotometer Measured). doi:10.5281/zenodo.3269916
--   :cite:`Orava` : Orava, J., & University of Kuopio. (n.d.). Munsell Colors
-    Glossy (All) (Spectrofotometer Measured). doi:10.5281/zenodo.3269918
--   :cite:`Silvennoinen` : Silvennoinen, R., & University of Kuopio. (n.d.).
-    Forest Colors. doi:10.5281/zenodo.3269920
--   :cite:`Haanpaloa` : Haanpalo, J., & University of Kuopio. (n.d.). Paper
+-   :cite:`Haanpaloa` : Haanpalo, J., & University of Kuopio. (n.d.-b). Paper
     Spectra. doi:10.5281/zenodo.3269922
+-   :cite:`Hauta-Kasari` : Hauta-Kasari, M., & University of Kuopio. (n.d.-b).
+    Munsell Colors Matt (Spectrofotometer Measured). doi:10.5281/zenodo.3269912
+-   :cite:`Hauta-Kasaria` : Hauta-Kasari, M., & University of Kuopio. (n.d.-a).
+    Munsell Colors Matt (AOTF Measured). doi:10.5281/zenodo.3269914
 -   :cite:`Hiltunen` : Hiltunen, J., & University of Kuopio. (n.d.). Lumber
     Spectra. doi:10.5281/zenodo.3269924
 -   :cite:`Marszalec` : Marszalec, E., & University of Kuopio. (n.d.). Agfa
     IT8.7/2 Set. doi:10.5281/zenodo.3269926
+-   :cite:`Orava` : Orava, J., & University of Kuopio. (n.d.). Munsell Colors
+    Glossy (All) (Spectrofotometer Measured). doi:10.5281/zenodo.3269918
+-   :cite:`Silvennoinen` : Silvennoinen, R., & University of Kuopio. (n.d.).
+    Forest Colors. doi:10.5281/zenodo.3269920
 """
 
 from __future__ import division, unicode_literals

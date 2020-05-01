@@ -3,8 +3,8 @@
 Constant Hue Loci Data - Hung and Berns (1995)
 ==============================================
 
-Defines the objects implementing support for *Hung and Berns (1995)*
-*Constant Hue Loci Data* dataset loading:
+Defines the objects implementing support for *Hung and Berns (1995)* *Constant
+Hue Loci Data* dataset loading:
 
 -   :class:`colour_datasets.loaders.Hung1995DatasetLoader`
 -   :func:`colour_datasets.loaders.build_Hung1995`
@@ -13,7 +13,7 @@ References
 ----------
 -   :cite:`Hung1995` : Hung, P.-C., & Berns, R. S. (1995). Determination of
     constant Hue Loci for a CRT gamut and their predictions using color
-    appearance spaces. Color Research & Application, 20(5), 285–295.
+    appearance spaces. Color Research & Application, 20(5), 285-295.
     doi:10.1002/col.5080200506
 """
 

@@ -3,19 +3,18 @@
 New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
 ===============================================================================
 
-Defines the objects implementing support for *X-Rite (2016)*
-*New Color Specifications for ColorChecker SG and Classic Charts* dataset
-loading:
+Defines the objects implementing support for *X-Rite (2016)* *New Color
+Specifications for ColorChecker SG and Classic Charts* dataset loading:
 
 -   :class:`colour_datasets.loaders.XRite2016DatasetLoader`
 -   :func:`colour_datasets.loaders.build_XRite2016`
 
 References
 ----------
--   :cite:`X-Rite2016` : X-Rite. (2016). New Color Specifications for
-    ColorChecker SG and Classic Charts. Retrieved June 14, 2019, from
-    https://xritephoto.com/ph_product_overview.aspx?\
-ID=938&Action=Support&SupportID=5884
+-   :cite:`X-Rite2016` : X-Rite. (2016). New color specifications for
+    ColorChecker SG and Classic Charts. Retrieved October 29, 2018, from
+    http://xritephoto.com/ph_product_overview.aspx?ID=938&Action=Support&\
+SupportID=5884#
 """
 
 from __future__ import division, unicode_literals

@@ -3,9 +3,8 @@
 RAW to ACES Utility Data - Dyer et al. (2017)
 =============================================
 
-Defines the objects implementing support for
-*Dyer, Forsythe, Irons, Mansencal and Zhu (2017)*
-*RAW to ACES Utility Data* dataset loading:
+Defines the objects implementing support for *Dyer, Forsythe, Irons, Mansencal
+and Zhu (2017)* *RAW to ACES Utility Data* dataset loading:
 
 -   :class:`colour_datasets.loaders.Dyer2017DatasetLoader`
 -   :func:`colour_datasets.loaders.build_Dyer2017`
@@ -496,10 +495,6 @@ class AMPAS_SpectralDataMixin(object):
     Methods
     -------
     read
-
-    References
-    ----------
-    :cite:`IESComputerCommittee2014a`
     """
 
     def __init__(self,
@@ -817,10 +812,6 @@ class SpectralDistribution_AMPAS(AMPAS_SpectralDataMixin,
     bandwidth_corrected : bool, optional
         Specifies if bandwidth correction has been applied to the measured
         data.
-
-    References
-    ----------
-    :cite:`IESComputerCommittee2014a`
     """
 
     def __init__(self,
@@ -866,10 +857,6 @@ class MultiSpectralDistributions_AMPAS(AMPAS_SpectralDataMixin,
     bandwidth_corrected : bool, optional
         Specifies if bandwidth correction has been applied to the measured
         data.
-
-    References
-    ----------
-    :cite:`IESComputerCommittee2014a`
     """
 
     def __init__(self,

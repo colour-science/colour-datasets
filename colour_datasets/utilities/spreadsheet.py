@@ -8,7 +8,7 @@ Defines various spreadsheet related utilities.
 References
 ----------
 -   :cite:`OpenpyxlDevelopers2019` : Openpyxl Developers. (2019). openpyxl.
-    Retrieved from https://bitbucket.org/openpyxl/openpyxl/
+    https://bitbucket.org/openpyxl/openpyxl/
 """
 
 from __future__ import division, unicode_literals

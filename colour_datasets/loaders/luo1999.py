@@ -16,11 +16,11 @@ References
     Journal of the Optical Society of America A, 4(6), 1115.
     doi:10.1364/JOSAA.4.001115
 -   :cite:`Luo1999` : Luo, M. R., & Rhodes, P. A. (1999). Corresponding-colour
-    datasets. Color Research & Application, 24(4), 295–296.
+    datasets. Color Research & Application, 24(4), 295-296.
     doi:10.1002/(SICI)1520-6378(199908)24:4<295::AID-COL10>3.0.CO;2-K
 -   :cite:`McCann1976` : McCann, J. J., McKee, S. P., & Taylor, T. H. (1976).
     Quantitative studies in retinex theory a comparison between theoretical
-    predictions and observer responses to the “color mondrian” experiments.
+    predictions and observer responses to the "color mondrian" experiments.
     Vision Research, 16(5), 445-IN3. doi:10.1016/0042-6989(76)90020-1
 """
 

@@ -3,8 +3,8 @@
 Labsphere SRS-99-020 - Labsphere (2019)
 =======================================
 
-Defines the objects implementing support for *Labsphere (2019)*
-*Labsphere SRS-99-020* dataset loading:
+Defines the objects implementing support for *Labsphere (2019)* *Labsphere
+SRS-99-020* dataset loading:
 
 -   :class:`colour_datasets.loaders.Labsphere2019DatasetLoader`
 -   :func:`colour_datasets.loaders.build_Labsphere2019`

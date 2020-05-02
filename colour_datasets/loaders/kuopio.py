@@ -16,13 +16,13 @@ Notes
 
 References
 ----------
--   :cite:`Haanpalo` : Haanpalo, J., & University of Kuopio. (n.d.-a). Munsell
+-   :cite:`Haanpalo` : Haanpalo, J., & University of Kuopio. (n.d.). Munsell
     Colors Glossy (Spectrofotometer Measured). doi:10.5281/zenodo.3269916
--   :cite:`Haanpaloa` : Haanpalo, J., & University of Kuopio. (n.d.-b). Paper
+-   :cite:`Haanpaloa` : Haanpalo, J., & University of Kuopio. (n.d.). Paper
     Spectra. doi:10.5281/zenodo.3269922
--   :cite:`Hauta-Kasari` : Hauta-Kasari, M., & University of Kuopio. (n.d.-b).
+-   :cite:`Hauta-Kasari` : Hauta-Kasari, M., & University of Kuopio. (n.d.).
     Munsell Colors Matt (Spectrofotometer Measured). doi:10.5281/zenodo.3269912
--   :cite:`Hauta-Kasaria` : Hauta-Kasari, M., & University of Kuopio. (n.d.-a).
+-   :cite:`Hauta-Kasaria` : Hauta-Kasari, M., & University of Kuopio. (n.d.).
     Munsell Colors Matt (AOTF Measured). doi:10.5281/zenodo.3269914
 -   :cite:`Hiltunen` : Hiltunen, J., & University of Kuopio. (n.d.). Lumber
     Spectra. doi:10.5281/zenodo.3269924

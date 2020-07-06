@@ -76,11 +76,11 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
--  `Python >=2.7 <https://www.python.org/download/releases/>`__ or
-   `Python >=3.5 <https://www.python.org/download/releases/>`__
--  `Colour Science <https://www.colour-science.org>`__
--  `tqdm <https://tqdm.github.io/>`__
--  `xlrd <https://xlrd.readthedocs.io/>`__
+-   `python>=2.7 <https://www.python.org/download/releases/>`__ or
+    `python>=3.5 <https://www.python.org/download/releases/>`__
+-   `colour-science <https://pypi.org/project/colour-science/>`__
+-   `tqdm <https://pypi.org/project/tqdm/>`__
+-   `xlrd <https://pypi.org/project/xlrd/>`__
 
 Pypi
 ^^^^

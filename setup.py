@@ -39,7 +39,7 @@ extras_require = \
                  'yapf==0.23'],
  'read-the-docs': ['mock', 'numpy', 'sphinxcontrib-bibtex']}
 
-    setup(
+setup(
     name='colour-datasets',
     version='0.1.0',
     description='Colour science datasets for use with Colour',
@@ -54,5 +54,4 @@ extras_require = \
     install_requires=install_requires,
     extras_require=extras_require,
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
-    )
-    
+)

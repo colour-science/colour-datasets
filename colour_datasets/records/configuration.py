@@ -12,7 +12,8 @@ import functools
 import os
 
 from colour.utilities import Structure
-from colour.utilities.documentation import DocstringDict
+from colour.utilities.documentation import (DocstringDict,
+                                            is_documentation_building)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
@@ -23,7 +24,7 @@ __status__ = 'Production'
 
 __all__ = ['DEFAULT_CONFIGURATION', 'Configuration', 'use_sandbox', 'sandbox']
 
-DEFAULT_CONFIGURATION = DocstringDict({
+DEFAULT_CONFIGURATION = {
     'repository':
         os.environ.get(
             'COLOUR_SCIENCE__COLOUR_DATASETS__REPOSITORY',
@@ -42,9 +43,10 @@ DEFAULT_CONFIGURATION = DocstringDict({
         'colour-science-datasets',
     'urls_txt_file':
         'urls.txt',
-})
-
-DEFAULT_CONFIGURATION.__doc__ = """
+}
+if is_documentation_building():  # pragma: no cover
+    DEFAULT_CONFIGURATION = DocstringDict(DEFAULT_CONFIGURATION)
+    DEFAULT_CONFIGURATION.__doc__ = """
 *Colour - Datasets* default configuration.
 
 DEFAULT_CONFIGURATION : dict

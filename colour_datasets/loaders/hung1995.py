@@ -73,11 +73,12 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Hung1995.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Hung1995.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Hung1995.load`
 
     References
     ----------

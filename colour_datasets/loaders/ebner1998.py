@@ -74,11 +74,12 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Ebner1998.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Ebner1998.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Ebner1998.load`
 
     References
     ----------

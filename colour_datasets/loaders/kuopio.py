@@ -133,12 +133,13 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
-    METADATA
+    -   :attr:`colour_datasets.loaders.DatasetLoader_KuopioUniversity.ID`
+    -   :attr:`colour_datasets.loaders.DatasetLoader_KuopioUniversity.METADATA`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_KuopioUniversity.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_KuopioUniversity.load`
     """
 
     ID = None
@@ -215,12 +216,13 @@ def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
 
     Attributes
     ----------
-    ID
-    METADATA
+    -   :attr:`colour_datasets.loaders.{0}.ID`
+    -   :attr:`colour_datasets.loaders.{0}.METADATA`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.{0}.__init__`
+    -   :meth:`colour_datasets.loaders.{0}.load`
 
     References
     ----------
@@ -239,7 +241,7 @@ def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
     module = sys.modules['colour_datasets.loaders.kuopio']
 
     prefix = re.sub('\\.|\\(|\\)|/|\\s', '', title)
-    class_attribute = '{0}DatasetLoader'.format(prefix)
+    class_attribute = 'DatasetLoader_{0}'.format(prefix)
     dataset_loader_class = type(
         str(class_attribute), (DatasetLoader_KuopioUniversity, ), {
             'ID': id_,

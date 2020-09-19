@@ -41,7 +41,7 @@ class TestDatasetLoader_Dyer2017(unittest.TestCase):
         Tests presence of required methods.
         """
 
-        required_methods = ('load', )
+        required_methods = ('__init__', 'load')
 
         for method in required_methods:
             self.assertIn(method, dir(DatasetLoader_Dyer2017))

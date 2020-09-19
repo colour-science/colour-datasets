@@ -49,11 +49,12 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Jiang2013.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Jiang2013.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Jiang2013.load`
 
     References
     ----------

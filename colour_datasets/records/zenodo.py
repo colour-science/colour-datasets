@@ -44,30 +44,30 @@ class Record(object):
     Defines an object storing a *Zenodo* record data and providing methods to
     sync it in a local repository.
 
-    Attributes
-    ----------
-    data
-    configuration
-    repository
-    id
-    title
-
-    Methods
-    -------
-    __init__
-    __str__
-    __repr__
-    from_id
-    synced
-    pull
-    remove
-
     Parameters
     ----------
     data : unicode
         *Zenodo* record data.
     configuration : Configuration
         *Colour - Datasets* configuration.
+
+    Attributes
+    ----------
+    -   :attr:`colour_datasets.Record.data`
+    -   :attr:`colour_datasets.Record.configuration`
+    -   :attr:`colour_datasets.Record.repository`
+    -   :attr:`colour_datasets.Record.id`
+    -   :attr:`colour_datasets.Record.title`
+
+    Methods
+    -------
+    -   :meth:`colour_datasets.Record.__init__`
+    -   :meth:`colour_datasets.Record.__str__`
+    -   :meth:`colour_datasets.Record.__repr__`
+    -   :meth:`colour_datasets.Record.from_id`
+    -   :meth:`colour_datasets.Record.synced`
+    -   :meth:`colour_datasets.Record.pull`
+    -   :meth:`colour_datasets.Record.remove`
 
     Examples
     --------
@@ -505,32 +505,32 @@ class Community(Mapping):
     """
     Defines an object storing a *Zenodo* community data.
 
-    Attributes
-    ----------
-    data
-    configuration
-    repository
-    records
-
-    Methods
-    -------
-    __init__
-    __str__
-    __repr__
-    __getitem__
-    __iter__
-    __len__
-    from_id
-    synced
-    pull
-    remove
-
     Parameters
     ----------
     data : unicode
         *Zenodo* community data.
     configuration : Configuration
         *Colour - Datasets* configuration.
+
+    Attributes
+    ----------
+    -   :attr:`colour_datasets.Community.data`
+    -   :attr:`colour_datasets.Community.configuration`
+    -   :attr:`colour_datasets.Community.repository`
+    -   :attr:`colour_datasets.Community.records`
+
+    Methods
+    -------
+    -   :meth:`colour_datasets.Community.__init__`
+    -   :meth:`colour_datasets.Community.__str__`
+    -   :meth:`colour_datasets.Community.__repr__`
+    -   :meth:`colour_datasets.Community.__getitem__`
+    -   :meth:`colour_datasets.Community.__iter__`
+    -   :meth:`colour_datasets.Community.__len__`
+    -   :meth:`colour_datasets.Community.from_id`
+    -   :meth:`colour_datasets.Community.synced`
+    -   :meth:`colour_datasets.Community.pull`
+    -   :meth:`colour_datasets.Community.remove`
 
     Examples
     --------

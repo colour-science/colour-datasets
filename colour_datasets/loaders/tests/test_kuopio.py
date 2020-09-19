@@ -120,7 +120,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
         Tests presence of required methods.
         """
 
-        required_methods = ('load', )
+        required_methods = ('__init__', 'load')
 
         for dataset_loader in (
                 DatasetLoader_MunsellColorsMattSpectrofotometerMeasured,

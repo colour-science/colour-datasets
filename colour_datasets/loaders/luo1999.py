@@ -85,17 +85,17 @@ class CorrespondingColourDataset_Luo1999(
 
 class DatasetLoader_Luo1999(AbstractDatasetLoader):
     """
-    Defines the *Luo and Rhodes (1999)*
-    *Corresponding-Colour Datasets* dataset
+    Defines the *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset
     loader.
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Luo1999.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Luo1999.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Luo1999.load`
 
     References
     ----------

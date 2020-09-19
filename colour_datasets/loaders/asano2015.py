@@ -87,12 +87,14 @@ class DatasetLoader_Asano2015(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Asano2015.ID`
 
     Methods
     -------
-    load
-    parse_workbook_Asano2015
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Asano2015.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Asano2015.load`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Asano2015.\
+parse_workbook_Asano2015`
 
     References
     ----------

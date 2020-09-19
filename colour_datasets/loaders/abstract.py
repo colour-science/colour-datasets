@@ -38,15 +38,16 @@ class AbstractDatasetLoader:
 
     Attributes
     ----------
-    ID
-    record
-    id
-    content
+    -   :attr:`colour_datasets.loaders.AbstractDatasetLoader.ID`
+    -   :attr:`colour_datasets.loaders.AbstractDatasetLoader.record`
+    -   :attr:`colour_datasets.loaders.AbstractDatasetLoader.id`
+    -   :attr:`colour_datasets.loaders.AbstractDatasetLoader.content`
 
     Methods
     -------
-    load
-    sync
+    -   :meth:`colour_datasets.loaders.AbstractDatasetLoader.__init__`
+    -   :meth:`colour_datasets.loaders.AbstractDatasetLoader.load`
+    -   :meth:`colour_datasets.loaders.AbstractDatasetLoader.sync`
 
     Parameters
     ----------

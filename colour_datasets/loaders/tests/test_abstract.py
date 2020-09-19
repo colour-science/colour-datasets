@@ -40,7 +40,7 @@ class TestAbstractDatasetLoader(unittest.TestCase):
         Tests presence of required methods.
         """
 
-        required_methods = ('load', 'sync')
+        required_methods = ('__init__', 'load', 'sync')
 
         for method in required_methods:
             self.assertIn(method, dir(AbstractDatasetLoader))

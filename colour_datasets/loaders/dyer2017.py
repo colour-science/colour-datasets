@@ -74,16 +74,31 @@ class SpectralDataHeader_AMPAS(object):
 
     Attributes
     ----------
-    schema_version
-    catalog_number
-    description
-    document_creator
-    unique_identifier
-    measurement_equipment
-    laboratory
-    document_creation_date
-    comments
-    license
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+schema_version
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+catalog_number
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+description
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+document_creator
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+unique_identifier
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+measurement_equipment
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+laboratory
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+document_creation_date
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+comments
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+license
+
+    Methods
+    -------
+    -   :meth:`colour_datasets.loaders.dyer2017.SpectralDataHeader_AMPAS.\
+__init__`
     """
 
     def __init__(self,
@@ -484,17 +499,23 @@ class SpectralDataMixin_AMPAS(object):
 
     Attributes
     ----------
-    path
-    header
-    units
-    reflection_geometry
-    transmission_geometry
-    bandwidth_FWHM
-    bandwidth_corrected
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.path`
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.header`
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.units`
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.\
+reflection_geometry`
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.\
+transmission_geometry`
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.\
+bandwidth_FWHM`
+    -   :attr:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.\
+bandwidth_corrected`
 
     Methods
     -------
-    read
+    -   :meth:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.\
+__init__`
+    -   :meth:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.read`
     """
 
     def __init__(self,
@@ -812,6 +833,11 @@ class SpectralDistribution_AMPAS(SpectralDataMixin_AMPAS,
     bandwidth_corrected : bool, optional
         Specifies if bandwidth correction has been applied to the measured
         data.
+
+    Methods
+    -------
+    -   :meth:`colour_datasets.loaders.dyer2017.SpectralDistribution_AMPAS.\
+__init__`
     """
 
     def __init__(self,
@@ -857,6 +883,11 @@ class MultiSpectralDistributions_AMPAS(SpectralDataMixin_AMPAS,
     bandwidth_corrected : bool, optional
         Specifies if bandwidth correction has been applied to the measured
         data.
+
+    Methods
+    -------
+    -   :meth:`colour_datasets.loaders.dyer2017.\
+MultiSpectralDistributions_AMPAS.__init__`
     """
 
     def __init__(self,
@@ -879,11 +910,12 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Dyer2017.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Dyer2017.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Dyer2017.load`
 
     References
     ----------

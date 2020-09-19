@@ -43,7 +43,7 @@ class TestDatasetLoader_Asano2015(unittest.TestCase):
         Tests presence of required methods.
         """
 
-        required_methods = ('load', 'parse_workbook_Asano2015')
+        required_methods = ('__init__', 'load', 'parse_workbook_Asano2015')
 
         for method in required_methods:
             self.assertIn(method, dir(DatasetLoader_Asano2015))

@@ -48,11 +48,12 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_XRite2016.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_XRite2016.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_XRite2016.load`
 
     References
     ----------

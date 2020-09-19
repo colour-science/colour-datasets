@@ -8,7 +8,7 @@ from __future__ import division, unicode_literals
 import numpy as np
 import unittest
 
-from colour_datasets.loaders import Hung1995DatasetLoader, build_Hung1995
+from colour_datasets.loaders import DatasetLoader_Hung1995, build_Hung1995
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
@@ -17,12 +17,12 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['TestHung1995DatasetLoader', 'TestBuildHung1995']
+__all__ = ['TestDatasetLoader_Hung1995', 'TestBuildHung1995']
 
 
-class TestHung1995DatasetLoader(unittest.TestCase):
+class TestDatasetLoader_Hung1995(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.hung1995.Hung1995DatasetLoader`
+    Defines :class:`colour_datasets.loaders.hung1995.DatasetLoader_Hung1995`
     class unit tests methods.
     """
 
@@ -34,7 +34,7 @@ class TestHung1995DatasetLoader(unittest.TestCase):
         required_attributes = ('ID', )
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(Hung1995DatasetLoader))
+            self.assertIn(attribute, dir(DatasetLoader_Hung1995))
 
     def test_required_methods(self):
         """
@@ -44,15 +44,15 @@ class TestHung1995DatasetLoader(unittest.TestCase):
         required_methods = ('load', )
 
         for method in required_methods:
-            self.assertIn(method, dir(Hung1995DatasetLoader))
+            self.assertIn(method, dir(DatasetLoader_Hung1995))
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.hung1995.Hung1995DatasetLoader.\
+        Tests :func:`colour_datasets.loaders.hung1995.DatasetLoader_Hung1995.\
 load` method.
         """
 
-        dataset = Hung1995DatasetLoader()
+        dataset = DatasetLoader_Hung1995()
         self.assertListEqual(
             list(dataset.load().keys()), [
                 'Table I', 'Table II', 'Table III', 'Table IV',

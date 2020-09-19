@@ -6,7 +6,7 @@ RAW to ACES Utility Data - Dyer et al. (2017)
 Defines the objects implementing support for *Dyer, Forsythe, Irons, Mansencal
 and Zhu (2017)* *RAW to ACES Utility Data* dataset loading:
 
--   :class:`colour_datasets.loaders.Dyer2017DatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_Dyer2017`
 -   :func:`colour_datasets.loaders.build_Dyer2017`
 
 References
@@ -37,12 +37,12 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'AMPAS_SpectralDataHeader', 'AMPAS_SpectralDataMixin',
-    'SpectralDistribution_AMPAS', 'Dyer2017DatasetLoader', 'build_Dyer2017'
+    'SpectralDataHeader_AMPAS', 'SpectralDataMixin_AMPAS',
+    'SpectralDistribution_AMPAS', 'DatasetLoader_Dyer2017', 'build_Dyer2017'
 ]
 
 
-class AMPAS_SpectralDataHeader(object):
+class SpectralDataHeader_AMPAS(object):
     """
     Defines the header object for an *A.M.P.A.S* spectral data.
 
@@ -427,7 +427,7 @@ class AMPAS_SpectralDataHeader(object):
         self._license = value
 
 
-class AMPAS_SpectralDataMixin(object):
+class SpectralDataMixin_AMPAS(object):
     """
     Defines a mixin for *A.M.P.A.S* spectral data.
 
@@ -435,7 +435,7 @@ class AMPAS_SpectralDataMixin(object):
     ----------
     path : unicode, optional
         Spectral data JSON file path.
-    header : AMPAS_SpectralDataHeader, optional
+    header : SpectralDataHeader_AMPAS, optional
         *A.M.P.A.S.* spectral distribution header.
     units : unicode, optional
         **{'flux', 'absorptance', 'transmittance', 'reflectance', 'intensity',
@@ -505,13 +505,13 @@ class AMPAS_SpectralDataMixin(object):
                  transmission_geometry=None,
                  bandwidth_FWHM=None,
                  bandwidth_corrected=None):
-        super(AMPAS_SpectralDataMixin, self).__init__()
+        super(SpectralDataMixin_AMPAS, self).__init__()
 
         self._path = None
         self.path = path
         self._header = None
         self.header = (header
-                       if header is not None else AMPAS_SpectralDataHeader())
+                       if header is not None else SpectralDataHeader_AMPAS())
         self._units = None
         self.units = units
         self._reflection_geometry = None
@@ -560,12 +560,12 @@ class AMPAS_SpectralDataMixin(object):
 
         Parameters
         ----------
-        value : AMPAS_SpectralDataHeader
+        value : SpectralDataHeader_AMPAS
             Value to set the header with.
 
         Returns
         -------
-        AMPAS_SpectralDataHeader
+        SpectralDataHeader_AMPAS
             Header.
         """
 
@@ -578,8 +578,8 @@ class AMPAS_SpectralDataMixin(object):
         """
 
         if value is not None:
-            assert isinstance(value, AMPAS_SpectralDataHeader), (
-                '"{0}" attribute: "{1}" is not a "AMPAS_SpectralDataHeader" '
+            assert isinstance(value, SpectralDataHeader_AMPAS), (
+                '"{0}" attribute: "{1}" is not a "SpectralDataHeader_AMPAS" '
                 'instance!'.format('header', value))
         self._header = value
 
@@ -749,7 +749,7 @@ class AMPAS_SpectralDataMixin(object):
         with open(self._path, 'r') as json_file:
             content = json.load(json_file)
 
-        self._header = AMPAS_SpectralDataHeader(**content['header'])
+        self._header = SpectralDataHeader_AMPAS(**content['header'])
         for attribute in ('units', 'reflection_geometry',
                           'transmission_geometry', 'bandwidth_FWHM',
                           'bandwidth_corrected'):
@@ -782,7 +782,7 @@ class AMPAS_SpectralDataMixin(object):
         return self
 
 
-class SpectralDistribution_AMPAS(AMPAS_SpectralDataMixin,
+class SpectralDistribution_AMPAS(SpectralDataMixin_AMPAS,
                                  SpectralDistribution):
     """
     Defines an *A.M.P.A.S* spectral distribution.
@@ -793,7 +793,7 @@ class SpectralDistribution_AMPAS(AMPAS_SpectralDataMixin,
     ----------
     path : unicode, optional
         Spectral data JSON file path.
-    header : AMPAS_SpectralDataHeader, optional
+    header : SpectralDataHeader_AMPAS, optional
         *A.M.P.A.S.* spectral distribution header.
     units : unicode, optional
         **{'flux', 'absorptance', 'transmittance', 'reflectance', 'intensity',
@@ -827,7 +827,7 @@ class SpectralDistribution_AMPAS(AMPAS_SpectralDataMixin,
             bandwidth_FWHM, bandwidth_corrected)
 
 
-class MultiSpectralDistributions_AMPAS(AMPAS_SpectralDataMixin,
+class MultiSpectralDistributions_AMPAS(SpectralDataMixin_AMPAS,
                                        MultiSpectralDistributions):
     """
     Defines the *A.M.P.A.S* multi-spectral distributions.
@@ -838,7 +838,7 @@ class MultiSpectralDistributions_AMPAS(AMPAS_SpectralDataMixin,
     ----------
     path : unicode, optional
         Spectral data JSON file path.
-    header : AMPAS_SpectralDataHeader, optional
+    header : SpectralDataHeader_AMPAS, optional
         *A.M.P.A.S.* spectral distribution header.
     units : unicode, optional
         **{'flux', 'absorptance', 'transmittance', 'reflectance', 'intensity',
@@ -872,7 +872,7 @@ class MultiSpectralDistributions_AMPAS(AMPAS_SpectralDataMixin,
             bandwidth_FWHM, bandwidth_corrected)
 
 
-class Dyer2017DatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     """
     Defines the *Dyer et al. (2017)* *RAW to ACES Utility Data* dataset
     loader.
@@ -898,8 +898,8 @@ class Dyer2017DatasetLoader(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(Dyer2017DatasetLoader,
-              self).__init__(datasets()[Dyer2017DatasetLoader.ID])
+        super(DatasetLoader_Dyer2017,
+              self).__init__(datasets()[DatasetLoader_Dyer2017.ID])
 
     def load(self):
         """
@@ -914,14 +914,14 @@ class Dyer2017DatasetLoader(AbstractDatasetLoader):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> dataset = Dyer2017DatasetLoader()
+        >>> dataset = DatasetLoader_Dyer2017()
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.content.keys())
         4
         """
 
-        super(Dyer2017DatasetLoader, self).sync()
+        super(DatasetLoader_Dyer2017, self).sync()
 
         self._content = OrderedDict()
 
@@ -938,12 +938,12 @@ class Dyer2017DatasetLoader(AbstractDatasetLoader):
         return self._content
 
 
-_DYER2017_DATASET_LOADER = None
+_DATASET_LOADER_DYER2017 = None
 """
 Singleton instance of the *Dyer et al. (2017)* *RAW to ACES Utility Data*
 dataset loader.
 
-_DYER2017_DATASET_LOADER : Dyer2017DatasetLoader
+_DATASET_LOADER_DYER2017 : DatasetLoader_Dyer2017
 """
 
 
@@ -959,7 +959,7 @@ def build_Dyer2017(load=True):
 
     Returns
     -------
-    Dyer2017DatasetLoader
+    DatasetLoader_Dyer2017
         Singleton instance of the *Dyer et al. (2017)*
         *RAW to ACES Utility Data* dataset loader.
 
@@ -968,11 +968,11 @@ def build_Dyer2017(load=True):
     :cite:`Dyer2017`
     """
 
-    global _DYER2017_DATASET_LOADER
+    global _DATASET_LOADER_DYER2017
 
-    if _DYER2017_DATASET_LOADER is None:
-        _DYER2017_DATASET_LOADER = Dyer2017DatasetLoader()
+    if _DATASET_LOADER_DYER2017 is None:
+        _DATASET_LOADER_DYER2017 = DatasetLoader_Dyer2017()
         if load:
-            _DYER2017_DATASET_LOADER.load()
+            _DATASET_LOADER_DYER2017.load()
 
-    return _DYER2017_DATASET_LOADER
+    return _DATASET_LOADER_DYER2017

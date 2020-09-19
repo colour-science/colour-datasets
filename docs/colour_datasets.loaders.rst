@@ -31,7 +31,7 @@ Camera Spectral Sensitivity Database - Jiang et al. (2013)
     :toctree: generated/
     :template: class.rst
 
-    Jiang2013DatasetLoader
+    DatasetLoader_Jiang2013
 
 .. autosummary::
     :toctree: generated/
@@ -45,7 +45,7 @@ Constant Hue Loci Data - Hung and Berns (1995)
     :toctree: generated/
     :template: class.rst
 
-    Hung1995DatasetLoader
+    DatasetLoader_Hung1995
 
 .. autosummary::
     :toctree: generated/
@@ -59,7 +59,7 @@ Constant Perceived-Hue Data - Ebner and Fairchild (1998)
     :toctree: generated/
     :template: class.rst
 
-    Ebner1998DatasetLoader
+    DatasetLoader_Ebner1998
 
 .. autosummary::
     :toctree: generated/
@@ -73,7 +73,7 @@ Corresponding-Colour Datasets - Luo and Rhodes (1999)
     :toctree: generated/
     :template: class.rst
 
-    Luo1999DatasetLoader
+    DatasetLoader_Luo1999
 
 .. autosummary::
     :toctree: generated/
@@ -101,7 +101,7 @@ Labsphere SRS-99-020 - Labsphere (2019)
     :toctree: generated/
     :template: class.rst
 
-    Labsphere2019DatasetLoader
+    DatasetLoader_Labsphere2019
 
 .. autosummary::
     :toctree: generated/
@@ -185,7 +185,7 @@ New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
     :toctree: generated/
     :template: class.rst
 
-    XRite2016DatasetLoader
+    DatasetLoader_XRite2016
 
 .. autosummary::
     :toctree: generated/
@@ -199,7 +199,7 @@ Observer Function Database - Asano (2015)
     :toctree: generated/
     :template: class.rst
 
-    Asano2015DatasetLoader
+    DatasetLoader_Asano2015
 
 .. autosummary::
     :toctree: generated/
@@ -227,7 +227,7 @@ RAW to ACES Utility Data - Dyer et al. (2017)
     :toctree: generated/
     :template: class.rst
 
-    Dyer2017DatasetLoader
+    DatasetLoader_Dyer2017
 
 .. autosummary::
     :toctree: generated/

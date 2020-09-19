@@ -6,7 +6,7 @@ University of Kuopio
 Defines the objects implementing support for the *University of Kuopio*
 datasets loading:
 
--   :class:`colour_datasets.loaders.KuopioUniversityDatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_KuopioUniversity`
 -   :func:`colour_datasets.loaders.build_KuopioUniversity`
 
 Notes
@@ -58,15 +58,15 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'KuopioUniversityMatFileMetadata',
-    'read_sds_from_mat_file_KuopioUniversity', 'KuopioUniversityDatasetLoader',
-    'build_KuopioUniversity', 'KUOPIO_UNIVERSITY_DATASETS_DATA',
-    'KUOPIO_UNIVERSITY_DATASET_LOADERS'
+    'MatFileMetadata_KuopioUniversity',
+    'read_sds_from_mat_file_KuopioUniversity',
+    'DatasetLoader_KuopioUniversity', 'build_KuopioUniversity',
+    'DATA_KUOPIO_UNIVERSITY', 'DATASET_LOADERS_KUOPIO_UNIVERSITY'
 ]
 
 
-class KuopioUniversityMatFileMetadata(
-        namedtuple('KuopioUniversityMatFileMetadata',
+class MatFileMetadata_KuopioUniversity(
+        namedtuple('MatFileMetadata_KuopioUniversity',
                    ('key', 'shape', 'transpose', 'identifiers'))):
     """
     Metadata storage for an *University of Kuopio* dataset spectral
@@ -94,7 +94,7 @@ def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):
     ----------
     mat_file : unicode
         *Matlab* *.mat* file.
-    metadata : KuopioUniversityMatFileMetadata
+    metadata : MatFileMetadata_KuopioUniversity
         Metadata required to read the spectral distributions in the *Matlab*
         *.mat* file.
 
@@ -127,7 +127,7 @@ def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):
     return sds
 
 
-class KuopioUniversityDatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     """
     Defines the base class for a *University of Kuopio* dataset loader.
 
@@ -151,14 +151,14 @@ class KuopioUniversityDatasetLoader(AbstractDatasetLoader):
     METADATA = None
     """
     Mapping of paths and
-    :class:`colour_datasets.loaders.kuopio.KuopioUniversityMatFileMetadata`
+    :class:`colour_datasets.loaders.kuopio.MatFileMetadata_KuopioUniversity`
     class instances.
 
     METADATA : dict
     """
 
     def __init__(self):
-        super(KuopioUniversityDatasetLoader,
+        super(DatasetLoader_KuopioUniversity,
               self).__init__(datasets()[self.ID])
 
     def load(self):
@@ -172,7 +172,7 @@ class KuopioUniversityDatasetLoader(AbstractDatasetLoader):
             *University of Kuopio* dataset content.
         """
 
-        super(KuopioUniversityDatasetLoader, self).sync()
+        super(DatasetLoader_KuopioUniversity, self).sync()
 
         self._content = OrderedDict()
 
@@ -201,7 +201,7 @@ def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
         *University of Kuopio* dataset citation key.
     metadata : dict
         Mapping of paths and
-        :class:`colour_datasets.loaders.kuopio.KuopioUniversityMatFileMetadata`
+        :class:`colour_datasets.loaders.kuopio.MatFileMetadata_KuopioUniversity`
         class instances.
 
     Returns
@@ -241,7 +241,7 @@ def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
     prefix = re.sub('\\.|\\(|\\)|/|\\s', '', title)
     class_attribute = '{0}DatasetLoader'.format(prefix)
     dataset_loader_class = type(
-        str(class_attribute), (KuopioUniversityDatasetLoader, ), {
+        str(class_attribute), (DatasetLoader_KuopioUniversity, ), {
             'ID': id_,
             'METADATA': metadata
         })
@@ -270,7 +270,7 @@ def build_KuopioUniversity(dataset_loader_class, load=True):
 
     Returns
     -------
-    KuopioUniversityDatasetLoader
+    DatasetLoader_KuopioUniversity
         Singleton instance of a *University of Kuopio* dataset loader.
     """
 
@@ -278,7 +278,7 @@ def build_KuopioUniversity(dataset_loader_class, load=True):
 
     prefix = dataset_loader_class.__name__.replace('DatasetLoader', '')
     prefix = re.sub('([A-Z]+)', r'_\1', prefix).replace('__', '_').upper()
-    dataset_loader_attribute = '_{0}_DATASET_LOADER'.format(prefix)
+    dataset_loader_attribute = 'DATASET_LOADER_{0}'.format(prefix)
 
     if not hasattr(module, dataset_loader_attribute):
         setattr(module, dataset_loader_attribute, dataset_loader_class())
@@ -291,128 +291,128 @@ def build_KuopioUniversity(dataset_loader_class, load=True):
 # TODO: Implement support for *Natural Colors*:
 # https://sandbox.zenodo.org/record/315640
 # http://www.uef.fi/web/spectral/natural-colors
-KUOPIO_UNIVERSITY_DATASETS_DATA = {
+DATA_KUOPIO_UNIVERSITY = {
     '3269912': [
         'Munsell Colors Matt (Spectrofotometer Measured)', 'Hauta-Kasari', {
             ('munsell380_800_1_mat', 'munsell380_800_1.mat'):
-                KuopioUniversityMatFileMetadata('munsell',
-                                                SpectralShape(380, 800, 1),
-                                                True, 'S')
+                MatFileMetadata_KuopioUniversity('munsell',
+                                                 SpectralShape(380, 800, 1),
+                                                 True, 'S')
         }
     ],
     '3269914': [
         'Munsell Colors Matt (AOTF Measured)', 'Hauta-Kasaria', {
             ('munsell400_700_5_mat', 'munsell400_700_5.mat'):
-                KuopioUniversityMatFileMetadata('munsell',
-                                                SpectralShape(400, 700, 5),
-                                                True, 'S')
+                MatFileMetadata_KuopioUniversity('munsell',
+                                                 SpectralShape(400, 700, 5),
+                                                 True, 'S')
         }
     ],
     '3269916': [
         'Munsell Colors Glossy (Spectrofotometer Measured)', 'Haanpalo', {
             ('munsell400_700_10_mat', 'munsell400_700_10.mat'):
-                KuopioUniversityMatFileMetadata('munsell',
-                                                SpectralShape(400, 700, 10),
-                                                True, 'S')
+                MatFileMetadata_KuopioUniversity('munsell',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, 'S')
         }
     ],
     '3269918': [
         'Munsell Colors Glossy (All) (Spectrofotometer Measured)', 'Orava', {
             ('munsell380_780_1_glossy_mat', 'munsell380_780_1_glossy.mat'):
-                KuopioUniversityMatFileMetadata('X', SpectralShape(
+                MatFileMetadata_KuopioUniversity('X', SpectralShape(
                     380, 780, 1), True, None)
         }
     ],
     '3269920': [
         'Forest Colors', 'Silvennoinen', {
             ('forest_matlab', 'birch.mat'):
-                KuopioUniversityMatFileMetadata('birch',
-                                                SpectralShape(380, 850, 5),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('birch',
+                                                 SpectralShape(380, 850, 5),
+                                                 True, None),
             ('forest_matlab', 'pine.mat'):
-                KuopioUniversityMatFileMetadata('pine',
-                                                SpectralShape(380, 850, 5),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('pine',
+                                                 SpectralShape(380, 850, 5),
+                                                 True, None),
             ('forest_matlab', 'spruce.mat'):
-                KuopioUniversityMatFileMetadata('spruce',
-                                                SpectralShape(380, 850, 5),
-                                                True, None)
+                MatFileMetadata_KuopioUniversity('spruce',
+                                                 SpectralShape(380, 850, 5),
+                                                 True, None)
         }
     ],
     '3269922': [
         'Paper Spectra', 'Haanpaloa', {
             ('paper_matlab', 'cardboardsce.mat'):
-                KuopioUniversityMatFileMetadata('cardboardsce',
-                                                SpectralShape(400, 700, 10),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('cardboardsce',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, None),
             ('paper_matlab', 'cardboardsci.mat'):
-                KuopioUniversityMatFileMetadata('cardboardsci',
-                                                SpectralShape(400, 700, 10),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('cardboardsci',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, None),
             ('paper_matlab', 'mirrorsci.mat'):
-                KuopioUniversityMatFileMetadata('mirrorsci',
-                                                SpectralShape(400, 700, 10),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('mirrorsci',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, None),
             ('paper_matlab', 'newsprintsce.mat'):
-                KuopioUniversityMatFileMetadata('newsprintsce',
-                                                SpectralShape(400, 700, 10),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('newsprintsce',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, None),
             ('paper_matlab', 'newsprintsci.mat'):
-                KuopioUniversityMatFileMetadata('newsprintsci',
-                                                SpectralShape(400, 700, 10),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('newsprintsci',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, None),
             ('paper_matlab', 'papersce.mat'):
-                KuopioUniversityMatFileMetadata('papersce',
-                                                SpectralShape(400, 700, 10),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('papersce',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, None),
             ('paper_matlab', 'papersci.mat'):
-                KuopioUniversityMatFileMetadata('papersci',
-                                                SpectralShape(400, 700, 10),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('papersci',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, None),
         }
     ],
     '3269924': [
         'Lumber Spectra', 'Hiltunen', {
             ('lumber_matlab', 'aspenWb.mat'):
-                KuopioUniversityMatFileMetadata('aspenWb',
-                                                SpectralShape(380, 2700, 1),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('aspenWb',
+                                                 SpectralShape(380, 2700, 1),
+                                                 True, None),
             ('lumber_matlab', 'aspenWp.mat'):
-                KuopioUniversityMatFileMetadata('aspenWp',
-                                                SpectralShape(380, 2700, 1),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('aspenWp',
+                                                 SpectralShape(380, 2700, 1),
+                                                 True, None),
             ('lumber_matlab', 'birchWb.mat'):
-                KuopioUniversityMatFileMetadata('birchWb',
-                                                SpectralShape(380, 2700, 1),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('birchWb',
+                                                 SpectralShape(380, 2700, 1),
+                                                 True, None),
             ('lumber_matlab', 'birchWp.mat'):
-                KuopioUniversityMatFileMetadata('birchWp',
-                                                SpectralShape(380, 2700, 1),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('birchWp',
+                                                 SpectralShape(380, 2700, 1),
+                                                 True, None),
             ('lumber_matlab', 'pineWb.mat'):
-                KuopioUniversityMatFileMetadata('pineWb',
-                                                SpectralShape(380, 2700, 1),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('pineWb',
+                                                 SpectralShape(380, 2700, 1),
+                                                 True, None),
             ('lumber_matlab', 'pineWp.mat'):
-                KuopioUniversityMatFileMetadata('pineWp',
-                                                SpectralShape(380, 2700, 1),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('pineWp',
+                                                 SpectralShape(380, 2700, 1),
+                                                 True, None),
             ('lumber_matlab', 'spruceWb.mat'):
-                KuopioUniversityMatFileMetadata('spruceWb',
-                                                SpectralShape(380, 2700, 1),
-                                                True, None),
+                MatFileMetadata_KuopioUniversity('spruceWb',
+                                                 SpectralShape(380, 2700, 1),
+                                                 True, None),
             ('lumber_matlab', 'spruceWp.mat'):
-                KuopioUniversityMatFileMetadata('spruceWp',
-                                                SpectralShape(380, 2700, 1),
-                                                True, None)
+                MatFileMetadata_KuopioUniversity('spruceWp',
+                                                 SpectralShape(380, 2700, 1),
+                                                 True, None)
         }
     ],
     '3269926': [
         'Agfa IT8.7/2 Set', 'Marszalec', {
             ('agfait872_mat', 'agfait872.mat'):
-                KuopioUniversityMatFileMetadata('agfa',
-                                                SpectralShape(400, 700, 10),
-                                                True, None)
+                MatFileMetadata_KuopioUniversity('agfa',
+                                                 SpectralShape(400, 700, 10),
+                                                 True, None)
         }
     ],
 }
@@ -435,7 +435,7 @@ _singleton_factory_docstring_template = """
     ----------
     :cite:`{2}`""" [1:]
 
-KUOPIO_UNIVERSITY_DATASET_LOADERS = {}
+DATASET_LOADERS_KUOPIO_UNIVERSITY = {}
 """
 *University of Kuopio* dataset loaders.
 
@@ -444,10 +444,10 @@ References
 :cite:`Hauta-Kasari`, :cite:`Hauta-Kasaria`, :cite:`Haanpalo`, :cite:`Orava`,
 :cite:`Silvennoinen`, :cite:`Haanpaloa`, :cite:`Hiltunen`, :cite:`Marszalec`
 
-KUOPIO_UNIVERSITY_DATASET_LOADERS : dict
+DATASET_LOADERS_KUOPIO_UNIVERSITY : dict
 """
 
-for _id, _data in KUOPIO_UNIVERSITY_DATASETS_DATA.items():
+for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
     _module = sys.modules['colour_datasets.loaders.kuopio']
     _dataset_loader_class = _build_dataset_loader_class_KuopioUniversity(
         _id, *_data)
@@ -461,7 +461,7 @@ for _id, _data in KUOPIO_UNIVERSITY_DATASETS_DATA.items():
 
     setattr(_module, _build_function_name, _partial_function)
 
-    KUOPIO_UNIVERSITY_DATASET_LOADERS[_id] = _partial_function
+    DATASET_LOADERS_KUOPIO_UNIVERSITY[_id] = _partial_function
 
     __all__ += [_dataset_loader_class.__name__, _build_function_name]
 

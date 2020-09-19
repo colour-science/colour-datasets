@@ -9,7 +9,7 @@ import unittest
 
 from colour import SpectralShape
 
-from colour_datasets.loaders import (Labsphere2019DatasetLoader,
+from colour_datasets.loaders import (DatasetLoader_Labsphere2019,
                                      build_Labsphere2019)
 
 __author__ = 'Colour Developers'
@@ -19,13 +19,13 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['TestLabsphere2019DatasetLoader', 'TestBuildLabsphere2019']
+__all__ = ['TestDatasetLoader_Labsphere2019', 'TestBuildLabsphere2019']
 
 
-class TestLabsphere2019DatasetLoader(unittest.TestCase):
+class TestDatasetLoader_Labsphere2019(unittest.TestCase):
     """
     Defines :class:`colour_datasets.loaders.labsphere2019.\
-Labsphere2019DatasetLoader` class unit tests methods.
+DatasetLoader_Labsphere2019` class unit tests methods.
     """
 
     def test_required_attributes(self):
@@ -36,7 +36,7 @@ Labsphere2019DatasetLoader` class unit tests methods.
         required_attributes = ('ID', )
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(Labsphere2019DatasetLoader))
+            self.assertIn(attribute, dir(DatasetLoader_Labsphere2019))
 
     def test_required_methods(self):
         """
@@ -46,15 +46,15 @@ Labsphere2019DatasetLoader` class unit tests methods.
         required_methods = ('load', )
 
         for method in required_methods:
-            self.assertIn(method, dir(Labsphere2019DatasetLoader))
+            self.assertIn(method, dir(DatasetLoader_Labsphere2019))
 
     def test_load(self):
         """
         Tests :func:`colour_datasets.loaders.labsphere2019.\
-Labsphere2019DatasetLoader.load` method.
+DatasetLoader_Labsphere2019.load` method.
         """
 
-        dataset = Labsphere2019DatasetLoader()
+        dataset = DatasetLoader_Labsphere2019()
         self.assertEqual(
             sorted(dataset.load().keys()), ['Labsphere SRS-99-020'])
         self.assertEqual(dataset.content['Labsphere SRS-99-020'].shape,

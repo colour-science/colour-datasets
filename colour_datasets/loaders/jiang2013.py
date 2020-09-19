@@ -6,7 +6,7 @@ Camera Spectral Sensitivity Database - Jiang et al. (2013)
 Defines the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
 (2013)* *Camera Spectral Sensitivity Database* dataset loading:
 
--   :class:`colour_datasets.loaders.Jiang2013DatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_Jiang2013`
 -   :func:`colour_datasets.loaders.build_Jiang2013`
 
 References
@@ -39,10 +39,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['Jiang2013DatasetLoader', 'build_Jiang2013']
+__all__ = ['DatasetLoader_Jiang2013', 'build_Jiang2013']
 
 
-class Jiang2013DatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_Jiang2013(AbstractDatasetLoader):
     """
     Defines the *Jiang et al. (2013)* *Camera Spectral Sensitivity Database*
     dataset loader.
@@ -68,8 +68,8 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(Jiang2013DatasetLoader,
-              self).__init__(datasets()[Jiang2013DatasetLoader.ID])
+        super(DatasetLoader_Jiang2013,
+              self).__init__(datasets()[DatasetLoader_Jiang2013.ID])
 
     def load(self):
         """
@@ -85,14 +85,14 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> dataset = Jiang2013DatasetLoader()
+        >>> dataset = DatasetLoader_Jiang2013()
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.content.keys())
         28
         """
 
-        super(Jiang2013DatasetLoader, self).sync()
+        super(DatasetLoader_Jiang2013, self).sync()
 
         shape = SpectralShape(400, 720, 10)
 
@@ -121,12 +121,12 @@ class Jiang2013DatasetLoader(AbstractDatasetLoader):
         return self._content
 
 
-_JIANG2013_DATASET_LOADER = None
+_DATASET_LOADER_JIANG2013 = None
 """
 Singleton instance of the *Jiang et al. (2013)*
 *Camera Spectral Sensitivity Database* dataset loader.
 
-_JIANG2013_DATASET_LOADER : Jiang2013DatasetLoader
+_DATASET_LOADER_JIANG2013 : DatasetLoader_Jiang2013
 """
 
 
@@ -142,7 +142,7 @@ def build_Jiang2013(load=True):
 
     Returns
     -------
-    Jiang2013DatasetLoader
+    DatasetLoader_Jiang2013
         Singleton instance of the *Jiang et al. (2013)*
         *Camera Spectral Sensitivity Database* dataset loader.
 
@@ -151,11 +151,11 @@ def build_Jiang2013(load=True):
     :cite:`Jiang2013`
     """
 
-    global _JIANG2013_DATASET_LOADER
+    global _DATASET_LOADER_JIANG2013
 
-    if _JIANG2013_DATASET_LOADER is None:
-        _JIANG2013_DATASET_LOADER = Jiang2013DatasetLoader()
+    if _DATASET_LOADER_JIANG2013 is None:
+        _DATASET_LOADER_JIANG2013 = DatasetLoader_Jiang2013()
         if load:
-            _JIANG2013_DATASET_LOADER.load()
+            _DATASET_LOADER_JIANG2013.load()
 
-    return _JIANG2013_DATASET_LOADER
+    return _DATASET_LOADER_JIANG2013

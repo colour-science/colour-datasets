@@ -6,7 +6,7 @@ Constant Perceived-Hue Data - Ebner and Fairchild (1998)
 Defines the objects implementing support for *Ebner and Fairchild (1998)*
 *Constant Perceived-Hue Data* dataset loading:
 
--   :class:`colour_datasets.loaders.Ebner1998DatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_Ebner1998`
 -   :func:`colour_datasets.loaders.build_Ebner1998`
 
 References
@@ -37,13 +37,13 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'ConstantPerceivedHueColourMatchesEbner1998', 'Ebner1998DatasetLoader',
+    'ConstantPerceivedHueColourMatches_Ebner1998', 'DatasetLoader_Ebner1998',
     'build_Ebner1998'
 ]
 
 
-class ConstantPerceivedHueColourMatchesEbner1998(
-        namedtuple('ConstantPerceivedHueColourMatchesEbner1998',
+class ConstantPerceivedHueColourMatches_Ebner1998(
+        namedtuple('ConstantPerceivedHueColourMatches_Ebner1998',
                    ('name', 'XYZ_r', 'XYZ_cr', 'XYZ_ct', 'metadata'))):
     """
     Defines *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
@@ -67,7 +67,7 @@ class ConstantPerceivedHueColourMatchesEbner1998(
     """
 
 
-class Ebner1998DatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     """
     Defines the *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
     dataset loader.
@@ -93,8 +93,8 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(Ebner1998DatasetLoader,
-              self).__init__(datasets()[Ebner1998DatasetLoader.ID])
+        super(DatasetLoader_Ebner1998,
+              self).__init__(datasets()[DatasetLoader_Ebner1998.ID])
 
     def load(self):
         """
@@ -110,14 +110,14 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> dataset = Ebner1998DatasetLoader()
+        >>> dataset = DatasetLoader_Ebner1998()
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.content.keys())
         1
         """
 
-        super(Ebner1998DatasetLoader, self).sync()
+        super(DatasetLoader_Ebner1998, self).sync()
 
         self._content = OrderedDict([('Constant Perceived-Hue Data',
                                       OrderedDict())])
@@ -149,19 +149,19 @@ class Ebner1998DatasetLoader(AbstractDatasetLoader):
                     hue, data = int(hue), _parse_float_values(data)
 
                     self._content['Constant Perceived-Hue Data'][hue] = (
-                        ConstantPerceivedHueColourMatchesEbner1998(
+                        ConstantPerceivedHueColourMatches_Ebner1998(
                             'Reference Hue Angle - {0}'.format(hue), XYZ_r,
                             data[0], data[1:], {'h': hue}))
 
         return self._content
 
 
-_EBNER1998_DATASET_LOADER = None
+_DATASET_LOADER_EBNER1998 = None
 """
 Singleton instance of the *Ebner and Fairchild (1998)*
 *Constant Perceived-Hue Data* dataset loader.
 
-_EBNER1998_DATASET_LOADER : Ebner1998DatasetLoader
+_DATASET_LOADER_EBNER1998 : DatasetLoader_Ebner1998
 """
 
 
@@ -177,7 +177,7 @@ def build_Ebner1998(load=True):
 
     Returns
     -------
-    Ebner1998DatasetLoader
+    DatasetLoader_Ebner1998
         Singleton instance of the *Ebner and Fairchild (1998)*
         *Constant Perceived-Hue Data* dataset loader.
 
@@ -186,11 +186,11 @@ def build_Ebner1998(load=True):
     :cite:`Ebner1998`
     """
 
-    global _EBNER1998_DATASET_LOADER
+    global _DATASET_LOADER_EBNER1998
 
-    if _EBNER1998_DATASET_LOADER is None:
-        _EBNER1998_DATASET_LOADER = Ebner1998DatasetLoader()
+    if _DATASET_LOADER_EBNER1998 is None:
+        _DATASET_LOADER_EBNER1998 = DatasetLoader_Ebner1998()
         if load:
-            _EBNER1998_DATASET_LOADER.load()
+            _DATASET_LOADER_EBNER1998.load()
 
-    return _EBNER1998_DATASET_LOADER
+    return _DATASET_LOADER_EBNER1998

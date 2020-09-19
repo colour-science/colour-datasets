@@ -6,7 +6,7 @@ Corresponding-Colour Datasets - Luo and Rhodes (1999)
 Defines the objects implementing support for *Luo and Rhodes (1999)*
 *Corresponding-Colour Datasets* dataset loading:
 
--   :class:`colour_datasets.loaders.Luo1999DatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_Luo1999`
 -   :func:`colour_datasets.loaders.build_Luo1999`
 
 References
@@ -43,13 +43,13 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'CorrespondingColourDatasetLuo1999', 'Luo1999DatasetLoader',
+    'CorrespondingColourDataset_Luo1999', 'DatasetLoader_Luo1999',
     'build_Luo1999'
 ]
 
 
-class CorrespondingColourDatasetLuo1999(
-        namedtuple('CorrespondingColourDatasetLuo1999',
+class CorrespondingColourDataset_Luo1999(
+        namedtuple('CorrespondingColourDataset_Luo1999',
                    ('name', 'XYZ_r', 'XYZ_t', 'XYZ_cr', 'XYZ_ct', 'Y_r', 'Y_t',
                     'B_r', 'B_t', 'metadata'))):
     """
@@ -83,7 +83,7 @@ class CorrespondingColourDatasetLuo1999(
     """
 
 
-class Luo1999DatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_Luo1999(AbstractDatasetLoader):
     """
     Defines the *Luo and Rhodes (1999)*
     *Corresponding-Colour Datasets* dataset
@@ -110,8 +110,8 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(Luo1999DatasetLoader,
-              self).__init__(datasets()[Luo1999DatasetLoader.ID])
+        super(DatasetLoader_Luo1999,
+              self).__init__(datasets()[DatasetLoader_Luo1999.ID])
 
     def load(self):
         """
@@ -141,14 +141,14 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> dataset = Luo1999DatasetLoader()
+        >>> dataset = DatasetLoader_Luo1999()
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.content.keys())
         37
         """
 
-        super(Luo1999DatasetLoader, self).sync()
+        super(DatasetLoader_Luo1999, self).sync()
 
         metadata_headers = (
             'No. of Phases',
@@ -392,7 +392,7 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
                 dataset_metadata['Background (Y%)'] = (
                     dataset_metadata['Background (Y%)'][i])
 
-                self._content[name] = CorrespondingColourDatasetLuo1999(
+                self._content[name] = CorrespondingColourDataset_Luo1999(
                     name,
                     as_float_array(XYZ_r) / 100,
                     as_float_array(XYZ_t) / 100,
@@ -408,12 +408,12 @@ class Luo1999DatasetLoader(AbstractDatasetLoader):
         return self._content
 
 
-_LUO1999_DATASET_LOADER = None
+_DATASET_LOADER_LUO1999 = None
 """
 Singleton instance of the *Luo and Rhodes (1999)*
 *Corresponding-Colour Datasets* dataset loader.
 
-_LUO1999_DATASET_LOADER : Luo1999DatasetLoader
+_DATASET_LOADER_LUO1999 : DatasetLoader_Luo1999
 """
 
 
@@ -429,7 +429,7 @@ def build_Luo1999(load=True):
 
     Returns
     -------
-    Luo1999DatasetLoader
+    DatasetLoader_Luo1999
         Singleton instance of the *Luo and Rhodes (1999)*
         *Corresponding-Colour Datasets* dataset loader.
 
@@ -438,11 +438,11 @@ def build_Luo1999(load=True):
     :cite:`Breneman1987b`, :cite:`Luo1999`, :cite:`McCann1976`
     """
 
-    global _LUO1999_DATASET_LOADER
+    global _DATASET_LOADER_LUO1999
 
-    if _LUO1999_DATASET_LOADER is None:
-        _LUO1999_DATASET_LOADER = Luo1999DatasetLoader()
+    if _DATASET_LOADER_LUO1999 is None:
+        _DATASET_LOADER_LUO1999 = DatasetLoader_Luo1999()
         if load:
-            _LUO1999_DATASET_LOADER.load()
+            _DATASET_LOADER_LUO1999.load()
 
-    return _LUO1999_DATASET_LOADER
+    return _DATASET_LOADER_LUO1999

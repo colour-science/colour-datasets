@@ -9,7 +9,7 @@ import unittest
 
 from colour.characterisation import ColourChecker
 
-from colour_datasets.loaders import XRite2016DatasetLoader, build_XRite2016
+from colour_datasets.loaders import DatasetLoader_XRite2016, build_XRite2016
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
@@ -18,12 +18,12 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['TestXRite2016DatasetLoader', 'TestBuildXRite2016']
+__all__ = ['TestDatasetLoader_XRite2016', 'TestBuildXRite2016']
 
 
-class TestXRite2016DatasetLoader(unittest.TestCase):
+class TestDatasetLoader_XRite2016(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.xrite2016.XRite2016DatasetLoader`
+    Defines :class:`colour_datasets.loaders.xrite2016.DatasetLoader_XRite2016`
     class unit tests methods.
     """
 
@@ -35,7 +35,7 @@ class TestXRite2016DatasetLoader(unittest.TestCase):
         required_attributes = ('ID', )
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(XRite2016DatasetLoader))
+            self.assertIn(attribute, dir(DatasetLoader_XRite2016))
 
     def test_required_methods(self):
         """
@@ -45,15 +45,15 @@ class TestXRite2016DatasetLoader(unittest.TestCase):
         required_methods = ('load', )
 
         for method in required_methods:
-            self.assertIn(method, dir(XRite2016DatasetLoader))
+            self.assertIn(method, dir(DatasetLoader_XRite2016))
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.xrite2016.XRite2016DatasetLoader.\
-load` method.
+        Tests :func:`colour_datasets.loaders.xrite2016.\
+DatasetLoader_XRite2016.load` method.
         """
 
-        dataset = XRite2016DatasetLoader()
+        dataset = DatasetLoader_XRite2016()
         self.assertEqual(
             sorted(dataset.load().keys()), [
                 'ColorChecker24 - After November 2014',

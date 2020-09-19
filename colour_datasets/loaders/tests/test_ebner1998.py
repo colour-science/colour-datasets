@@ -8,7 +8,7 @@ from __future__ import division, unicode_literals
 import numpy as np
 import unittest
 
-from colour_datasets.loaders import Ebner1998DatasetLoader, build_Ebner1998
+from colour_datasets.loaders import DatasetLoader_Ebner1998, build_Ebner1998
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
@@ -17,12 +17,12 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['TestEbner1998DatasetLoader', 'TestBuildEbner1998']
+__all__ = ['TestDatasetLoader_Ebner1998', 'TestBuildEbner1998']
 
 
-class TestEbner1998DatasetLoader(unittest.TestCase):
+class TestDatasetLoader_Ebner1998(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.ebner1998.Ebner1998DatasetLoader`
+    Defines :class:`colour_datasets.loaders.ebner1998.DatasetLoader_Ebner1998`
     class unit tests methods.
     """
 
@@ -34,7 +34,7 @@ class TestEbner1998DatasetLoader(unittest.TestCase):
         required_attributes = ('ID', )
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(Ebner1998DatasetLoader))
+            self.assertIn(attribute, dir(DatasetLoader_Ebner1998))
 
     def test_required_methods(self):
         """
@@ -44,15 +44,15 @@ class TestEbner1998DatasetLoader(unittest.TestCase):
         required_methods = ('load', )
 
         for method in required_methods:
-            self.assertIn(method, dir(Ebner1998DatasetLoader))
+            self.assertIn(method, dir(DatasetLoader_Ebner1998))
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.ebner1998.Ebner1998DatasetLoader.\
-load` method.
+        Tests :func:`colour_datasets.loaders.ebner1998.\
+DatasetLoader_Ebner1998.load` method.
         """
 
-        dataset = Ebner1998DatasetLoader()
+        dataset = DatasetLoader_Ebner1998()
         self.assertListEqual(
             sorted(dataset.load().keys()), ['Constant Perceived-Hue Data'])
 

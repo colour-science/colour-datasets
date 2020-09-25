@@ -10,21 +10,21 @@ import unittest
 
 from colour import SpectralShape
 
-from colour_datasets.loaders import Asano2015DatasetLoader, build_Asano2015
+from colour_datasets.loaders import DatasetLoader_Asano2015, build_Asano2015
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['TestAsano2015DatasetLoader', 'TestBuildAsano2015']
+__all__ = ['TestDatasetLoader_Asano2015', 'TestBuildAsano2015']
 
 
-class TestAsano2015DatasetLoader(unittest.TestCase):
+class TestDatasetLoader_Asano2015(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.asano2015.Asano2015DatasetLoader`
+    Defines :class:`colour_datasets.loaders.asano2015.DatasetLoader_Asano2015`
     class unit tests methods.
     """
 
@@ -36,25 +36,25 @@ class TestAsano2015DatasetLoader(unittest.TestCase):
         required_attributes = ('ID', )
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(Asano2015DatasetLoader))
+            self.assertIn(attribute, dir(DatasetLoader_Asano2015))
 
     def test_required_methods(self):
         """
         Tests presence of required methods.
         """
 
-        required_methods = ('load', 'parse_workbook_Asano2015')
+        required_methods = ('__init__', 'load', 'parse_workbook_Asano2015')
 
         for method in required_methods:
-            self.assertIn(method, dir(Asano2015DatasetLoader))
+            self.assertIn(method, dir(DatasetLoader_Asano2015))
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.asano2015.Asano2015DatasetLoader.\
-load` method.
+        Tests :func:`colour_datasets.loaders.asano2015.\
+DatasetLoader_Asano2015.load` method.
         """
 
-        dataset = Asano2015DatasetLoader()
+        dataset = DatasetLoader_Asano2015()
         self.assertEqual(
             sorted(dataset.load().keys()),
             ['Categorical Observers', 'Colour Normal Observers'])
@@ -82,8 +82,8 @@ load` method.
             decimal=7)
 
         self.assertAlmostEqual(
-            dataset.content['Categorical Observers']
-            [5].parameters['Shift in S [nm]'],
+            dataset.content['Categorical Observers'][5].parameters[
+                'Shift in S [nm]'],
             0.233255808,
             places=7)
 
@@ -110,8 +110,8 @@ load` method.
             decimal=7)
 
         self.assertAlmostEqual(
-            dataset.content['Colour Normal Observers']
-            [5].parameters['Shift in S [nm]'],
+            dataset.content['Colour Normal Observers'][5].parameters[
+                'Shift in S [nm]'],
             0.000649602695013,
             places=7)
 

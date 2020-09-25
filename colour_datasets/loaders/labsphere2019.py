@@ -3,10 +3,10 @@
 Labsphere SRS-99-020 - Labsphere (2019)
 =======================================
 
-Defines the objects implementing support for *Labsphere (2019)*
-*Labsphere SRS-99-020* dataset loading:
+Defines the objects implementing support for *Labsphere (2019)* *Labsphere
+SRS-99-020* dataset loading:
 
--   :class:`colour_datasets.loaders.Labsphere2019DatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_Labsphere2019`
 -   :func:`colour_datasets.loaders.build_Labsphere2019`
 
 References
@@ -28,16 +28,16 @@ from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['Labsphere2019DatasetLoader', 'build_Labsphere2019']
+__all__ = ['DatasetLoader_Labsphere2019', 'build_Labsphere2019']
 
 
-class Labsphere2019DatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
     """
     Defines the *Labsphere (2019)* *Labsphere SRS-99-020* dataset loader.
 
@@ -62,8 +62,8 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(Labsphere2019DatasetLoader,
-              self).__init__(datasets()[Labsphere2019DatasetLoader.ID])
+        super(DatasetLoader_Labsphere2019,
+              self).__init__(datasets()[DatasetLoader_Labsphere2019.ID])
 
     def load(self):
         """
@@ -78,14 +78,14 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> dataset = Labsphere2019DatasetLoader()
+        >>> dataset = DatasetLoader_Labsphere2019()
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.content.keys())
         1
         """
 
-        super(Labsphere2019DatasetLoader, self).sync()
+        super(DatasetLoader_Labsphere2019, self).sync()
 
         sd_path = os.path.join(self.record.repository, 'dataset',
                                'SRS-99-020.txt')
@@ -100,12 +100,12 @@ class Labsphere2019DatasetLoader(AbstractDatasetLoader):
         return self._content
 
 
-_LABSPHERE2019_DATASET_LOADER = None
+_DATASET_LOADER_LABSPHERE2019 = None
 """
 Singleton instance of the *Labsphere (2019)* *Labsphere SRS-99-020* dataset
 loader.
 
-_LABSPHERE2019_DATASET_LOADER : Labsphere2019DatasetLoader
+_DATASET_LOADER_LABSPHERE2019 : DatasetLoader_Labsphere2019
 """
 
 
@@ -121,7 +121,7 @@ def build_Labsphere2019(load=True):
 
     Returns
     -------
-    Labsphere2019DatasetLoader
+    DatasetLoader_Labsphere2019
         Singleton instance of the *Labsphere (2019)* *Labsphere SRS-99-020*
         dataset loader.
 
@@ -130,11 +130,11 @@ def build_Labsphere2019(load=True):
     :cite:`Labsphere2019`
     """
 
-    global _LABSPHERE2019_DATASET_LOADER
+    global _DATASET_LOADER_LABSPHERE2019
 
-    if _LABSPHERE2019_DATASET_LOADER is None:
-        _LABSPHERE2019_DATASET_LOADER = Labsphere2019DatasetLoader()
+    if _DATASET_LOADER_LABSPHERE2019 is None:
+        _DATASET_LOADER_LABSPHERE2019 = DatasetLoader_Labsphere2019()
         if load:
-            _LABSPHERE2019_DATASET_LOADER.load()
+            _DATASET_LOADER_LABSPHERE2019.load()
 
-    return _LABSPHERE2019_DATASET_LOADER
+    return _DATASET_LOADER_LABSPHERE2019

@@ -4,10 +4,10 @@ Colour - Datasets
 =================
 
 Colour science datasets for use with
-`Colour <https://github.com/colour-science/colour>`_ or any Python package
-manipulating colours. The datasets are hosted in `Zenodo <https://zenodo.org>`_
-under the `Colour Science - Datasets \
-<https://zenodo.org/communities/colour-science-datasets/>`_ community.
+`Colour <https://github.com/colour-science/colour>`__ or any Python package
+manipulating colours. The datasets are hosted in
+`Zenodo <https://zenodo.org>`__ under the `Colour Science - Datasets \
+<https://zenodo.org/communities/colour-science-datasets/>`__ community.
 
 Subpackages
 -----------
@@ -30,10 +30,10 @@ from .records import sandbox
 from .loaders import load
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = ['Configuration']

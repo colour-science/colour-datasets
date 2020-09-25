@@ -3,19 +3,18 @@
 New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
 ===============================================================================
 
-Defines the objects implementing support for *X-Rite (2016)*
-*New Color Specifications for ColorChecker SG and Classic Charts* dataset
-loading:
+Defines the objects implementing support for *X-Rite (2016)* *New Color
+Specifications for ColorChecker SG and Classic Charts* dataset loading:
 
--   :class:`colour_datasets.loaders.XRite2016DatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_XRite2016`
 -   :func:`colour_datasets.loaders.build_XRite2016`
 
 References
 ----------
--   :cite:`X-Rite2016` : X-Rite. (2016). New Color Specifications for
-    ColorChecker SG and Classic Charts. Retrieved June 14, 2019, from
-    https://xritephoto.com/ph_product_overview.aspx?\
-ID=938&Action=Support&SupportID=5884
+-   :cite:`X-Rite2016` : X-Rite. (2016). New color specifications for
+    ColorChecker SG and Classic Charts. Retrieved October 29, 2018, from
+    http://xritephoto.com/ph_product_overview.aspx?ID=938&Action=Support&\
+SupportID=5884#
 """
 
 from __future__ import division, unicode_literals
@@ -32,16 +31,16 @@ from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['XRite2016DatasetLoader', 'build_XRite2016']
+__all__ = ['DatasetLoader_XRite2016', 'build_XRite2016']
 
 
-class XRite2016DatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_XRite2016(AbstractDatasetLoader):
     """
     Defines the *X-Rite (2016)*
     *New Color Specifications for ColorChecker SG and Classic Charts* dataset
@@ -49,11 +48,12 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_XRite2016.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_XRite2016.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_XRite2016.load`
 
     References
     ----------
@@ -68,8 +68,8 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(XRite2016DatasetLoader,
-              self).__init__(datasets()[XRite2016DatasetLoader.ID])
+        super(DatasetLoader_XRite2016,
+              self).__init__(datasets()[DatasetLoader_XRite2016.ID])
 
     def load(self):
         """
@@ -86,14 +86,14 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> dataset = XRite2016DatasetLoader()
+        >>> dataset = DatasetLoader_XRite2016()
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.content.keys())
         4
         """
 
-        super(XRite2016DatasetLoader, self).sync()
+        super(DatasetLoader_XRite2016, self).sync()
 
         keys = (
             'ColorChecker24 - After November 2014',
@@ -153,13 +153,13 @@ class XRite2016DatasetLoader(AbstractDatasetLoader):
         return self._content
 
 
-_XRITE2016_DATASET_LOADER = None
+_DATASET_LOADER_XRITE2016 = None
 """
 Singleton instance of the *X-Rite (2016)*
 *New Color Specifications for ColorChecker SG and Classic Charts* dataset
 loader.
 
-_XRITE2016_DATASET_LOADER : XRite2016DatasetLoader
+_DATASET_LOADER_XRITE2016 : DatasetLoader_XRite2016
 """
 
 
@@ -176,7 +176,7 @@ def build_XRite2016(load=True):
 
     Returns
     -------
-    XRite2016DatasetLoader
+    DatasetLoader_XRite2016
         Singleton instance of the *X-Rite (2016)*
         *New Color Specifications for ColorChecker SG and Classic Charts*
         dataset loader.
@@ -186,11 +186,11 @@ def build_XRite2016(load=True):
     :cite:`X-Rite2016`
     """
 
-    global _XRITE2016_DATASET_LOADER
+    global _DATASET_LOADER_XRITE2016
 
-    if _XRITE2016_DATASET_LOADER is None:
-        _XRITE2016_DATASET_LOADER = XRite2016DatasetLoader()
+    if _DATASET_LOADER_XRITE2016 is None:
+        _DATASET_LOADER_XRITE2016 = DatasetLoader_XRite2016()
         if load:
-            _XRITE2016_DATASET_LOADER.load()
+            _DATASET_LOADER_XRITE2016.load()
 
-    return _XRITE2016_DATASET_LOADER
+    return _DATASET_LOADER_XRITE2016

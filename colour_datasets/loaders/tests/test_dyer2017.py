@@ -8,21 +8,21 @@ from __future__ import division, unicode_literals
 import numpy as np
 import unittest
 
-from colour_datasets.loaders import Dyer2017DatasetLoader, build_Dyer2017
+from colour_datasets.loaders import DatasetLoader_Dyer2017, build_Dyer2017
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['TestDyer2017DatasetLoader', 'TestBuildDyer2017']
+__all__ = ['TestDatasetLoader_Dyer2017', 'TestBuildDyer2017']
 
 
-class TestDyer2017DatasetLoader(unittest.TestCase):
+class TestDatasetLoader_Dyer2017(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.dyer2017.Dyer2017DatasetLoader`
+    Defines :class:`colour_datasets.loaders.dyer2017.DatasetLoader_Dyer2017`
     class unit tests methods.
     """
 
@@ -34,25 +34,25 @@ class TestDyer2017DatasetLoader(unittest.TestCase):
         required_attributes = ('ID', )
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(Dyer2017DatasetLoader))
+            self.assertIn(attribute, dir(DatasetLoader_Dyer2017))
 
     def test_required_methods(self):
         """
         Tests presence of required methods.
         """
 
-        required_methods = ('load', )
+        required_methods = ('__init__', 'load')
 
         for method in required_methods:
-            self.assertIn(method, dir(Dyer2017DatasetLoader))
+            self.assertIn(method, dir(DatasetLoader_Dyer2017))
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.dyer2017.Dyer2017DatasetLoader.\
+        Tests :func:`colour_datasets.loaders.dyer2017.DatasetLoader_Dyer2017.\
 load` method.
         """
 
-        dataset = Dyer2017DatasetLoader()
+        dataset = DatasetLoader_Dyer2017()
         self.assertListEqual(
             sorted(dataset.load().keys()),
             ['camera', 'cmf', 'illuminant', 'training'])

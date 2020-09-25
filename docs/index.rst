@@ -57,11 +57,11 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
--  `Python 2.7 <https://www.python.org/download/releases/>`__ or
-   `Python 3.7 <https://www.python.org/download/releases/>`__
--  `Colour Science <https://www.colour-science.org>`__
--  `tqdm <https://tqdm.github.io/>`__
--  `xlrd <https://xlrd.readthedocs.io/>`__
+-   `python>=2.7 <https://www.python.org/download/releases/>`__ or
+    `python>=3.5 <https://www.python.org/download/releases/>`__
+-   `colour-science <https://pypi.org/project/colour-science/>`__
+-   `tqdm <https://pypi.org/project/tqdm/>`__
+-   `xlrd <https://pypi.org/project/xlrd/>`__
 
 Pypi
 ^^^^
@@ -197,6 +197,6 @@ About
 -----
 
 | **Colour - Datasets** by Colour Developers
-| Copyright © 2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`__
+| Copyright © 2019-2020 – Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
 | This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-datasets <https://github.com/colour-science/colour-datasets>`__

@@ -15,8 +15,13 @@ Agfa IT8.7/2 Set
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     AgfaIT872SetDatasetLoader
+
+.. autosummary::
+    :toctree: generated/
+
     build_AgfaIT872Set
 
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
@@ -24,8 +29,13 @@ Camera Spectral Sensitivity Database - Jiang et al. (2013)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
-    Jiang2013DatasetLoader
+    DatasetLoader_Jiang2013
+
+.. autosummary::
+    :toctree: generated/
+
     build_Jiang2013
 
 Constant Hue Loci Data - Hung and Berns (1995)
@@ -33,8 +43,13 @@ Constant Hue Loci Data - Hung and Berns (1995)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
-    Hung1995DatasetLoader
+    DatasetLoader_Hung1995
+
+.. autosummary::
+    :toctree: generated/
+
     build_Hung1995
 
 Constant Perceived-Hue Data - Ebner and Fairchild (1998)
@@ -42,8 +57,13 @@ Constant Perceived-Hue Data - Ebner and Fairchild (1998)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
-    Ebner1998DatasetLoader
+    DatasetLoader_Ebner1998
+
+.. autosummary::
+    :toctree: generated/
+
     build_Ebner1998
 
 Corresponding-Colour Datasets - Luo and Rhodes (1999)
@@ -51,8 +71,13 @@ Corresponding-Colour Datasets - Luo and Rhodes (1999)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
-    Luo1999DatasetLoader
+    DatasetLoader_Luo1999
+
+.. autosummary::
+    :toctree: generated/
+
     build_Luo1999
 
 Forest Colors
@@ -60,8 +85,13 @@ Forest Colors
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     ForestColorsDatasetLoader
+
+.. autosummary::
+    :toctree: generated/
+
     build_ForestColors
 
 Labsphere SRS-99-020 - Labsphere (2019)
@@ -69,8 +99,13 @@ Labsphere SRS-99-020 - Labsphere (2019)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
-    Labsphere2019DatasetLoader
+    DatasetLoader_Labsphere2019
+
+.. autosummary::
+    :toctree: generated/
+
     build_Labsphere2019
 
 Lumber Spectra
@@ -78,8 +113,13 @@ Lumber Spectra
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     LumberSpectraDatasetLoader
+
+.. autosummary::
+    :toctree: generated/
+
     build_LumberSpectra
 
 Munsell Colors Glossy (All) (Spectrofotometer Measured)
@@ -87,8 +127,13 @@ Munsell Colors Glossy (All) (Spectrofotometer Measured)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     MunsellColorsGlossyAllSpectrofotometerMeasuredDatasetLoader
+
+.. autosummary::
+    :toctree: generated/
+
     build_MunsellColorsGlossyAllSpectrofotometerMeasured
 
 Munsell Colors Glossy (Spectrofotometer Measured)
@@ -96,8 +141,13 @@ Munsell Colors Glossy (Spectrofotometer Measured)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     MunsellColorsGlossySpectrofotometerMeasuredDatasetLoader
+
+.. autosummary::
+    :toctree: generated/
+
     build_MunsellColorsGlossySpectrofotometerMeasured
 
 Munsell Colors Matt (AOTF Measured)
@@ -105,8 +155,13 @@ Munsell Colors Matt (AOTF Measured)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     MunsellColorsMattAOTFMeasuredDatasetLoader
+
+.. autosummary::
+    :toctree: generated/
+
     build_MunsellColorsMattAOTFMeasured
 
 Munsell Colors Matt (Spectrofotometer Measured)
@@ -114,8 +169,13 @@ Munsell Colors Matt (Spectrofotometer Measured)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     MunsellColorsMattSpectrofotometerMeasuredDatasetLoader
+
+.. autosummary::
+    :toctree: generated/
+
     build_MunsellColorsMattSpectrofotometerMeasured
 
 New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
@@ -123,8 +183,13 @@ New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
-    XRite2016DatasetLoader
+    DatasetLoader_XRite2016
+
+.. autosummary::
+    :toctree: generated/
+
     build_XRite2016
 
 Observer Function Database - Asano (2015)
@@ -132,8 +197,13 @@ Observer Function Database - Asano (2015)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
-    Asano2015DatasetLoader
+    DatasetLoader_Asano2015
+
+.. autosummary::
+    :toctree: generated/
+
     build_Asano2015
 
 Paper Spectra
@@ -141,8 +211,13 @@ Paper Spectra
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     PaperSpectraDatasetLoader
+
+.. autosummary::
+    :toctree: generated/
+
     build_PaperSpectra
 
 RAW to ACES Utility Data - Dyer et al. (2017)
@@ -150,8 +225,13 @@ RAW to ACES Utility Data - Dyer et al. (2017)
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
-    Dyer2017DatasetLoader
+    DatasetLoader_Dyer2017
+
+.. autosummary::
+    :toctree: generated/
+
     build_Dyer2017
 
 Loading the Datasets
@@ -176,4 +256,9 @@ Loading the Datasets
     :toctree: generated/
 
     DATASET_LOADERS
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
     AbstractDatasetLoader

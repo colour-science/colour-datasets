@@ -55,7 +55,7 @@ from . import kuopio  # noqa
 _module = sys.modules['colour_datasets.loaders']
 
 for _export in kuopio.__all__:
-    if _export.endswith('DatasetLoader') or _export.startswith('build'):
+    if _export.startswith('DatasetLoader_') or _export.startswith('build_'):
 
         setattr(_module, _export, getattr(kuopio, _export))
 

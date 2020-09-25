@@ -17,7 +17,7 @@ Agfa IT8.7/2 Set
     :toctree: generated/
     :template: class.rst
 
-    AgfaIT872SetDatasetLoader
+    DatasetLoader_AgfaIT872Set
 
 .. autosummary::
     :toctree: generated/
@@ -87,7 +87,7 @@ Forest Colors
     :toctree: generated/
     :template: class.rst
 
-    ForestColorsDatasetLoader
+    DatasetLoader_ForestColors
 
 .. autosummary::
     :toctree: generated/
@@ -115,7 +115,7 @@ Lumber Spectra
     :toctree: generated/
     :template: class.rst
 
-    LumberSpectraDatasetLoader
+    DatasetLoader_LumberSpectra
 
 .. autosummary::
     :toctree: generated/
@@ -129,7 +129,7 @@ Munsell Colors Glossy (All) (Spectrofotometer Measured)
     :toctree: generated/
     :template: class.rst
 
-    MunsellColorsGlossyAllSpectrofotometerMeasuredDatasetLoader
+    DatasetLoader_MunsellColorsGlossyAllSpectrofotometerMeasured
 
 .. autosummary::
     :toctree: generated/
@@ -143,7 +143,7 @@ Munsell Colors Glossy (Spectrofotometer Measured)
     :toctree: generated/
     :template: class.rst
 
-    MunsellColorsGlossySpectrofotometerMeasuredDatasetLoader
+    DatasetLoader_MunsellColorsGlossySpectrofotometerMeasured
 
 .. autosummary::
     :toctree: generated/
@@ -157,7 +157,7 @@ Munsell Colors Matt (AOTF Measured)
     :toctree: generated/
     :template: class.rst
 
-    MunsellColorsMattAOTFMeasuredDatasetLoader
+    DatasetLoader_MunsellColorsMattAOTFMeasured
 
 .. autosummary::
     :toctree: generated/
@@ -171,7 +171,7 @@ Munsell Colors Matt (Spectrofotometer Measured)
     :toctree: generated/
     :template: class.rst
 
-    MunsellColorsMattSpectrofotometerMeasuredDatasetLoader
+    DatasetLoader_MunsellColorsMattSpectrofotometerMeasured
 
 .. autosummary::
     :toctree: generated/
@@ -213,7 +213,7 @@ Paper Spectra
     :toctree: generated/
     :template: class.rst
 
-    PaperSpectraDatasetLoader
+    DatasetLoader_PaperSpectra
 
 .. autosummary::
     :toctree: generated/

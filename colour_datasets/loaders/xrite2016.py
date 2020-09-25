@@ -24,7 +24,7 @@ import numpy as np
 import os
 from collections import OrderedDict
 
-from colour import ILLUMINANTS, Lab_to_XYZ, XYZ_to_xyY
+from colour import CCS_ILLUMINANTS, Lab_to_XYZ, XYZ_to_xyY
 from colour.characterisation import ColourChecker
 
 from colour_datasets.records import datasets
@@ -111,7 +111,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         # TODO: Implement support for "CGATS" file format in "Colour":
         # https://github.com/colour-science/colour/issues/354
         illuminant = (
-            ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['ICC D50'])
+            CCS_ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['ICC D50'])
 
         self._content = OrderedDict()
         for key, filename in zip(keys, filenames):

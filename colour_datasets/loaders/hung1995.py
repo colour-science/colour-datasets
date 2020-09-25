@@ -23,7 +23,7 @@ import numpy as np
 import os
 from collections import OrderedDict, namedtuple
 
-from colour import ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
+from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
 
 from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -149,7 +149,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         ]
 
         XYZ_r = xy_to_XYZ(
-            ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['C'])
+            CCS_ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['C'])
 
         for table, experiment in [('Table III', 'CL'), ('Table IV', 'VL')]:
             key = 'Constant Hue Loci Data - {0}'.format(experiment)

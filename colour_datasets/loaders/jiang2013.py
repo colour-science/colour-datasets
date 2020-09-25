@@ -26,7 +26,7 @@ import re
 from collections import OrderedDict
 
 from colour import SpectralShape
-from colour.characterisation import RGB_SpectralSensitivities
+from colour.characterisation import RGB_CameraSensitivities
 from colour.utilities import as_float_array
 
 from colour_datasets.records import datasets
@@ -114,7 +114,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
                     [float(value) for value in line.split('\t')])
 
         for camera, values in self._content.items():
-            self._content[camera] = RGB_SpectralSensitivities(
+            self._content[camera] = RGB_CameraSensitivities(
                 np.transpose(as_float_array(values).reshape([3, 33])),
                 shape.range(),
                 name=camera)

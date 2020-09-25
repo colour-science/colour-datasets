@@ -459,7 +459,7 @@ for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
         _dataset_loader_class.__name__, *_data[:-1])
 
     _build_function_name = 'build_{0}'.format(
-        _dataset_loader_class.__name__.replace('DatasetLoader', ''))
+        _dataset_loader_class.__name__.replace('DatasetLoader_', ''))
 
     setattr(_module, _build_function_name, _partial_function)
 

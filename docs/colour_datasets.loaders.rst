@@ -136,6 +136,20 @@ Lumber Spectra
 
     build_LumberSpectra
 
+Measured Commercial LED Spectra - Brendel (2020)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Brendel2020
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Brendel2020
+
 Munsell Colors Glossy (All) (Spectrofotometer Measured)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

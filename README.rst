@@ -125,7 +125,7 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 17
+    Datasets : 18
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
@@ -141,6 +141,7 @@ definition:
     [ ] 3269920 : Forest Colors - Jaaskelainen et al. (1994)
     [x] 3245875 : Labsphere SRS-99-020 - Labsphere (2019)
     [ ] 3269924 : Lumber Spectra - Hiltunen (n.d.)
+    [ ] 4051012 : Measured Commercial LED Spectra - Brendel (2020)
     [ ] 3269918 : Munsell Colors Glossy (All) (Spectrofotometer Measured) - Orava (n.d.)
     [ ] 3269916 : Munsell Colors Glossy (Spectrofotometer Measured) - Haanpalo (n.d.)
     [ ] 3269914 : Munsell Colors Matt (AOTF Measured) - Hauta-Kasari (n.d.)

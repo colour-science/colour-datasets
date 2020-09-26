@@ -11,6 +11,7 @@ from colour_datasets.records import datasets
 
 from .abstract import AbstractDatasetLoader
 from .asano2015 import DatasetLoader_Asano2015, build_Asano2015
+from .brendel2020 import DatasetLoader_Brendel2020, build_Brendel2020
 from .dyer2017 import DatasetLoader_Dyer2017, build_Dyer2017
 from .ebner1998 import DatasetLoader_Ebner1998, build_Ebner1998
 from .hung1995 import DatasetLoader_Hung1995, build_Hung1995
@@ -22,6 +23,7 @@ from .xrite2016 import DatasetLoader_XRite2016, build_XRite2016
 
 __all__ = ['AbstractDatasetLoader']
 __all__ += ['DatasetLoader_Asano2015', 'build_Asano2015']
+__all__ += ['DatasetLoader_Brendel2020', 'build_Brendel2020']
 __all__ += ['DatasetLoader_Dyer2017', 'build_Dyer2017']
 __all__ += ['DatasetLoader_Ebner1998', 'build_Ebner1998']
 __all__ += ['DatasetLoader_Hung1995', 'build_Hung1995']
@@ -33,6 +35,7 @@ __all__ += ['DatasetLoader_XRite2016', 'build_XRite2016']
 
 DATASET_LOADERS = CaseInsensitiveMapping({
     DatasetLoader_Asano2015.ID: build_Asano2015,
+    DatasetLoader_Brendel2020.ID: build_Brendel2020,
     DatasetLoader_Dyer2017.ID: build_Dyer2017,
     DatasetLoader_Ebner1998.ID: build_Ebner1998,
     DatasetLoader_Hung1995.ID: build_Hung1995,

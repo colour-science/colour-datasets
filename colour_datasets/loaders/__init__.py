@@ -95,7 +95,9 @@ def load(dataset):
     --------
     >>> len(load('3245883').keys())
     28
-    >>> len(load('Camera Spectral Sensitivity Database').keys())
+    >>> len(load(
+    ...     'Camera Spectral Sensitivity Database - '
+    ...     'Jiang et al. (2013)').keys())
     28
     """
 

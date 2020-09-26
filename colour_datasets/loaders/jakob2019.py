@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling Coefficient \
-Tables - Jakob et al. (2019)
-===========================================================================\
-============================
+Spectral Upsampling Coefficient Tables - Jakob and Hanika (2019)
+================================================================
 
 Defines the objects implementing support for *Jakob and Hanika (2019)*
-*ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling Coefficient
-Tables* dataset loading:
+*Spectral Upsampling Coefficient Tables* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Jakob2019`
 -   :func:`colour_datasets.loaders.build_Jakob2019`
@@ -42,9 +39,8 @@ __all__ = ['DatasetLoader_Jakob2019', 'build_Jakob2019']
 
 class DatasetLoader_Jakob2019(AbstractDatasetLoader):
     """
-    Defines the *Jakob et al. (2019)*
-    *ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling
-    Coefficient Tables* dataset loader.
+    Defines the *Jakob and Hanika (2019)*
+    *Spectral Upsampling Coefficient Tables* dataset loader.
 
     Attributes
     ----------
@@ -73,16 +69,14 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
 
     def load(self):
         """
-        Syncs, parses, converts and returns the *Jakob et al. (2019)*
-        *ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling
-        Coefficient Tables* dataset content.
+        Syncs, parses, converts and returns the *Jakob and Hanika (2019)*
+        *Spectral Upsampling Coefficient Tables* dataset content.
 
         Returns
         -------
         OrderedDict
-            *Jakob et al. (2019)*
-            *ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling
-            Coefficient Tables* dataset content.
+            *Jakob and Hanika (2019)* *Spectral Upsampling Coefficient Tables*
+            dataset content.
 
         Examples
         --------
@@ -122,9 +116,8 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
 
 _DATASET_LOADER_JAKOB2019 = None
 """
-Singleton instance of the *Jakob et al. (2019)*
-*ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling Coefficient
-Tables* dataset loader.
+Singleton instance of the *Jakob and Hanika (2019)*
+*Spectral Upsampling Coefficient Tables* dataset loader.
 
 _DATASET_LOADER_JAKOB2019 : DatasetLoader_Jakob2019
 """
@@ -132,9 +125,8 @@ _DATASET_LOADER_JAKOB2019 : DatasetLoader_Jakob2019
 
 def build_Jakob2019(load=True):
     """
-    Singleton factory that builds the *Jakob et al. (2019)*
-    *ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling
-    Coefficient Tables* dataset loader.
+    Singleton factory that builds the *Jakob and Hanika (2019)*
+    *Spectral Upsampling Coefficient Tables* dataset loader.
 
     Parameters
     ----------
@@ -144,9 +136,8 @@ def build_Jakob2019(load=True):
     Returns
     -------
     DatasetLoader_Jakob2019
-        Singleton instance of the *Jakob et al. (2019)*
-        *ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling
-        Coefficient Tables* dataset loader.
+        Singleton instance of the *Jakob and Hanika (2019)*
+        *Spectral Upsampling Coefficient Tables* dataset loader.
 
     References
     ----------

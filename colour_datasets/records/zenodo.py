@@ -77,7 +77,7 @@ class Record(object):
     >>> record.id  # doctest: +SKIP
     '3245883'
     >>> record.title  # doctest: +SKIP
-    'Camera Spectral Sensitivity Database'
+    'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
     def __init__(self, data, configuration=None):
@@ -189,8 +189,8 @@ class Record(object):
         --------
         >>> data = json_open('https://zenodo.org/api/records/3245883')
         >>> print('\\n'.join(str(Record(data)).splitlines()[:4]))
-        Camera Spectral Sensitivity Database - 1.0.0
-        ============================================
+        Camera Spectral Sensitivity Database - Jiang et al. (2013) - 1.0.0
+        ==================================================================
         <BLANKLINE>
         Record ID        : 3245883
         """
@@ -315,7 +315,7 @@ class Record(object):
         # Doctests skip for Python 2.x compatibility.
         >>> Record.from_id('3245883').title
         ... # doctest: +SKIP
-        'Camera Spectral Sensitivity Database'
+        'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
         configuration = (Configuration()
@@ -546,7 +546,7 @@ class Community(Mapping):
 
     # Doctests skip for Python 2.x compatibility.
     >>> community['3245883'].title  # doctest: +SKIP
-    'Camera Spectral Sensitivity Database'
+    'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
     def __init__(self, data, configuration=None):
@@ -734,7 +734,7 @@ colour-science-datasets-tests/
 
         # Doctests skip for Python 2.x compatibility.
         >>> community['3245883'].title  # doctest: +SKIP
-        'Camera Spectral Sensitivity Database'
+        'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
         return self._records[id_]
@@ -803,7 +803,7 @@ colour-science-datasets-tests/
 
         # Doctests skip for Python 2.x compatibility.
         >>> community['3245883'].title  # doctest: +SKIP
-        'Camera Spectral Sensitivity Database'
+        'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
         configuration = (Configuration()

@@ -132,23 +132,23 @@ definition:
     Datasets
     --------
 
-    [ ] 4050598 : ACES2065-1, BT.2020, ProPhoto RGB and sRGB Spectral Upsampling Coefficient Tables
-    [ ] 3269926 : Agfa IT8.7/2 Set
-    [ ] 3245883 : Camera Spectral Sensitivity Database
-    [ ] 3367463 : Constant Hue Loci Data
-    [ ] 3362536 : Constant Perceived-Hue Data
-    [ ] 3270903 : Corresponding-Colour Datasets
-    [ ] 3269920 : Forest Colors
-    [x] 3245875 : Labsphere SRS-99-020
-    [ ] 3269924 : Lumber Spectra
-    [ ] 3269918 : Munsell Colors Glossy (All) (Spectrofotometer Measured)
-    [ ] 3269916 : Munsell Colors Glossy (Spectrofotometer Measured)
-    [ ] 3269914 : Munsell Colors Matt (AOTF Measured)
-    [ ] 3269912 : Munsell Colors Matt (Spectrofotometer Measured)
-    [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts
-    [ ] 3252742 : Observer Function Database
-    [ ] 3269922 : Paper Spectra
-    [ ] 3372171 : RAW to ACES Utility Data
+    [ ] 4050598 : Spectral Upsampling Coefficient Tables - Jakob and Hanika (2019)
+    [ ] 3269926 : Agfa IT8.7/2 Set - Marszalec (n.d.)
+    [ ] 3245883 : Camera Spectral Sensitivity Database - Jiang et al. (2013)
+    [ ] 3367463 : Constant Hue Loci Data - Hung and Berns (1995)
+    [ ] 3362536 : Constant Perceived-Hue Data - Ebner and Fairchild (1998)
+    [ ] 3270903 : Corresponding-Colour Datasets - Luo and Rhodes (1999)
+    [ ] 3269920 : Forest Colors - Jaaskelainen et al. (1994)
+    [x] 3245875 : Labsphere SRS-99-020 - Labsphere (2019)
+    [ ] 3269924 : Lumber Spectra - Hiltunen (n.d.)
+    [ ] 3269918 : Munsell Colors Glossy (All) (Spectrofotometer Measured) - Orava (n.d.)
+    [ ] 3269916 : Munsell Colors Glossy (Spectrofotometer Measured) - Haanpalo (n.d.)
+    [ ] 3269914 : Munsell Colors Matt (AOTF Measured) - Hauta-Kasari (n.d.)
+    [ ] 3269912 : Munsell Colors Matt (Spectrofotometer Measured) - Hauta-Kasari (n.d.)
+    [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
+    [ ] 3252742 : Observer Function Database - Asano (2015)
+    [ ] 3269922 : Paper Spectra - Haanpalo (n.d.)
+    [ ] 3372171 : RAW to ACES Utility Data - Dyer et al. (2017)
 
 A ticked checkbox means that the particular dataset has been synced locally.
 A dataset is loaded by using its unique number: *3245895*:
@@ -172,7 +172,7 @@ A dataset is loaded by using its unique number: *3245895*:
     odict_keys(['ColorChecker24 - After November 2014', 'ColorChecker24 - Before November 2014', 'ColorCheckerSG - After November 2014', 'ColorCheckerSG - Before November 2014'])
 
 Alternatively, a dataset can be loaded by using its full title:
-*New Color Specifications for ColorChecker SG and Classic Charts*
+*New Color Specifications for ColorChecker SG and Classic Chart - X-Rite (2016)s*
 
 .. code-block:: python
 

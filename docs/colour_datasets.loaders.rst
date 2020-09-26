@@ -10,6 +10,20 @@ Datasets
 
 .. currentmodule:: colour_datasets.loaders
 
+A Low-Dimensional Function Space for Efficient Spectral Upsampling (Coefficient Tables)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Jakob2019
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Jakob2019
+
 Agfa IT8.7/2 Set
 ~~~~~~~~~~~~~~~~
 

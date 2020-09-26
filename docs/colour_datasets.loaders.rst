@@ -3,6 +3,35 @@ Datasets & Dataset Loading
 
 .. contents:: :local:
 
+Loading a Dataset
+-----------------
+
+``colour_datasets``
+
+.. currentmodule:: colour_datasets
+
+.. autosummary::
+    :toctree: generated/
+
+    load
+
+**Ancillary Objects**
+
+``colour_datasets.loaders``
+
+.. currentmodule:: colour_datasets.loaders
+
+.. autosummary::
+    :toctree: generated/
+
+    DATASET_LOADERS
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    AbstractDatasetLoader
+
 Datasets
 --------
 
@@ -10,8 +39,8 @@ Datasets
 
 .. currentmodule:: colour_datasets.loaders
 
-A Low-Dimensional Function Space for Efficient Spectral Upsampling (Coefficient Tables)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Spectral Upsampling Coefficient Tables - Jakob and Hanika (2019)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -24,8 +53,8 @@ A Low-Dimensional Function Space for Efficient Spectral Upsampling (Coefficient 
 
     build_Jakob2019
 
-Agfa IT8.7/2 Set
-~~~~~~~~~~~~~~~~
+Agfa IT8.7/2 Set - Marszalec (n.d.)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -94,8 +123,8 @@ Corresponding-Colour Datasets - Luo and Rhodes (1999)
 
     build_Luo1999
 
-Forest Colors
-~~~~~~~~~~~~~
+Forest Colors - Jaaskelainen et al. (1994)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -122,8 +151,8 @@ Labsphere SRS-99-020 - Labsphere (2019)
 
     build_Labsphere2019
 
-Lumber Spectra
-~~~~~~~~~~~~~~
+Lumber Spectra - Hiltunen (n.d.)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -150,8 +179,8 @@ Measured Commercial LED Spectra - Brendel (2020)
 
     build_Brendel2020
 
-Munsell Colors Glossy (All) (Spectrofotometer Measured)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Munsell Colors Glossy (All) (Spectrofotometer Measured) - Orava (n.d.)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -164,8 +193,8 @@ Munsell Colors Glossy (All) (Spectrofotometer Measured)
 
     build_MunsellColorsGlossyAllSpectrofotometerMeasured
 
-Munsell Colors Glossy (Spectrofotometer Measured)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Munsell Colors Glossy (Spectrofotometer Measured) - Haanpalo (n.d.)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -178,8 +207,8 @@ Munsell Colors Glossy (Spectrofotometer Measured)
 
     build_MunsellColorsGlossySpectrofotometerMeasured
 
-Munsell Colors Matt (AOTF Measured)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Munsell Colors Matt (AOTF Measured) - Hauta-Kasari (n.d.)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -192,8 +221,8 @@ Munsell Colors Matt (AOTF Measured)
 
     build_MunsellColorsMattAOTFMeasured
 
-Munsell Colors Matt (Spectrofotometer Measured)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Munsell Colors Matt (Spectrofotometer Measured) - Hauta-Kasari (n.d.)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -234,8 +263,8 @@ Observer Function Database - Asano (2015)
 
     build_Asano2015
 
-Paper Spectra
-~~~~~~~~~~~~~
+Paper Spectra - Haanpalo (n.d.)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :toctree: generated/
@@ -261,32 +290,3 @@ RAW to ACES Utility Data - Dyer et al. (2017)
     :toctree: generated/
 
     build_Dyer2017
-
-Loading the Datasets
---------------------
-
-``colour_datasets``
-
-.. currentmodule:: colour_datasets
-
-.. autosummary::
-    :toctree: generated/
-
-    load
-
-**Ancillary Objects**
-
-``colour_datasets.loaders``
-
-.. currentmodule:: colour_datasets.loaders
-
-.. autosummary::
-    :toctree: generated/
-
-    DATASET_LOADERS
-
-.. autosummary::
-    :toctree: generated/
-    :template: class.rst
-
-    AbstractDatasetLoader

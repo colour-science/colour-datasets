@@ -70,19 +70,19 @@ Once the dependencies satisfied, **Colour - Datasets** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-datasets>`__ by
 issuing this command in a shell::
 
-	pip install colour-datasets
+	pip install --user colour-datasets
 
 The tests suite dependencies are installed as follows::
 
-    pip install 'colour-datasets[tests]'
+    pip install --user 'colour-datasets[tests]'
 
 The documentation building dependencies are installed as follows::
 
-    pip install 'colour-datasets[docs]'
+    pip install --user 'colour-datasets[docs]'
 
 The overall development dependencies are installed as follows::
 
-    pip install 'colour-datasets[development]'
+    pip install --user 'colour-datasets[development]'
 
 Usage
 -----

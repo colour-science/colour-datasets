@@ -79,6 +79,7 @@ Primary Dependencies
 -   `python>=2.7 <https://www.python.org/download/releases/>`__ or
     `python>=3.5 <https://www.python.org/download/releases/>`__
 -   `colour-science <https://pypi.org/project/colour-science/>`__
+-   `cachetools <https://pypi.org/project/cachetools/>`__
 -   `tqdm <https://pypi.org/project/tqdm/>`__
 -   `xlrd <https://pypi.org/project/xlrd/>`__
 

@@ -86,7 +86,7 @@ Primary Dependencies
 Pypi
 ^^^^
 
-Once the dependencies satisfied, **Colour - Datasets** can be installed from
+Once the dependencies are satisfied, **Colour - Datasets** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-datasets>`__ by
 issuing this command in a shell::
 

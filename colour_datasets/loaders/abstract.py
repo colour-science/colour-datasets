@@ -14,10 +14,10 @@ from abc import ABCMeta, abstractmethod
 from six import add_metaclass
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = ['AbstractDatasetLoader']
@@ -38,15 +38,16 @@ class AbstractDatasetLoader:
 
     Attributes
     ----------
-    ID
-    record
-    id
-    content
+    -   :attr:`colour_datasets.loaders.AbstractDatasetLoader.ID`
+    -   :attr:`colour_datasets.loaders.AbstractDatasetLoader.record`
+    -   :attr:`colour_datasets.loaders.AbstractDatasetLoader.id`
+    -   :attr:`colour_datasets.loaders.AbstractDatasetLoader.content`
 
     Methods
     -------
-    load
-    sync
+    -   :meth:`colour_datasets.loaders.AbstractDatasetLoader.__init__`
+    -   :meth:`colour_datasets.loaders.AbstractDatasetLoader.load`
+    -   :meth:`colour_datasets.loaders.AbstractDatasetLoader.sync`
 
     Parameters
     ----------

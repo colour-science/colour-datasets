@@ -57,32 +57,33 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
--  `Python 2.7 <https://www.python.org/download/releases/>`__ or
-   `Python 3.7 <https://www.python.org/download/releases/>`__
--  `Colour Science <https://www.colour-science.org>`__
--  `tqdm <https://tqdm.github.io/>`__
--  `xlrd <https://xlrd.readthedocs.io/>`__
+-   `python>=2.7 <https://www.python.org/download/releases/>`__ or
+    `python>=3.5 <https://www.python.org/download/releases/>`__
+-   `colour-science <https://pypi.org/project/colour-science/>`__
+-   `cachetools <https://pypi.org/project/cachetools/>`__
+-   `tqdm <https://pypi.org/project/tqdm/>`__
+-   `xlrd <https://pypi.org/project/xlrd/>`__
 
 Pypi
 ^^^^
 
-Once the dependencies satisfied, **Colour - Datasets** can be installed from
+Once the dependencies are satisfied, **Colour - Datasets** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-datasets>`__ by
 issuing this command in a shell::
 
-	pip install colour-datasets
+	pip install --user colour-datasets
 
 The tests suite dependencies are installed as follows::
 
-    pip install 'colour-datasets[tests]'
+    pip install --user 'colour-datasets[tests]'
 
 The documentation building dependencies are installed as follows::
 
-    pip install 'colour-datasets[docs]'
+    pip install --user 'colour-datasets[docs]'
 
 The overall development dependencies are installed as follows::
 
-    pip install 'colour-datasets[development]'
+    pip install --user 'colour-datasets[development]'
 
 Usage
 -----
@@ -120,29 +121,31 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 16
+    Datasets : 18
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
     Datasets
     --------
 
-    [ ] 3269926 : Agfa IT8.7/2 Set
-    [ ] 3245883 : Camera Spectral Sensitivity Database
-    [ ] 3367463 : Constant Hue Loci Data
-    [ ] 3362536 : Constant Perceived-Hue Data
-    [ ] 3270903 : Corresponding-Colour Datasets
-    [ ] 3269920 : Forest Colors
-    [x] 3245875 : Labsphere SRS-99-020
-    [ ] 3269924 : Lumber Spectra
-    [ ] 3269918 : Munsell Colors Glossy (All) (Spectrofotometer Measured)
-    [ ] 3269916 : Munsell Colors Glossy (Spectrofotometer Measured)
-    [ ] 3269914 : Munsell Colors Matt (AOTF Measured)
-    [ ] 3269912 : Munsell Colors Matt (Spectrofotometer Measured)
-    [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts
-    [ ] 3252742 : Observer Function Database
-    [ ] 3269922 : Paper Spectra
-    [ ] 3372171 : RAW to ACES Utility Data
+    [ ] 4050598 : Spectral Upsampling Coefficient Tables - Jakob and Hanika (2019)
+    [ ] 3269926 : Agfa IT8.7/2 Set - Marszalec (n.d.)
+    [ ] 3245883 : Camera Spectral Sensitivity Database - Jiang et al. (2013)
+    [ ] 3367463 : Constant Hue Loci Data - Hung and Berns (1995)
+    [ ] 3362536 : Constant Perceived-Hue Data - Ebner and Fairchild (1998)
+    [ ] 3270903 : Corresponding-Colour Datasets - Luo and Rhodes (1999)
+    [ ] 3269920 : Forest Colors - Jaaskelainen et al. (1994)
+    [x] 3245875 : Labsphere SRS-99-020 - Labsphere (2019)
+    [ ] 3269924 : Lumber Spectra - Hiltunen (n.d.)
+    [ ] 4051012 : Measured Commercial LED Spectra - Brendel (2020)
+    [ ] 3269918 : Munsell Colors Glossy (All) (Spectrofotometer Measured) - Orava (n.d.)
+    [ ] 3269916 : Munsell Colors Glossy (Spectrofotometer Measured) - Haanpalo (n.d.)
+    [ ] 3269914 : Munsell Colors Matt (AOTF Measured) - Hauta-Kasari (n.d.)
+    [ ] 3269912 : Munsell Colors Matt (Spectrofotometer Measured) - Hauta-Kasari (n.d.)
+    [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
+    [ ] 3252742 : Observer Function Database - Asano (2015)
+    [ ] 3269922 : Paper Spectra - Haanpalo (n.d.)
+    [ ] 3372171 : RAW to ACES Utility Data - Dyer et al. (2017)
 
 A ticked checkbox means that the particular dataset has been synced locally.
 A dataset is loaded by using its unique number: *3245895*:
@@ -166,7 +169,7 @@ A dataset is loaded by using its unique number: *3245895*:
     odict_keys(['ColorChecker24 - After November 2014', 'ColorChecker24 - Before November 2014', 'ColorCheckerSG - After November 2014', 'ColorCheckerSG - Before November 2014'])
 
 Alternatively, a dataset can be loaded by using its full title:
-*New Color Specifications for ColorChecker SG and Classic Charts*
+*New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)*
 
 .. code-block:: python
 
@@ -197,6 +200,6 @@ About
 -----
 
 | **Colour - Datasets** by Colour Developers
-| Copyright © 2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`__
+| Copyright © 2019-2020 – Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
 | This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-datasets <https://github.com/colour-science/colour-datasets>`__

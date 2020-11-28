@@ -8,21 +8,21 @@ from __future__ import division, unicode_literals
 import numpy as np
 import unittest
 
-from colour_datasets.loaders import Luo1999DatasetLoader, build_Luo1999
+from colour_datasets.loaders import DatasetLoader_Luo1999, build_Luo1999
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['TestLuo1999DatasetLoader', 'TestBuildLuo1999']
+__all__ = ['TestDatasetLoader_Luo1999', 'TestBuildLuo1999']
 
 
-class TestLuo1999DatasetLoader(unittest.TestCase):
+class TestDatasetLoader_Luo1999(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.luo1999.Luo1999DatasetLoader`
+    Defines :class:`colour_datasets.loaders.luo1999.DatasetLoader_Luo1999`
     class unit tests methods.
     """
 
@@ -34,25 +34,25 @@ class TestLuo1999DatasetLoader(unittest.TestCase):
         required_attributes = ('ID', )
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(Luo1999DatasetLoader))
+            self.assertIn(attribute, dir(DatasetLoader_Luo1999))
 
     def test_required_methods(self):
         """
         Tests presence of required methods.
         """
 
-        required_methods = ('load', )
+        required_methods = ('__init__', 'load')
 
         for method in required_methods:
-            self.assertIn(method, dir(Luo1999DatasetLoader))
+            self.assertIn(method, dir(DatasetLoader_Luo1999))
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.luo1999.Luo1999DatasetLoader.\
+        Tests :func:`colour_datasets.loaders.luo1999.DatasetLoader_Luo1999.\
 load` method.
         """
 
-        dataset = Luo1999DatasetLoader()
+        dataset = DatasetLoader_Luo1999()
         self.assertEqual(len(dataset.load().keys()), 37)
 
         np.set_printoptions(

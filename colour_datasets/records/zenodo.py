@@ -30,10 +30,10 @@ from colour_datasets.utilities import url_download, json_open
 from colour_datasets.records import Configuration
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = ['Record', 'Community']
@@ -44,30 +44,30 @@ class Record(object):
     Defines an object storing a *Zenodo* record data and providing methods to
     sync it in a local repository.
 
-    Attributes
-    ----------
-    data
-    configuration
-    repository
-    id
-    title
-
-    Methods
-    -------
-    __init__
-    __str__
-    __repr__
-    from_id
-    synced
-    pull
-    remove
-
     Parameters
     ----------
     data : unicode
         *Zenodo* record data.
     configuration : Configuration
         *Colour - Datasets* configuration.
+
+    Attributes
+    ----------
+    -   :attr:`colour_datasets.Record.data`
+    -   :attr:`colour_datasets.Record.configuration`
+    -   :attr:`colour_datasets.Record.repository`
+    -   :attr:`colour_datasets.Record.id`
+    -   :attr:`colour_datasets.Record.title`
+
+    Methods
+    -------
+    -   :meth:`colour_datasets.Record.__init__`
+    -   :meth:`colour_datasets.Record.__str__`
+    -   :meth:`colour_datasets.Record.__repr__`
+    -   :meth:`colour_datasets.Record.from_id`
+    -   :meth:`colour_datasets.Record.synced`
+    -   :meth:`colour_datasets.Record.pull`
+    -   :meth:`colour_datasets.Record.remove`
 
     Examples
     --------
@@ -77,7 +77,7 @@ class Record(object):
     >>> record.id  # doctest: +SKIP
     '3245883'
     >>> record.title  # doctest: +SKIP
-    'Camera Spectral Sensitivity Database'
+    'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
     def __init__(self, data, configuration=None):
@@ -189,8 +189,8 @@ class Record(object):
         --------
         >>> data = json_open('https://zenodo.org/api/records/3245883')
         >>> print('\\n'.join(str(Record(data)).splitlines()[:4]))
-        Camera Spectral Sensitivity Database - 1.0.0
-        ============================================
+        Camera Spectral Sensitivity Database - Jiang et al. (2013) - 1.0.0
+        ==================================================================
         <BLANKLINE>
         Record ID        : 3245883
         """
@@ -315,7 +315,7 @@ class Record(object):
         # Doctests skip for Python 2.x compatibility.
         >>> Record.from_id('3245883').title
         ... # doctest: +SKIP
-        'Camera Spectral Sensitivity Database'
+        'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
         configuration = (Configuration()
@@ -505,32 +505,32 @@ class Community(Mapping):
     """
     Defines an object storing a *Zenodo* community data.
 
-    Attributes
-    ----------
-    data
-    configuration
-    repository
-    records
-
-    Methods
-    -------
-    __init__
-    __str__
-    __repr__
-    __getitem__
-    __iter__
-    __len__
-    from_id
-    synced
-    pull
-    remove
-
     Parameters
     ----------
     data : unicode
         *Zenodo* community data.
     configuration : Configuration
         *Colour - Datasets* configuration.
+
+    Attributes
+    ----------
+    -   :attr:`colour_datasets.Community.data`
+    -   :attr:`colour_datasets.Community.configuration`
+    -   :attr:`colour_datasets.Community.repository`
+    -   :attr:`colour_datasets.Community.records`
+
+    Methods
+    -------
+    -   :meth:`colour_datasets.Community.__init__`
+    -   :meth:`colour_datasets.Community.__str__`
+    -   :meth:`colour_datasets.Community.__repr__`
+    -   :meth:`colour_datasets.Community.__getitem__`
+    -   :meth:`colour_datasets.Community.__iter__`
+    -   :meth:`colour_datasets.Community.__len__`
+    -   :meth:`colour_datasets.Community.from_id`
+    -   :meth:`colour_datasets.Community.synced`
+    -   :meth:`colour_datasets.Community.pull`
+    -   :meth:`colour_datasets.Community.remove`
 
     Examples
     --------
@@ -546,7 +546,7 @@ class Community(Mapping):
 
     # Doctests skip for Python 2.x compatibility.
     >>> community['3245883'].title  # doctest: +SKIP
-    'Camera Spectral Sensitivity Database'
+    'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
     def __init__(self, data, configuration=None):
@@ -734,7 +734,7 @@ colour-science-datasets-tests/
 
         # Doctests skip for Python 2.x compatibility.
         >>> community['3245883'].title  # doctest: +SKIP
-        'Camera Spectral Sensitivity Database'
+        'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
         return self._records[id_]
@@ -803,7 +803,7 @@ colour-science-datasets-tests/
 
         # Doctests skip for Python 2.x compatibility.
         >>> community['3245883'].title  # doctest: +SKIP
-        'Camera Spectral Sensitivity Database'
+        'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
         configuration = (Configuration()

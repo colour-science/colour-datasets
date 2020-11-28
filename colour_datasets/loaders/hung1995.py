@@ -3,17 +3,17 @@
 Constant Hue Loci Data - Hung and Berns (1995)
 ==============================================
 
-Defines the objects implementing support for *Hung and Berns (1995)*
-*Constant Hue Loci Data* dataset loading:
+Defines the objects implementing support for *Hung and Berns (1995)* *Constant
+Hue Loci Data* dataset loading:
 
--   :class:`colour_datasets.loaders.Hung1995DatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_Hung1995`
 -   :func:`colour_datasets.loaders.build_Hung1995`
 
 References
 ----------
 -   :cite:`Hung1995` : Hung, P.-C., & Berns, R. S. (1995). Determination of
     constant Hue Loci for a CRT gamut and their predictions using color
-    appearance spaces. Color Research & Application, 20(5), 285–295.
+    appearance spaces. Color Research & Application, 20(5), 285-295.
     doi:10.1002/col.5080200506
 """
 
@@ -23,26 +23,26 @@ import numpy as np
 import os
 from collections import OrderedDict, namedtuple
 
-from colour import ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
+from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
 
 from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'ConstantPerceivedHueColourMatchesHung1995', 'Hung1995DatasetLoader',
+    'ConstantPerceivedHueColourMatches_Hung1995', 'DatasetLoader_Hung1995',
     'build_Hung1995'
 ]
 
 
-class ConstantPerceivedHueColourMatchesHung1995(
-        namedtuple('ConstantPerceivedHueColourMatchesHung1995',
+class ConstantPerceivedHueColourMatches_Hung1995(
+        namedtuple('ConstantPerceivedHueColourMatches_Hung1995',
                    ('name', 'XYZ_r', 'XYZ_cr', 'XYZ_ct', 'metadata'))):
     """
     Defines *Hung and Berns (1995)* *Constant Hue Loci Data*
@@ -66,18 +66,19 @@ class ConstantPerceivedHueColourMatchesHung1995(
     """
 
 
-class Hung1995DatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_Hung1995(AbstractDatasetLoader):
     """
     Defines the *Hung and Berns (1995)* *Constant Hue Loci Data*
     dataset loader.
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Hung1995.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Hung1995.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Hung1995.load`
 
     References
     ----------
@@ -92,8 +93,8 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(Hung1995DatasetLoader,
-              self).__init__(datasets()[Hung1995DatasetLoader.ID])
+        super(DatasetLoader_Hung1995,
+              self).__init__(datasets()[DatasetLoader_Hung1995.ID])
 
     def load(self):
         """
@@ -108,14 +109,14 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> dataset = Hung1995DatasetLoader()
+        >>> dataset = DatasetLoader_Hung1995()
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.content.keys())
         6
         """
 
-        super(Hung1995DatasetLoader, self).sync()
+        super(DatasetLoader_Hung1995, self).sync()
 
         self._content = OrderedDict()
 
@@ -148,7 +149,7 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
         ]
 
         XYZ_r = xy_to_XYZ(
-            ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['C'])
+            CCS_ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['C'])
 
         for table, experiment in [('Table III', 'CL'), ('Table IV', 'VL')]:
             key = 'Constant Hue Loci Data - {0}'.format(experiment)
@@ -175,19 +176,19 @@ class Hung1995DatasetLoader(AbstractDatasetLoader):
                     metadata['C*uv'].append(sample_t[1])
 
                 self._content[key][hue] = (
-                    ConstantPerceivedHueColourMatchesHung1995(
+                    ConstantPerceivedHueColourMatches_Hung1995(
                         hue, XYZ_r, XYZ_cr,
                         np.vstack(XYZ_ct) / 100, metadata))
 
         return self._content
 
 
-_HUNG1995_DATASET_LOADER = None
+_DATASET_LOADER_HUNG1995 = None
 """
 Singleton instance of the *Hung and Berns (1995)*
 *Constant Hue Loci Data* dataset loader.
 
-_HUNG1995_DATASET_LOADER : Hung1995DatasetLoader
+_DATASET_LOADER_HUNG1995 : DatasetLoader_Hung1995
 """
 
 
@@ -203,7 +204,7 @@ def build_Hung1995(load=True):
 
     Returns
     -------
-    Hung1995DatasetLoader
+    DatasetLoader_Hung1995
         Singleton instance of the *Hung and Berns (1995)*
         *Constant Hue Loci Data* dataset loader.
 
@@ -212,11 +213,11 @@ def build_Hung1995(load=True):
     :cite:`Hung1995`
     """
 
-    global _HUNG1995_DATASET_LOADER
+    global _DATASET_LOADER_HUNG1995
 
-    if _HUNG1995_DATASET_LOADER is None:
-        _HUNG1995_DATASET_LOADER = Hung1995DatasetLoader()
+    if _DATASET_LOADER_HUNG1995 is None:
+        _DATASET_LOADER_HUNG1995 = DatasetLoader_Hung1995()
         if load:
-            _HUNG1995_DATASET_LOADER.load()
+            _DATASET_LOADER_HUNG1995.load()
 
-    return _HUNG1995_DATASET_LOADER
+    return _DATASET_LOADER_HUNG1995

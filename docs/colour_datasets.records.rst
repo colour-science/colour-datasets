@@ -12,8 +12,13 @@ Configuration
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     Configuration
+
+.. autosummary::
+    :toctree: generated/
+
     sandbox
 
 ``colour_datasets.records``
@@ -34,6 +39,7 @@ Record
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     Record
 
@@ -46,6 +52,11 @@ Community
 
 .. autosummary::
     :toctree: generated/
+    :template: class.rst
 
     Community
+
+.. autosummary::
+    :toctree: generated/
+
     datasets

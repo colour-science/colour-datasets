@@ -3,10 +3,10 @@
 Observer Function Database - Asano (2015)
 =========================================
 
-Defines the objects implementing support for *Asano (2015)*
-*Observer Function Database* dataset loading:
+Defines the objects implementing support for *Asano (2015)* *Observer Function
+Database* dataset loading:
 
--   :class:`colour_datasets.loaders.Asano2015DatasetLoader`
+-   :class:`colour_datasets.loaders.DatasetLoader_Asano2015`
 -   :func:`colour_datasets.loaders.build_Asano2015`
 
 References
@@ -32,20 +32,20 @@ from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.utilities import cell_range_values, index_to_column
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'Asano2015_Specification', 'Asano2015DatasetLoader', 'build_Asano2015'
+    'Specification_Asano2015', 'DatasetLoader_Asano2015', 'build_Asano2015'
 ]
 
 
-class Asano2015_Specification(
+class Specification_Asano2015(
         namedtuple(
-            'Asano2015_Specification',
+            'Specification_Asano2015',
             ('XYZ_2', 'XYZ_10', 'LMS_2', 'LMS_10', 'parameters', 'others'))):
     """
     Defines the *Asano (2015)* specification for an observer.
@@ -73,26 +73,28 @@ class Asano2015_Specification(
     def __new__(cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others=None):
         """
         Returns a new instance of the
-        :class:`colour_datasets.loaders.asano2015.Asano2015_Specification`
+        :class:`colour_datasets.loaders.asano2015.Specification_Asano2015`
         class.
         """
 
-        return super(Asano2015_Specification, cls).__new__(
+        return super(Specification_Asano2015, cls).__new__(
             cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others)
 
 
-class Asano2015DatasetLoader(AbstractDatasetLoader):
+class DatasetLoader_Asano2015(AbstractDatasetLoader):
     """
     Defines the *Asano (2015)* *Observer Function Database* dataset loader.
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Asano2015.ID`
 
     Methods
     -------
-    load
-    parse_workbook_Asano2015
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Asano2015.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Asano2015.load`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Asano2015.\
+parse_workbook_Asano2015`
 
     References
     ----------
@@ -107,8 +109,8 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(Asano2015DatasetLoader,
-              self).__init__(datasets()[Asano2015DatasetLoader.ID])
+        super(DatasetLoader_Asano2015,
+              self).__init__(datasets()[DatasetLoader_Asano2015.ID])
 
     def load(self):
         """
@@ -123,14 +125,14 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> dataset = Asano2015DatasetLoader()
+        >>> dataset = DatasetLoader_Asano2015()
         >>> with suppress_stdout():
         ...     dataset.load()
         >>> len(dataset.content.keys())
         2
         """
 
-        super(Asano2015DatasetLoader, self).sync()
+        super(DatasetLoader_Asano2015, self).sync()
 
         self._content = OrderedDict([
             ('Categorical Observers', OrderedDict()),
@@ -146,7 +148,7 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
         for index, observer in self.parse_workbook_Asano2015(
                 workbook_path, template, observers).items():
             self._content['Categorical Observers'][index] = (
-                Asano2015_Specification(
+                Specification_Asano2015(
                     observer['XYZ_2'],
                     observer['XYZ_10'],
                     observer['LMS_2'],
@@ -179,7 +181,7 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
                 self.parse_workbook_Asano2015(workbook_path, template,
                                               observers).items()):
             self._content['Colour Normal Observers'][index] = (
-                Asano2015_Specification(
+                Specification_Asano2015(
                     observer['XYZ_2'],
                     observer['XYZ_10'],
                     observer['LMS_2'],
@@ -270,12 +272,12 @@ class Asano2015DatasetLoader(AbstractDatasetLoader):
         return data
 
 
-_ASANO2015_DATASET_LOADER = None
+_DATASET_LOADER_ASANO2015 = None
 """
 Singleton instance of the *Asano (2015)* *Observer Function Database* dataset
 loader.
 
-_ASANO2015_DATASET_LOADER : Asano2015DatasetLoader
+_DATASET_LOADER_ASANO2015 : DatasetLoader_Asano2015
 """
 
 
@@ -291,7 +293,7 @@ def build_Asano2015(load=True):
 
     Returns
     -------
-    Asano2015DatasetLoader
+    DatasetLoader_Asano2015
         Singleton instance of the *Asano (2015)*
         *Observer Function Database* dataset loader.
 
@@ -300,11 +302,11 @@ def build_Asano2015(load=True):
     :cite:`Asano2015`
     """
 
-    global _ASANO2015_DATASET_LOADER
+    global _DATASET_LOADER_ASANO2015
 
-    if _ASANO2015_DATASET_LOADER is None:
-        _ASANO2015_DATASET_LOADER = Asano2015DatasetLoader()
+    if _DATASET_LOADER_ASANO2015 is None:
+        _DATASET_LOADER_ASANO2015 = DatasetLoader_Asano2015()
         if load:
-            _ASANO2015_DATASET_LOADER.load()
+            _DATASET_LOADER_ASANO2015.load()
 
-    return _ASANO2015_DATASET_LOADER
+    return _DATASET_LOADER_ASANO2015

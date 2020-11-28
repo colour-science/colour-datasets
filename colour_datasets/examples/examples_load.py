@@ -16,7 +16,8 @@ message_box('A dataset is loaded by using its unique number: "3245895"')
 print(colour_datasets.load('3245895'))
 
 message_box('Or alternatively its full title: "New Color Specifications '
-            'for ColorChecker SG and Classic Charts"')
+            'for ColorChecker SG and Classic Charts - X-Rite (2016)"')
 print(
     colour_datasets.load(
-        'New Color Specifications for ColorChecker SG and Classic Charts'))
+        'New Color Specifications for ColorChecker SG and Classic Charts - '
+        'X-Rite (2016)'))

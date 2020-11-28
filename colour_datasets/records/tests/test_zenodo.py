@@ -14,10 +14,10 @@ from colour_datasets.records import Configuration, Record, Community
 from colour_datasets.utilities import json_open
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = ['TestRecord', 'TestCommunity']
@@ -99,8 +99,9 @@ class TestRecord(unittest.TestCase):
         property.
         """
 
-        self.assertEqual(self._record.title,
-                         'Camera Spectral Sensitivity Database')
+        self.assertEqual(
+            self._record.title,
+            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
 
     def test__init__(self):
         """
@@ -109,7 +110,9 @@ class TestRecord(unittest.TestCase):
 
         record = Record(self._data, self._configuration)
 
-        self.assertEqual(record.title, 'Camera Spectral Sensitivity Database')
+        self.assertEqual(
+            record.title,
+            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
 
     def test__str__(self):
         """
@@ -122,8 +125,8 @@ class TestRecord(unittest.TestCase):
         self.assertEqual(
             str(self._record),
             textwrap.dedent("""
-Camera Spectral Sensitivity Database - 1.0.0
-============================================
+Camera Spectral Sensitivity Database - Jiang et al. (2013) - 1.0.0
+==================================================================
 
 Record ID        : 3245883
 Authors          : Jiang, Jun; Liu, Dengyu; Gu, Jinwei; Süsstrunk, Sabine
@@ -182,7 +185,9 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt""")[1:])
         record = Record.from_id('3245883')
 
         self.assertIsInstance(record, Record)
-        self.assertEqual(record.title, 'Camera Spectral Sensitivity Database')
+        self.assertEqual(
+            record.title,
+            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
 
     def test_synced(self):
         """
@@ -299,8 +304,9 @@ class TestCommunity(unittest.TestCase):
 
         community = Community(self._data, self._configuration)
 
-        self.assertEqual(community['3245883'].title,
-                         'Camera Spectral Sensitivity Database')
+        self.assertEqual(
+            community['3245883'].title,
+            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
 
     def test__str__(self):
         """
@@ -325,11 +331,11 @@ URL      : https://zenodo.org/communities/colour-science-datasets/
 Datasets
 --------
 
-[ ] 3245883 : Camera Spectral Sensitivity Database
-[ ] 3245875 : Labsphere SRS-99-020
-[ ] 3245895 : New Color Specifications for ColorChecker SG and Classic \
-Charts
-[ ] 3252742 : Observer Function Database""")[1:])
+[ ] 3245883 : Camera Spectral Sensitivity Database - Jiang et al. (2013)
+[ ] 3245875 : Labsphere SRS-99-020 - Labsphere (2019)
+[ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts \
+- X-Rite (2016)
+[ ] 3252742 : Observer Function Database - Asano (2015)""")[1:])
 
     def test__repr__(self):
         """
@@ -380,8 +386,9 @@ Charts
         community = Community.from_id('colour-science-datasets')
 
         self.assertIsInstance(community, Community)
-        self.assertEqual(community['3245883'].title,
-                         'Camera Spectral Sensitivity Database')
+        self.assertEqual(
+            community['3245883'].title,
+            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
 
     def test_synced(self):
         """

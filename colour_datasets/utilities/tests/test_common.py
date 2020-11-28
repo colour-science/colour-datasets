@@ -15,10 +15,10 @@ from colour_datasets.utilities import (hash_md5, url_download, json_open,
                                        unpack_gzipfile)
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
@@ -85,23 +85,25 @@ class TestUrlDownload(unittest.TestCase):
             os.path.join(dataset.record.repository, 'dataset',
                          'SRS-99-020.txt'))
         url_download(
-            'https://zenodo.org/api/files/a1f87\
-ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt', self._temporary_file)
+            'https://zenodo.org/api/files/'
+            'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
+            self._temporary_file)
 
         self.assertEqual(md5, hash_md5(self._temporary_file))
 
         url_download(
-            'https://zenodo.org/api/files/a1f87\
-ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt', self._temporary_file, md5)
+            'https://zenodo.org/api/files/'
+            'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
+            self._temporary_file, md5)
 
         self.assertRaises(
-            IOError, lambda: url_download('https://nemo.io', self.
-                                          _temporary_file))
+            IOError,
+            lambda: url_download('https://nemo.io', self._temporary_file))
         self.assertRaises(
             ValueError, lambda: url_download(
-                'https://zenodo.org/api/files/a1f87\
-ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt', self._temporary_file,
-                '7c7a7b76c399e5c4e3afbd32e22b2b2f'))
+                'https://zenodo.org/api/files/'
+                'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
+                self._temporary_file, '7c7a7b76c399e5c4e3afbd32e22b2b2f'))
 
 
 class TestJsonOpen(unittest.TestCase):

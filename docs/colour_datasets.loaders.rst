@@ -290,3 +290,17 @@ RAW to ACES Utility Data - Dyer et al. (2017)
     :toctree: generated/
 
     build_Dyer2017
+
+Spectral Sensitivity Database - Zhao et al. (2009)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Zhao2009
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Zhao2009

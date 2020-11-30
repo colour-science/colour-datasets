@@ -20,6 +20,7 @@ from .jiang2013 import DatasetLoader_Jiang2013, build_Jiang2013
 from .labsphere2019 import DatasetLoader_Labsphere2019, build_Labsphere2019
 from .luo1999 import DatasetLoader_Luo1999, build_Luo1999
 from .xrite2016 import DatasetLoader_XRite2016, build_XRite2016
+from .zhao2009 import DatasetLoader_Zhao2009, build_Zhao2009
 
 __all__ = ['AbstractDatasetLoader']
 __all__ += ['DatasetLoader_Asano2015', 'build_Asano2015']
@@ -32,6 +33,7 @@ __all__ += ['DatasetLoader_Jiang2013', 'build_Jiang2013']
 __all__ += ['DatasetLoader_Labsphere2019', 'build_Labsphere2019']
 __all__ += ['DatasetLoader_Luo1999', 'build_Luo1999']
 __all__ += ['DatasetLoader_XRite2016', 'build_XRite2016']
+__all__ += ['DatasetLoader_Zhao2009', 'build_Zhao2009']
 
 DATASET_LOADERS = CaseInsensitiveMapping({
     DatasetLoader_Asano2015.ID: build_Asano2015,
@@ -44,6 +46,7 @@ DATASET_LOADERS = CaseInsensitiveMapping({
     DatasetLoader_Labsphere2019.ID: build_Labsphere2019,
     DatasetLoader_Luo1999.ID: build_Luo1999,
     DatasetLoader_XRite2016.ID: build_XRite2016,
+    DatasetLoader_Zhao2009.ID: build_Zhao2009,
 })
 DATASET_LOADERS.__doc__ = """
 Dataset loaders ids and callables.

@@ -126,14 +126,13 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 18
+    Datasets : 19
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
     Datasets
     --------
 
-    [ ] 4050598 : Spectral Upsampling Coefficient Tables - Jakob and Hanika (2019)
     [ ] 3269926 : Agfa IT8.7/2 Set - Marszalec (n.d.)
     [ ] 3245883 : Camera Spectral Sensitivity Database - Jiang et al. (2013)
     [ ] 3367463 : Constant Hue Loci Data - Hung and Berns (1995)
@@ -151,6 +150,8 @@ definition:
     [ ] 3252742 : Observer Function Database - Asano (2015)
     [ ] 3269922 : Paper Spectra - Haanpalo (n.d.)
     [ ] 3372171 : RAW to ACES Utility Data - Dyer et al. (2017)
+    [ ] 4297288 : Spectral Sensitivity Database - Zhao et al. (2009)
+    [ ] 4050598 : Spectral Upsampling Coefficient Tables - Jakob and Hanika. (2019)
 
 A ticked checkbox means that the particular dataset has been synced locally.
 A dataset is loaded by using its unique number: *3245895*:

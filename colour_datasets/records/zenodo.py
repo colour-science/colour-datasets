@@ -10,18 +10,17 @@ records:
 -   :class:`colour_datasets.Community`
 """
 
-from __future__ import division, unicode_literals
 import json
 import os
-import six
 import shutil
 import setuptools.archive_util
 import stat
 import tempfile
 import textwrap
+import urllib
+import urllib.error
 from collections import Mapping
-from six.moves import html_parser
-from six.moves import urllib
+from html.parser import HTMLParser
 from pprint import pformat
 
 from colour.utilities import warning
@@ -156,7 +155,7 @@ class Record(object):
             *Zenodo* record id.
         """
 
-        return six.text_type(self._data['id'])
+        return str(self._data['id'])
 
     @property
     def title(self):
@@ -213,7 +212,7 @@ class Record(object):
             text = text.replace('&nbsp;', ' ').replace('\n\n', ' ')
 
             parts = []
-            parser = html_parser.HTMLParser()
+            parser = HTMLParser()
             parser.handle_data = parts.append
             parser.feed(text)
 
@@ -252,9 +251,6 @@ class Record(object):
                     for file_data in sorted(files, key=lambda x: x['key'])
                 ]),
             ))
-
-        if six.PY2:
-            representation = representation.encode('utf-8')
 
         return representation
 
@@ -556,7 +552,7 @@ class Community(Mapping):
 
         hits = self._data['records']['hits']['hits']
         self._records = {
-            six.text_type(hit['id']): Record(hit, self._configuration)
+            str(hit['id']): Record(hit, self._configuration)
             for hit in hits
         }
 
@@ -677,9 +673,6 @@ colour-science-datasets-tests/
                               self._data['community']['links']['html'],
                               datasets,
                           ))
-
-        if six.PY2:
-            representation = representation.encode('utf-8')
 
         return representation
 

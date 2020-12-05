@@ -34,14 +34,11 @@ References
     Forest Colors. doi:10.5281/zenodo.3269920
 """
 
-from __future__ import division, unicode_literals
-
 import functools
 import numpy as np
 import os
 import re
 import scipy.io
-import six
 import sys
 from collections import OrderedDict, namedtuple
 
@@ -114,9 +111,8 @@ def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):
         table = np.transpose(table)
 
     for i, data in enumerate(table):
-        identifier = six.text_type(i + 1 if metadata.identifiers is None else
-                                   matlab_data[metadata.identifiers][
-                                       i].strip())
+        identifier = str(i + 1 if metadata.identifiers is None else
+                         matlab_data[metadata.identifiers][i].strip())
 
         if identifier in sds:
             identifier = '{0} ({1})'.format(identifier, i)

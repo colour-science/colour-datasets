@@ -13,10 +13,8 @@ References
 ----------
 -   :cite:`Zhao2009` : Zhao, H., Kawakami, R., Tan, R. T., & Ikeuchi, K.
     (2009). Estimating basis functions for spectral sensitivity of digital
-    cameras. 7.
+    cameras.
 """
-
-from __future__ import division, unicode_literals
 
 import numpy as np
 import os

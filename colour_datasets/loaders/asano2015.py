@@ -15,8 +15,6 @@ References
     Personalized Color Imaging. R.I.T.
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 import os
 import xlrd

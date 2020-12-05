@@ -17,8 +17,6 @@ References
     Graphic Arts III, (2 January 1998) (pp. 107-117). doi:10.1117/12.298269
 """
 
-from __future__ import division, unicode_literals
-
 import codecs
 import numpy as np
 import os

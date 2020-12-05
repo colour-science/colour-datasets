@@ -17,8 +17,6 @@ References
     doi:10.1002/col.5080200506
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 import os
 from collections import OrderedDict, namedtuple

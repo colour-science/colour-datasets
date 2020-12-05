@@ -16,8 +16,6 @@ References
     38(2), 147-155. doi:10.1111/cgf.13626
 """
 
-from __future__ import division, unicode_literals
-
 import glob
 import os
 from collections import OrderedDict

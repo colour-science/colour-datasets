@@ -17,8 +17,6 @@ References
 SupportID=5884#
 """
 
-from __future__ import division, unicode_literals
-
 import codecs
 import numpy as np
 import os

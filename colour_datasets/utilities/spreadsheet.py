@@ -11,10 +11,7 @@ References
     https://bitbucket.org/openpyxl/openpyxl/
 """
 
-from __future__ import division, unicode_literals
-
 import re
-import six
 
 from colour.utilities import CaseInsensitiveMapping
 
@@ -146,7 +143,7 @@ def index_to_row(index):
     '1'
     """
 
-    return six.text_type(index + 1)
+    return str(index + 1)
 
 
 def column_to_index(column):

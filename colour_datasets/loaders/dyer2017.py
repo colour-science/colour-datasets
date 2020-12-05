@@ -15,8 +15,6 @@ References
     M. (2017). RAW to ACES Utility Data.
 """
 
-from __future__ import division, unicode_literals
-
 import json
 import glob
 import os

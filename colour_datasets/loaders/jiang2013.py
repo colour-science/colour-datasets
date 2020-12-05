@@ -17,8 +17,6 @@ References
     168-179. doi:10.1109/WACV.2013.6475015
 """
 
-from __future__ import division, unicode_literals
-
 import codecs
 import numpy as np
 import os

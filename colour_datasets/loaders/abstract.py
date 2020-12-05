@@ -8,10 +8,7 @@ Defines the abstract class implementing support for dataset loading:
 -   :class:`colour_datasets.loaders.AbstractDatasetLoader`
 """
 
-from __future__ import division, unicode_literals
-
-from abc import ABCMeta, abstractmethod
-from six import add_metaclass
+from abc import ABC, abstractmethod
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
@@ -23,8 +20,7 @@ __status__ = 'Production'
 __all__ = ['AbstractDatasetLoader']
 
 
-@add_metaclass(ABCMeta)
-class AbstractDatasetLoader:
+class AbstractDatasetLoader(ABC):
     """
     Defines the base class for a dataset loader.
 

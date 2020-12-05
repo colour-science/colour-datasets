@@ -6,8 +6,6 @@ Common Utilities
 Defines common utilities objects that don't fall in any specific category.
 """
 
-from __future__ import division, unicode_literals
-
 import functools
 import gzip
 import hashlib
@@ -16,7 +14,8 @@ import os
 import setuptools.archive_util
 import shutil
 import sys
-from six.moves import urllib
+import urllib.error
+import urllib.request
 from tqdm import tqdm
 from cachetools import cached, TTLCache
 

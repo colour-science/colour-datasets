@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
-import six
 import sys
 
 from colour.utilities import CaseInsensitiveMapping, warning
@@ -122,7 +119,7 @@ def load(dataset):
             DATASET_LOADERS[title] = DATASET_LOADERS[key]
         _HAS_TITLE_KEYS = True
 
-    return DATASET_LOADERS[six.text_type(dataset)]().content
+    return DATASET_LOADERS[str(dataset)]().content
 
 
 __all__ += ['DATASET_LOADERS', 'load']

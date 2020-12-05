@@ -16,8 +16,6 @@ References
     cameras.
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 import os
 from collections import OrderedDict

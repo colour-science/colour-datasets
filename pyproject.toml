@@ -37,14 +37,13 @@ classifiers = [
     "License :: OSI Approved",
     "Natural Language :: English",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 2.7",
     "Programming Language :: Python :: 3",
     "Topic :: Scientific/Engineering",
     "Topic :: Software Development"
 ]
 
 [tool.poetry.dependencies]
-python = "~2.7 || ^3.6"
+python = "^3.6"
 cachetools = "*"
 colour-science = "^0.3.16"
 tqdm = "*"

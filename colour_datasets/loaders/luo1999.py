@@ -24,8 +24,6 @@ References
     Vision Research, 16(5), 445-IN3. doi:10.1016/0042-6989(76)90020-1
 """
 
-from __future__ import division, unicode_literals
-
 import codecs
 import numpy as np
 import os

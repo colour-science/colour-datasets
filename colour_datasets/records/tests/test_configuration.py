@@ -3,8 +3,6 @@
 Defines unit tests for :mod:`colour_datasets.records.configuration` module.
 """
 
-from __future__ import division, unicode_literals
-
 import unittest
 
 from colour_datasets.records import Configuration, use_sandbox, sandbox

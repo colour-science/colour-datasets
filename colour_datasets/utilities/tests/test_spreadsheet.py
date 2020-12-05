@@ -3,8 +3,6 @@
 Defines unit tests for :mod:`colour_datasets.utilities.spreadsheet` module.
 """
 
-from __future__ import division, unicode_literals
-
 import os
 import unittest
 import xlrd

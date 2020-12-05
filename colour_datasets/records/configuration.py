@@ -6,8 +6,6 @@ Configuration
 Defines various objects related to the configuration of *Colour - Datasets*.
 """
 
-from __future__ import division, unicode_literals
-
 import functools
 import os
 

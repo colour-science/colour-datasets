@@ -3,8 +3,6 @@
 Defines unit tests for :mod:`colour_datasets.utilities.common` module.
 """
 
-from __future__ import division, unicode_literals
-
 import os
 import unittest
 import tempfile

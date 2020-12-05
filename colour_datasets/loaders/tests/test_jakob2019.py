@@ -3,8 +3,6 @@
 Defines unit tests for :mod:`colour_datasets.loaders.jakob2019` module.
 """
 
-from __future__ import division, unicode_literals
-
 import unittest
 
 from colour_datasets.loaders import DatasetLoader_Jakob2019, build_Jakob2019

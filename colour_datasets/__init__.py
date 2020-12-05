@@ -16,8 +16,6 @@ Subpackages
 -   utilities:  Various utilities.
 """
 
-from __future__ import absolute_import
-
 import numpy as np
 import os
 import subprocess  # nosec

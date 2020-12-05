@@ -3,11 +3,8 @@
 Defines unit tests for :mod:`colour_datasets.records.configuration` module.
 """
 
-from __future__ import division, unicode_literals
-
 import os
 import unittest
-import six
 import textwrap
 
 from colour_datasets.records import Configuration, Record, Community
@@ -119,9 +116,6 @@ class TestRecord(unittest.TestCase):
         Tests :func:`colour_datasets.records.zenodo.Record.__str__` method.
         """
 
-        if six.PY2:
-            return
-
         self.assertEqual(
             str(self._record),
             textwrap.dedent("""
@@ -166,9 +160,6 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt""")[1:])
         """
         Tests :func:`colour_datasets.records.zenodo.Record.__repr__` method.
         """
-
-        if six.PY2:
-            return
 
         self.assertIsInstance(
             eval(
@@ -313,9 +304,6 @@ class TestCommunity(unittest.TestCase):
         Tests :func:`colour_datasets.records.zenodo.Community.__str__` method.
         """
 
-        if six.PY2:
-            return
-
         self._community.remove()
 
         self.assertEqual(
@@ -341,9 +329,6 @@ Datasets
         """
         Tests :func:`colour_datasets.records.zenodo.Community.__repr__` method.
         """
-
-        if six.PY2:
-            return
 
         self.assertIsInstance(
             eval(

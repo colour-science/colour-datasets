@@ -15,8 +15,6 @@ References
     doi:10.5281/zenodo.3245875
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 import os
 from collections import OrderedDict

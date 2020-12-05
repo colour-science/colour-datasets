@@ -3,8 +3,6 @@
 Defines unit tests for :mod:`colour_datasets.loaders.zhao2009` module.
 """
 
-from __future__ import division, unicode_literals
-
 import unittest
 
 from colour import SpectralShape

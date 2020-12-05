@@ -16,8 +16,6 @@ References
     https://haraldbrendel.com/files/led_spd_350_700.csv
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 import os
 from collections import OrderedDict

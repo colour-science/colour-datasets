@@ -94,7 +94,7 @@ def use_sandbox(state=True,
         DEFAULT_CONFIGURATION['community'] = 'colour-science-datasets'
 
 
-class sandbox(object):
+class sandbox:
     """
     A context manager and decorator temporarily setting the configuration to
     use *Zenodo* sandbox.

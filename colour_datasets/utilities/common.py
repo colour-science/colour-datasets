@@ -32,7 +32,7 @@ __all__ = [
 ]
 
 
-class suppress_stdout(object):
+class suppress_stdout:
     """
     A context manager and decorator temporarily suppressing standard output.
     """

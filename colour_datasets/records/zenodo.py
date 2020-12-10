@@ -38,7 +38,7 @@ __status__ = 'Production'
 __all__ = ['Record', 'Community']
 
 
-class Record(object):
+class Record:
     """
     Defines an object storing a *Zenodo* record data and providing methods to
     sync it in a local repository.

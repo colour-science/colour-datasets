@@ -40,7 +40,7 @@ __all__ = [
 ]
 
 
-class SpectralDataHeader_AMPAS(object):
+class SpectralDataHeader_AMPAS:
     """
     Defines the header object for an *A.M.P.A.S* spectral data.
 
@@ -440,7 +440,7 @@ __init__`
         self._license = value
 
 
-class SpectralDataMixin_AMPAS(object):
+class SpectralDataMixin_AMPAS:
     """
     Defines a mixin for *A.M.P.A.S* spectral data.
 

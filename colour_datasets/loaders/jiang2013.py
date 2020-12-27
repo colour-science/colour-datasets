@@ -27,8 +27,8 @@ from colour import SpectralShape
 from colour.characterisation import RGB_CameraSensitivities
 from colour.utilities import as_float_array
 
-from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
+from colour_datasets.records import datasets
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'

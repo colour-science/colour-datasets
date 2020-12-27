@@ -53,9 +53,6 @@ load` method.
         dataset = DatasetLoader_Luo1999()
         self.assertEqual(len(dataset.load().keys()), 37)
 
-        np.set_printoptions(
-            formatter={'float': '{:0.8f}'.format}, suppress=True)
-
         np.testing.assert_almost_equal(
             dataset.content['CSAJ-C - da'].XYZ_ct,
             np.array([

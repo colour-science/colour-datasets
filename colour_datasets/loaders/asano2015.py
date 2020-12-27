@@ -25,8 +25,8 @@ from colour.colorimetry import (XYZ_ColourMatchingFunctions,
                                 LMS_ConeFundamentals)
 from colour.utilities import as_float_array, tstack
 
-from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
+from colour_datasets.records import datasets
 from colour_datasets.utilities import cell_range_values, index_to_column
 
 __author__ = 'Colour Developers'

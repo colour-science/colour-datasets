@@ -23,8 +23,8 @@ from collections import OrderedDict, namedtuple
 
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
 
-from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
+from colour_datasets.records import datasets
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'

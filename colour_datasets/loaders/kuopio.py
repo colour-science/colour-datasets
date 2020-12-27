@@ -44,8 +44,8 @@ from collections import OrderedDict, namedtuple
 
 from colour import SpectralDistribution, SpectralShape
 
-from colour_datasets import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
+from colour_datasets.records import datasets
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'

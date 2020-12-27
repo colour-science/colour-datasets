@@ -137,6 +137,20 @@ Forest Colors - Jaaskelainen et al. (1994)
 
     build_ForestColors
 
+LUTCHI Colour Appearance Data - Luo and Rhodes (1997)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Luo1997
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Luo1997
+
 Labsphere SRS-99-020 - Labsphere (2019)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

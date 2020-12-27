@@ -126,7 +126,7 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 19
+    Datasets : 20
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
@@ -139,6 +139,7 @@ definition:
     [ ] 3362536 : Constant Perceived-Hue Data - Ebner and Fairchild (1998)
     [ ] 3270903 : Corresponding-Colour Datasets - Luo and Rhodes (1999)
     [ ] 3269920 : Forest Colors - Jaaskelainen et al. (1994)
+    [ ] 4394536 : LUTCHI Colour Appearance Data - Luo and Rhodes (1997)
     [x] 3245875 : Labsphere SRS-99-020 - Labsphere (2019)
     [ ] 3269924 : Lumber Spectra - Hiltunen (n.d.)
     [ ] 4051012 : Measured Commercial LED Spectra - Brendel (2020)

@@ -141,8 +141,8 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
         >>> from colour_datasets.utilities import suppress_stdout
         >>> dataset = DatasetLoader_Luo1999()
         >>> with suppress_stdout():
-        ...     dataset.load()  # doctest: +SKIP
-        >>> len(dataset.content.keys())  # doctest: +SKIP
+        ...     dataset.load()
+        >>> len(dataset.content.keys())
         37
         """
 

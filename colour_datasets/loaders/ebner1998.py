@@ -111,8 +111,8 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         >>> from colour_datasets.utilities import suppress_stdout
         >>> dataset = DatasetLoader_Ebner1998()
         >>> with suppress_stdout():
-        ...     dataset.load()  # doctest: +SKIP
-        >>> len(dataset.content.keys())  # doctest: +SKIP
+        ...     dataset.load()
+        >>> len(dataset.content.keys())
         1
         """
 

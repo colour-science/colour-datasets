@@ -80,8 +80,8 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
         >>> from colour_datasets.utilities import suppress_stdout
         >>> dataset = DatasetLoader_Brendel2020()
         >>> with suppress_stdout():
-        ...     dataset.load()
-        >>> len(dataset.content.keys())
+        ...     dataset.load()  # doctest: +SKIP
+        >>> len(dataset.content.keys())  # doctest: +SKIP
         29
         """
 

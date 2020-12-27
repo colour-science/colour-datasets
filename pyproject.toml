@@ -47,7 +47,7 @@ python = "^3.6"
 cachetools = "*"
 colour-science = "^0.3.16"
 tqdm = "*"
-xlrd = "*"
+xlrd = "^1.2.0"
 
 biblib-simple = { version = "*", optional = true }  # Development dependency.
 coverage = { version = "*", optional = true }  # Development dependency.

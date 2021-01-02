@@ -81,8 +81,8 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
         >>> from colour_datasets.utilities import suppress_stdout
         >>> dataset = DatasetLoader_Jakob2019()
         >>> with suppress_stdout():
-        ...     dataset.load()  # doctest: +SKIP
-        >>> len(dataset.content.keys())  # doctest: +SKIP
+        ...     dataset.load()
+        >>> len(dataset.content.keys())
         4
         """
 

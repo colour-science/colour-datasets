@@ -3,7 +3,7 @@ appdirs==1.4.4
 attrs==20.3.0
 Babel==2.9.0
 biblib-simple==0.1.1
-bleach==3.2.1
+bleach==3.3.0
 cachetools==4.2.0
 certifi==2020.12.5
 cfgv==3.0.0

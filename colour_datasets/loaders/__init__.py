@@ -14,6 +14,7 @@ from .ebner1998 import DatasetLoader_Ebner1998, build_Ebner1998
 from .hung1995 import DatasetLoader_Hung1995, build_Hung1995
 from .jakob2019 import DatasetLoader_Jakob2019, build_Jakob2019
 from .jiang2013 import DatasetLoader_Jiang2013, build_Jiang2013
+from .karge2015 import DatasetLoader_Karge2015, build_Karge2015
 from .labsphere2019 import DatasetLoader_Labsphere2019, build_Labsphere2019
 from .luo1997 import DatasetLoader_Luo1997, build_Luo1997
 from .luo1999 import DatasetLoader_Luo1999, build_Luo1999
@@ -28,6 +29,7 @@ __all__ += ['DatasetLoader_Ebner1998', 'build_Ebner1998']
 __all__ += ['DatasetLoader_Hung1995', 'build_Hung1995']
 __all__ += ['DatasetLoader_Jakob2019', 'build_Jakob2019']
 __all__ += ['DatasetLoader_Jiang2013', 'build_Jiang2013']
+__all__ += ['DatasetLoader_Karge2015', 'build_Karge2015']
 __all__ += ['DatasetLoader_Labsphere2019', 'build_Labsphere2019']
 __all__ += ['DatasetLoader_Luo1997', 'build_Luo1997']
 __all__ += ['DatasetLoader_Luo1999', 'build_Luo1999']
@@ -42,6 +44,7 @@ DATASET_LOADERS = CaseInsensitiveMapping({
     DatasetLoader_Hung1995.ID: build_Hung1995,
     DatasetLoader_Jakob2019.ID: build_Jakob2019,
     DatasetLoader_Jiang2013.ID: build_Jiang2013,
+    DatasetLoader_Karge2015.ID: build_Karge2015,
     DatasetLoader_Labsphere2019.ID: build_Labsphere2019,
     DatasetLoader_Luo1997.ID: build_Luo1997,
     DatasetLoader_Luo1999.ID: build_Luo1999,

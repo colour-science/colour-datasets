@@ -126,7 +126,7 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 20
+    Datasets : 21
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
@@ -151,6 +151,7 @@ definition:
     [ ] 3252742 : Observer Function Database - Asano (2015)
     [ ] 3269922 : Paper Spectra - Haanpalo (n.d.)
     [ ] 3372171 : RAW to ACES Utility Data - Dyer et al. (2017)
+    [ ] 4642271 : Spectral Database of Commonly Used Cine Lighting - Karge et al. (2015)
     [ ] 4297288 : Spectral Sensitivity Database - Zhao et al. (2009)
     [ ] 4050598 : Spectral Upsampling Coefficient Tables - Jakob and Hanika. (2019)
 

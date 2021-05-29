@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Defines unit tests for :mod:`colour_datasets.loaders.dyer2017` module.
+Defines the unit tests for the :mod:`colour_datasets.loaders.dyer2017` module.
 """
 
 import numpy as np

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Defines unit tests for :mod:`colour_datasets.utilities.common` module.
+Defines the unit tests for the :mod:`colour_datasets.utilities.common` module.
 """
 
 import os

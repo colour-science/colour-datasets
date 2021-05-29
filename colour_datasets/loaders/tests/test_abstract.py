@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Defines unit tests for :mod:`colour_datasets.loaders.abstract` module.
+Defines the unit tests for the :mod:`colour_datasets.loaders.abstract` module.
 """
 
 import unittest

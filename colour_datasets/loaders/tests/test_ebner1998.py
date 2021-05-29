@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Defines unit tests for :mod:`colour_datasets.loaders.ebner1998` module.
+Defines the unit tests for the :mod:`colour_datasets.loaders.ebner1998` module.
 """
 
 import numpy as np

@@ -23,21 +23,21 @@ Features
 **Colour - Datasets** was created to overcome issues encountered frequently
 when trying to access or use colour science datasets:
 
--   No straightforward ingestion path for dataset content.
--   No simple loading mechanism for dataset content.
--   Unavailability of the dataset, e.g. download url is down, dataset
-    content is passed directly from hand to hand.
--   No information regarding the definitive origination of the dataset.
+- No straightforward ingestion path for dataset content.
+- No simple loading mechanism for dataset content.
+- Unavailability of the dataset, e.g. download url is down, dataset content is
+  passed directly from hand to hand.
+- No information regarding the definitive origination of the dataset.
 
 **Colour - Datasets** offers all the above: it allows users to ingest and load
 colour science datasets with a single function call. The datasets information
 is hosted on `Zenodo <https://zenodo.org/communities/colour-science-datasets/>`__
 where the record for a dataset typically contain:
 
--   An *urls.txt* file describing the urls to source the dataset files from.
--   A copy of those files in the eventuality where the source files are not
-    available or the content has changed without notice.
--   Information about the authors, content and licensing.
+- An *urls.txt* file describing the urls to source the dataset files from.
+- A copy of those files in the eventuality where the source files are not
+  available or the content has changed without notice.
+- Information about the authors, content and licensing.
 
 When no explicit licensing information is available, the dataset adopts the
 **Other (Not Open)** licensing scheme, implying that assessing usage conditions
@@ -57,12 +57,11 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
--   `python>=2.7 <https://www.python.org/download/releases/>`__ or
-    `python>=3.5 <https://www.python.org/download/releases/>`__
--   `colour-science <https://pypi.org/project/colour-science/>`__
--   `cachetools <https://pypi.org/project/cachetools/>`__
--   `tqdm <https://pypi.org/project/tqdm/>`__
--   `xlrd <https://pypi.org/project/xlrd/>`__
+- `python>=3.5 <https://www.python.org/download/releases/>`__
+- `colour-science <https://pypi.org/project/colour-science/>`__
+- `cachetools <https://pypi.org/project/cachetools/>`__
+- `tqdm <https://pypi.org/project/tqdm/>`__
+- `xlrd <https://pypi.org/project/xlrd/>`__
 
 Pypi
 ^^^^
@@ -71,7 +70,7 @@ Once the dependencies are satisfied, **Colour - Datasets** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-datasets>`__ by
 issuing this command in a shell::
 
-	pip install --user colour-datasets
+    pip install --user colour-datasets
 
 The tests suite dependencies are installed as follows::
 

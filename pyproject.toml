@@ -43,7 +43,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 cachetools = "*"
 colour-science = "^0.3.16"
 tqdm = "*"

@@ -1,7 +1,7 @@
 alabaster==0.7.12
 appdirs==1.4.4
 attrs==20.3.0
-Babel==2.9.0
+Babel==2.9.1
 biblib-simple==0.1.1
 bleach==3.3.0
 cachetools==4.2.1

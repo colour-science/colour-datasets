@@ -55,7 +55,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):

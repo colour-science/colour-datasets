@@ -47,7 +47,7 @@ def _column_number_to_letters(number):
 
     Returns
     -------
-    unicode
+    str
         Column letters.
 
     References
@@ -101,7 +101,7 @@ def row_to_index(row):
 
     Parameters
     ----------
-    row : int or unicode
+    row : int or str
         Row name.
 
     Returns
@@ -133,7 +133,7 @@ def index_to_row(index):
 
     Returns
     -------
-    unicode
+    str
         Row name.
 
     Examples
@@ -152,7 +152,7 @@ def column_to_index(column):
 
     Parameters
     ----------
-    column : unicode
+    column : str
         Column letters
 
     Returns
@@ -175,12 +175,12 @@ def index_to_column(index):
 
     Parameters
     ----------
-    index : unicode
+    index : str
         0-based column index.
 
     Returns
     -------
-    unicode
+    str
         Column letters
 
     Examples
@@ -199,7 +199,7 @@ _CELL_RANGE_REGEX = re.compile(
 """
 Regular expression to match a cell range, e.g. "A1:C3".
 
-_CELL_RANGE_REGEX : unicode
+_CELL_RANGE_REGEX : str
 """
 
 

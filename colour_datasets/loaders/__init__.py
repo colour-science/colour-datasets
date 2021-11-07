@@ -92,7 +92,7 @@ def load(dataset):
 
     Parameters
     ----------
-    dataset : unicode or int
+    dataset : str or int
         Dataset id, i.e. the *Zenodo* record number or title.
 
     Returns

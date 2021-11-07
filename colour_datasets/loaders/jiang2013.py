@@ -62,7 +62,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):

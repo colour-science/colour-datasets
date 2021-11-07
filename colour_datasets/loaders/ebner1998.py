@@ -49,7 +49,7 @@ class ConstantPerceivedHueColourMatches_Ebner1998(
 
     Parameters
     ----------
-    name : unicode
+    name : str
         *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data* hue angle or
         name.
     XYZ_r : array_like
@@ -88,7 +88,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):

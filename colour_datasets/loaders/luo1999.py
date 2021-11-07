@@ -55,7 +55,7 @@ class CorrespondingColourDataset_Luo1999(
 
     Parameters
     ----------
-    name : unicode
+    name : str
         *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset name.
     XYZ_r : array_like
         *CIE XYZ* tristimulus values of the reference illuminant.
@@ -104,7 +104,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):

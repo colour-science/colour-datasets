@@ -30,8 +30,6 @@ References
 http://colour.derby.ac.uk:80/colour/info/lutchi/
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 import os
 import six
@@ -63,7 +61,7 @@ class ExperimentalGroupLuo1997(
 
     Parameters
     ----------
-    name : unicode
+    name : str
         *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* experimental
         group name.
     phases : dict
@@ -83,7 +81,7 @@ class ExperimentalPhaseLuo1997(
 
     Parameters
     ----------
-    name : unicode
+    name : str
         *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* experimental
         phase name.
     JQCH_v : array_like
@@ -133,7 +131,7 @@ class DatasetLoader_Luo1997(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):

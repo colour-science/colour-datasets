@@ -103,7 +103,7 @@ parse_workbook_Asano2015`
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):
@@ -197,9 +197,9 @@ parse_workbook_Asano2015`
 
         Parameters
         ----------
-        workbook : unicode
+        workbook : str
             *Asano (2015)* *Observer Function Database* workbook path.
-        template : unicode
+        template : str
             Template used to create the *CMFS* names.
         observers : tuple, optional
             Observers range.

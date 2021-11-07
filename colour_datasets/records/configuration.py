@@ -78,9 +78,9 @@ def use_sandbox(state=True,
     ----------
     state : bool, optional
         Whether to use *Zenodo* sandbox.
-    api_url : unicode, optional
+    api_url : str, optional
         *Zenodo* sandbox url.
-    community : unicode, optional
+    community : str, optional
         *Zenodo* community.
     """
 
@@ -101,9 +101,9 @@ class sandbox:
 
     Parameters
     ----------
-    api_url : unicode, optional
+    api_url : str, optional
         *Zenodo* sandbox url.
-    community : unicode, optional
+    community : str, optional
         *Zenodo* community.
     """
 

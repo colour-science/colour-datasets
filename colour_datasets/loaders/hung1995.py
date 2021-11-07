@@ -48,7 +48,7 @@ class ConstantPerceivedHueColourMatches_Hung1995(
 
     Parameters
     ----------
-    name : unicode
+    name : str
         *Hung and Berns (1995)* *Constant Hue Loci Data* hue angle or
         name.
     XYZ_r : array_like
@@ -87,7 +87,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):

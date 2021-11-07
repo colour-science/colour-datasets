@@ -71,7 +71,7 @@ class MatFileMetadata_KuopioUniversity(
 
     Parameters
     ----------
-    key : unicode
+    key : str
         *Matlab* *.mat* file key to extract the data from.
     shape : SpectralShape
         Spectral distributions shape.
@@ -89,7 +89,7 @@ def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):
 
     Parameters
     ----------
-    mat_file : unicode
+    mat_file : str
         *Matlab* *.mat* file.
     metadata : MatFileMetadata_KuopioUniversity
         Metadata required to read the spectral distributions in the *Matlab*
@@ -142,7 +142,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     METADATA = None
@@ -190,11 +190,11 @@ def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
 
     Parameters
     ----------
-    id_ : unicode
+    id_ : str
         Dataset record id, i.e. the *Zenodo* record number.
-    title : unicode
+    title : str
         *University of Kuopio* dataset loader title.
-    citation_key : unicode
+    citation_key : str
         *University of Kuopio* dataset citation key.
     metadata : dict
         Mapping of paths and

@@ -18,7 +18,6 @@ References
 
 import numpy as np
 import os
-from collections import OrderedDict
 
 from colour import LinearInterpolator, SpectralShape, SpectralDistribution
 from colour.utilities import as_int
@@ -72,7 +71,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Brendel (2020)* *Measured Commercial LED Spectra* dataset content.
 
         Examples
@@ -87,7 +86,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
 
         super(DatasetLoader_Brendel2020, self).sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         wavelengths = SpectralShape(350, 700, 2).range()
 

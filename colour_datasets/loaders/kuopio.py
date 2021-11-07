@@ -40,7 +40,7 @@ import os
 import re
 import scipy.io
 import sys
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 
 from colour import SpectralDistribution, SpectralShape
 
@@ -97,13 +97,13 @@ def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):
 
     Returns
     -------
-    OrderedDict
+    dict
         Spectral distributions from the *Matlab* *.mat* file.
     """
 
     matlab_data = scipy.io.loadmat(mat_file)
 
-    sds = OrderedDict()
+    sds = dict()
     table = matlab_data[metadata.key]
     wavelengths = metadata.shape.range()
 
@@ -165,13 +165,13 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *University of Kuopio* dataset content.
         """
 
         super(DatasetLoader_KuopioUniversity, self).sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         for path, metadata in self.METADATA.items():
             mat_path = os.path.join(self.record.repository, 'dataset', *path)
@@ -230,7 +230,7 @@ def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
 
         Returns
         -------
-        OrderedDict
+        dict
             *University of Kuopio* *{0}* dataset content. """ [1:].format(
         title)
 

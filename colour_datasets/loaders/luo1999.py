@@ -27,7 +27,7 @@ References
 import codecs
 import numpy as np
 import os
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -118,7 +118,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset
             content.
 
@@ -160,7 +160,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
             'Experimental Method',
         )
 
-        corresponding_colour_datasets = OrderedDict([
+        corresponding_colour_datasets = dict([
             ('CSAJ-C', [('CSAJ.da.dat', ), (
                 1,
                 87,
@@ -353,7 +353,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
             )]),
         ])
 
-        self._content = OrderedDict()
+        self._content = dict()
         for key, (filenames,
                   metadata) in corresponding_colour_datasets.items():
             for i, filename in enumerate(filenames):
@@ -377,7 +377,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             XYZ_ct.append(list(map(float, values[3:])))
 
                 name = '{0} - {1}'.format(key, filename.split('.')[1])
-                dataset_metadata = OrderedDict(zip(metadata_headers, metadata))
+                dataset_metadata = dict(zip(metadata_headers, metadata))
 
                 Y_r = dataset_metadata['Illuminance (lux)'][i][0]
                 Y_t = dataset_metadata['Illuminance (lux)'][i][1]

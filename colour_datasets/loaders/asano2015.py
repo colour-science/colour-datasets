@@ -18,7 +18,7 @@ References
 import numpy as np
 import os
 import xlrd
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 
 from colour import SpectralShape
 from colour.colorimetry import (XYZ_ColourMatchingFunctions,
@@ -117,7 +117,7 @@ parse_workbook_Asano2015`
 
         Returns
         -------
-        OrderedDict
+        dict
             *Asano (2015)* *Observer Function Database* dataset content.
 
         Examples
@@ -132,9 +132,9 @@ parse_workbook_Asano2015`
 
         super(DatasetLoader_Asano2015, self).sync()
 
-        self._content = OrderedDict([
-            ('Categorical Observers', OrderedDict()),
-            ('Colour Normal Observers', OrderedDict()),
+        self._content = dict([
+            ('Categorical Observers', dict()),
+            ('Colour Normal Observers', dict()),
         ])
 
         # Categorical Observers
@@ -185,7 +185,7 @@ parse_workbook_Asano2015`
                     observer['LMS_2'],
                     observer['LMS_10'],
                     observer['parameters'],
-                    OrderedDict(zip(header, values[i])),
+                    dict(zip(header, values[i])),
                 ))
 
         return self._content
@@ -206,7 +206,7 @@ parse_workbook_Asano2015`
 
         Returns
         -------
-        OrderedDict
+        dict
             *Asano (2015)* *Observer Function Database* workbook observer data.
         """
 
@@ -218,7 +218,7 @@ parse_workbook_Asano2015`
 
         shape = SpectralShape(390, 780, 5)
         wavelengths = shape.range()
-        data = OrderedDict()
+        data = dict()
 
         for i, cmfs in enumerate([(XYZ_ColourMatchingFunctions, 'XYZ'),
                                   (LMS_ConeFundamentals, 'LMS')]):
@@ -242,7 +242,7 @@ parse_workbook_Asano2015`
                     observer = k + 1
                     rgb = tstack([x[k], y[k], z[k]])
                     if data.get(observer) is None:
-                        data[observer] = OrderedDict()
+                        data[observer] = dict()
 
                     key = '{0}_{1}'.format(cmfs[1], degree[0])
                     data[observer][key] = cmfs[0](
@@ -264,7 +264,7 @@ parse_workbook_Asano2015`
 
         for i in range(observers[1]):
             observer = i + 1
-            data[observer]['parameters'] = OrderedDict(
+            data[observer]['parameters'] = dict(
                 zip(header, as_float_array(values[i])))
 
         return data

@@ -35,7 +35,7 @@ from __future__ import division, unicode_literals
 import numpy as np
 import os
 import six
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 from colour.utilities import as_float_array, usage_warning
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -66,7 +66,7 @@ class ExperimentalGroupLuo1997(
     name : unicode
         *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* experimental
         group name.
-    phases : OrderedDict
+    phases : dict
         Experimental phases.
     metadata : dict
         Experimental group metadata.
@@ -147,7 +147,7 @@ class DatasetLoader_Luo1997(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* dataset
             content.
 
@@ -199,7 +199,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
             'Neutrals',
         )
 
-        experimental_groups_summary = OrderedDict([
+        experimental_groups_summary = dict([
             ('R-HL',
              (6, 'Reflective media with luminances ranging 364-232 cd/m2', 1)),
             ('R-LL',
@@ -223,7 +223,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
               5)),
         ])
 
-        experimental_groups = OrderedDict([
+        experimental_groups = dict([
             ('R-HL', [
                 (1, 'nlmean.wh', 'cold50wnl', 105, 41, 46, 0.88, 100, 264,
                  np.array([97.13, 100, 76.62])),
@@ -361,9 +361,9 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
         ])
 
         filenames = set()
-        self._content = OrderedDict()
+        self._content = dict()
         for group, phases in experimental_groups.items():
-            experimental_phases = OrderedDict()
+            experimental_phases = dict()
             for (phase, visual_filename, colorimetric_filename, samples_count,
                  neutrals_start, neutrals_end, S_Y_c, Y_b, Y_r,
                  XYZ_o) in phases:
@@ -392,13 +392,13 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                 experimental_phases[phase] = ExperimentalPhaseLuo1997(
                     phase, as_float_array(visual_data),
                     as_float_array(colorimetric_data), S_Y_c, Y_b, Y_r, XYZ_o,
-                    OrderedDict(
+                    dict(
                         zip(phase_metadata_headers,
                             [samples_count, (neutrals_start, neutrals_end)])))
 
             self._content[group] = ExperimentalGroupLuo1997(
                 group, experimental_phases,
-                OrderedDict(
+                dict(
                     zip(group_metadata_headers,
                         experimental_groups_summary[group])))
 

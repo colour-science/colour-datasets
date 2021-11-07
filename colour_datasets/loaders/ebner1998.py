@@ -20,7 +20,7 @@ References
 import codecs
 import numpy as np
 import os
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 
 from colour.utilities import as_float_array
 
@@ -102,7 +102,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Ebner and Fairchild (1998)* Constant Perceived-Hue Data* dataset
             content.
 
@@ -118,8 +118,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
 
         super(DatasetLoader_Ebner1998, self).sync()
 
-        self._content = OrderedDict([('Constant Perceived-Hue Data',
-                                      OrderedDict())])
+        self._content = dict([('Constant Perceived-Hue Data', dict())])
 
         datafile_path = os.path.join(self.record.repository, 'dataset',
                                      'Ebner_Constant_Hue_Data.txt')

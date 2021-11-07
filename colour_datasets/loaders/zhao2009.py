@@ -18,7 +18,6 @@ References
 
 import numpy as np
 import os
-from collections import OrderedDict
 
 from colour.characterisation import RGB_CameraSensitivities
 
@@ -72,7 +71,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Zhao et al. (2009)* *Spectral Sensitivity Database*
             dataset content.
 
@@ -103,7 +102,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
             'KODAK DCS 200',
         ]
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         for i, camera in enumerate(cameras):
             data = np.loadtxt(

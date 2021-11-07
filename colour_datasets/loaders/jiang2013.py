@@ -21,7 +21,6 @@ import codecs
 import numpy as np
 import os
 import re
-from collections import OrderedDict
 
 from colour import SpectralShape
 from colour.characterisation import RGB_CameraSensitivities
@@ -77,7 +76,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Jiang et al. (2013)* *Camera Spectral Sensitivity Database*
             dataset content.
 
@@ -95,7 +94,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
 
         shape = SpectralShape(400, 720, 10)
 
-        self._content = OrderedDict()
+        self._content = dict()
         database_path = os.path.join(self.record.repository, 'dataset',
                                      'camspec_database.txt')
         with codecs.open(database_path, encoding='utf-8') as database_file:

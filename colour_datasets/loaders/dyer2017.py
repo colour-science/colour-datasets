@@ -18,7 +18,6 @@ References
 import json
 import glob
 import os
-from collections import OrderedDict
 
 from colour import MultiSpectralDistributions, SpectralDistribution
 from colour.continuous import MultiSignals, Signal
@@ -938,7 +937,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Dyer et al. (2017)* *RAW to ACES Utility Data* dataset content.
 
         Examples
@@ -953,10 +952,10 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
 
         super(DatasetLoader_Dyer2017, self).sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         for directory in ('camera', 'cmf', 'illuminant', 'training'):
-            self._content[directory] = OrderedDict()
+            self._content[directory] = dict()
             factory = (SpectralDistribution_AMPAS if directory == 'illuminant'
                        else MultiSpectralDistributions_AMPAS)
             glob_pattern = os.path.join(self.record.repository, 'dataset',

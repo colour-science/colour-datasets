@@ -19,7 +19,7 @@ References
 
 import os
 import re
-from collections import OrderedDict, defaultdict
+from collections import defaultdict
 
 from colour.algebra import LinearInterpolator
 from colour.io import read_sds_from_csv_file
@@ -74,7 +74,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Karge et al. (2015)*
             *Spectral Database of Commonly Used Cine Lighting* dataset content.
 
@@ -90,7 +90,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
 
         super(DatasetLoader_Karge2015, self).sync()
 
-        self._content = defaultdict(lambda: defaultdict(OrderedDict))
+        self._content = defaultdict(lambda: defaultdict(dict))
 
         database_root = os.path.join(self.record.repository, 'dataset',
                                      'OFTP_full-sample-package_v2')
@@ -103,7 +103,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
             category = 'Normalised' if 'normalized' in path else 'Raw'
             path = os.path.join(database_root, path)
 
-            sds = OrderedDict()
+            sds = dict()
             for name, sd in read_sds_from_csv_file(
                     path, transpose=True, delimiter=';').items():
                 if re.match('f\\d', name):
@@ -114,7 +114,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
 
             self._content[type_][category] = sds
 
-        return OrderedDict(self._content)
+        return dict(self._content)
 
 
 _DATASET_LOADER_KARGE2015 = None

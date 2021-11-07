@@ -18,7 +18,6 @@ References
 
 import glob
 import os
-from collections import OrderedDict
 
 from colour.recovery import LUT3D_Jakob2019
 
@@ -72,7 +71,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Jakob and Hanika (2019)* *Spectral Upsampling Coefficient Tables*
             dataset content.
 
@@ -88,7 +87,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
 
         super(DatasetLoader_Jakob2019, self).sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         tables_path = os.path.join(self.record.repository, 'dataset',
                                    'Jakob2019Spectral', 'supplement', 'tables')

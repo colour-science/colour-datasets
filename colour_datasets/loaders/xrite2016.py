@@ -20,7 +20,6 @@ SupportID=5884#
 import codecs
 import numpy as np
 import os
-from collections import OrderedDict
 
 from colour import CCS_ILLUMINANTS, Lab_to_XYZ, XYZ_to_xyY
 from colour.characterisation import ColourChecker
@@ -77,7 +76,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *X-Rite (2016)* *New Color Specifications for ColorChecker SG and
             Classic Charts* dataset content.
 
@@ -111,7 +110,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         illuminant = (
             CCS_ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['ICC D50'])
 
-        self._content = OrderedDict()
+        self._content = dict()
         for key, filename in zip(keys, filenames):
             directory = os.path.splitext(filename)[0]
             path = os.path.join(self.record.repository, 'dataset', directory,
@@ -144,8 +143,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
             samples = np.transpose(samples.reshape([i, j, 2]), [1, 0, 2])
             keys, values = zip(*samples.reshape([-1, 2]))
             values = XYZ_to_xyY(Lab_to_XYZ(values, illuminant))
-            self._content[key] = ColourChecker(key,
-                                               OrderedDict(zip(keys, values)),
+            self._content[key] = ColourChecker(key, dict(zip(keys, values)),
                                                illuminant)
 
         return self._content

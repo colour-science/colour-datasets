@@ -10,14 +10,19 @@ import unittest
 from colour import SpectralShape
 
 from colour_datasets.loaders.kuopio import (
-    MatFileMetadata_KuopioUniversity, read_sds_from_mat_file_KuopioUniversity)
+    MatFileMetadata_KuopioUniversity,
+    read_sds_from_mat_file_KuopioUniversity,
+)
 from colour_datasets.loaders.kuopio import (
     DatasetLoader_MunsellColorsMattSpectrofotometerMeasured,
     DatasetLoader_MunsellColorsMattAOTFMeasured,
     DatasetLoader_MunsellColorsGlossySpectrofotometerMeasured,
     DatasetLoader_MunsellColorsGlossyAllSpectrofotometerMeasured,
-    DatasetLoader_ForestColors, DatasetLoader_PaperSpectra,
-    DatasetLoader_LumberSpectra, DatasetLoader_AgfaIT872Set)
+    DatasetLoader_ForestColors,
+    DatasetLoader_PaperSpectra,
+    DatasetLoader_LumberSpectra,
+    DatasetLoader_AgfaIT872Set,
+)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'

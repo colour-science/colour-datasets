@@ -10,8 +10,10 @@ import functools
 import os
 
 from colour.utilities import Structure
-from colour.utilities.documentation import (DocstringDict,
-                                            is_documentation_building)
+from colour.utilities.documentation import (
+    DocstringDict,
+    is_documentation_building,
+)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'

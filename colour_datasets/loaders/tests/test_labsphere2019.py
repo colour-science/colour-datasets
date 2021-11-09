@@ -8,8 +8,10 @@ import unittest
 
 from colour import SpectralShape
 
-from colour_datasets.loaders import (DatasetLoader_Labsphere2019,
-                                     build_Labsphere2019)
+from colour_datasets.loaders import (
+    DatasetLoader_Labsphere2019,
+    build_Labsphere2019,
+)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'

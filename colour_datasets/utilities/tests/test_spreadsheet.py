@@ -8,9 +8,13 @@ import os
 import unittest
 import xlrd
 
-from colour_datasets.utilities import (row_to_index, index_to_row,
-                                       column_to_index, index_to_column,
-                                       cell_range_values)
+from colour_datasets.utilities import (
+    row_to_index,
+    index_to_row,
+    column_to_index,
+    index_to_column,
+    cell_range_values,
+)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'

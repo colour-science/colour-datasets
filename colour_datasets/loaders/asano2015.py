@@ -21,8 +21,10 @@ import xlrd
 from collections import namedtuple
 
 from colour import SpectralShape
-from colour.colorimetry import (XYZ_ColourMatchingFunctions,
-                                LMS_ConeFundamentals)
+from colour.colorimetry import (
+    XYZ_ColourMatchingFunctions,
+    LMS_ConeFundamentals,
+)
 from colour.utilities import as_float_array, tstack
 
 from colour_datasets.loaders import AbstractDatasetLoader

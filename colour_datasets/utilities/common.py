@@ -27,8 +27,12 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'suppress_stdout', 'TqdmUpTo', 'hash_md5', 'url_download', 'json_open',
-    'unpack_gzipfile'
+    'suppress_stdout',
+    'TqdmUpTo',
+    'hash_md5',
+    'url_download',
+    'json_open',
+    'unpack_gzipfile',
 ]
 
 

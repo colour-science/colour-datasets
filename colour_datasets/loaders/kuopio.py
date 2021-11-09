@@ -57,8 +57,10 @@ __status__ = 'Production'
 __all__ = [
     'MatFileMetadata_KuopioUniversity',
     'read_sds_from_mat_file_KuopioUniversity',
-    'DatasetLoader_KuopioUniversity', 'build_KuopioUniversity',
-    'DATA_KUOPIO_UNIVERSITY', 'DATASET_LOADERS_KUOPIO_UNIVERSITY'
+    'DatasetLoader_KuopioUniversity',
+    'build_KuopioUniversity',
+    'DATA_KUOPIO_UNIVERSITY',
+    'DATASET_LOADERS_KUOPIO_UNIVERSITY',
 ]
 
 
@@ -461,6 +463,9 @@ for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
 
     DATASET_LOADERS_KUOPIO_UNIVERSITY[_id] = _partial_function
 
-    __all__ += [_dataset_loader_class.__name__, _build_function_name]
+    __all__ += [
+        _dataset_loader_class.__name__,
+        _build_function_name,
+    ]
 
 del _id, _data, _module, _partial_function, _build_function_name

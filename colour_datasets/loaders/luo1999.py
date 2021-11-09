@@ -41,8 +41,9 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'CorrespondingColourDataset_Luo1999', 'DatasetLoader_Luo1999',
-    'build_Luo1999'
+    'CorrespondingColourDataset_Luo1999',
+    'DatasetLoader_Luo1999',
+    'build_Luo1999',
 ]
 
 

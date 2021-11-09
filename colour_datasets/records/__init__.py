@@ -3,8 +3,15 @@
 from .configuration import Configuration, sandbox, use_sandbox
 from .zenodo import Community, Record
 
-__all__ = ['Configuration', 'sandbox', 'use_sandbox']
-__all__ += ['Community', 'Record']
+__all__ = [
+    'Configuration',
+    'sandbox',
+    'use_sandbox',
+]
+__all__ += [
+    'Community',
+    'Record',
+]
 
 _COMMUNITY = None
 """
@@ -40,4 +47,6 @@ def datasets():
     return _COMMUNITY
 
 
-__all__ += ['datasets']
+__all__ += [
+    'datasets',
+]

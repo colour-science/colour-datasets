@@ -34,7 +34,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['DatasetLoader_XRite2016', 'build_XRite2016']
+__all__ = [
+    'DatasetLoader_XRite2016',
+    'build_XRite2016',
+]
 
 
 class DatasetLoader_XRite2016(AbstractDatasetLoader):

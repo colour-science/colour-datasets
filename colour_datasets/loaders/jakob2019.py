@@ -31,7 +31,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['DatasetLoader_Jakob2019', 'build_Jakob2019']
+__all__ = [
+    'DatasetLoader_Jakob2019',
+    'build_Jakob2019',
+]
 
 
 class DatasetLoader_Jakob2019(AbstractDatasetLoader):

@@ -34,8 +34,11 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'SpectralDataHeader_AMPAS', 'SpectralDataMixin_AMPAS',
-    'SpectralDistribution_AMPAS', 'DatasetLoader_Dyer2017', 'build_Dyer2017'
+    'SpectralDataHeader_AMPAS',
+    'SpectralDataMixin_AMPAS',
+    'SpectralDistribution_AMPAS',
+    'DatasetLoader_Dyer2017',
+    'build_Dyer2017',
 ]
 
 

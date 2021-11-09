@@ -28,7 +28,7 @@ __status__ = 'Production'
 
 __all__ = [
     'TestReadSdsFromMatFileKuopioUniversity',
-    'TestDatasetLoader_KuopioUniversity'
+    'TestDatasetLoader_KuopioUniversity',
 ]
 
 

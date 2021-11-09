@@ -37,7 +37,9 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'Specification_Asano2015', 'DatasetLoader_Asano2015', 'build_Asano2015'
+    'Specification_Asano2015',
+    'DatasetLoader_Asano2015',
+    'build_Asano2015',
 ]
 
 

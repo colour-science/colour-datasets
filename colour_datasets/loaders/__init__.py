@@ -21,20 +21,61 @@ from .luo1999 import DatasetLoader_Luo1999, build_Luo1999
 from .xrite2016 import DatasetLoader_XRite2016, build_XRite2016
 from .zhao2009 import DatasetLoader_Zhao2009, build_Zhao2009
 
-__all__ = ['AbstractDatasetLoader']
-__all__ += ['DatasetLoader_Asano2015', 'build_Asano2015']
-__all__ += ['DatasetLoader_Brendel2020', 'build_Brendel2020']
-__all__ += ['DatasetLoader_Dyer2017', 'build_Dyer2017']
-__all__ += ['DatasetLoader_Ebner1998', 'build_Ebner1998']
-__all__ += ['DatasetLoader_Hung1995', 'build_Hung1995']
-__all__ += ['DatasetLoader_Jakob2019', 'build_Jakob2019']
-__all__ += ['DatasetLoader_Jiang2013', 'build_Jiang2013']
-__all__ += ['DatasetLoader_Karge2015', 'build_Karge2015']
-__all__ += ['DatasetLoader_Labsphere2019', 'build_Labsphere2019']
-__all__ += ['DatasetLoader_Luo1997', 'build_Luo1997']
-__all__ += ['DatasetLoader_Luo1999', 'build_Luo1999']
-__all__ += ['DatasetLoader_XRite2016', 'build_XRite2016']
-__all__ += ['DatasetLoader_Zhao2009', 'build_Zhao2009']
+__all__ = [
+    'AbstractDatasetLoader',
+]
+__all__ += [
+    'DatasetLoader_Asano2015',
+    'build_Asano2015',
+]
+__all__ += [
+    'DatasetLoader_Brendel2020',
+    'build_Brendel2020',
+]
+__all__ += [
+    'DatasetLoader_Dyer2017',
+    'build_Dyer2017',
+]
+__all__ += [
+    'DatasetLoader_Ebner1998',
+    'build_Ebner1998',
+]
+__all__ += [
+    'DatasetLoader_Hung1995',
+    'build_Hung1995',
+]
+__all__ += [
+    'DatasetLoader_Jakob2019',
+    'build_Jakob2019',
+]
+__all__ += [
+    'DatasetLoader_Jiang2013',
+    'build_Jiang2013',
+]
+__all__ += [
+    'DatasetLoader_Karge2015',
+    'build_Karge2015',
+]
+__all__ += [
+    'DatasetLoader_Labsphere2019',
+    'build_Labsphere2019',
+]
+__all__ += [
+    'DatasetLoader_Luo1997',
+    'build_Luo1997',
+]
+__all__ += [
+    'DatasetLoader_Luo1999',
+    'build_Luo1999',
+]
+__all__ += [
+    'DatasetLoader_XRite2016',
+    'build_XRite2016',
+]
+__all__ += [
+    'DatasetLoader_Zhao2009',
+    'build_Zhao2009',
+]
 
 DATASET_LOADERS = CaseInsensitiveMapping({
     DatasetLoader_Asano2015.ID: build_Asano2015,
@@ -70,7 +111,9 @@ for _export in kuopio.__all__:
 
         setattr(_module, _export, getattr(kuopio, _export))
 
-        __all__ += [_export]
+        __all__ += [
+            _export,
+        ]
 
 del _module, _export
 
@@ -128,4 +171,7 @@ def load(dataset):
     return DATASET_LOADERS[str(dataset)]().content
 
 
-__all__ += ['DATASET_LOADERS', 'load']
+__all__ += [
+    'DATASET_LOADERS',
+    'load',
+]

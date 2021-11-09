@@ -47,8 +47,10 @@ __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
 __all__ = [
-    'ExperimentalGroupLuo1997', 'ExperimentalPhaseLuo1997',
-    'DatasetLoader_Luo1997', 'build_Luo1997'
+    'ExperimentalGroupLuo1997',
+    'ExperimentalPhaseLuo1997',
+    'DatasetLoader_Luo1997',
+    'build_Luo1997',
 ]
 
 

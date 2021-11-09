@@ -15,7 +15,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['TestDatasetLoader_Luo1999', 'TestBuildLuo1999']
+__all__ = [
+    'TestDatasetLoader_Luo1999',
+    'TestBuildLuo1999',
+]
 
 
 class TestDatasetLoader_Luo1999(unittest.TestCase):

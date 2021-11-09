@@ -35,8 +35,9 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'ConstantPerceivedHueColourMatches_Ebner1998', 'DatasetLoader_Ebner1998',
-    'build_Ebner1998'
+    'ConstantPerceivedHueColourMatches_Ebner1998',
+    'DatasetLoader_Ebner1998',
+    'build_Ebner1998',
 ]
 
 

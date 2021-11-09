@@ -34,8 +34,9 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'ConstantPerceivedHueColourMatches_Hung1995', 'DatasetLoader_Hung1995',
-    'build_Hung1995'
+    'ConstantPerceivedHueColourMatches_Hung1995',
+    'DatasetLoader_Hung1995',
+    'build_Hung1995',
 ]
 
 

@@ -31,7 +31,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['DatasetLoader_Zhao2009', 'build_Zhao2009']
+__all__ = [
+    'DatasetLoader_Zhao2009',
+    'build_Zhao2009',
+]
 
 
 class DatasetLoader_Zhao2009(AbstractDatasetLoader):

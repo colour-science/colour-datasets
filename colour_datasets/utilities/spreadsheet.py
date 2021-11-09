@@ -27,8 +27,11 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'column_to_index', 'row_to_index', 'index_to_column', 'index_to_row',
-    'cell_range_values'
+    'column_to_index',
+    'row_to_index',
+    'index_to_column',
+    'index_to_row',
+    'cell_range_values',
 ]
 
 

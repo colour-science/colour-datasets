@@ -20,7 +20,12 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['DEFAULT_CONFIGURATION', 'Configuration', 'use_sandbox', 'sandbox']
+__all__ = [
+    'DEFAULT_CONFIGURATION',
+    'Configuration',
+    'use_sandbox',
+    'sandbox',
+]
 
 DEFAULT_CONFIGURATION = {
     'repository':
@@ -78,9 +83,9 @@ def use_sandbox(state=True,
     ----------
     state : bool, optional
         Whether to use *Zenodo* sandbox.
-    api_url : unicode, optional
+    api_url : str, optional
         *Zenodo* sandbox url.
-    community : unicode, optional
+    community : str, optional
         *Zenodo* community.
     """
 
@@ -101,9 +106,9 @@ class sandbox:
 
     Parameters
     ----------
-    api_url : unicode, optional
+    api_url : str, optional
         *Zenodo* sandbox url.
-    community : unicode, optional
+    community : str, optional
         *Zenodo* community.
     """
 

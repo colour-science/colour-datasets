@@ -35,7 +35,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['Record', 'Community']
+__all__ = [
+    'Record',
+    'Community',
+]
 
 
 class Record:
@@ -45,7 +48,7 @@ class Record:
 
     Parameters
     ----------
-    data : unicode
+    data : str
         *Zenodo* record data.
     configuration : Configuration
         *Colour - Datasets* configuration.
@@ -115,7 +118,7 @@ class Record:
 
         Returns
         -------
-        unicode
+        str
            *Colour - Datasets* configuration.
         """
 
@@ -128,12 +131,12 @@ class Record:
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the the *Zenodo* record local repository with.
 
         Returns
         -------
-        unicode
+        str
             *Zenodo* record local repository.
         """
 
@@ -146,12 +149,12 @@ class Record:
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the *Zenodo* record id with.
 
         Returns
         -------
-        unicode
+        str
             *Zenodo* record id.
         """
 
@@ -164,12 +167,12 @@ class Record:
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the *Zenodo* record title with.
 
         Returns
         -------
-        unicode
+        str
             *Zenodo* record title.
         """
 
@@ -181,7 +184,7 @@ class Record:
 
         Returns
         -------
-        unicode
+        str
             Formatted string representation.
 
         Examples
@@ -200,12 +203,12 @@ class Record:
 
             Parameters
             ----------
-            text : unicode
+            text : str
                 Text to strips the *HTML* tags from.
 
             Returns
             -------
-            unicode
+            str
                 Text with *HTML* tags stripped of.
             """
 
@@ -260,7 +263,7 @@ class Record:
 
         Returns
         -------
-        unicode
+        str
             Evaluable string representation.
 
         Examples
@@ -293,7 +296,7 @@ class Record:
 
         Parameters
         ----------
-        id_ : unicode
+        id_ : str
             *Zenodo* record id.
         configuration : Configuration, optional
             configuration : Configuration
@@ -503,7 +506,7 @@ class Community(Mapping):
 
     Parameters
     ----------
-    data : unicode
+    data : str
         *Zenodo* community data.
     configuration : Configuration
         *Colour - Datasets* configuration.
@@ -586,7 +589,7 @@ class Community(Mapping):
 
         Returns
         -------
-        unicode
+        str
            *Colour - Datasets* configuration.
         """
 
@@ -599,12 +602,12 @@ class Community(Mapping):
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the the *Zenodo* community local repository with.
 
         Returns
         -------
-        unicode
+        str
             *Zenodo* community local repository.
         """
 
@@ -634,7 +637,7 @@ class Community(Mapping):
 
         Returns
         -------
-        unicode
+        str
             Formatted string representation.
 
         Examples
@@ -682,7 +685,7 @@ colour-science-datasets-tests/
 
         Returns
         -------
-        unicode
+        str
             Evaluable string representation.
 
         Examples
@@ -713,7 +716,7 @@ colour-science-datasets-tests/
 
         Parameters
         ----------
-        id_ : unicode
+        id_ : str
             *Zenodo* recordid.
 
         Returns
@@ -777,7 +780,7 @@ colour-science-datasets-tests/
 
         Parameters
         ----------
-        id_ : unicode
+        id_ : str
             *Zenodo* community id.
         configuration : Configuration, optional
             configuration : Configuration

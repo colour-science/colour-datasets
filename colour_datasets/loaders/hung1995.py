@@ -19,7 +19,7 @@ References
 
 import numpy as np
 import os
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
 
@@ -34,8 +34,9 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'ConstantPerceivedHueColourMatches_Hung1995', 'DatasetLoader_Hung1995',
-    'build_Hung1995'
+    'ConstantPerceivedHueColourMatches_Hung1995',
+    'DatasetLoader_Hung1995',
+    'build_Hung1995',
 ]
 
 
@@ -48,7 +49,7 @@ class ConstantPerceivedHueColourMatches_Hung1995(
 
     Parameters
     ----------
-    name : unicode
+    name : str
         *Hung and Berns (1995)* *Constant Hue Loci Data* hue angle or
         name.
     XYZ_r : array_like
@@ -87,7 +88,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):
@@ -101,7 +102,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Hung and Berns (1995)* *Constant Hue Loci Data* dataset content.
 
         Examples
@@ -116,9 +117,9 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
         super(DatasetLoader_Hung1995, self).sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
-        filenames = OrderedDict([
+        filenames = dict([
             ('Table I.csv', 'Reference colors.'),
             ('Table II.csv', 'Intra- and interobserver variances for each '
              'reference hue expressed in circumferential '
@@ -151,7 +152,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
         for table, experiment in [('Table III', 'CL'), ('Table IV', 'VL')]:
             key = 'Constant Hue Loci Data - {0}'.format(experiment)
-            self._content[key] = OrderedDict()
+            self._content[key] = dict()
             for hue in hues:
                 for sample_r in self._content['Table I']:
                     sample_r = sample_r.tolist()

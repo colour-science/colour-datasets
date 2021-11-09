@@ -40,7 +40,7 @@ import os
 import re
 import scipy.io
 import sys
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 
 from colour import SpectralDistribution, SpectralShape
 
@@ -57,8 +57,10 @@ __status__ = 'Production'
 __all__ = [
     'MatFileMetadata_KuopioUniversity',
     'read_sds_from_mat_file_KuopioUniversity',
-    'DatasetLoader_KuopioUniversity', 'build_KuopioUniversity',
-    'DATA_KUOPIO_UNIVERSITY', 'DATASET_LOADERS_KUOPIO_UNIVERSITY'
+    'DatasetLoader_KuopioUniversity',
+    'build_KuopioUniversity',
+    'DATA_KUOPIO_UNIVERSITY',
+    'DATASET_LOADERS_KUOPIO_UNIVERSITY',
 ]
 
 
@@ -71,7 +73,7 @@ class MatFileMetadata_KuopioUniversity(
 
     Parameters
     ----------
-    key : unicode
+    key : str
         *Matlab* *.mat* file key to extract the data from.
     shape : SpectralShape
         Spectral distributions shape.
@@ -89,7 +91,7 @@ def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):
 
     Parameters
     ----------
-    mat_file : unicode
+    mat_file : str
         *Matlab* *.mat* file.
     metadata : MatFileMetadata_KuopioUniversity
         Metadata required to read the spectral distributions in the *Matlab*
@@ -97,13 +99,13 @@ def read_sds_from_mat_file_KuopioUniversity(mat_file, metadata):
 
     Returns
     -------
-    OrderedDict
+    dict
         Spectral distributions from the *Matlab* *.mat* file.
     """
 
     matlab_data = scipy.io.loadmat(mat_file)
 
-    sds = OrderedDict()
+    sds = dict()
     table = matlab_data[metadata.key]
     wavelengths = metadata.shape.range()
 
@@ -142,7 +144,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     METADATA = None
@@ -165,13 +167,13 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *University of Kuopio* dataset content.
         """
 
         super(DatasetLoader_KuopioUniversity, self).sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         for path, metadata in self.METADATA.items():
             mat_path = os.path.join(self.record.repository, 'dataset', *path)
@@ -190,11 +192,11 @@ def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
 
     Parameters
     ----------
-    id_ : unicode
+    id_ : str
         Dataset record id, i.e. the *Zenodo* record number.
-    title : unicode
+    title : str
         *University of Kuopio* dataset loader title.
-    citation_key : unicode
+    citation_key : str
         *University of Kuopio* dataset citation key.
     metadata : dict
         Mapping of paths and
@@ -230,7 +232,7 @@ def _build_dataset_loader_class_KuopioUniversity(id_, title, citation_key,
 
         Returns
         -------
-        OrderedDict
+        dict
             *University of Kuopio* *{0}* dataset content. """ [1:].format(
         title)
 
@@ -461,6 +463,9 @@ for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
 
     DATASET_LOADERS_KUOPIO_UNIVERSITY[_id] = _partial_function
 
-    __all__ += [_dataset_loader_class.__name__, _build_function_name]
+    __all__ += [
+        _dataset_loader_class.__name__,
+        _build_function_name,
+    ]
 
 del _id, _data, _module, _partial_function, _build_function_name

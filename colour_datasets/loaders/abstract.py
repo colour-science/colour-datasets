@@ -17,7 +17,9 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['AbstractDatasetLoader']
+__all__ = [
+    'AbstractDatasetLoader',
+]
 
 
 class AbstractDatasetLoader(ABC):
@@ -55,7 +57,7 @@ class AbstractDatasetLoader(ABC):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self, record):
@@ -74,7 +76,7 @@ class AbstractDatasetLoader(ABC):
 
         Returns
         -------
-        unicode
+        str
             Dataset record.
         """
 
@@ -87,12 +89,12 @@ class AbstractDatasetLoader(ABC):
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the dataset id with.
 
         Returns
         -------
-        unicode
+        str
             Dataset id.
         """
 
@@ -110,7 +112,7 @@ class AbstractDatasetLoader(ABC):
 
         Returns
         -------
-        unicode
+        str
            Dataset content.
         """
 

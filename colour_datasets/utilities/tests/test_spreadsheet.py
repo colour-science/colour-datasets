@@ -20,8 +20,11 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'TestRowToIndex', 'TestIndexToRow', 'TestColumnToIndex',
-    'TestIndexToColumn', 'TestCellRangeValues'
+    'TestRowToIndex',
+    'TestIndexToRow',
+    'TestColumnToIndex',
+    'TestIndexToColumn',
+    'TestCellRangeValues',
 ]
 
 

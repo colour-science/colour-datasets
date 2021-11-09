@@ -18,7 +18,6 @@ References
 import json
 import glob
 import os
-from collections import OrderedDict
 
 from colour import MultiSpectralDistributions, SpectralDistribution
 from colour.continuous import MultiSignals, Signal
@@ -35,8 +34,11 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'SpectralDataHeader_AMPAS', 'SpectralDataMixin_AMPAS',
-    'SpectralDistribution_AMPAS', 'DatasetLoader_Dyer2017', 'build_Dyer2017'
+    'SpectralDataHeader_AMPAS',
+    'SpectralDataMixin_AMPAS',
+    'SpectralDistribution_AMPAS',
+    'DatasetLoader_Dyer2017',
+    'build_Dyer2017',
 ]
 
 
@@ -46,28 +48,28 @@ class SpectralDataHeader_AMPAS:
 
     Parameters
     ----------
-    schema_version : unicode, optional
+    schema_version : str, optional
         Version of the *A.M.P.A.S* spectral data schema.
-    catalog_number : unicode, optional
+    catalog_number : str, optional
         Manufacturer's product catalog number.
-    description : unicode, optional
+    description : str, optional
         Description of the spectral data in the spectral data JSON file.
-    document_creator : unicode, optional
+    document_creator : str, optional
         Creator of the spectral data JSON file, which may be a
         test lab, a research group, a standard body, a company or an
         individual.
-    unique_identifier : unicode, optional
+    unique_identifier : str, optional
         Description of the equipment used to measure the spectral data.
-    measurement_equipment : unicode, optional
+    measurement_equipment : str, optional
         Description of the equipment used to measure the spectral data.
-    laboratory : unicode, optional
+    laboratory : str, optional
         Testing laboratory name that performed the spectral data measurements.
-    document_creation_date : unicode, optional
+    document_creation_date : str, optional
         Spectral data JSON file creation date using the
         *JSON DateTime Data Type*, *YYYY-MM-DDThh:mm:ss*.
-    comments : unicode, optional
+    comments : str, optional
         Additional information relating to the tested and reported data.
-    license : unicode, optional
+    license : str, optional
         License under which the data is distributed.
 
     Attributes
@@ -146,12 +148,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the schema version with.
 
         Returns
         -------
-        unicode
+        str
             Schema version.
         """
 
@@ -176,12 +178,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the catalog number with.
 
         Returns
         -------
-        unicode
+        str
             Catalog number.
         """
 
@@ -206,12 +208,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the description with.
 
         Returns
         -------
-        unicode
+        str
             Description.
         """
 
@@ -236,12 +238,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the document creator with.
 
         Returns
         -------
-        unicode
+        str
             Document creator.
         """
 
@@ -266,12 +268,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the unique identifier with.
 
         Returns
         -------
-        unicode
+        str
             Unique identifier.
         """
 
@@ -296,12 +298,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the measurement equipment with.
 
         Returns
         -------
-        unicode
+        str
             Measurement equipment.
         """
 
@@ -326,12 +328,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the laboratory with.
 
         Returns
         -------
-        unicode
+        str
             Laboratory.
         """
 
@@ -356,12 +358,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the document creation date with.
 
         Returns
         -------
-        unicode
+        str
             Document creation date.
         """
 
@@ -386,12 +388,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the comments with.
 
         Returns
         -------
-        unicode
+        str
             Comments.
         """
 
@@ -416,12 +418,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the license with.
 
         Returns
         -------
-        unicode
+        str
             Comments.
         """
 
@@ -446,20 +448,20 @@ class SpectralDataMixin_AMPAS:
 
     Parameters
     ----------
-    path : unicode, optional
+    path : str, optional
         Spectral data JSON file path.
     header : SpectralDataHeader_AMPAS, optional
         *A.M.P.A.S.* spectral distribution header.
-    units : unicode, optional
+    units : str, optional
         **{'flux', 'absorptance', 'transmittance', 'reflectance', 'intensity',
         'irradiance', 'radiance', 'exitance', 'R-Factor', 'T-Factor',
         'relative', 'other'}**,
         Quantity of measurement for each element of the spectral data.
-    reflection_geometry : unicode, optional
+    reflection_geometry : str, optional
         **{'di:8', 'de:8', '8:di', '8:de', 'd:d', 'd:0', '45a:0', '45c:0',
         '0:45a', '45x:0', '0:45x', 'other'}**,
         Spectral reflectance factors geometric conditions.
-    transmission_geometry : unicode, optional
+    transmission_geometry : str, optional
         **{'0:0', 'di:0', 'de:0', '0:di', '0:de', 'd:d', 'other'}**,
         Spectral transmittance factors geometric conditions.
     bandwidth_FWHM : numeric, optional
@@ -549,12 +551,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the path with.
 
         Returns
         -------
-        unicode
+        str
             Path.
         """
 
@@ -609,12 +611,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the units with.
 
         Returns
         -------
-        unicode
+        str
             Spectral quantity.
         """
 
@@ -639,12 +641,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the reflection geometry with.
 
         Returns
         -------
-        unicode
+        str
             Reflection geometry.
         """
 
@@ -669,12 +671,12 @@ __init__`
 
         Parameters
         ----------
-        value : unicode
+        value : str
             Value to set the transmission geometry with.
 
         Returns
         -------
-        unicode
+        str
             Transmission geometry.
         """
 
@@ -810,20 +812,20 @@ class SpectralDistribution_AMPAS(SpectralDataMixin_AMPAS,
 
     Parameters
     ----------
-    path : unicode, optional
+    path : str, optional
         Spectral data JSON file path.
     header : SpectralDataHeader_AMPAS, optional
         *A.M.P.A.S.* spectral distribution header.
-    units : unicode, optional
+    units : str, optional
         **{'flux', 'absorptance', 'transmittance', 'reflectance', 'intensity',
         'irradiance', 'radiance', 'exitance', 'R-Factor', 'T-Factor',
         'relative', 'other'}**,
         Quantity of measurement for each element of the spectral data.
-    reflection_geometry : unicode, optional
+    reflection_geometry : str, optional
         **{'di:8', 'de:8', '8:di', '8:de', 'd:d', 'd:0', '45a:0', '45c:0',
         '0:45a', '45x:0', '0:45x', 'other'}**,
         Spectral reflectance factors geometric conditions.
-    transmission_geometry : unicode, optional
+    transmission_geometry : str, optional
         **{'0:0', 'di:0', 'de:0', '0:di', '0:de', 'd:d', 'other'}**,
         Spectral transmittance factors geometric conditions.
     bandwidth_FWHM : numeric, optional
@@ -860,20 +862,20 @@ class MultiSpectralDistributions_AMPAS(SpectralDataMixin_AMPAS,
 
     Parameters
     ----------
-    path : unicode, optional
+    path : str, optional
         Spectral data JSON file path.
     header : SpectralDataHeader_AMPAS, optional
         *A.M.P.A.S.* spectral distribution header.
-    units : unicode, optional
+    units : str, optional
         **{'flux', 'absorptance', 'transmittance', 'reflectance', 'intensity',
         'irradiance', 'radiance', 'exitance', 'R-Factor', 'T-Factor',
         'relative', 'other'}**,
         Quantity of measurement for each element of the spectral data.
-    reflection_geometry : unicode, optional
+    reflection_geometry : str, optional
         **{'di:8', 'de:8', '8:di', '8:de', 'd:d', 'd:0', '45a:0', '45c:0',
         '0:45a', '45x:0', '0:45x', 'other'}**,
         Spectral reflectance factors geometric conditions.
-    transmission_geometry : unicode, optional
+    transmission_geometry : str, optional
         **{'0:0', 'di:0', 'de:0', '0:di', '0:de', 'd:d', 'other'}**,
         Spectral transmittance factors geometric conditions.
     bandwidth_FWHM : numeric, optional
@@ -924,7 +926,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):
@@ -938,7 +940,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Dyer et al. (2017)* *RAW to ACES Utility Data* dataset content.
 
         Examples
@@ -953,10 +955,10 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
 
         super(DatasetLoader_Dyer2017, self).sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         for directory in ('camera', 'cmf', 'illuminant', 'training'):
-            self._content[directory] = OrderedDict()
+            self._content[directory] = dict()
             factory = (SpectralDistribution_AMPAS if directory == 'illuminant'
                        else MultiSpectralDistributions_AMPAS)
             glob_pattern = os.path.join(self.record.repository, 'dataset',

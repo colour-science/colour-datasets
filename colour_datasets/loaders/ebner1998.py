@@ -20,7 +20,7 @@ References
 import codecs
 import numpy as np
 import os
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 
 from colour.utilities import as_float_array
 
@@ -35,8 +35,9 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'ConstantPerceivedHueColourMatches_Ebner1998', 'DatasetLoader_Ebner1998',
-    'build_Ebner1998'
+    'ConstantPerceivedHueColourMatches_Ebner1998',
+    'DatasetLoader_Ebner1998',
+    'build_Ebner1998',
 ]
 
 
@@ -49,7 +50,7 @@ class ConstantPerceivedHueColourMatches_Ebner1998(
 
     Parameters
     ----------
-    name : unicode
+    name : str
         *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data* hue angle or
         name.
     XYZ_r : array_like
@@ -88,7 +89,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):
@@ -102,7 +103,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Ebner and Fairchild (1998)* Constant Perceived-Hue Data* dataset
             content.
 
@@ -118,8 +119,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
 
         super(DatasetLoader_Ebner1998, self).sync()
 
-        self._content = OrderedDict([('Constant Perceived-Hue Data',
-                                      OrderedDict())])
+        self._content = dict([('Constant Perceived-Hue Data', dict())])
 
         datafile_path = os.path.join(self.record.repository, 'dataset',
                                      'Ebner_Constant_Hue_Data.txt')

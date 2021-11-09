@@ -18,7 +18,6 @@ References
 
 import glob
 import os
-from collections import OrderedDict
 
 from colour.recovery import LUT3D_Jakob2019
 
@@ -32,7 +31,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['DatasetLoader_Jakob2019', 'build_Jakob2019']
+__all__ = [
+    'DatasetLoader_Jakob2019',
+    'build_Jakob2019',
+]
 
 
 class DatasetLoader_Jakob2019(AbstractDatasetLoader):
@@ -58,7 +60,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):
@@ -72,7 +74,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Jakob and Hanika (2019)* *Spectral Upsampling Coefficient Tables*
             dataset content.
 
@@ -88,7 +90,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
 
         super(DatasetLoader_Jakob2019, self).sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         tables_path = os.path.join(self.record.repository, 'dataset',
                                    'Jakob2019Spectral', 'supplement', 'tables')

@@ -17,7 +17,6 @@ References
 
 import numpy as np
 import os
-from collections import OrderedDict
 
 from colour import SpectralDistribution
 from colour.utilities import tsplit
@@ -32,7 +31,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['DatasetLoader_Labsphere2019', 'build_Labsphere2019']
+__all__ = [
+    'DatasetLoader_Labsphere2019',
+    'build_Labsphere2019',
+]
 
 
 class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
@@ -56,7 +58,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
-    ID : unicode
+    ID : str
     """
 
     def __init__(self):
@@ -70,7 +72,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
 
         Returns
         -------
-        OrderedDict
+        dict
             *Labsphere (2019)* *Labsphere SRS-99-020* dataset content.
 
         Examples
@@ -89,7 +91,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
                                'SRS-99-020.txt')
 
         values = tsplit(np.loadtxt(sd_path, delimiter='\t', skiprows=2))
-        self._content = OrderedDict([
+        self._content = dict([
             ('Labsphere SRS-99-020',
              SpectralDistribution(
                  values[1], values[0], name='Labsphere SRS-99-020')),

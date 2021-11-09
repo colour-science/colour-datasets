@@ -27,8 +27,12 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'suppress_stdout', 'TqdmUpTo', 'hash_md5', 'url_download', 'json_open',
-    'unpack_gzipfile'
+    'suppress_stdout',
+    'TqdmUpTo',
+    'hash_md5',
+    'url_download',
+    'json_open',
+    'unpack_gzipfile',
 ]
 
 
@@ -99,14 +103,14 @@ def hash_md5(filename, chunk_size=2 ** 16):
 
     Parameters
     ----------
-    filename : unicode
+    filename : str
         File to compute the *MD5* hash of.
     chunk_size : int, optional
         Chunk size to read from the file.
 
     Returns
     -------
-    unicode
+    str
         *MD5* hash of given file.
     """
 
@@ -129,11 +133,11 @@ def url_download(url, filename, md5=None, retries=3):
 
     Parameters
     ----------
-    url : unicode
+    url : str
         Url to download.
-    filename : unicode
+    filename : str
         File to save the url content at.
-    md5 : unicode, optional
+    md5 : str, optional
         *Message Digest 5 (MD5)* hash of the content at given url. If provided
         the saved content at given file will be hashed and compared to ``md5``.
     retries : int, optional
@@ -184,7 +188,7 @@ def json_open(url, retries=3):
 
     Parameters
     ----------
-    url : unicode
+    url : str
         Url to open.
     retries : int, optional
         Number of retries in case where a networking error occurs.
@@ -221,9 +225,9 @@ def unpack_gzipfile(filename, extraction_directory, *args):
 
     Parameters
     ----------
-    filename : unicode
+    filename : str
         *GZIP* file to extract.
-    extraction_directory : unicode
+    extraction_directory : str
         Directory where to extract the *GZIP* file.
 
     Other Parameters

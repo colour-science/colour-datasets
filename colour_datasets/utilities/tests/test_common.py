@@ -9,8 +9,12 @@ import tempfile
 import shutil
 
 from colour_datasets.loaders import build_Labsphere2019
-from colour_datasets.utilities import (hash_md5, url_download, json_open,
-                                       unpack_gzipfile)
+from colour_datasets.utilities import (
+    hash_md5,
+    url_download,
+    json_open,
+    unpack_gzipfile,
+)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'

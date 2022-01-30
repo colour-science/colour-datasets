@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Defines the unit tests for the :mod:`colour_datasets.records.configuration`
 module.
@@ -11,16 +10,16 @@ import textwrap
 from colour_datasets.records import Configuration, Record, Community
 from colour_datasets.utilities import json_open
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'TestRecord',
-    'TestCommunity',
+    "TestRecord",
+    "TestCommunity",
 ]
 
 
@@ -35,7 +34,7 @@ class TestRecord(unittest.TestCase):
         Initialises common tests attributes.
         """
 
-        self._data = json_open('https://zenodo.org/api/records/3245883')
+        self._data = json_open("https://zenodo.org/api/records/3245883")
         self._configuration = Configuration()
 
         self._record = Record(self._data, self._configuration)
@@ -45,8 +44,13 @@ class TestRecord(unittest.TestCase):
         Tests presence of required attributes.
         """
 
-        required_attributes = ('data', 'configuration', 'repository', 'id',
-                               'title')
+        required_attributes = (
+            "data",
+            "configuration",
+            "repository",
+            "id",
+            "title",
+        )
 
         for attribute in required_attributes:
             self.assertIn(attribute, dir(Record))
@@ -56,8 +60,15 @@ class TestRecord(unittest.TestCase):
         Tests presence of required methods.
         """
 
-        required_methods = ('__init__', '__str__', '__repr__', 'from_id',
-                            'synced', 'pull', 'remove')
+        required_methods = (
+            "__init__",
+            "__str__",
+            "__repr__",
+            "from_id",
+            "synced",
+            "pull",
+            "remove",
+        )
 
         for method in required_methods:
             self.assertIn(method, dir(Record))
@@ -85,14 +96,15 @@ class TestRecord(unittest.TestCase):
 
         self.assertEqual(
             self._record.repository,
-            os.path.join(self._configuration.repository, '3245883'))
+            os.path.join(self._configuration.repository, "3245883"),
+        )
 
     def test_id(self):
         """
         Tests :func:colour_datasets.records.zenodo.Record.id` property.
         """
 
-        self.assertEqual(self._record.id, '3245883')
+        self.assertEqual(self._record.id, "3245883")
 
     def test_title(self):
         """
@@ -102,7 +114,8 @@ class TestRecord(unittest.TestCase):
 
         self.assertEqual(
             self._record.title,
-            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
+            "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
+        )
 
     def test__init__(self):
         """
@@ -113,7 +126,8 @@ class TestRecord(unittest.TestCase):
 
         self.assertEqual(
             record.title,
-            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
+            "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
+        )
 
     def test__str__(self):
         """
@@ -122,7 +136,8 @@ class TestRecord(unittest.TestCase):
 
         self.assertEqual(
             str(self._record),
-            textwrap.dedent("""
+            textwrap.dedent(
+                """
 Camera Spectral Sensitivity Database - Jiang et al. (2013) - 1.0.0
 ==================================================================
 
@@ -158,7 +173,9 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/camlist%26equipment.txt
 - camspec_database.txt : https://zenodo.org/api/files/\
 a9c418ed-c354-4a90-abc7-5f88c89de741/camspec_database.txt
 - urls.txt : https://zenodo.org/api/files/\
-a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt""")[1:])
+a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt"""
+            )[1:],
+        )
 
     def test__repr__(self):
         """
@@ -167,22 +184,25 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt""")[1:])
 
         self.assertIsInstance(
             eval(
-                repr(self._record), {}, {
-                    'Record': Record,
-                    'Configuration': Configuration
-                }), Record)
+                repr(self._record),
+                {},
+                {"Record": Record, "Configuration": Configuration},
+            ),
+            Record,
+        )
 
     def test_from_id(self):
         """
         Tests :func:`colour_datasets.records.zenodo.Record.from_id` method.
         """
 
-        record = Record.from_id('3245883')
+        record = Record.from_id("3245883")
 
         self.assertIsInstance(record, Record)
         self.assertEqual(
             record.title,
-            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
+            "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
+        )
 
     def test_synced(self):
         """
@@ -225,14 +245,16 @@ class TestCommunity(unittest.TestCase):
         """
 
         community_data = json_open(
-            'https://zenodo.org/api/communities/colour-science-datasets')
+            "https://zenodo.org/api/communities/colour-science-datasets"
+        )
         records_data = json_open(
-            'https://zenodo.org/api/records/?q=communities:'
-            'colour-science-datasets-tests')
+            "https://zenodo.org/api/records/?q=communities:"
+            "colour-science-datasets-tests"
+        )
 
         self._data = {
-            'community': community_data,
-            'records': records_data,
+            "community": community_data,
+            "records": records_data,
         }
         self._configuration = Configuration()
 
@@ -243,8 +265,12 @@ class TestCommunity(unittest.TestCase):
         Tests presence of required attributes.
         """
 
-        required_attributes = ('data', 'configuration', 'repository',
-                               'records')
+        required_attributes = (
+            "data",
+            "configuration",
+            "repository",
+            "records",
+        )
 
         for attribute in required_attributes:
             self.assertIn(attribute, dir(Community))
@@ -254,9 +280,18 @@ class TestCommunity(unittest.TestCase):
         Tests presence of required methods.
         """
 
-        required_methods = ('__init__', '__str__', '__repr__', '__getitem__',
-                            '__iter__', '__len__', 'from_id', 'synced', 'pull',
-                            'remove')
+        required_methods = (
+            "__init__",
+            "__str__",
+            "__repr__",
+            "__getitem__",
+            "__iter__",
+            "__len__",
+            "from_id",
+            "synced",
+            "pull",
+            "remove",
+        )
 
         for method in required_methods:
             self.assertIn(method, dir(Community))
@@ -282,15 +317,16 @@ class TestCommunity(unittest.TestCase):
         property.
         """
 
-        self.assertEqual(self._community.repository,
-                         self._configuration.repository)
+        self.assertEqual(
+            self._community.repository, self._configuration.repository
+        )
 
     def test_records(self):
         """
         Tests :func:colour_datasets.records.zenodo.Community.records` property.
         """
 
-        self.assertIn('3245883', list(self._community.records))
+        self.assertIn("3245883", list(self._community.records))
 
     def test__init__(self):
         """
@@ -300,8 +336,9 @@ class TestCommunity(unittest.TestCase):
         community = Community(self._data, self._configuration)
 
         self.assertEqual(
-            community['3245883'].title,
-            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
+            community["3245883"].title,
+            "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
+        )
 
     def test__str__(self):
         """
@@ -312,7 +349,8 @@ class TestCommunity(unittest.TestCase):
 
         self.assertEqual(
             str(self._community),
-            textwrap.dedent("""
+            textwrap.dedent(
+                """
 colour-science-datasets
 =======================
 
@@ -327,7 +365,9 @@ Datasets
 [ ] 3245875 : Labsphere SRS-99-020 - Labsphere (2019)
 [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts \
 - X-Rite (2016)
-[ ] 3252742 : Observer Function Database - Asano (2015)""")[1:])
+[ ] 3252742 : Observer Function Database - Asano (2015)"""
+            )[1:],
+        )
 
     def test__repr__(self):
         """
@@ -336,10 +376,12 @@ Datasets
 
         self.assertIsInstance(
             eval(
-                repr(self._community), {}, {
-                    'Community': Community,
-                    'Configuration': Configuration
-                }), Community)
+                repr(self._community),
+                {},
+                {"Community": Community, "Configuration": Configuration},
+            ),
+            Community,
+        )
 
     def test__getitem__(self):
         """
@@ -347,8 +389,9 @@ Datasets
         method.
         """
 
-        self.assertIs(self._community['3245883'],
-                      self._community.records['3245883'])
+        self.assertIs(
+            self._community["3245883"], self._community.records["3245883"]
+        )
 
     def test__iter__(self):
         """
@@ -357,7 +400,8 @@ Datasets
         """
 
         self.assertListEqual(
-            list(self._community), list(self._community.records))
+            list(self._community), list(self._community.records)
+        )
 
     def test__len__(self):
         """
@@ -372,12 +416,13 @@ Datasets
         Tests :func:`colour_datasets.records.zenodo.Community.from_id` method.
         """
 
-        community = Community.from_id('colour-science-datasets')
+        community = Community.from_id("colour-science-datasets")
 
         self.assertIsInstance(community, Community)
         self.assertEqual(
-            community['3245883'].title,
-            'Camera Spectral Sensitivity Database - Jiang et al. (2013)')
+            community["3245883"].title,
+            "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
+        )
 
     def test_synced(self):
         """
@@ -408,5 +453,5 @@ Datasets
         self.assertFalse(self._community.synced())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
 ==========================================================
@@ -29,16 +28,16 @@ from colour.utilities import as_float_array
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'DatasetLoader_Jiang2013',
-    'build_Jiang2013',
+    "DatasetLoader_Jiang2013",
+    "build_Jiang2013",
 ]
 
 
@@ -61,7 +60,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
     :cite:`Jiang2013`
     """
 
-    ID = '3245883'
+    ID = "3245883"
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
@@ -69,8 +68,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(DatasetLoader_Jiang2013,
-              self).__init__(datasets()[DatasetLoader_Jiang2013.ID])
+        super().__init__(datasets()[DatasetLoader_Jiang2013.ID])
 
     def load(self):
         """
@@ -93,31 +91,35 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
         28
         """
 
-        super(DatasetLoader_Jiang2013, self).sync()
+        super().sync()
 
         shape = SpectralShape(400, 720, 10)
 
         self._content = dict()
-        database_path = os.path.join(self.record.repository, 'dataset',
-                                     'camspec_database.txt')
-        with codecs.open(database_path, encoding='utf-8') as database_file:
+        database_path = os.path.join(
+            self.record.repository, "dataset", "camspec_database.txt"
+        )
+        with codecs.open(database_path, encoding="utf-8") as database_file:
             lines = filter(
-                None, (line.strip() for line in database_file.readlines()))
+                None, (line.strip() for line in database_file.readlines())
+            )
             camera = None
             for line in lines:
-                if re.match('[a-zA-Z]+', line):
+                if re.match("[a-zA-Z]+", line):
                     camera = line
                     self._content[camera] = []
                     continue
 
                 self._content[camera].extend(
-                    [float(value) for value in line.split('\t')])
+                    [float(value) for value in line.split("\t")]
+                )
 
         for camera, values in self._content.items():
             self._content[camera] = RGB_CameraSensitivities(
                 np.transpose(as_float_array(values).reshape([3, 33])),
                 shape.range(),
-                name=camera)
+                name=camera,
+            )
 
         return self._content
 

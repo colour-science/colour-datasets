@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Zenodo
 ======
@@ -28,16 +27,16 @@ from colour.utilities import warning
 from colour_datasets.utilities import url_download, json_open
 from colour_datasets.records import Configuration
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'Record',
-    'Community',
+    "Record",
+    "Community",
 ]
 
 
@@ -85,8 +84,9 @@ class Record:
     def __init__(self, data, configuration=None):
 
         self._data = data
-        self._configuration = (Configuration()
-                               if configuration is None else configuration)
+        self._configuration = (
+            Configuration() if configuration is None else configuration
+        )
 
     @property
     def data(self):
@@ -132,7 +132,7 @@ class Record:
         Parameters
         ----------
         value : str
-            Value to set the the *Zenodo* record local repository with.
+            Value to set the *Zenodo* record local repository with.
 
         Returns
         -------
@@ -158,7 +158,7 @@ class Record:
             *Zenodo* record id.
         """
 
-        return str(self._data['id'])
+        return str(self._data["id"])
 
     @property
     def title(self):
@@ -176,7 +176,7 @@ class Record:
             *Zenodo* record title.
         """
 
-        return self._data['metadata']['title']
+        return self._data["metadata"]["title"]
 
     def __str__(self):
         """
@@ -212,48 +212,52 @@ class Record:
                 Text with *HTML* tags stripped of.
             """
 
-            text = text.replace('&nbsp;', ' ').replace('\n\n', ' ')
+            text = text.replace("&nbsp;", " ").replace("\n\n", " ")
 
             parts = []
             parser = HTMLParser()
             parser.handle_data = parts.append
             parser.feed(text)
 
-            return ''.join(parts)
+            return "".join(parts)
 
-        metadata = self._data['metadata']
-        authors = '; '.join(
-            [creator['name'] for creator in metadata['creators']])
-        files = self._data['files']
+        metadata = self._data["metadata"]
+        authors = "; ".join(
+            [creator["name"] for creator in metadata["creators"]]
+        )
+        files = self._data["files"]
 
         representation = (
-            '{0} - {1}\n'
-            '{2}\n\n'
-            'Record ID        : {3}\n'
-            'Authors          : {4}\n'
-            'License          : {5}\n'
-            'DOI              : {6}\n'
-            'Publication Date : {7}\n'
-            'URL              : {8}\n\n'
-            'Description\n-----------\n\n{9}\n\n'
-            'Files\n-----\n\n{10}'.format(
-                metadata['title'],
-                metadata['version'],
-                '=' * (len(self.title) + 3 + len(metadata['version'])),
+            "{} - {}\n"
+            "{}\n\n"
+            "Record ID        : {}\n"
+            "Authors          : {}\n"
+            "License          : {}\n"
+            "DOI              : {}\n"
+            "Publication Date : {}\n"
+            "URL              : {}\n\n"
+            "Description\n-----------\n\n{}\n\n"
+            "Files\n-----\n\n{}".format(
+                metadata["title"],
+                metadata["version"],
+                "=" * (len(self.title) + 3 + len(metadata["version"])),
                 self.id,
                 authors,
-                metadata['license']['id'],
-                metadata['doi'],
-                metadata['publication_date'],
-                self._data['links']['html'],
-                '\n'.join(
-                    textwrap.wrap(strip_html(metadata['description']), 79)),
-                '\n'.join([
-                    '- {0} : {1}'.format(file_data['key'],
-                                         file_data['links']['self'])
-                    for file_data in sorted(files, key=lambda x: x['key'])
-                ]),
-            ))
+                metadata["license"]["id"],
+                metadata["doi"],
+                metadata["publication_date"],
+                self._data["links"]["html"],
+                "\n".join(
+                    textwrap.wrap(strip_html(metadata["description"]), 79)
+                ),
+                "\n".join(
+                    [
+                        f"- {file_data['key']} : {file_data['links']['self']}"
+                        for file_data in sorted(files, key=lambda x: x["key"])
+                    ]
+                ),
+            )
+        )
 
         return representation
 
@@ -279,14 +283,20 @@ class Record:
              'created': '2019-06-14T09:34:15.765924+00:00',
         """
 
-        return '{0}(\n{1},\n{2}\n)'.format(
-            self.__class__.__name__, '\n'.join([
-                '    {0}'.format(line)
-                for line in pformat(self._data).splitlines()
-            ]), '    Configuration(\n{0}\n    )'.format('\n'.join([
-                '        {0}'.format(line)
-                for line in pformat(self._configuration).splitlines()
-            ])))
+        return "{}(\n{},\n{}\n)".format(
+            self.__class__.__name__,
+            "\n".join(
+                [f"    {line}" for line in pformat(self._data).splitlines()]
+            ),
+            "    Configuration(\n{}\n    )".format(
+                "\n".join(
+                    [
+                        f"        {line}"
+                        for line in pformat(self._configuration).splitlines()
+                    ]
+                )
+            ),
+        )
 
     @staticmethod
     def from_id(id_, configuration=None, retries=3):
@@ -317,13 +327,14 @@ class Record:
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
-        configuration = (Configuration()
-                         if configuration is None else configuration)
+        configuration = (
+            Configuration() if configuration is None else configuration
+        )
 
         if not os.path.exists(configuration.repository):
             os.makedirs(configuration.repository)
 
-        record_url = '{0}/records/{1}'.format(configuration.api_url, id_)
+        record_url = f"{configuration.api_url}/records/{id_}"
 
         return Record(json_open(record_url, retries), configuration)
 
@@ -351,13 +362,17 @@ class Record:
         """
 
         downloads_directory = os.path.join(
-            self.repository, self._configuration.downloads_directory)
-        deflate_directory = os.path.join(self.repository,
-                                         self._configuration.deflate_directory)
-        return all([
-            os.path.exists(downloads_directory),
-            os.path.exists(deflate_directory),
-        ])
+            self.repository, self._configuration.downloads_directory
+        )
+        deflate_directory = os.path.join(
+            self.repository, self._configuration.deflate_directory
+        )
+        return all(
+            [
+                os.path.exists(downloads_directory),
+                os.path.exists(deflate_directory),
+            ]
+        )
 
     def pull(self, use_urls_txt_file=True, retries=3):
         """
@@ -385,21 +400,22 @@ class Record:
         True
         """
 
-        print('Pulling "{0}" record content...'.format(self.title))
+        print(f'Pulling "{self.title}" record content...')
 
         if not os.path.exists(self._configuration.repository):
             os.makedirs(self._configuration.repository)
 
         downloads_directory = os.path.join(
-            self.repository, self._configuration.downloads_directory)
+            self.repository, self._configuration.downloads_directory
+        )
         if not os.path.exists(downloads_directory):
             os.makedirs(downloads_directory)
 
         # As much as possible, the original file urls are used, those are
         # given by the content of :attr:`URLS_TXT_FILE` attribute file.
         urls_txt = None
-        for file_data in self.data['files']:
-            if file_data['key'] == self._configuration.urls_txt_file:
+        for file_data in self.data["files"]:
+            if file_data["key"] == self._configuration.urls_txt_file:
                 urls_txt = file_data
                 break
 
@@ -411,48 +427,60 @@ class Record:
             for url, md5 in urls.items():
                 filename = os.path.join(
                     downloads_directory,
-                    urllib.parse.unquote(url.split('/')[-1]))
-                url_download(url, filename, md5.split(':')[-1], retries)
+                    urllib.parse.unquote(url.split("/")[-1]),
+                )
+                url_download(url, filename, md5.split(":")[-1], retries)
 
         try:
             if use_urls_txt_file and urls_txt:
                 urls = {}
                 urls_txt_file = tempfile.mktemp()
-                url_download(urls_txt['links']['self'], urls_txt_file,
-                             urls_txt['checksum'].split(':')[-1], retries)
+                url_download(
+                    urls_txt["links"]["self"],
+                    urls_txt_file,
+                    urls_txt["checksum"].split(":")[-1],
+                    retries,
+                )
 
-                with open(urls_txt_file, 'r') as json_file:
+                with open(urls_txt_file) as json_file:
                     urls_txt_json = json.load(json_file)
-                    for url, md5 in urls_txt_json['urls'].items():
-                        urls[url] = md5.split(':')[-1]
+                    for url, md5 in urls_txt_json["urls"].items():
+                        urls[url] = md5.split(":")[-1]
 
                 shutil.copyfile(
                     urls_txt_file,
-                    os.path.join(downloads_directory,
-                                 self._configuration.urls_txt_file))
+                    os.path.join(
+                        downloads_directory, self._configuration.urls_txt_file
+                    ),
+                )
 
                 _urls_download(urls)
             else:
                 raise ValueError(
-                    '"{0}" file was not found in record data!'.format(
-                        self._configuration.urls_txt_file))
+                    f'"{self._configuration.urls_txt_file}" file was not '
+                    f"found in record data!"
+                )
         except (urllib.error.URLError, ValueError) as error:
-            warning('An error occurred using urls from "{0}" file: {1}\n'
-                    'Switching to record urls...'.format(
-                        self._configuration.urls_txt_file, error))
+            warning(
+                f"An error occurred using urls from "
+                f'"{self._configuration.urls_txt_file}" file: {error}\n'
+                f"Switching to record urls..."
+            )
 
             urls = {}
-            for file_data in self.data['files']:
-                if file_data['key'] == self._configuration.urls_txt_file:
+            for file_data in self.data["files"]:
+                if file_data["key"] == self._configuration.urls_txt_file:
                     continue
 
-                urls[file_data['links']['self']] = (
-                    file_data['checksum'].split(':')[-1])
+                urls[file_data["links"]["self"]] = file_data["checksum"].split(
+                    ":"
+                )[-1]
 
             _urls_download(urls)
 
-        deflate_directory = os.path.join(self.repository,
-                                         self._configuration.deflate_directory)
+        deflate_directory = os.path.join(
+            self.repository, self._configuration.deflate_directory
+        )
         if os.path.exists(deflate_directory):
             shutil.rmtree(deflate_directory, onerror=_remove_readonly)
 
@@ -465,20 +493,22 @@ class Record:
 
             basename, extension = os.path.splitext(filename)
             basename = os.path.basename(basename)
-            if extension.lower() in ('.zip', '.tar', '.gz', '.bz2'):
-                if basename.lower().endswith('.tar'):
-                    basename = basename.rsplit('.', 1)[0]
+            if extension.lower() in (".zip", ".tar", ".gz", ".bz2"):
+                if basename.lower().endswith(".tar"):
+                    basename = basename.rsplit(".", 1)[0]
 
-                basename = basename.replace('.', '_')
+                basename = basename.replace(".", "_")
                 unpacking_directory = os.path.join(deflate_directory, basename)
 
-                print('Unpacking "{0}" archive...'.format(filename))
-                setuptools.archive_util.unpack_archive(filename,
-                                                       unpacking_directory)
+                print(f'Unpacking "{filename}" archive...')
+                setuptools.archive_util.unpack_archive(
+                    filename, unpacking_directory
+                )
                 os.remove(filename)
 
-        with open(os.path.join(self.repository, 'record.json'),
-                  'w') as record_json:
+        with open(
+            os.path.join(self.repository, "record.json"), "w"
+        ) as record_json:
             json.dump(self.data, record_json, indent=4, sort_keys=True)
 
     def remove(self):
@@ -550,13 +580,13 @@ class Community(Mapping):
 
     def __init__(self, data, configuration=None):
         self._data = data
-        self._configuration = (Configuration()
-                               if configuration is None else configuration)
+        self._configuration = (
+            Configuration() if configuration is None else configuration
+        )
 
-        hits = self._data['records']['hits']['hits']
+        hits = self._data["records"]["hits"]["hits"]
         self._records = {
-            str(hit['id']): Record(hit, self._configuration)
-            for hit in hits
+            str(hit["id"]): Record(hit, self._configuration) for hit in hits
         }
 
     @property
@@ -603,7 +633,7 @@ class Community(Mapping):
         Parameters
         ----------
         value : str
-            Value to set the the *Zenodo* community local repository with.
+            Value to set the *Zenodo* community local repository with.
 
         Returns
         -------
@@ -654,28 +684,33 @@ class Community(Mapping):
 colour-science-datasets-tests/
         """
 
-        datasets = '\n'.join([
-            '[{0}] {1} : {2}'.format('x' if dataset.synced() else ' ',
-                                     dataset.id, dataset.title)
-            for dataset in sorted(self.values(), key=lambda x: x.title)
-        ])
-        representation = ('{0}\n'
-                          '{1}\n\n'
-                          'Datasets : {2}\n'
-                          'Synced   : {3}\n'
-                          'URL      : {4}\n\n'
-                          'Datasets\n--------\n\n'
-                          '{5}'.format(
-                              self._configuration.community,
-                              '=' * len(self._configuration.community),
-                              len(self),
-                              len([
-                                  dataset for dataset in self.values()
-                                  if dataset.synced()
-                              ]),
-                              self._data['community']['links']['html'],
-                              datasets,
-                          ))
+        datasets = "\n".join(
+            [
+                (
+                    f"[{'x' if dataset.synced() else ' '}] "
+                    f"{dataset.id} : {dataset.title}"
+                )
+                for dataset in sorted(self.values(), key=lambda x: x.title)
+            ]
+        )
+        representation = (
+            "{}\n"
+            "{}\n\n"
+            "Datasets : {}\n"
+            "Synced   : {}\n"
+            "URL      : {}\n\n"
+            "Datasets\n--------\n\n"
+            "{}".format(
+                self._configuration.community,
+                "=" * len(self._configuration.community),
+                len(self),
+                len(
+                    [dataset for dataset in self.values() if dataset.synced()]
+                ),
+                self._data["community"]["links"]["html"],
+                datasets,
+            )
+        )
 
         return representation
 
@@ -701,14 +736,20 @@ colour-science-datasets-tests/
                            'description': '',
         """
 
-        return '{0}(\n{1},\n{2}\n)'.format(
-            self.__class__.__name__, '\n'.join([
-                '    {0}'.format(line)
-                for line in pformat(self._data).splitlines()
-            ]), '    Configuration(\n{0}\n    )'.format('\n'.join([
-                '        {0}'.format(line)
-                for line in pformat(self._configuration).splitlines()
-            ])))
+        return "{}(\n{},\n{}\n)".format(
+            self.__class__.__name__,
+            "\n".join(
+                [f"    {line}" for line in pformat(self._data).splitlines()]
+            ),
+            "    Configuration(\n{}\n    )".format(
+                "\n".join(
+                    [
+                        f"        {line}"
+                        for line in pformat(self._configuration).splitlines()
+                    ]
+                )
+            ),
+        )
 
     def __getitem__(self, id_):
         """
@@ -802,47 +843,56 @@ colour-science-datasets-tests/
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
-        configuration = (Configuration()
-                         if configuration is None else configuration)
+        configuration = (
+            Configuration() if configuration is None else configuration
+        )
         configuration.community = id_
 
         if not os.path.exists(configuration.repository):
             os.makedirs(configuration.repository)
 
-        community_url = '{0}/communities/{1}'.format(configuration.api_url,
-                                                     configuration.community)
+        community_url = (
+            f"{configuration.api_url}/communities/{configuration.community}"
+        )
         # NOTE: Retrieving 512 datasets at most. This should cover needs for
         # the foreseeable future. There is likely an undocumented hard limit on
         # "Zenodo" server side.
-        records_url = '{0}/records/?q=communities:{1}&size=512'.format(
-            configuration.api_url, configuration.community)
+        records_url = (
+            f"{configuration.api_url}/records/"
+            f"?q=communities:{configuration.community}&size=512"
+        )
 
         community_json_filename = os.path.join(
             configuration.repository,
-            '{0}-community.json'.format(configuration.community))
+            f"{configuration.community}-community.json",
+        )
         records_json_filename = os.path.join(
-            configuration.repository,
-            '{0}-records.json'.format(configuration.community))
+            configuration.repository, f"{configuration.community}-records.json"
+        )
 
         try:
             community_data = json_open(community_url, retries)
             records_data = json_open(records_url, retries)
 
             for key, value in {
-                    community_json_filename: community_data,
-                    records_json_filename: records_data,
+                community_json_filename: community_data,
+                records_json_filename: records_data,
             }.items():
-                with open(key, 'w') as json_file:
+                with open(key, "w") as json_file:
                     json.dump(value, json_file, indent=4, sort_keys=True)
         except (urllib.error.URLError, ValueError):
-            warning('Retrieving the "{0}" community data failed '
-                    'after {1} attempts, '
-                    'attempting to use cached local data!')
-            if not all([
+            warning(
+                'Retrieving the "{0}" community data failed '
+                "after {1} attempts, "
+                "attempting to use cached local data!"
+            )
+            if not all(
+                [
                     os.path.exists(community_json_filename),
                     os.path.exists(records_json_filename),
-            ]):
-                raise RuntimeError('Local files were not found, aborting!')
+                ]
+            ):
+                raise RuntimeError("Local files were not found, aborting!")
 
             with open(community_json_filename) as json_file:
                 community_data = json.loads(json_file.read())
@@ -851,8 +901,8 @@ colour-science-datasets-tests/
                 records_data = json.loads(json_file.read())
 
         data = {
-            'community': community_data,
-            'records': records_data,
+            "community": community_data,
+            "records": records_data,
         }
 
         return Community(data, configuration)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Labsphere SRS-99-020 - Labsphere (2019)
 =======================================
@@ -24,16 +23,16 @@ from colour.utilities import tsplit
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'DatasetLoader_Labsphere2019',
-    'build_Labsphere2019',
+    "DatasetLoader_Labsphere2019",
+    "build_Labsphere2019",
 ]
 
 
@@ -54,7 +53,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
     :cite:`Labsphere2019`
     """
 
-    ID = '3245875'
+    ID = "3245875"
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
@@ -62,8 +61,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(DatasetLoader_Labsphere2019,
-              self).__init__(datasets()[DatasetLoader_Labsphere2019.ID])
+        super().__init__(datasets()[DatasetLoader_Labsphere2019.ID])
 
     def load(self):
         """
@@ -85,17 +83,23 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
         1
         """
 
-        super(DatasetLoader_Labsphere2019, self).sync()
+        super().sync()
 
-        sd_path = os.path.join(self.record.repository, 'dataset',
-                               'SRS-99-020.txt')
+        sd_path = os.path.join(
+            self.record.repository, "dataset", "SRS-99-020.txt"
+        )
 
-        values = tsplit(np.loadtxt(sd_path, delimiter='\t', skiprows=2))
-        self._content = dict([
-            ('Labsphere SRS-99-020',
-             SpectralDistribution(
-                 values[1], values[0], name='Labsphere SRS-99-020')),
-        ])
+        values = tsplit(np.loadtxt(sd_path, delimiter="\t", skiprows=2))
+        self._content = dict(
+            [
+                (
+                    "Labsphere SRS-99-020",
+                    SpectralDistribution(
+                        values[1], values[0], name="Labsphere SRS-99-020"
+                    ),
+                ),
+            ]
+        )
 
         return self._content
 

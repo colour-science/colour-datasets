@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Colour - Datasets
 =================
@@ -27,52 +26,51 @@ from .records import Community, Record, datasets
 from .records import sandbox
 from .loaders import load
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'Configuration',
+    "Configuration",
 ]
 __all__ += [
-    'Community',
-    'Record',
-    'datasets',
+    "Community",
+    "Record",
+    "datasets",
 ]
 __all__ += [
-    'sandbox',
+    "sandbox",
 ]
 __all__ += [
-    'load',
+    "load",
 ]
 
-__application_name__ = 'Colour - Datasets'
+__application_name__ = "Colour - Datasets"
 
-__major_version__ = '0'
-__minor_version__ = '1'
-__change_version__ = '1'
-__version__ = '.'.join(
-    (__major_version__,
-     __minor_version__,
-     __change_version__))  # yapf: disable
+__major_version__ = "0"
+__minor_version__ = "1"
+__change_version__ = "1"
+__version__ = ".".join(
+    (__major_version__, __minor_version__, __change_version__)
+)  # yapf: disable
 
 try:
     version = subprocess.check_output(  # nosec
-        ['git', 'describe'],
+        ["git", "describe"],
         cwd=os.path.dirname(__file__),
-        stderr=subprocess.STDOUT).strip()
-    version = version.decode('utf-8')
+        stderr=subprocess.STDOUT,
+    ).strip()
+    version = version.decode("utf-8")
 except Exception:
     version = __version__
 
-colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES['colour-datasets'] = (
-    version)
+colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES["colour-datasets"] = version
 
 # TODO: Remove legacy printing support when deemed appropriate.
 try:
-    np.set_printoptions(legacy='1.13')
+    np.set_printoptions(legacy="1.13")
 except TypeError:
     pass

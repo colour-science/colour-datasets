@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
-
 from .configuration import Configuration, sandbox, use_sandbox
 from .zenodo import Community, Record
 
 __all__ = [
-    'Configuration',
-    'sandbox',
-    'use_sandbox',
+    "Configuration",
+    "sandbox",
+    "use_sandbox",
 ]
 __all__ += [
-    'Community',
-    'Record',
+    "Community",
+    "Record",
 ]
 
 _COMMUNITY = None
@@ -48,5 +46,5 @@ def datasets():
 
 
 __all__ += [
-    'datasets',
+    "datasets",
 ]

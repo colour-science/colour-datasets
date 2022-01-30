@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Constant Hue Loci Data - Hung and Berns (1995)
 ==============================================
@@ -26,23 +25,26 @@ from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'ConstantPerceivedHueColourMatches_Hung1995',
-    'DatasetLoader_Hung1995',
-    'build_Hung1995',
+    "ConstantPerceivedHueColourMatches_Hung1995",
+    "DatasetLoader_Hung1995",
+    "build_Hung1995",
 ]
 
 
 class ConstantPerceivedHueColourMatches_Hung1995(
-        namedtuple('ConstantPerceivedHueColourMatches_Hung1995',
-                   ('name', 'XYZ_r', 'XYZ_cr', 'XYZ_ct', 'metadata'))):
+    namedtuple(
+        "ConstantPerceivedHueColourMatches_Hung1995",
+        ("name", "XYZ_r", "XYZ_cr", "XYZ_ct", "metadata"),
+    )
+):
     """
     Defines *Hung and Berns (1995)* *Constant Hue Loci Data*
     colour matches data for a given hue angle.
@@ -84,7 +86,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
     :cite:`Hung1995`
     """
 
-    ID = '3367463'
+    ID = "3367463"
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
@@ -92,8 +94,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(DatasetLoader_Hung1995,
-              self).__init__(datasets()[DatasetLoader_Hung1995.ID])
+        super().__init__(datasets()[DatasetLoader_Hung1995.ID])
 
     def load(self):
         """
@@ -115,46 +116,69 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         6
         """
 
-        super(DatasetLoader_Hung1995, self).sync()
+        super().sync()
 
         self._content = dict()
 
-        filenames = dict([
-            ('Table I.csv', 'Reference colors.'),
-            ('Table II.csv', 'Intra- and interobserver variances for each '
-             'reference hue expressed in circumferential '
-             'hue-angle difference.'),
-            ('Table III.csv', 'Weight-averaged constant hue loci for the CL '
-             'experiment.'),
-            ('Table IV.csv', 'Weight-averaged constant hue loci for the VL '
-             'experiment.'),
-        ])
+        filenames = dict(
+            [
+                ("Table I.csv", "Reference colors."),
+                (
+                    "Table II.csv",
+                    "Intra- and interobserver variances for each "
+                    "reference hue expressed in circumferential "
+                    "hue-angle difference.",
+                ),
+                (
+                    "Table III.csv",
+                    "Weight-averaged constant hue loci for the CL "
+                    "experiment.",
+                ),
+                (
+                    "Table IV.csv",
+                    "Weight-averaged constant hue loci for the VL "
+                    "experiment.",
+                ),
+            ]
+        )
 
         for filename in filenames:
-            datafile_path = os.path.join(self.record.repository, 'dataset',
-                                         filename)
+            datafile_path = os.path.join(
+                self.record.repository, "dataset", filename
+            )
 
-            self._content[filename.split('.')[0]] = np.genfromtxt(
+            self._content[filename.split(".")[0]] = np.genfromtxt(
                 datafile_path,
-                delimiter=',',
+                delimiter=",",
                 names=True,
                 dtype=None,
-                encoding='utf-8')
+                encoding="utf-8",
+            )
 
         hues = [
-            'Red', 'Red-yellow', 'Yellow', 'Yellow-green', 'Green',
-            'Green-cyan', 'Cyan', 'Cyan-blue', 'Blue', 'Blue-magenta',
-            'Magenta', 'Magenta-red'
+            "Red",
+            "Red-yellow",
+            "Yellow",
+            "Yellow-green",
+            "Green",
+            "Green-cyan",
+            "Cyan",
+            "Cyan-blue",
+            "Blue",
+            "Blue-magenta",
+            "Magenta",
+            "Magenta-red",
         ]
 
         XYZ_r = xy_to_XYZ(
-            CCS_ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['C'])
+            CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"]["C"]
+        )
 
-        for table, experiment in [('Table III', 'CL'), ('Table IV', 'VL')]:
-            key = 'Constant Hue Loci Data - {0}'.format(experiment)
+        for table, experiment in [("Table III", "CL"), ("Table IV", "VL")]:
+            key = f"Constant Hue Loci Data - {experiment}"
             self._content[key] = dict()
             for hue in hues:
-                for sample_r in self._content['Table I']:
+                for sample_r in self._content["Table I"]:
                     sample_r = sample_r.tolist()
                     if sample_r[0] == hue:
                         XYZ_cr = xyY_to_XYZ(sample_r[1:4]) / 100
@@ -162,8 +186,8 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
                 XYZ_ct = []
                 metadata = {
-                    'Color name': [],
-                    'C*uv': [],
+                    "Color name": [],
+                    "C*uv": [],
                 }
                 for sample_t in self._content[table]:
                     sample_t = sample_t.tolist()
@@ -171,13 +195,14 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
                         continue
 
                     XYZ_ct.append(sample_t[2:])
-                    metadata['Color name'].append(sample_t[0])
-                    metadata['C*uv'].append(sample_t[1])
+                    metadata["Color name"].append(sample_t[0])
+                    metadata["C*uv"].append(sample_t[1])
 
-                self._content[key][hue] = (
-                    ConstantPerceivedHueColourMatches_Hung1995(
-                        hue, XYZ_r, XYZ_cr,
-                        np.vstack(XYZ_ct) / 100, metadata))
+                self._content[key][
+                    hue
+                ] = ConstantPerceivedHueColourMatches_Hung1995(
+                    hue, XYZ_r, XYZ_cr, np.vstack(XYZ_ct) / 100, metadata
+                )
 
         return self._content
 

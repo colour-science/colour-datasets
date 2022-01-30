@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .common import (
     suppress_stdout,
     hash_md5,
@@ -16,16 +14,16 @@ from .spreadsheet import (
 )
 
 __all__ = [
-    'suppress_stdout',
-    'hash_md5',
-    'url_download',
-    'json_open',
-    'unpack_gzipfile',
+    "suppress_stdout",
+    "hash_md5",
+    "url_download",
+    "json_open",
+    "unpack_gzipfile",
 ]
 __all__ += [
-    'row_to_index',
-    'index_to_row',
-    'column_to_index',
-    'index_to_column',
-    'cell_range_values',
+    "row_to_index",
+    "index_to_row",
+    "column_to_index",
+    "index_to_column",
+    "cell_range_values",
 ]

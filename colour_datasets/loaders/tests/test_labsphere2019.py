@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Defines the unit tests for the :mod:`colour_datasets.loaders.labsphere2019`
 module.
@@ -13,16 +12,16 @@ from colour_datasets.loaders import (
     build_Labsphere2019,
 )
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'TestDatasetLoader_Labsphere2019',
-    'TestBuildLabsphere2019',
+    "TestDatasetLoader_Labsphere2019",
+    "TestBuildLabsphere2019",
 ]
 
 
@@ -37,7 +36,7 @@ DatasetLoader_Labsphere2019` class unit tests methods.
         Tests presence of required attributes.
         """
 
-        required_attributes = ('ID', )
+        required_attributes = ("ID",)
 
         for attribute in required_attributes:
             self.assertIn(attribute, dir(DatasetLoader_Labsphere2019))
@@ -47,7 +46,7 @@ DatasetLoader_Labsphere2019` class unit tests methods.
         Tests presence of required methods.
         """
 
-        required_methods = ('__init__', 'load')
+        required_methods = ("__init__", "load")
 
         for method in required_methods:
             self.assertIn(method, dir(DatasetLoader_Labsphere2019))
@@ -60,9 +59,12 @@ DatasetLoader_Labsphere2019.load` method.
 
         dataset = DatasetLoader_Labsphere2019()
         self.assertEqual(
-            sorted(dataset.load().keys()), ['Labsphere SRS-99-020'])
-        self.assertEqual(dataset.content['Labsphere SRS-99-020'].shape,
-                         SpectralShape(250, 2500, 1))
+            sorted(dataset.load().keys()), ["Labsphere SRS-99-020"]
+        )
+        self.assertEqual(
+            dataset.content["Labsphere SRS-99-020"].shape,
+            SpectralShape(250, 2500, 1),
+        )
 
 
 class TestBuildLabsphere2019(unittest.TestCase):
@@ -80,5 +82,5 @@ class TestBuildLabsphere2019(unittest.TestCase):
         self.assertIs(build_Labsphere2019(), build_Labsphere2019())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

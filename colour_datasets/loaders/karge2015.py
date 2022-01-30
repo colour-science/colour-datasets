@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Spectral Database of Commonly Used Cine Lighting - Karge et al. (2015)
 ======================================================================
@@ -27,16 +26,16 @@ from colour.io import read_sds_from_csv_file
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'DatasetLoader_Karge2015',
-    'build_Karge2015',
+    "DatasetLoader_Karge2015",
+    "build_Karge2015",
 ]
 
 
@@ -59,7 +58,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
     :cite:`Karge2015`
     """
 
-    ID = '4642271'
+    ID = "4642271"
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
@@ -67,8 +66,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(DatasetLoader_Karge2015,
-              self).__init__(datasets()[DatasetLoader_Karge2015.ID])
+        super().__init__(datasets()[DatasetLoader_Karge2015.ID])
 
     def load(self):
         """
@@ -91,25 +89,31 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
         7
         """
 
-        super(DatasetLoader_Karge2015, self).sync()
+        super().sync()
 
         self._content = defaultdict(lambda: defaultdict(dict))
 
-        database_root = os.path.join(self.record.repository, 'dataset',
-                                     'OFTP_full-sample-package_v2')
+        database_root = os.path.join(
+            self.record.repository, "dataset", "OFTP_full-sample-package_v2"
+        )
         for path in sorted(os.listdir(database_root)):
-            if path.split('_')[0] not in ('Arri', 'Bron', 'CMT', 'Dedolight'):
+            if path.split("_")[0] not in ("Arri", "Bron", "CMT", "Dedolight"):
                 continue
 
-            type_ = os.path.splitext(path)[0].replace('_v2', '').replace(
-                '_normalized', '').replace('_', ' ')
-            category = 'Normalised' if 'normalized' in path else 'Raw'
+            type_ = (
+                os.path.splitext(path)[0]
+                .replace("_v2", "")
+                .replace("_normalized", "")
+                .replace("_", " ")
+            )
+            category = "Normalised" if "normalized" in path else "Raw"
             path = os.path.join(database_root, path)
 
             sds = dict()
             for name, sd in read_sds_from_csv_file(
-                    path, transpose=True, delimiter=';').items():
-                if re.match('f\\d', name):
+                path, transpose=True, delimiter=";"
+            ).items():
+                if re.match("f\\d", name):
                     continue
 
                 sd.interpolator = LinearInterpolator

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Defines the unit tests for the :mod:`colour_datasets.utilities.common` module.
 """
@@ -16,18 +15,18 @@ from colour_datasets.utilities import (
     unpack_gzipfile,
 )
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'TestHashMd5',
-    'TestUrlDownload',
-    'TestJsonOpen',
-    'TestUnpackGzipfile',
+    "TestHashMd5",
+    "TestUrlDownload",
+    "TestJsonOpen",
+    "TestUnpackGzipfile",
 ]
 
 
@@ -47,15 +46,22 @@ class TestHashMd5(unittest.TestCase):
 
         self.assertEqual(
             hash_md5(
-                os.path.join(dataset.record.repository, 'dataset',
-                             'SRS-99-020.txt')),
-            '7c7a7b76c399e5c4e3afbd32e22b2b2e')
+                os.path.join(
+                    dataset.record.repository, "dataset", "SRS-99-020.txt"
+                )
+            ),
+            "7c7a7b76c399e5c4e3afbd32e22b2b2e",
+        )
 
         self.assertEqual(
             hash_md5(
-                os.path.join(dataset.record.repository, 'dataset',
-                             'SRS-99-020.txt'),
-                chunk_size=8), '7c7a7b76c399e5c4e3afbd32e22b2b2e')
+                os.path.join(
+                    dataset.record.repository, "dataset", "SRS-99-020.txt"
+                ),
+                chunk_size=8,
+            ),
+            "7c7a7b76c399e5c4e3afbd32e22b2b2e",
+        )
 
 
 class TestUrlDownload(unittest.TestCase):
@@ -87,28 +93,38 @@ class TestUrlDownload(unittest.TestCase):
         dataset.load()
 
         md5 = hash_md5(
-            os.path.join(dataset.record.repository, 'dataset',
-                         'SRS-99-020.txt'))
+            os.path.join(
+                dataset.record.repository, "dataset", "SRS-99-020.txt"
+            )
+        )
         url_download(
-            'https://zenodo.org/api/files/'
-            'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
-            self._temporary_file)
+            "https://zenodo.org/api/files/"
+            "a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt",
+            self._temporary_file,
+        )
 
         self.assertEqual(md5, hash_md5(self._temporary_file))
 
         url_download(
-            'https://zenodo.org/api/files/'
-            'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
-            self._temporary_file, md5)
+            "https://zenodo.org/api/files/"
+            "a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt",
+            self._temporary_file,
+            md5,
+        )
 
         self.assertRaises(
             IOError,
-            lambda: url_download('https://nemo.io', self._temporary_file))
+            lambda: url_download("https://nemo.io", self._temporary_file),
+        )
         self.assertRaises(
-            ValueError, lambda: url_download(
-                'https://zenodo.org/api/files/'
-                'a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt',
-                self._temporary_file, '7c7a7b76c399e5c4e3afbd32e22b2b2f'))
+            ValueError,
+            lambda: url_download(
+                "https://zenodo.org/api/files/"
+                "a1f87ae9-bf9b-4451-becd-b4b3d7e35cc5/SRS-99-020.txt",
+                self._temporary_file,
+                "7c7a7b76c399e5c4e3afbd32e22b2b2f",
+            ),
+        )
 
 
 class TestJsonOpen(unittest.TestCase):
@@ -122,11 +138,11 @@ class TestJsonOpen(unittest.TestCase):
         Tests :func:`colour_datasets.utilities.common.json_open` definition.
         """
 
-        data = json_open('https://zenodo.org/api/records/3245883')
+        data = json_open("https://zenodo.org/api/records/3245883")
 
-        self.assertEqual(data['id'], 3245883)
+        self.assertEqual(data["id"], 3245883)
 
-        self.assertRaises(IOError, lambda: json_open('https://nemo.io'))
+        self.assertRaises(IOError, lambda: json_open("https://nemo.io"))
 
 
 class TestUnpackGzipfile(unittest.TestCase):
@@ -157,16 +173,20 @@ class TestUnpackGzipfile(unittest.TestCase):
 
         unpack_gzipfile(
             os.path.join(
-                os.path.dirname(__file__), 'resources', 'example.txt.gz'),
-            self._temporary_directory)
+                os.path.dirname(__file__), "resources", "example.txt.gz"
+            ),
+            self._temporary_directory,
+        )
 
-        with open(os.path.join(self._temporary_directory,
-                               'example.txt')) as file_handle:
+        with open(
+            os.path.join(self._temporary_directory, "example.txt")
+        ) as file_handle:
             self.assertEqual(
                 file_handle.read(),
-                'This is the content of a text file stored '
-                'inside a "GZIP" file.')
+                "This is the content of a text file stored "
+                'inside a "GZIP" file.',
+            )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

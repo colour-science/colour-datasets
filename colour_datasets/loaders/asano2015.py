@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Observer Function Database - Asano (2015)
 =========================================
@@ -31,24 +30,26 @@ from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 from colour_datasets.utilities import cell_range_values, index_to_column
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'Specification_Asano2015',
-    'DatasetLoader_Asano2015',
-    'build_Asano2015',
+    "Specification_Asano2015",
+    "DatasetLoader_Asano2015",
+    "build_Asano2015",
 ]
 
 
 class Specification_Asano2015(
-        namedtuple(
-            'Specification_Asano2015',
-            ('XYZ_2', 'XYZ_10', 'LMS_2', 'LMS_10', 'parameters', 'others'))):
+    namedtuple(
+        "Specification_Asano2015",
+        ("XYZ_2", "XYZ_10", "LMS_2", "LMS_10", "parameters", "others"),
+    )
+):
     """
     Defines the *Asano (2015)* specification for an observer.
 
@@ -79,8 +80,9 @@ class Specification_Asano2015(
         class.
         """
 
-        return super(Specification_Asano2015, cls).__new__(
-            cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others)
+        return super().__new__(
+            cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others
+        )
 
 
 class DatasetLoader_Asano2015(AbstractDatasetLoader):
@@ -103,7 +105,7 @@ parse_workbook_Asano2015`
     :cite:`Asano2015`
     """
 
-    ID = '3252742'
+    ID = "3252742"
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
@@ -111,8 +113,7 @@ parse_workbook_Asano2015`
     """
 
     def __init__(self):
-        super(DatasetLoader_Asano2015,
-              self).__init__(datasets()[DatasetLoader_Asano2015.ID])
+        super().__init__(datasets()[DatasetLoader_Asano2015.ID])
 
     def load(self):
         """
@@ -134,63 +135,75 @@ parse_workbook_Asano2015`
         2
         """
 
-        super(DatasetLoader_Asano2015, self).sync()
+        super().sync()
 
-        self._content = dict([
-            ('Categorical Observers', dict()),
-            ('Colour Normal Observers', dict()),
-        ])
+        self._content = dict(
+            [
+                ("Categorical Observers", dict()),
+                ("Colour Normal Observers", dict()),
+            ]
+        )
 
         # Categorical Observers
-        workbook_path = os.path.join(self.record.repository, 'dataset',
-                                     'Data_10CatObs.xls')
+        workbook_path = os.path.join(
+            self.record.repository, "dataset", "Data_10CatObs.xls"
+        )
 
         observers = (1, 10)
-        template = 'Asano 2015 {0} Categorical Observer No. {1} {2}'
+        template = "Asano 2015 {0} Categorical Observer No. {1} {2}"
         for index, observer in self.parse_workbook_Asano2015(
-                workbook_path, template, observers).items():
-            self._content['Categorical Observers'][index] = (
-                Specification_Asano2015(
-                    observer['XYZ_2'],
-                    observer['XYZ_10'],
-                    observer['LMS_2'],
-                    observer['LMS_10'],
-                    observer['parameters'],
-                ))
+            workbook_path, template, observers
+        ).items():
+            self._content["Categorical Observers"][
+                index
+            ] = Specification_Asano2015(
+                observer["XYZ_2"],
+                observer["XYZ_10"],
+                observer["LMS_2"],
+                observer["LMS_10"],
+                observer["parameters"],
+            )
 
         # Colour Normal Observers
-        workbook_path = os.path.join(self.record.repository, 'dataset',
-                                     'Data_151Obs.xls')
+        workbook_path = os.path.join(
+            self.record.repository, "dataset", "Data_151Obs.xls"
+        )
 
         observers = (1, 151)
 
         # Other Information
-        column_in, column_out = (index_to_column(observers[0] - 1),
-                                 index_to_column(observers[1]))
+        column_in, column_out = (
+            index_to_column(observers[0] - 1),
+            index_to_column(observers[1]),
+        )
         workbook = xlrd.open_workbook(workbook_path)
         values = cell_range_values(
-            workbook.sheet_by_index(5), '{0}2:{1}9'.format(
-                column_in, column_out))
+            workbook.sheet_by_index(5), f"{column_in}2:{column_out}9"
+        )
         values.extend(
             cell_range_values(
-                workbook.sheet_by_index(5), '{0}12:{1}16'.format(
-                    column_in, column_out)))
+                workbook.sheet_by_index(5), f"{column_in}12:{column_out}16"
+            )
+        )
         values = np.transpose(values)
         header, values = values[0], values[1:]
 
-        template = 'Asano 2015 {0} Colour Normal Observer No. {1} {2}'
+        template = "Asano 2015 {0} Colour Normal Observer No. {1} {2}"
         for i, (index, observer) in enumerate(
-                self.parse_workbook_Asano2015(workbook_path, template,
-                                              observers).items()):
-            self._content['Colour Normal Observers'][index] = (
-                Specification_Asano2015(
-                    observer['XYZ_2'],
-                    observer['XYZ_10'],
-                    observer['LMS_2'],
-                    observer['LMS_10'],
-                    observer['parameters'],
-                    dict(zip(header, values[i])),
-                ))
+            self.parse_workbook_Asano2015(
+                workbook_path, template, observers
+            ).items()
+        ):
+            self._content["Colour Normal Observers"][
+                index
+            ] = Specification_Asano2015(
+                observer["XYZ_2"],
+                observer["XYZ_10"],
+                observer["LMS_2"],
+                observer["LMS_10"],
+                observer["parameters"],
+                dict(zip(header, values[i])),
+            )
 
         return self._content
 
@@ -217,30 +230,37 @@ parse_workbook_Asano2015`
         workbook = xlrd.open_workbook(workbook)
 
         # "CIE XYZ" and "LMS" CMFS.
-        column_in, column_out = (index_to_column(observers[0] + 1),
-                                 index_to_column(observers[1] + 1))
+        column_in, column_out = (
+            index_to_column(observers[0] + 1),
+            index_to_column(observers[1] + 1),
+        )
 
         shape = SpectralShape(390, 780, 5)
         wavelengths = shape.range()
         data = dict()
 
-        for i, cmfs in enumerate([(XYZ_ColourMatchingFunctions, 'XYZ'),
-                                  (LMS_ConeFundamentals, 'LMS')]):
+        for i, cmfs in enumerate(
+            [
+                (XYZ_ColourMatchingFunctions, "XYZ"),
+                (LMS_ConeFundamentals, "LMS"),
+            ]
+        ):
 
-            for j, degree in enumerate([(2, '2$^\\circ$'), (10,
-                                                            '10$^\\circ$')]):
+            for j, degree in enumerate(
+                [(2, "2$^\\circ$"), (10, "10$^\\circ$")]
+            ):
 
                 sheet = workbook.sheet_by_index(j + (i * 2))
 
                 x = np.transpose(
-                    cell_range_values(
-                        sheet, '{0}3:{1}81'.format(column_in, column_out)))
+                    cell_range_values(sheet, f"{column_in}3:{column_out}81")
+                )
                 y = np.transpose(
-                    cell_range_values(
-                        sheet, '{0}82:{1}160'.format(column_in, column_out)))
+                    cell_range_values(sheet, f"{column_in}82:{column_out}160")
+                )
                 z = np.transpose(
-                    cell_range_values(
-                        sheet, '{0}161:{1}239'.format(column_in, column_out)))
+                    cell_range_values(sheet, f"{column_in}161:{column_out}239")
+                )
 
                 for k in range(observers[1]):
                     observer = k + 1
@@ -248,28 +268,34 @@ parse_workbook_Asano2015`
                     if data.get(observer) is None:
                         data[observer] = dict()
 
-                    key = '{0}_{1}'.format(cmfs[1], degree[0])
+                    key = f"{cmfs[1]}_{degree[0]}"
                     data[observer][key] = cmfs[0](
                         rgb,
                         domain=wavelengths,
                         name=template.format(degree[0], observer, cmfs[1]),
-                        strict_name=template.format(degree[0], observer,
-                                                    cmfs[1]))
+                        strict_name=template.format(
+                            degree[0], observer, cmfs[1]
+                        ),
+                    )
 
         # Parameters
-        column_in, column_out = (index_to_column(observers[0] - 1),
-                                 index_to_column(observers[1]))
+        column_in, column_out = (
+            index_to_column(observers[0] - 1),
+            index_to_column(observers[1]),
+        )
 
         values = np.transpose(
             cell_range_values(
-                workbook.sheet_by_index(4), '{0}2:{1}10'.format(
-                    column_in, column_out)))
+                workbook.sheet_by_index(4), f"{column_in}2:{column_out}10"
+            )
+        )
         header, values = values[0], values[1:]
 
         for i in range(observers[1]):
             observer = i + 1
-            data[observer]['parameters'] = dict(
-                zip(header, as_float_array(values[i])))
+            data[observer]["parameters"] = dict(
+                zip(header, as_float_array(values[i]))
+            )
 
         return data
 

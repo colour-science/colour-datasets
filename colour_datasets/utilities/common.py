@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Common Utilities
 ================
@@ -19,20 +18,20 @@ import urllib.request
 from tqdm import tqdm
 from cachetools import cached, TTLCache
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'suppress_stdout',
-    'TqdmUpTo',
-    'hash_md5',
-    'url_download',
-    'json_open',
-    'unpack_gzipfile',
+    "suppress_stdout",
+    "TqdmUpTo",
+    "hash_md5",
+    "url_download",
+    "json_open",
+    "unpack_gzipfile",
 ]
 
 
@@ -47,7 +46,7 @@ class suppress_stdout:
         """
 
         self._stdout = sys.stdout
-        sys.stdout = open(os.devnull, 'w')
+        sys.stdout = open(os.devnull, "w")
 
         return self
 
@@ -116,7 +115,7 @@ def hash_md5(filename, chunk_size=2 ** 16):
 
     md5 = hashlib.md5()
 
-    with open(filename, 'rb') as file_object:
+    with open(filename, "rb") as file_object:
         while True:
             chunk = file_object.read(chunk_size)
             if not chunk:
@@ -155,28 +154,32 @@ def url_download(url, filename, md5=None, retries=3):
     while attempt != retries:
         try:
             with TqdmUpTo(
-                    unit='B',
-                    unit_scale=True,
-                    miniters=1,
-                    desc='Downloading "{0}" file'.format(
-                        url.split('/')[-1])) as progress:
+                unit="B",
+                unit_scale=True,
+                miniters=1,
+                desc=f"Downloading \"{url.split('/')[-1]}\" file",
+            ) as progress:
                 urllib.request.urlretrieve(
                     url,
                     filename=filename,
                     reporthook=progress.update_to,
-                    data=None)
+                    data=None,
+                )
 
             if md5 is not None:
                 if md5.lower() != hash_md5(filename):
                     raise ValueError(
-                        '"MD5" hash of "{0}" file '
-                        'does not match the expected hash!'.format(filename))
+                        f'"MD5" hash of "{filename}" file does not match the '
+                        f"expected hash!"
+                    )
 
             attempt = retries
-        except (urllib.error.URLError, IOError, ValueError) as error:
+        except (urllib.error.URLError, OSError, ValueError) as error:
             attempt += 1
-            print('An error occurred while downloading "{0}" file '
-                  'during attempt {1}, retrying...'.format(filename, attempt))
+            print(
+                f'An error occurred while downloading "{filename}" file '
+                f"during attempt {attempt}, retrying..."
+            )
             if attempt == retries:
                 raise error
 
@@ -211,10 +214,12 @@ def json_open(url, retries=3):
             return json.loads(urllib.request.urlopen(url).read())
 
             attempt = retries
-        except (urllib.error.URLError, IOError, ValueError) as error:
+        except (urllib.error.URLError, OSError, ValueError) as error:
             attempt += 1
-            print('An error occurred while opening "{0}" url '
-                  'during attempt {1}, retrying...'.format(url, attempt))
+            print(
+                f'An error occurred while opening "{url}" url during attempt '
+                f"{attempt}, retrying..."
+            )
             if attempt == retries:
                 raise error
 
@@ -247,20 +252,22 @@ def unpack_gzipfile(filename, extraction_directory, *args):
     """
 
     extraction_path = os.path.join(
-        extraction_directory,
-        os.path.splitext(os.path.basename(filename))[0])
+        extraction_directory, os.path.splitext(os.path.basename(filename))[0]
+    )
 
     if not os.path.exists(extraction_directory):
         os.makedirs(extraction_directory)
 
     try:
-        with gzip.open(filename) as gzip_file, open(extraction_path,
-                                                    'wb') as output_file:
+        with gzip.open(filename) as gzip_file, open(
+            extraction_path, "wb"
+        ) as output_file:
             shutil.copyfileobj(gzip_file, output_file)
     except Exception as e:
         print(e)
         raise setuptools.archive_util.UnrecognizedFormat(
-            '{0} is not a "GZIP" file!'.format(filename))
+            f'{filename} is not a "GZIP" file!'
+        )
 
     return True
 

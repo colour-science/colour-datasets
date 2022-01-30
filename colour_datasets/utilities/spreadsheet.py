@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Spreadsheet Utilities
 =====================
@@ -15,23 +14,23 @@ import re
 
 from colour.utilities import CaseInsensitiveMapping
 
-__author__ = 'Colour Developers, Openpyxl Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__copyright__ += ', '
-__copyright__ = 'Copyright (C) 2010 openpyxl'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__license__ += ', '
-__license__ += 'MIT Licence - https://opensource.org/licenses/MIT'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers, Openpyxl Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__copyright__ += ", "
+__copyright__ = "Copyright (C) 2010 openpyxl"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ += ", "
+__license__ += "MIT Licence - https://opensource.org/licenses/MIT"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'column_to_index',
-    'row_to_index',
-    'index_to_column',
-    'index_to_row',
-    'cell_range_values',
+    "column_to_index",
+    "row_to_index",
+    "index_to_column",
+    "index_to_row",
+    "cell_range_values",
 ]
 
 
@@ -64,8 +63,9 @@ def _column_number_to_letters(number):
     'DX'
     """
 
-    assert 1 <= number <= 18278, (
-        'Column number {0} must be in range [1, 18278]!'.format(number))
+    assert (
+        1 <= number <= 18278
+    ), f"Column number {number} must be in range [1, 18278]!"
 
     letters = []
     while number > 0:
@@ -75,7 +75,7 @@ def _column_number_to_letters(number):
             number -= 1
         letters.append(chr(remainder + 64))
 
-    return ''.join(reversed(letters))
+    return "".join(reversed(letters))
 
 
 _LETTERS_TO_NUMBER_CACHE = CaseInsensitiveMapping()
@@ -120,7 +120,7 @@ def row_to_index(row):
 
     row = int(row)
 
-    assert row > 0, 'Row must be greater than 0!'
+    assert row > 0, "Row must be greater than 0!"
 
     return row - 1
 
@@ -197,8 +197,9 @@ def index_to_column(index):
 
 
 _CELL_RANGE_REGEX = re.compile(
-    r'^[$]?(?P<column_in>[A-Za-z]{1,3})?[$]?(?P<row_in>\d+)?'
-    r'(:[$]?(?P<column_out>[A-Za-z]{1,3})?[$]?(?P<row_out>\d+)?)?$')
+    r"^[$]?(?P<column_in>[A-Za-z]{1,3})?[$]?(?P<row_in>\d+)?"
+    r"(:[$]?(?P<column_out>[A-Za-z]{1,3})?[$]?(?P<row_out>\d+)?)?$"
+)
 """
 Regular expression to match a cell range, e.g. "A1:C3".
 
@@ -226,15 +227,17 @@ def cell_range_values(sheet, cell_range):
 
     groups = re.match(_CELL_RANGE_REGEX, cell_range).groupdict()
 
-    column_in = column_to_index(groups.get('column_in'))
-    row_in = row_to_index(groups.get('row_in'))
-    column_out = column_to_index(groups.get('column_out'))
-    row_out = row_to_index(groups.get('row_out'))
+    column_in = column_to_index(groups.get("column_in"))
+    row_in = row_to_index(groups.get("row_in"))
+    column_out = column_to_index(groups.get("column_out"))
+    row_out = row_to_index(groups.get("row_out"))
 
     table = []
     for row in range(row_in, row_out + 1, 1):
         table.append(
             sheet.row_values(
-                row, start_colx=column_in, end_colx=column_out + 1))
+                row, start_colx=column_in, end_colx=column_out + 1
+            )
+        )
 
     return table

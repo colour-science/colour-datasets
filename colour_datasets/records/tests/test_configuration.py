@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Defines the unit tests for the :mod:`colour_datasets.records.configuration`
 module.
@@ -8,16 +7,16 @@ import unittest
 
 from colour_datasets.records import Configuration, use_sandbox, sandbox
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'TestUseSandbox',
-    'TestSandbox',
+    "TestUseSandbox",
+    "TestSandbox",
 ]
 
 
@@ -40,10 +39,11 @@ class TestUseSandbox(unittest.TestCase):
         definition.
         """
 
-        self.assertEqual(Configuration().api_url, 'https://zenodo.org/api')
+        self.assertEqual(Configuration().api_url, "https://zenodo.org/api")
         use_sandbox()
-        self.assertEqual(Configuration().api_url,
-                         'https://sandbox.zenodo.org/api')
+        self.assertEqual(
+            Configuration().api_url, "https://sandbox.zenodo.org/api"
+        )
         use_sandbox(False)
 
 
@@ -59,17 +59,19 @@ class TestSandbox(unittest.TestCase):
         definition.
         """
 
-        self.assertEqual(Configuration().api_url, 'https://zenodo.org/api')
+        self.assertEqual(Configuration().api_url, "https://zenodo.org/api")
 
         with sandbox():
-            self.assertEqual(Configuration().api_url,
-                             'https://sandbox.zenodo.org/api')
+            self.assertEqual(
+                Configuration().api_url, "https://sandbox.zenodo.org/api"
+            )
 
-        with sandbox('https://www.colour-science.org', 'colour-science'):
-            self.assertEqual(Configuration().api_url,
-                             'https://www.colour-science.org')
-            self.assertEqual(Configuration().community, 'colour-science')
+        with sandbox("https://www.colour-science.org", "colour-science"):
+            self.assertEqual(
+                Configuration().api_url, "https://www.colour-science.org"
+            )
+            self.assertEqual(Configuration().community, "colour-science")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

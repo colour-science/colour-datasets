@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Defines the unit tests for the :mod:`colour_datasets.loaders.xrite2016` module.
 """
@@ -9,16 +8,16 @@ from colour.characterisation import ColourChecker
 
 from colour_datasets.loaders import DatasetLoader_XRite2016, build_XRite2016
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'TestDatasetLoader_XRite2016',
-    'TestBuildXRite2016',
+    "TestDatasetLoader_XRite2016",
+    "TestBuildXRite2016",
 ]
 
 
@@ -33,7 +32,7 @@ class TestDatasetLoader_XRite2016(unittest.TestCase):
         Tests presence of required attributes.
         """
 
-        required_attributes = ('ID', )
+        required_attributes = ("ID",)
 
         for attribute in required_attributes:
             self.assertIn(attribute, dir(DatasetLoader_XRite2016))
@@ -43,7 +42,7 @@ class TestDatasetLoader_XRite2016(unittest.TestCase):
         Tests presence of required methods.
         """
 
-        required_methods = ('__init__', 'load')
+        required_methods = ("__init__", "load")
 
         for method in required_methods:
             self.assertIn(method, dir(DatasetLoader_XRite2016))
@@ -56,15 +55,18 @@ DatasetLoader_XRite2016.load` method.
 
         dataset = DatasetLoader_XRite2016()
         self.assertEqual(
-            sorted(dataset.load().keys()), [
-                'ColorChecker24 - After November 2014',
-                'ColorChecker24 - Before November 2014',
-                'ColorCheckerSG - After November 2014',
-                'ColorCheckerSG - Before November 2014',
-            ])
+            sorted(dataset.load().keys()),
+            [
+                "ColorChecker24 - After November 2014",
+                "ColorChecker24 - Before November 2014",
+                "ColorCheckerSG - After November 2014",
+                "ColorCheckerSG - Before November 2014",
+            ],
+        )
         self.assertIsInstance(
-            dataset.content['ColorChecker24 - After November 2014'],
-            ColourChecker)
+            dataset.content["ColorChecker24 - After November 2014"],
+            ColourChecker,
+        )
 
 
 class TestBuildXRite2016(unittest.TestCase):
@@ -82,5 +84,5 @@ class TestBuildXRite2016(unittest.TestCase):
         self.assertIs(build_XRite2016(), build_XRite2016())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

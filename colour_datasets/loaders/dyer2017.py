@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 RAW to ACES Utility Data - Dyer et al. (2017)
 =============================================
@@ -26,19 +25,19 @@ from colour.utilities import is_numeric, is_string
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'SpectralDataHeader_AMPAS',
-    'SpectralDataMixin_AMPAS',
-    'SpectralDistribution_AMPAS',
-    'DatasetLoader_Dyer2017',
-    'build_Dyer2017',
+    "SpectralDataHeader_AMPAS",
+    "SpectralDataMixin_AMPAS",
+    "SpectralDistribution_AMPAS",
+    "DatasetLoader_Dyer2017",
+    "build_Dyer2017",
 ]
 
 
@@ -101,18 +100,20 @@ license
 __init__`
     """
 
-    def __init__(self,
-                 schema_version=None,
-                 catalog_number=None,
-                 description=None,
-                 document_creator=None,
-                 unique_identifier=None,
-                 measurement_equipment=None,
-                 laboratory=None,
-                 document_creation_date=None,
-                 comments=None,
-                 license=None,
-                 **kwargs):
+    def __init__(
+        self,
+        schema_version=None,
+        catalog_number=None,
+        description=None,
+        document_creator=None,
+        unique_identifier=None,
+        measurement_equipment=None,
+        laboratory=None,
+        document_creation_date=None,
+        comments=None,
+        license=None,
+        **kwargs,
+    ):
 
         self._schema_version = None
         self.schema_version = schema_version
@@ -167,8 +168,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'schema_version', value))
+                f'"schema_version" property: "{value}" is not a "string" like '
+                f"object!"
+            )
         self._schema_version = value
 
     @property
@@ -197,8 +199,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'catalog_number', value))
+                f'"catalog_number" property: "{value}" is not a "string" like '
+                f"object!"
+            )
         self._catalog_number = value
 
     @property
@@ -227,8 +230,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'description', value))
+                f'"description" property: "{value}" is not a "string" like '
+                f"object!"
+            )
         self._description = value
 
     @property
@@ -257,8 +261,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'document_creator', value))
+                f'"document_creator" property: "{value}" is not a "string" '
+                f"like object!"
+            )
         self._document_creator = value
 
     @property
@@ -287,8 +292,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'unique_identifier', value))
+                f'"unique_identifier" property: "{value}" is not a "string" '
+                f"like object!"
+            )
         self._unique_identifier = value
 
     @property
@@ -317,8 +323,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'measurement_equipment', value))
+                f'"measurement_equipment" property: "{value}" is not a '
+                f'"string" like object!'
+            )
         self._measurement_equipment = value
 
     @property
@@ -347,8 +354,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'laboratory', value))
+                f'"laboratory" property: "{value}" is not a "string" like '
+                f"object!"
+            )
         self._laboratory = value
 
     @property
@@ -377,8 +385,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'document_creation_date', value))
+                f'"document_creation_date" property: "{value}" is not a '
+                f'"string" like object!'
+            )
         self._document_creation_date = value
 
     @property
@@ -406,9 +415,9 @@ __init__`
         """
 
         if value is not None:
-            assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'comments', value))
+            assert is_string(
+                value
+            ), f'"comments" property: "{value}" is not a "string" like object!'
         self._comments = value
 
     @property
@@ -436,9 +445,9 @@ __init__`
         """
 
         if value is not None:
-            assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'license', value))
+            assert is_string(
+                value
+            ), f'"license" property: "{value}" is not a "string" like object!'
         self._license = value
 
 
@@ -518,21 +527,24 @@ __init__`
     -   :meth:`colour_datasets.loaders.dyer2017.SpectralDataMixin_AMPAS.read`
     """
 
-    def __init__(self,
-                 path=None,
-                 header=None,
-                 units=None,
-                 reflection_geometry=None,
-                 transmission_geometry=None,
-                 bandwidth_FWHM=None,
-                 bandwidth_corrected=None):
-        super(SpectralDataMixin_AMPAS, self).__init__()
+    def __init__(
+        self,
+        path=None,
+        header=None,
+        units=None,
+        reflection_geometry=None,
+        transmission_geometry=None,
+        bandwidth_FWHM=None,
+        bandwidth_corrected=None,
+    ):
+        super().__init__()
 
         self._path = None
         self.path = path
         self._header = None
-        self.header = (header
-                       if header is not None else SpectralDataHeader_AMPAS())
+        self.header = (
+            header if header is not None else SpectralDataHeader_AMPAS()
+        )
         self._units = None
         self.units = units
         self._reflection_geometry = None
@@ -569,9 +581,9 @@ __init__`
         """
 
         if value is not None:
-            assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'path', value))
+            assert is_string(
+                value
+            ), f'"path" property: "{value}" is not a "string" like object!'
         self._path = value
 
     @property
@@ -600,8 +612,9 @@ __init__`
 
         if value is not None:
             assert isinstance(value, SpectralDataHeader_AMPAS), (
-                '"{0}" attribute: "{1}" is not a "SpectralDataHeader_AMPAS" '
-                'instance!'.format('header', value))
+                f'"header" property: "{value}" is not a '
+                f'"SpectralDataHeader_AMPAS" instance!'
+            )
         self._header = value
 
     @property
@@ -629,9 +642,9 @@ __init__`
         """
 
         if value is not None:
-            assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'units', value))
+            assert is_string(
+                value
+            ), f'"units" property: "{value}" is not a "string" like object!'
         self._units = value
 
     @property
@@ -660,8 +673,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'reflection_geometry', value))
+                f'"reflection_geometry" property: "{value}" is not a "string" '
+                f"like object!"
+            )
         self._reflection_geometry = value
 
     @property
@@ -690,8 +704,9 @@ __init__`
 
         if value is not None:
             assert is_string(value), (
-                '"{0}" attribute: "{1}" is not a "string" like object!'.format(
-                    'transmission_geometry', value))
+                f'"transmission_geometry" property: "{value}" is not a '
+                f'"string" like object!'
+            )
         self._transmission_geometry = value
 
     @property
@@ -719,9 +734,9 @@ __init__`
         """
 
         if value is not None:
-            assert is_numeric(value), (
-                '"{0}" attribute: "{1}" is not a "numeric"!'.format(
-                    'bandwidth_FWHM', value))
+            assert is_numeric(
+                value
+            ), f'"bandwidth_FWHM" property: "{value}" is not a "numeric"!'
 
         self._bandwidth_FWHM = value
 
@@ -752,8 +767,9 @@ __init__`
 
         if value is not None:
             assert isinstance(value, bool), (
-                '"{0}" attribute: "{1}" is not a "bool" instance!'.format(
-                    'bandwidth_corrected', value))
+                f'"bandwidth_corrected" property: "{value}" is not a "bool" '
+                f"instance!"
+            )
 
         self._bandwidth_corrected = value
 
@@ -767,44 +783,53 @@ __init__`
             Definition success.
         """
 
-        with open(self._path, 'r') as json_file:
+        with open(self._path) as json_file:
             content = json.load(json_file)
 
-        self._header = SpectralDataHeader_AMPAS(**content['header'])
-        for attribute in ('units', 'reflection_geometry',
-                          'transmission_geometry', 'bandwidth_FWHM',
-                          'bandwidth_corrected'):
-            setattr(self, '_{0}'.format(attribute),
-                    content['spectral_data'][attribute])
+        self._header = SpectralDataHeader_AMPAS(**content["header"])
+        for attribute in (
+            "units",
+            "reflection_geometry",
+            "transmission_geometry",
+            "bandwidth_FWHM",
+            "bandwidth_corrected",
+        ):
+            setattr(self, f"_{attribute}", content["spectral_data"][attribute])
 
-        index = content['spectral_data']['index']['main']
-        data = content['spectral_data']['data']['main']
+        index = content["spectral_data"]["index"]["main"]
+        data = content["spectral_data"]["data"]["main"]
 
         if len(index) == 1:
             self.domain, self.range = Signal.signal_unpack_data(
-                {k: v[0]
-                 for k, v in data.items()})
+                {k: v[0] for k, v in data.items()}
+            )
         else:
             self.signals = MultiSignals.multi_signals_unpack_data(
-                data, labels=index)
+                data, labels=index
+            )
 
         # TODO: Re-instate "manufacturer", "model", "illuminant" and "type"
         # attributes according to outcome of
         # https://github.com/ampas/rawtoaces/issues/114.
-        if ('manufacturer' in self._header._kwargs and
-                'model' in self._header._kwargs):
-            self.name = '{0} {1}'.format(self._header._kwargs['manufacturer'],
-                                         self._header._kwargs['model'])
-        elif 'illuminant' in self._header._kwargs:
-            self.name = self._header._kwargs['illuminant']
-        elif 'type' in self._header._kwargs:
-            self.name = self._header._kwargs['type']
+        if (
+            "manufacturer" in self._header._kwargs
+            and "model" in self._header._kwargs
+        ):
+            self.name = (
+                f"{self._header._kwargs['manufacturer']} "
+                f"{self._header._kwargs['model']}"
+            )
+        elif "illuminant" in self._header._kwargs:
+            self.name = self._header._kwargs["illuminant"]
+        elif "type" in self._header._kwargs:
+            self.name = self._header._kwargs["type"]
 
         return self
 
 
-class SpectralDistribution_AMPAS(SpectralDataMixin_AMPAS,
-                                 SpectralDistribution):
+class SpectralDistribution_AMPAS(
+    SpectralDataMixin_AMPAS, SpectralDistribution
+):
     """
     Defines an *A.M.P.A.S* spectral distribution.
 
@@ -840,21 +865,30 @@ class SpectralDistribution_AMPAS(SpectralDataMixin_AMPAS,
 __init__`
     """
 
-    def __init__(self,
-                 path=None,
-                 header=None,
-                 units=None,
-                 reflection_geometry=None,
-                 transmission_geometry=None,
-                 bandwidth_FWHM=None,
-                 bandwidth_corrected=None):
-        super(SpectralDistribution_AMPAS, self).__init__(
-            path, header, units, reflection_geometry, transmission_geometry,
-            bandwidth_FWHM, bandwidth_corrected)
+    def __init__(
+        self,
+        path=None,
+        header=None,
+        units=None,
+        reflection_geometry=None,
+        transmission_geometry=None,
+        bandwidth_FWHM=None,
+        bandwidth_corrected=None,
+    ):
+        super().__init__(
+            path,
+            header,
+            units,
+            reflection_geometry,
+            transmission_geometry,
+            bandwidth_FWHM,
+            bandwidth_corrected,
+        )
 
 
-class MultiSpectralDistributions_AMPAS(SpectralDataMixin_AMPAS,
-                                       MultiSpectralDistributions):
+class MultiSpectralDistributions_AMPAS(
+    SpectralDataMixin_AMPAS, MultiSpectralDistributions
+):
     """
     Defines the *A.M.P.A.S* multi-spectral distributions.
 
@@ -890,17 +924,25 @@ class MultiSpectralDistributions_AMPAS(SpectralDataMixin_AMPAS,
 MultiSpectralDistributions_AMPAS.__init__`
     """
 
-    def __init__(self,
-                 path=None,
-                 header=None,
-                 units=None,
-                 reflection_geometry=None,
-                 transmission_geometry=None,
-                 bandwidth_FWHM=None,
-                 bandwidth_corrected=None):
-        super(MultiSpectralDistributions_AMPAS, self).__init__(
-            path, header, units, reflection_geometry, transmission_geometry,
-            bandwidth_FWHM, bandwidth_corrected)
+    def __init__(
+        self,
+        path=None,
+        header=None,
+        units=None,
+        reflection_geometry=None,
+        transmission_geometry=None,
+        bandwidth_FWHM=None,
+        bandwidth_corrected=None,
+    ):
+        super().__init__(
+            path,
+            header,
+            units,
+            reflection_geometry,
+            transmission_geometry,
+            bandwidth_FWHM,
+            bandwidth_corrected,
+        )
 
 
 class DatasetLoader_Dyer2017(AbstractDatasetLoader):
@@ -922,7 +964,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     :cite:`Dyer2017`
     """
 
-    ID = '3372171'
+    ID = "3372171"
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
@@ -930,8 +972,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(DatasetLoader_Dyer2017,
-              self).__init__(datasets()[DatasetLoader_Dyer2017.ID])
+        super().__init__(datasets()[DatasetLoader_Dyer2017.ID])
 
     def load(self):
         """
@@ -953,16 +994,20 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         4
         """
 
-        super(DatasetLoader_Dyer2017, self).sync()
+        super().sync()
 
         self._content = dict()
 
-        for directory in ('camera', 'cmf', 'illuminant', 'training'):
+        for directory in ("camera", "cmf", "illuminant", "training"):
             self._content[directory] = dict()
-            factory = (SpectralDistribution_AMPAS if directory == 'illuminant'
-                       else MultiSpectralDistributions_AMPAS)
-            glob_pattern = os.path.join(self.record.repository, 'dataset',
-                                        'data', directory, '*.json')
+            factory = (
+                SpectralDistribution_AMPAS
+                if directory == "illuminant"
+                else MultiSpectralDistributions_AMPAS
+            )
+            glob_pattern = os.path.join(
+                self.record.repository, "dataset", "data", directory, "*.json"
+            )
             for path in glob.glob(glob_pattern):
                 msds = factory(path).read()
                 self._content[directory][msds.name] = msds

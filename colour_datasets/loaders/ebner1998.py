@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Constant Perceived-Hue Data - Ebner and Fairchild (1998)
 ========================================================
@@ -27,23 +26,26 @@ from colour.utilities import as_float_array
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'ConstantPerceivedHueColourMatches_Ebner1998',
-    'DatasetLoader_Ebner1998',
-    'build_Ebner1998',
+    "ConstantPerceivedHueColourMatches_Ebner1998",
+    "DatasetLoader_Ebner1998",
+    "build_Ebner1998",
 ]
 
 
 class ConstantPerceivedHueColourMatches_Ebner1998(
-        namedtuple('ConstantPerceivedHueColourMatches_Ebner1998',
-                   ('name', 'XYZ_r', 'XYZ_cr', 'XYZ_ct', 'metadata'))):
+    namedtuple(
+        "ConstantPerceivedHueColourMatches_Ebner1998",
+        ("name", "XYZ_r", "XYZ_cr", "XYZ_ct", "metadata"),
+    )
+):
     """
     Defines *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
     colour matches data for a given hue angle.
@@ -85,7 +87,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     :cite:`Ebner1998`
     """
 
-    ID = '3362536'
+    ID = "3362536"
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
@@ -93,8 +95,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(DatasetLoader_Ebner1998,
-              self).__init__(datasets()[DatasetLoader_Ebner1998.ID])
+        super().__init__(datasets()[DatasetLoader_Ebner1998.ID])
 
     def load(self):
         """
@@ -117,40 +118,47 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         1
         """
 
-        super(DatasetLoader_Ebner1998, self).sync()
+        super().sync()
 
-        self._content = dict([('Constant Perceived-Hue Data', dict())])
+        self._content = dict([("Constant Perceived-Hue Data", dict())])
 
-        datafile_path = os.path.join(self.record.repository, 'dataset',
-                                     'Ebner_Constant_Hue_Data.txt')
+        datafile_path = os.path.join(
+            self.record.repository, "dataset", "Ebner_Constant_Hue_Data.txt"
+        )
 
         def _parse_float_values(data):
             """
             Parses float values from given data.
             """
 
-            data = [float(x) / 100 for x in data.split('\t') if x]
+            data = [float(x) / 100 for x in data.split("\t") if x]
 
             values = as_float_array(data).reshape(-1, 3)
 
             return np.squeeze(values)
 
-        with codecs.open(datafile_path, encoding='utf-8') as database_file:
+        with codecs.open(datafile_path, encoding="utf-8") as database_file:
             lines = filter(
-                None, (line.strip() for line in database_file.readlines()))
+                None, (line.strip() for line in database_file.readlines())
+            )
 
             for line in lines:
-                if line.startswith('White Point'):
-                    XYZ_r = _parse_float_values(line.split(':')[-1])
-                elif line.startswith('reference hue'):
-                    line = line.replace('reference hue ', '')
-                    hue, data = line.split('\t', 1)
+                if line.startswith("White Point"):
+                    XYZ_r = _parse_float_values(line.split(":")[-1])
+                elif line.startswith("reference hue"):
+                    line = line.replace("reference hue ", "")
+                    hue, data = line.split("\t", 1)
                     hue, data = int(hue), _parse_float_values(data)
 
-                    self._content['Constant Perceived-Hue Data'][hue] = (
-                        ConstantPerceivedHueColourMatches_Ebner1998(
-                            'Reference Hue Angle - {0}'.format(hue), XYZ_r,
-                            data[0], data[1:], {'h': hue}))
+                    self._content["Constant Perceived-Hue Data"][
+                        hue
+                    ] = ConstantPerceivedHueColourMatches_Ebner1998(
+                        f"Reference Hue Angle - {hue}",
+                        XYZ_r,
+                        data[0],
+                        data[1:],
+                        {"h": hue},
+                    )
 
         return self._content
 

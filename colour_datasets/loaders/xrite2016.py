@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
 ===============================================================================
@@ -27,16 +26,16 @@ from colour.characterisation import ColourChecker
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'DatasetLoader_XRite2016',
-    'build_XRite2016',
+    "DatasetLoader_XRite2016",
+    "build_XRite2016",
 ]
 
 
@@ -60,7 +59,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
     :cite:`X-Rite2016`
     """
 
-    ID = '3245895'
+    ID = "3245895"
     """
     Dataset record id, i.e. the *Zenodo* record number.
 
@@ -68,8 +67,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
     """
 
     def __init__(self):
-        super(DatasetLoader_XRite2016,
-              self).__init__(datasets()[DatasetLoader_XRite2016.ID])
+        super().__init__(datasets()[DatasetLoader_XRite2016.ID])
 
     def load(self):
         """
@@ -93,52 +91,57 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         4
         """
 
-        super(DatasetLoader_XRite2016, self).sync()
+        super().sync()
 
         keys = (
-            'ColorChecker24 - After November 2014',
-            'ColorChecker24 - Before November 2014',
-            'ColorCheckerSG - After November 2014',
-            'ColorCheckerSG - Before November 2014',
+            "ColorChecker24 - After November 2014",
+            "ColorChecker24 - Before November 2014",
+            "ColorCheckerSG - After November 2014",
+            "ColorCheckerSG - Before November 2014",
         )
         filenames = (
-            'ColorChecker24_After_Nov2014.txt',
-            'ColorChecker24_Before_Nov2014.txt',
-            'ColorCheckerSG_After_Nov2014.txt',
-            'ColorCheckerSG_Before_Nov2014.txt',
+            "ColorChecker24_After_Nov2014.txt",
+            "ColorChecker24_Before_Nov2014.txt",
+            "ColorCheckerSG_After_Nov2014.txt",
+            "ColorCheckerSG_Before_Nov2014.txt",
         )
 
         # TODO: Implement support for "CGATS" file format in "Colour":
         # https://github.com/colour-science/colour/issues/354
-        illuminant = (
-            CCS_ILLUMINANTS['CIE 1931 2 Degree Standard Observer']['ICC D50'])
+        illuminant = CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"][
+            "ICC D50"
+        ]
 
         self._content = dict()
         for key, filename in zip(keys, filenames):
             directory = os.path.splitext(filename)[0]
-            path = os.path.join(self.record.repository, 'dataset', directory,
-                                filename)
+            path = os.path.join(
+                self.record.repository, "dataset", directory, filename
+            )
 
-            with codecs.open(path, encoding='utf-8') as xrite_file:
+            with codecs.open(path, encoding="utf-8") as xrite_file:
                 samples = []
                 is_data = False
                 lines = filter(
-                    None, (line.strip() for line in xrite_file.readlines()))
+                    None, (line.strip() for line in xrite_file.readlines())
+                )
                 for line in lines:
-                    if line == 'END_DATA':
+                    if line == "END_DATA":
                         is_data = False
 
                     if is_data:
                         tokens = line.split()
-                        samples.append([
-                            tokens[0],
+                        samples.append(
                             [
-                                float(value.replace(',', '.'))
-                                for value in tokens[1:]
-                            ],
-                        ])
+                                tokens[0],
+                                [
+                                    float(value.replace(",", "."))
+                                    for value in tokens[1:]
+                                ],
+                            ]
+                        )
 
-                    if line == 'BEGIN_DATA':
+                    if line == "BEGIN_DATA":
                         is_data = True
 
             i, j = (6, 4) if len(samples) == 24 else (14, 10)
@@ -146,8 +149,9 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
             samples = np.transpose(samples.reshape([i, j, 2]), [1, 0, 2])
             keys, values = zip(*samples.reshape([-1, 2]))
             values = XYZ_to_xyY(Lab_to_XYZ(values, illuminant))
-            self._content[key] = ColourChecker(key, dict(zip(keys, values)),
-                                               illuminant)
+            self._content[key] = ColourChecker(
+                key, dict(zip(keys, values)), illuminant
+            )
 
         return self._content
 

@@ -14,6 +14,8 @@ References
     Personalized Color Imaging. R.I.T.
 """
 
+from __future__ import annotations
+
 import numpy as np
 import os
 import xlrd
@@ -24,6 +26,7 @@ from colour.colorimetry import (
     XYZ_ColourMatchingFunctions,
     LMS_ConeFundamentals,
 )
+from colour.hints import Boolean, Dict, NDArray, Optional, Tuple
 from colour.utilities import as_float_array, tstack
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -55,17 +58,17 @@ class Specification_Asano2015(
 
     Parameters
     ----------
-    XYZ_2 : XYZ_ColourMatchingFunctions
+    XYZ_2
         *CIE XYZ* 2 degree colour matching functions.
-    XYZ_10 : XYZ_ColourMatchingFunctions
+    XYZ_10
         *CIE XYZ* 10 degree colour matching functions.
-    LMS_2 : LMS_ConeFundamentals
+    LMS_2
         *LMS* 2 degree cone fundamentals.
-    LMS_10 : LMS_ConeFundamentals
+    LMS_10
         *LMS* 10 degree cone fundamentals.
-    parameters : array_like
+    parameters
         Observer parameters.
-    others : array_like
+    others
         Other information.
 
     References
@@ -73,7 +76,15 @@ class Specification_Asano2015(
     :cite:`Asano2015`
     """
 
-    def __new__(cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others=None):
+    def __new__(
+        cls,
+        XYZ_2: XYZ_ColourMatchingFunctions,
+        XYZ_10: XYZ_ColourMatchingFunctions,
+        LMS_2: LMS_ConeFundamentals,
+        LMS_10: LMS_ConeFundamentals,
+        parameters: NDArray,
+        others: Optional[Dict] = None,
+    ):
         """
         Returns a new instance of the
         :class:`colour_datasets.loaders.asano2015.Specification_Asano2015`
@@ -105,24 +116,22 @@ parse_workbook_Asano2015`
     :cite:`Asano2015`
     """
 
-    ID = "3252742"
+    ID: str = "3252742"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Asano2015.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, Specification_Asano2015]:
         """
         Syncs, parses, converts and returns the *Asano (2015)*
         *Observer Function Database* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Asano (2015)* *Observer Function Database* dataset content.
 
         Examples
@@ -177,16 +186,16 @@ parse_workbook_Asano2015`
             index_to_column(observers[1]),
         )
         workbook = xlrd.open_workbook(workbook_path)
-        values = cell_range_values(
+        values_data = cell_range_values(
             workbook.sheet_by_index(5), f"{column_in}2:{column_out}9"
         )
-        values.extend(
+        values_data.extend(
             cell_range_values(
                 workbook.sheet_by_index(5), f"{column_in}12:{column_out}16"
             )
         )
-        values = np.transpose(values)
-        header, values = values[0], values[1:]
+        values_transposed = np.transpose(values_data)
+        header, values = values_transposed[0], values_transposed[1:]
 
         template = "Asano 2015 {0} Colour Normal Observer No. {1} {2}"
         for i, (index, observer) in enumerate(
@@ -208,26 +217,28 @@ parse_workbook_Asano2015`
         return self._content
 
     @staticmethod
-    def parse_workbook_Asano2015(workbook, template, observers=(1, 10)):
+    def parse_workbook_Asano2015(
+        workbook: str, template: str, observers: Tuple = (1, 10)
+    ) -> Dict[str, Dict]:
         """
         Parses given *Asano (2015)* *Observer Function Database* workbook.
 
         Parameters
         ----------
-        workbook : str
+        workbook
             *Asano (2015)* *Observer Function Database* workbook path.
-        template : str
+        template
             Template used to create the *CMFS* names.
-        observers : tuple, optional
+        observers
             Observers range.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Asano (2015)* *Observer Function Database* workbook observer data.
         """
 
-        workbook = xlrd.open_workbook(workbook)
+        book = xlrd.open_workbook(workbook)
 
         # "CIE XYZ" and "LMS" CMFS.
         column_in, column_out = (
@@ -237,7 +248,7 @@ parse_workbook_Asano2015`
 
         shape = SpectralShape(390, 780, 5)
         wavelengths = shape.range()
-        data = dict()
+        data: Dict = dict()
 
         for i, cmfs in enumerate(
             [
@@ -250,7 +261,7 @@ parse_workbook_Asano2015`
                 [(2, "2$^\\circ$"), (10, "10$^\\circ$")]
             ):
 
-                sheet = workbook.sheet_by_index(j + (i * 2))
+                sheet = book.sheet_by_index(j + (i * 2))
 
                 x = np.transpose(
                     cell_range_values(sheet, f"{column_in}3:{column_out}81")
@@ -286,7 +297,7 @@ parse_workbook_Asano2015`
 
         values = np.transpose(
             cell_range_values(
-                workbook.sheet_by_index(4), f"{column_in}2:{column_out}10"
+                book.sheet_by_index(4), f"{column_in}2:{column_out}10"
             )
         )
         header, values = values[0], values[1:]
@@ -300,30 +311,28 @@ parse_workbook_Asano2015`
         return data
 
 
-_DATASET_LOADER_ASANO2015 = None
+_DATASET_LOADER_ASANO2015: Optional[DatasetLoader_Asano2015] = None
 """
 Singleton instance of the *Asano (2015)* *Observer Function Database* dataset
 loader.
-
-_DATASET_LOADER_ASANO2015 : DatasetLoader_Asano2015
 """
 
 
-def build_Asano2015(load=True):
+def build_Asano2015(load: Boolean = True) -> DatasetLoader_Asano2015:
     """
     Singleton factory that the builds *Asano (2015)*
     *Observer Function Database* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Asano2015
-        Singleton instance of the *Asano (2015)*
-        *Observer Function Database* dataset loader.
+    :class:`colour_datasets.loaders.DatasetLoader_Asano2015`
+        Singleton instance of the *Asano (2015)* *Observer Function Database*
+        dataset loader.
 
     References
     ----------

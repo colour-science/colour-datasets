@@ -16,11 +16,14 @@ References
     Graphic Arts III, (2 January 1998) (pp. 107-117). doi:10.1117/12.298269
 """
 
+from __future__ import annotations
+
 import codecs
 import numpy as np
 import os
 from collections import namedtuple
 
+from colour.hints import Boolean, Dict, Integer, NDArray, Optional
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -52,18 +55,18 @@ class ConstantPerceivedHueColourMatches_Ebner1998(
 
     Parameters
     ----------
-    name : str
+    name
         *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data* hue angle or
         name.
-    XYZ_r : array_like
+    XYZ_r
         *CIE XYZ* tristimulus values of the reference illuminant.
-    XYZ_cr : array_like
+    XYZ_cr
         *CIE XYZ* tristimulus values of the reference colour under the
         reference illuminant.
-    XYZ_ct : array_like
+    XYZ_ct
         *CIE XYZ* tristimulus values of the colour matches under the reference
         illuminant.
-    metadata : dict
+    metadata
         Dataset metadata.
     """
 
@@ -87,24 +90,24 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     :cite:`Ebner1998`
     """
 
-    ID = "3362536"
+    ID: str = "3362536"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Ebner1998.ID])
 
-    def load(self):
+    def load(
+        self,
+    ) -> Dict[str, Dict[Integer, ConstantPerceivedHueColourMatches_Ebner1998]]:
         """
         Syncs, parses, converts and returns the *Ebner and Fairchild (1998)*
         *Constant Perceived-Hue Data* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Ebner and Fairchild (1998)* Constant Perceived-Hue Data* dataset
             content.
 
@@ -126,14 +129,14 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
             self.record.repository, "dataset", "Ebner_Constant_Hue_Data.txt"
         )
 
-        def _parse_float_values(data):
+        def _parse_float_values(data: str) -> NDArray:
             """
             Parses float values from given data.
             """
 
-            data = [float(x) / 100 for x in data.split("\t") if x]
-
-            values = as_float_array(data).reshape(-1, 3)
+            values = as_float_array(
+                [float(x) / 100 for x in data.split("\t") if x]
+            ).reshape(-1, 3)
 
             return np.squeeze(values)
 
@@ -147,8 +150,8 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
                     XYZ_r = _parse_float_values(line.split(":")[-1])
                 elif line.startswith("reference hue"):
                     line = line.replace("reference hue ", "")
-                    hue, data = line.split("\t", 1)
-                    hue, data = int(hue), _parse_float_values(data)
+                    attribute, value = line.split("\t", 1)
+                    hue, data = int(attribute), _parse_float_values(value)
 
                     self._content["Constant Perceived-Hue Data"][
                         hue
@@ -163,28 +166,26 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_EBNER1998 = None
+_DATASET_LOADER_EBNER1998: Optional[DatasetLoader_Ebner1998] = None
 """
 Singleton instance of the *Ebner and Fairchild (1998)*
 *Constant Perceived-Hue Data* dataset loader.
-
-_DATASET_LOADER_EBNER1998 : DatasetLoader_Ebner1998
 """
 
 
-def build_Ebner1998(load=True):
+def build_Ebner1998(load: Boolean = True) -> DatasetLoader_Ebner1998:
     """
     Singleton factory that builds the *Ebner and Fairchild (1998)*
     *Constant Perceived-Hue Data* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Ebner1998
+    :class:`colour_datasets.loaders.DatasetLoader_Ebner1998`
         Singleton instance of the *Ebner and Fairchild (1998)*
         *Constant Perceived-Hue Data* dataset loader.
 

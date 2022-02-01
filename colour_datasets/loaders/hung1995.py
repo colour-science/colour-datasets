@@ -16,11 +16,14 @@ References
     doi:10.1002/col.5080200506
 """
 
+from __future__ import annotations
+
 import numpy as np
 import os
 from collections import namedtuple
 
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
+from colour.hints import Boolean, Dict, Optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -51,18 +54,18 @@ class ConstantPerceivedHueColourMatches_Hung1995(
 
     Parameters
     ----------
-    name : str
+    name
         *Hung and Berns (1995)* *Constant Hue Loci Data* hue angle or
         name.
-    XYZ_r : array_like
+    XYZ_r
         *CIE XYZ* tristimulus values of the reference illuminant.
-    XYZ_cr : array_like
+    XYZ_cr
         *CIE XYZ* tristimulus values of the reference colour under the
         reference illuminant.
-    XYZ_ct : array_like
+    XYZ_ct
         *CIE XYZ* tristimulus values of the colour matches under the reference
         illuminant.
-    metadata : dict
+    metadata
         Dataset metadata.
     """
 
@@ -86,24 +89,24 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
     :cite:`Hung1995`
     """
 
-    ID = "3367463"
+    ID: str = "3367463"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Hung1995.ID])
 
-    def load(self):
+    def load(
+        self,
+    ) -> Dict[str, Dict[str, ConstantPerceivedHueColourMatches_Hung1995]]:
         """
         Syncs, parses, converts and returns the *Hung and Berns (1995)*
         *Constant Hue Loci Data* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Hung and Berns (1995)* *Constant Hue Loci Data* dataset content.
 
         Examples
@@ -185,7 +188,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
                         break
 
                 XYZ_ct = []
-                metadata = {
+                metadata: Dict = {
                     "Color name": [],
                     "C*uv": [],
                 }
@@ -207,28 +210,26 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_HUNG1995 = None
+_DATASET_LOADER_HUNG1995: Optional[DatasetLoader_Hung1995] = None
 """
 Singleton instance of the *Hung and Berns (1995)*
 *Constant Hue Loci Data* dataset loader.
-
-_DATASET_LOADER_HUNG1995 : DatasetLoader_Hung1995
 """
 
 
-def build_Hung1995(load=True):
+def build_Hung1995(load: Boolean = True) -> DatasetLoader_Hung1995:
     """
     Singleton factory that builds the *Hung and Berns (1995)*
     *Constant Hue Loci Data* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Hung1995
+    :class:`colour_datasets.loaders.DatasetLoader_Hung1995`
         Singleton instance of the *Hung and Berns (1995)*
         *Constant Hue Loci Data* dataset loader.
 

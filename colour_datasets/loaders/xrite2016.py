@@ -16,12 +16,15 @@ References
 SupportID=5884#
 """
 
+from __future__ import annotations
+
 import codecs
 import numpy as np
 import os
 
 from colour import CCS_ILLUMINANTS, Lab_to_XYZ, XYZ_to_xyY
 from colour.characterisation import ColourChecker
+from colour.hints import Boolean, Dict, Optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -59,17 +62,15 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
     :cite:`X-Rite2016`
     """
 
-    ID = "3245895"
+    ID: str = "3245895"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_XRite2016.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, ColourChecker]:
         """
         Syncs, parses, converts and returns the *X-Rite (2016)*
         *New Color Specifications for ColorChecker SG and Classic Charts*
@@ -77,7 +78,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
         Returns
         -------
-        dict
+        :class:`dict`
             *X-Rite (2016)* *New Color Specifications for ColorChecker SG and
             Classic Charts* dataset content.
 
@@ -120,7 +121,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
             )
 
             with codecs.open(path, encoding="utf-8") as xrite_file:
-                samples = []
+                samples_data = []
                 is_data = False
                 lines = filter(
                     None, (line.strip() for line in xrite_file.readlines())
@@ -131,7 +132,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
                     if is_data:
                         tokens = line.split()
-                        samples.append(
+                        samples_data.append(
                             [
                                 tokens[0],
                                 [
@@ -144,9 +145,10 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
                     if line == "BEGIN_DATA":
                         is_data = True
 
-            i, j = (6, 4) if len(samples) == 24 else (14, 10)
-            samples = np.array(samples)
-            samples = np.transpose(samples.reshape([i, j, 2]), [1, 0, 2])
+            i, j = (6, 4) if len(samples_data) == 24 else (14, 10)
+            samples = np.transpose(
+                np.array(samples_data).reshape([i, j, 2]), [1, 0, 2]
+            )
             keys, values = zip(*samples.reshape([-1, 2]))
             values = XYZ_to_xyY(Lab_to_XYZ(values, illuminant))
             self._content[key] = ColourChecker(
@@ -156,17 +158,15 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_XRITE2016 = None
+_DATASET_LOADER_XRITE2016: Optional[DatasetLoader_XRite2016] = None
 """
 Singleton instance of the *X-Rite (2016)*
 *New Color Specifications for ColorChecker SG and Classic Charts* dataset
 loader.
-
-_DATASET_LOADER_XRITE2016 : DatasetLoader_XRite2016
 """
 
 
-def build_XRite2016(load=True):
+def build_XRite2016(load: Boolean = True) -> DatasetLoader_XRite2016:
     """
     Singleton factory that the builds *X-Rite (2016)*
     *New Color Specifications for ColorChecker SG and Classic Charts* dataset
@@ -174,12 +174,12 @@ def build_XRite2016(load=True):
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_XRite2016
+    :class:`colour_datasets.loaders.DatasetLoader_XRite2016`
         Singleton instance of the *X-Rite (2016)*
         *New Color Specifications for ColorChecker SG and Classic Charts*
         dataset loader.

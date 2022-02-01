@@ -10,8 +10,12 @@ References
     https://bitbucket.org/openpyxl/openpyxl/
 """
 
-import re
+from __future__ import annotations
 
+import re
+import xlrd
+
+from colour.hints import Dict, Integer, List, Union
 from colour.utilities import CaseInsensitiveMapping
 
 __author__ = "Colour Developers, Openpyxl Developers"
@@ -34,7 +38,7 @@ __all__ = [
 ]
 
 
-def _column_number_to_letters(number):
+def _column_number_to_letters(number: Integer) -> str:
     """
     Converts given column number into a column letters.
 
@@ -44,12 +48,12 @@ def _column_number_to_letters(number):
 
     Parameters
     ----------
-    number : int
+    number
         Column number to convert to column letters.
 
     Returns
     -------
-    str
+    :class:`str`
         Column letters.
 
     References
@@ -78,18 +82,14 @@ def _column_number_to_letters(number):
     return "".join(reversed(letters))
 
 
-_LETTERS_TO_NUMBER_CACHE = CaseInsensitiveMapping()
+_LETTERS_TO_NUMBER_CACHE: CaseInsensitiveMapping = CaseInsensitiveMapping()
 """
 Letters, e.g. *Microsoft Excel* column letters to numbers cache.
-
-_LETTERS_TO_NUMBER_CACHE : CaseInsensitiveMapping
 """
 
-_NUMBER_TO_LETTERS_CACHE = {}
+_NUMBER_TO_LETTERS_CACHE: Dict = {}
 """
 Numbers to letters, e.g. *Microsoft Excel* column letters cache.
-
-_NUMBER_TO_LETTERS_CACHE : dict
 """
 
 for i in range(1, 18279):
@@ -98,18 +98,18 @@ for i in range(1, 18279):
     _LETTERS_TO_NUMBER_CACHE[letter] = i
 
 
-def row_to_index(row):
+def row_to_index(row: Union[Integer, str]) -> Integer:
     """
     Returns the 0-based index of given row name.
 
     Parameters
     ----------
-    row : int or str
+    row
         Row name.
 
     Returns
     -------
-    int
+    :class`int` or :class:`str`
         0-based row index.
 
     Examples
@@ -125,18 +125,18 @@ def row_to_index(row):
     return row - 1
 
 
-def index_to_row(index):
+def index_to_row(index: Integer) -> str:
     """
     Returns the row name of given 0-based index.
 
     Parameters
     ----------
-    index : int
+    index
         0-based row index.
 
     Returns
     -------
-    str
+    :class:`str
         Row name.
 
     Examples
@@ -149,18 +149,18 @@ def index_to_row(index):
     return str(index + 1)
 
 
-def column_to_index(column):
+def column_to_index(column: str) -> Integer:
     """
     Returns the 0-based index of given column letters.
 
     Parameters
     ----------
-    column : str
+    column
         Column letters
 
     Returns
     -------
-    int
+    :class:`int`
         0-based column index.
 
     Examples
@@ -172,18 +172,18 @@ def column_to_index(column):
     return _LETTERS_TO_NUMBER_CACHE[column] - 1
 
 
-def index_to_column(index):
+def index_to_column(index: Integer) -> str:
     """
     Returns the column letters of given 0-based index.
 
     Parameters
     ----------
-    index : str
+    index
         0-based column index.
 
     Returns
     -------
-    str
+    :class:`str`
         Column letters
 
     Examples
@@ -196,18 +196,16 @@ def index_to_column(index):
     return _NUMBER_TO_LETTERS_CACHE[index + 1]
 
 
-_CELL_RANGE_REGEX = re.compile(
+_CELL_RANGE_REGEX: re.Pattern = re.compile(
     r"^[$]?(?P<column_in>[A-Za-z]{1,3})?[$]?(?P<row_in>\d+)?"
     r"(:[$]?(?P<column_out>[A-Za-z]{1,3})?[$]?(?P<row_out>\d+)?)?$"
 )
 """
 Regular expression to match a cell range, e.g. "A1:C3".
-
-_CELL_RANGE_REGEX : str
 """
 
 
-def cell_range_values(sheet, cell_range):
+def cell_range_values(sheet: xlrd.sheet.Sheet, cell_range: str) -> List[str]:
     """
     Returns given workbook sheet cell range values, i.e. the values of the
     rows and columns for given cell range.
@@ -221,18 +219,23 @@ def cell_range_values(sheet, cell_range):
 
     Returns
     -------
-    list
+    :class:`list`
         List of row values.
     """
 
-    groups = re.match(_CELL_RANGE_REGEX, cell_range).groupdict()
+    table: List[str] = []
 
-    column_in = column_to_index(groups.get("column_in"))
-    row_in = row_to_index(groups.get("row_in"))
-    column_out = column_to_index(groups.get("column_out"))
-    row_out = row_to_index(groups.get("row_out"))
+    match = re.match(_CELL_RANGE_REGEX, cell_range)
+    if match:
+        groups = match.groupdict()
+    else:
+        return table
 
-    table = []
+    column_in = column_to_index(groups["column_in"])
+    row_in = row_to_index(groups["row_in"])
+    column_out = column_to_index(groups["column_out"])
+    row_out = row_to_index(groups["row_out"])
+
     for row in range(row_in, row_out + 1, 1):
         table.append(
             sheet.row_values(

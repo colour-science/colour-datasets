@@ -5,6 +5,8 @@ Common Utilities
 Defines the common utilities objects that don't fall in any specific category.
 """
 
+from __future__ import annotations
+
 import functools
 import gzip
 import hashlib
@@ -17,6 +19,8 @@ import urllib.error
 import urllib.request
 from tqdm import tqdm
 from cachetools import cached, TTLCache
+
+from colour.hints import Any, Boolean, Callable, Dict, Integer, Optional
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
@@ -40,7 +44,7 @@ class suppress_stdout:
     A context manager and decorator temporarily suppressing standard output.
     """
 
-    def __enter__(self):
+    def __enter__(self) -> suppress_stdout:
         """
         Called upon entering the context manager and decorator.
         """
@@ -50,7 +54,7 @@ class suppress_stdout:
 
         return self
 
-    def __exit__(self, *args):
+    def __exit__(self, *args: Any):
         """
         Called upon exiting the context manager and decorator.
         """
@@ -58,13 +62,13 @@ class suppress_stdout:
         sys.stdout.close()
         sys.stdout = self._stdout
 
-    def __call__(self, function):
+    def __call__(self, function: Callable) -> Callable:
         """
         Calls the wrapped definition.
         """
 
         @functools.wraps(function)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args: Any, **kwargs: Any) -> Callable:
             with self:
                 return function(*args, **kwargs)
 
@@ -76,17 +80,22 @@ class TqdmUpTo(tqdm):
     :class:`tqdm` sub-class used to report the progress of an action.
     """
 
-    def update_to(self, chunks_count=1, chunk_size=1, total_size=None):
+    def update_to(
+        self,
+        chunks_count: Integer = 1,
+        chunk_size: Integer = 1,
+        total_size: Optional[Integer] = None,
+    ):
         """
         Reports the progress of an action.
 
         Parameters
         ----------
-        chunks_count : int, optional
+        chunks_count
             Number of blocks transferred.
-        chunk_size : int, optional
+        chunk_size
             Size of each block (in tqdm units).
-        total_size : int, optional
+        total_size
             Total size (in tqdm units).
         """
 
@@ -96,20 +105,20 @@ class TqdmUpTo(tqdm):
         self.update(chunks_count * chunk_size - self.n)
 
 
-def hash_md5(filename, chunk_size=2 ** 16):
+def hash_md5(filename: str, chunk_size: Integer = 2 ** 16) -> str:
     """
     Computes the *Message Digest 5 (MD5)* hash of given file.
 
     Parameters
     ----------
-    filename : str
+    filename
         File to compute the *MD5* hash of.
-    chunk_size : int, optional
+    chunk_size
         Chunk size to read from the file.
 
     Returns
     -------
-    str
+    :class:`str`
         *MD5* hash of given file.
     """
 
@@ -126,20 +135,22 @@ def hash_md5(filename, chunk_size=2 ** 16):
     return md5.hexdigest()
 
 
-def url_download(url, filename, md5=None, retries=3):
+def url_download(
+    url: str, filename: str, md5: Optional[str] = None, retries: Integer = 3
+):
     """
     Downloads given url and saves its content at given file.
 
     Parameters
     ----------
-    url : str
+    url
         Url to download.
-    filename : str
+    filename
         File to save the url content at.
-    md5 : str, optional
+    md5
         *Message Digest 5 (MD5)* hash of the content at given url. If provided
         the saved content at given file will be hashed and compared to ``md5``.
-    retries : int, optional
+    retries
         Number of retries in case where a networking error occurs or the *MD5*
         hash is not matching.
 
@@ -185,16 +196,26 @@ def url_download(url, filename, md5=None, retries=3):
 
 
 @cached(cache=TTLCache(maxsize=256, ttl=300))
-def json_open(url, retries=3):
+def json_open(url: str, retries: Integer = 3) -> Dict:
     """
     Opens given url and return its content as *JSON*.
 
     Parameters
     ----------
-    url : str
+    url
         Url to open.
-    retries : int, optional
+    retries
         Number of retries in case where a networking error occurs.
+
+    Returns
+    -------
+    :class:`dict`
+        *JSON* data.
+
+    Raises
+    ------
+    urllib.error.URLError, ValueError
+        If the url cannot be opened or parsed as *JSON*.
 
     Notes
     -----
@@ -208,13 +229,13 @@ def json_open(url, retries=3):
     '{"conceptdoi":"10.5281/zenodo.3245882"'
     """
 
+    data = {}
+
     attempt = 0
     while attempt != retries:
         try:
-            return json.loads(urllib.request.urlopen(url).read())
-
-            attempt = retries
-        except (urllib.error.URLError, OSError, ValueError) as error:
+            data = json.loads(urllib.request.urlopen(url).read())
+        except (urllib.error.URLError, ValueError) as error:
             attempt += 1
             print(
                 f'An error occurred while opening "{url}" url during attempt '
@@ -223,26 +244,30 @@ def json_open(url, retries=3):
             if attempt == retries:
                 raise error
 
+    return data
 
-def unpack_gzipfile(filename, extraction_directory, *args):
+
+def unpack_gzipfile(
+    filename: str, extraction_directory: str, *args: Any
+) -> Boolean:
     """
     Unpacks given *GZIP* file to given extraction directory.
 
     Parameters
     ----------
-    filename : str
+    filename
         *GZIP* file to extract.
-    extraction_directory : str
+    extraction_directory
         Directory where to extract the *GZIP* file.
 
     Other Parameters
     ----------------
-    \\*args : list, optional
+    args
         Arguments.
 
     Returns
     -------
-    bool
+    :class:`bool`
         Definition success.
 
     Notes

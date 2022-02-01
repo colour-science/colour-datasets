@@ -15,10 +15,13 @@ References
     cameras.
 """
 
+from __future__ import annotations
+
 import numpy as np
 import os
 
 from colour.characterisation import RGB_CameraSensitivities
+from colour.hints import Boolean, Dict, Optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -55,24 +58,22 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
     :cite:`Zhao2009`
     """
 
-    ID = "4297288"
+    ID: str = "4297288"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Zhao2009.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, RGB_CameraSensitivities]:
         """
         Syncs, parses, converts and returns the *Zhao et al. (2009)*
         *Spectral Sensitivity Database* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Zhao et al. (2009)* *Spectral Sensitivity Database*
             dataset content.
 
@@ -118,28 +119,26 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_JIANG2009 = None
+_DATASET_LOADER_JIANG2009: Optional[DatasetLoader_Zhao2009] = None
 """
 Singleton instance of the *Zhao et al. (2009)*
 *Spectral Sensitivity Database* dataset loader.
-
-_DATASET_LOADER_JIANG2009 : DatasetLoader_Zhao2009
 """
 
 
-def build_Zhao2009(load=True):
+def build_Zhao2009(load: Boolean = True) -> DatasetLoader_Zhao2009:
     """
     Singleton factory that builds the *Zhao et al. (2009)*
     *Spectral Sensitivity Database* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Zhao2009
+    :class:`colour_datasets.loaders.DatasetLoader_Zhao2009`
         Singleton instance of the *Zhao et al. (2009)*
         *Spectral Sensitivity Database* dataset loader.
 

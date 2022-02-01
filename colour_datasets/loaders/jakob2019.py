@@ -15,9 +15,12 @@ References
     38(2), 147-155. doi:10.1111/cgf.13626
 """
 
+from __future__ import annotations
+
 import glob
 import os
 
+from colour.hints import Boolean, Dict, Optional
 from colour.recovery import LUT3D_Jakob2019
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -55,24 +58,22 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
     :cite:`Jakob2019`
     """
 
-    ID = "4050598"
+    ID: str = "4050598"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Jakob2019.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, LUT3D_Jakob2019]:
         """
         Syncs, parses, converts and returns the *Jakob and Hanika (2019)*
         *Spectral Upsampling Coefficient Tables* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Jakob and Hanika (2019)* *Spectral Upsampling Coefficient Tables*
             dataset content.
 
@@ -117,28 +118,26 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_JAKOB2019 = None
+_DATASET_LOADER_JAKOB2019: Optional[DatasetLoader_Jakob2019] = None
 """
 Singleton instance of the *Jakob and Hanika (2019)*
 *Spectral Upsampling Coefficient Tables* dataset loader.
-
-_DATASET_LOADER_JAKOB2019 : DatasetLoader_Jakob2019
 """
 
 
-def build_Jakob2019(load=True):
+def build_Jakob2019(load: Boolean = True) -> DatasetLoader_Jakob2019:
     """
     Singleton factory that builds the *Jakob and Hanika (2019)*
     *Spectral Upsampling Coefficient Tables* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Jakob2019
+    :class:`colour_datasets.loaders.DatasetLoader_Jakob2019`
         Singleton instance of the *Jakob and Hanika (2019)*
         *Spectral Upsampling Coefficient Tables* dataset loader.
 

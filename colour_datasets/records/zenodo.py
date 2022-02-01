@@ -9,6 +9,8 @@ records:
 -   :class:`colour_datasets.Community`
 """
 
+from __future__ import annotations
+
 import json
 import os
 import shutil
@@ -22,7 +24,18 @@ from collections import Mapping
 from html.parser import HTMLParser
 from pprint import pformat
 
-from colour.utilities import warning
+from colour.hints import (
+    Any,
+    Boolean,
+    Callable,
+    Dict,
+    Generator,
+    Integer,
+    List,
+    Optional,
+    Union,
+)
+from colour.utilities import optional, warning
 
 from colour_datasets.utilities import url_download, json_open
 from colour_datasets.records import Configuration
@@ -47,9 +60,9 @@ class Record:
 
     Parameters
     ----------
-    data : str
+    data
         *Zenodo* record data.
-    configuration : Configuration
+    configuration
         *Colour - Datasets* configuration.
 
     Attributes
@@ -81,110 +94,87 @@ class Record:
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
-    def __init__(self, data, configuration=None):
+    def __init__(
+        self, data: dict, configuration: Optional[Configuration] = None
+    ):
 
-        self._data = data
-        self._configuration = (
-            Configuration() if configuration is None else configuration
+        self._data: dict = data
+        self._configuration: Configuration = optional(
+            configuration, Configuration()
         )
 
     @property
-    def data(self):
+    def data(self) -> dict:
         """
-        Getter and setter property for the *Zenodo* record data.
-
-        Parameters
-        ----------
-        value : dict
-            Value to set the *Zenodo* record data with.
+        Getter property for the *Zenodo* record data.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Zenodo* record data.
         """
 
         return self._data
 
     @property
-    def configuration(self):
+    def configuration(self) -> Configuration:
         """
-        Getter and setter property for the *Colour - Datasets* configuration.
-
-        Parameters
-        ----------
-        value : Configuration
-            Value to set the *Colour - Datasets* configuration with.
+        Getter property for the *Colour - Datasets* configuration.
 
         Returns
         -------
-        str
+        :class:`colour_datasets.Configuration`
            *Colour - Datasets* configuration.
         """
 
         return self._configuration
 
     @property
-    def repository(self):
+    def repository(self) -> str:
         """
-        Getter and setter property for the *Zenodo* record local repository.
-
-        Parameters
-        ----------
-        value : str
-            Value to set the *Zenodo* record local repository with.
+        Getter property for the *Zenodo* record local repository.
 
         Returns
         -------
-        str
+        :class:`str`
             *Zenodo* record local repository.
         """
 
         return os.path.join(self._configuration.repository, self.id)
 
     @property
-    def id(self):
+    def id(self) -> str:
         """
-        Getter and setter property for the *Zenodo* record id.
-
-        Parameters
-        ----------
-        value : str
-            Value to set the *Zenodo* record id with.
+        Getter property for the *Zenodo* record id.
 
         Returns
         -------
-        str
+        :class:`str`
             *Zenodo* record id.
         """
 
         return str(self._data["id"])
 
     @property
-    def title(self):
+    def title(self) -> str:
         """
         Getter and setter property for the *Zenodo* record title.
 
-        Parameters
-        ----------
-        value : str
-            Value to set the *Zenodo* record title with.
-
         Returns
         -------
-        str
+        :class:`str`
             *Zenodo* record title.
         """
 
         return self._data["metadata"]["title"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Returns a formatted string representation of the *Zenodo* record.
 
         Returns
         -------
-        str
+        :class:`str`
             Formatted string representation.
 
         Examples
@@ -197,26 +187,16 @@ class Record:
         Record ID        : 3245883
         """
 
-        def strip_html(text):
+        def strip_html(text: str) -> str:
             """
             Strips *HTML* tags from given text.
-
-            Parameters
-            ----------
-            text : str
-                Text to strips the *HTML* tags from.
-
-            Returns
-            -------
-            str
-                Text with *HTML* tags stripped of.
             """
 
             text = text.replace("&nbsp;", " ").replace("\n\n", " ")
 
-            parts = []
+            parts: List[str] = []
             parser = HTMLParser()
-            parser.handle_data = parts.append
+            parser.handle_data = parts.append  # type: ignore[assignment]
             parser.feed(text)
 
             return "".join(parts)
@@ -227,47 +207,38 @@ class Record:
         )
         files = self._data["files"]
 
+        description = "\n".join(
+            textwrap.wrap(strip_html(metadata["description"]), 79)
+        )
+        files = "\n".join(
+            [
+                f"- {file_data['key']} : {file_data['links']['self']}"
+                for file_data in sorted(files, key=lambda x: x["key"])
+            ]
+        )
+
         representation = (
-            "{} - {}\n"
-            "{}\n\n"
-            "Record ID        : {}\n"
-            "Authors          : {}\n"
-            "License          : {}\n"
-            "DOI              : {}\n"
-            "Publication Date : {}\n"
-            "URL              : {}\n\n"
-            "Description\n-----------\n\n{}\n\n"
-            "Files\n-----\n\n{}".format(
-                metadata["title"],
-                metadata["version"],
-                "=" * (len(self.title) + 3 + len(metadata["version"])),
-                self.id,
-                authors,
-                metadata["license"]["id"],
-                metadata["doi"],
-                metadata["publication_date"],
-                self._data["links"]["html"],
-                "\n".join(
-                    textwrap.wrap(strip_html(metadata["description"]), 79)
-                ),
-                "\n".join(
-                    [
-                        f"- {file_data['key']} : {file_data['links']['self']}"
-                        for file_data in sorted(files, key=lambda x: x["key"])
-                    ]
-                ),
-            )
+            f'{metadata["title"]} - {metadata["version"]}\n'
+            f'{"=" * (len(self.title) + 3 + len(metadata["version"]))}\n\n'
+            f"Record ID        : {self.id}\n"
+            f"Authors          : {authors}\n"
+            f'License          : {metadata["license"]["id"]}\n'
+            f'DOI              : {metadata["doi"]}\n'
+            f'Publication Date : {metadata["publication_date"]}\n'
+            f'URL              : {self._data["links"]["html"]}\n\n'
+            f"Description\n-----------\n\n{description}\n\n"
+            f"Files\n-----\n\n{files}"
         )
 
         return representation
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Returns an evaluable string representation of the *Zenodo* record.
 
         Returns
         -------
-        str
+        :class:`str`
             Evaluable string representation.
 
         Examples
@@ -283,40 +254,43 @@ class Record:
              'created': '2019-06-14T09:34:15.765924+00:00',
         """
 
-        return "{}(\n{},\n{}\n)".format(
-            self.__class__.__name__,
+        data = "\n".join(
+            [f"    {line}" for line in pformat(self._data).splitlines()]
+        )
+        configuration = "    Configuration(\n{}\n    )".format(
             "\n".join(
-                [f"    {line}" for line in pformat(self._data).splitlines()]
-            ),
-            "    Configuration(\n{}\n    )".format(
-                "\n".join(
-                    [
-                        f"        {line}"
-                        for line in pformat(self._configuration).splitlines()
-                    ]
-                )
-            ),
+                [
+                    f"        {line}"
+                    for line in pformat(self._configuration).splitlines()
+                ]
+            )
         )
 
+        return f"{self.__class__.__name__}(\n{data},\n{configuration}\n)"
+
     @staticmethod
-    def from_id(id_, configuration=None, retries=3):
+    def from_id(
+        id_: str,
+        configuration: Optional[Configuration] = None,
+        retries: Integer = 3,
+    ) -> Record:
         """
         :class:`colour_datasets.Record` class factory that builds an instance
         using given *Zenodo* record id.
 
         Parameters
         ----------
-        id_ : str
+        id_
             *Zenodo* record id.
-        configuration : Configuration, optional
-            configuration : Configuration
+        configuration
+            configuration
                 *Colour - Datasets* configuration.
-        retries : int, optional
+        retries
             Number of retries in case where a networking error occurs.
 
         Returns
         -------
-        Record
+        :class:`colour_datasets.Record`
             *Zenodo* record data.
 
         Examples
@@ -338,14 +312,14 @@ class Record:
 
         return Record(json_open(record_url, retries), configuration)
 
-    def synced(self):
+    def synced(self) -> Boolean:
         """
         Returns whether the *Zenodo* record data is synced to the local
         repository.
 
         Returns
         -------
-        bool
+        :class:`bool`
             Whether the *Zenodo* record data is synced to the local repository.
 
         Examples
@@ -374,18 +348,18 @@ class Record:
             ]
         )
 
-    def pull(self, use_urls_txt_file=True, retries=3):
+    def pull(self, use_urls_txt_file: Boolean = True, retries: Integer = 3):
         """
         Pulls the *Zenodo* record data to the local repository.
 
         Parameters
         ----------
-        use_urls_txt_file : bool, optional
+        use_urls_txt_file
             Whether to use the *urls.txt* file: if such a file is present in
             the *Zenodo* record data, the urls it defines take precedence over
             the record data files. The later will be used in the eventuality
             where the urls are not available.
-        retries : int, optional
+        retries
             Number of retries in case where a networking error occurs or the
             *MD5* hash is not matching.
 
@@ -419,7 +393,7 @@ class Record:
                 urls_txt = file_data
                 break
 
-        def _urls_download(urls):
+        def urls_download(urls: Dict):
             """
             Downloads given urls.
             """
@@ -427,7 +401,9 @@ class Record:
             for url, md5 in urls.items():
                 filename = os.path.join(
                     downloads_directory,
-                    urllib.parse.unquote(url.split("/")[-1]),
+                    urllib.parse.unquote(  # type: ignore[attr-defined]
+                        url.split("/")[-1]
+                    ),
                 )
                 url_download(url, filename, md5.split(":")[-1], retries)
 
@@ -454,7 +430,7 @@ class Record:
                     ),
                 )
 
-                _urls_download(urls)
+                urls_download(urls)
             else:
                 raise ValueError(
                     f'"{self._configuration.urls_txt_file}" file was not '
@@ -476,7 +452,7 @@ class Record:
                     ":"
                 )[-1]
 
-            _urls_download(urls)
+            urls_download(urls)
 
         deflate_directory = os.path.join(
             self.repository, self._configuration.deflate_directory
@@ -536,9 +512,9 @@ class Community(Mapping):
 
     Parameters
     ----------
-    data : str
+    data
         *Zenodo* community data.
-    configuration : Configuration
+    configuration
         *Colour - Datasets* configuration.
 
     Attributes
@@ -578,96 +554,78 @@ class Community(Mapping):
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
-    def __init__(self, data, configuration=None):
-        self._data = data
-        self._configuration = (
-            Configuration() if configuration is None else configuration
+    def __init__(
+        self, data: Dict, configuration: Optional[Configuration] = None
+    ):
+        self._data: Dict = data
+        self._configuration: Configuration = optional(
+            configuration, Configuration()
         )
 
         hits = self._data["records"]["hits"]["hits"]
-        self._records = {
+        self._records: Dict = {
             str(hit["id"]): Record(hit, self._configuration) for hit in hits
         }
 
     @property
-    def data(self):
+    def data(self) -> Dict:
         """
-        Getter and setter property for the *Zenodo* community data.
-
-        Parameters
-        ----------
-        value : dict
-            Value to set the *Zenodo* community data.with.
+        Getter property for the *Zenodo* community data.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Zenodo* community data.
         """
 
         return self._data
 
     @property
-    def configuration(self):
+    def configuration(self) -> Configuration:
         """
         Getter and setter property for the *Colour - Datasets* configuration.
 
-        Parameters
-        ----------
-        value : Configuration
-            Value to set the *Colour - Datasets* configuration with.
-
         Returns
         -------
-        str
+        :class:`colour_datasets.Configuration`
            *Colour - Datasets* configuration.
         """
 
         return self._configuration
 
     @property
-    def repository(self):
+    def repository(self) -> str:
         """
-        Getter and setter property for the *Zenodo* community local repository.
-
-        Parameters
-        ----------
-        value : str
-            Value to set the *Zenodo* community local repository with.
+        Getter property for the *Zenodo* community local repository.
 
         Returns
         -------
-        str
+        :class:`str`
             *Zenodo* community local repository.
         """
 
         return self._configuration.repository
 
     @property
-    def records(self):
+    def records(self) -> Dict:
         """
-        Getter and setter property for the *Zenodo* community records.
-
-        Parameters
-        ----------
-        value : dict
-            Value to set the *Zenodo* community records with.
+        Getter property for the *Zenodo* community records.
 
         Returns
         -------
-        dict
+        :class:`dict`
              *Zenodo* community records.
         """
 
         return self._records
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Returns a formatted string representation of the *Zenodo* community.
 
         Returns
         -------
-        str
+        :class:`str`
             Formatted string representation.
 
         Examples
@@ -693,34 +651,30 @@ colour-science-datasets-tests/
                 for dataset in sorted(self.values(), key=lambda x: x.title)
             ]
         )
+
+        synced = len(
+            [dataset for dataset in self.values() if dataset.synced()]
+        )
+
         representation = (
-            "{}\n"
-            "{}\n\n"
-            "Datasets : {}\n"
-            "Synced   : {}\n"
-            "URL      : {}\n\n"
-            "Datasets\n--------\n\n"
-            "{}".format(
-                self._configuration.community,
-                "=" * len(self._configuration.community),
-                len(self),
-                len(
-                    [dataset for dataset in self.values() if dataset.synced()]
-                ),
-                self._data["community"]["links"]["html"],
-                datasets,
-            )
+            f"{self._configuration.community}\n"
+            f'{"=" * len(self._configuration.community)}\n\n'
+            f"Datasets : {len(self)}\n"
+            f"Synced   : {synced}\n"
+            f'URL      : {self._data["community"]["links"]["html"]}\n\n'
+            f"Datasets\n--------\n\n"
+            f"{datasets}"
         )
 
         return representation
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Returns an evaluable string representation of the *Zenodo* community.
 
         Returns
         -------
-        str
+        :class:`str`
             Evaluable string representation.
 
         Examples
@@ -736,33 +690,33 @@ colour-science-datasets-tests/
                            'description': '',
         """
 
-        return "{}(\n{},\n{}\n)".format(
-            self.__class__.__name__,
-            "\n".join(
-                [f"    {line}" for line in pformat(self._data).splitlines()]
-            ),
-            "    Configuration(\n{}\n    )".format(
-                "\n".join(
-                    [
-                        f"        {line}"
-                        for line in pformat(self._configuration).splitlines()
-                    ]
-                )
-            ),
+        data = "\n".join(
+            [f"    {line}" for line in pformat(self._data).splitlines()]
         )
 
-    def __getitem__(self, id_):
+        configuration = "    Configuration(\n{}\n    )".format(
+            "\n".join(
+                [
+                    f"        {line}"
+                    for line in pformat(self._configuration).splitlines()
+                ]
+            )
+        )
+
+        return f"{self.__class__.__name__}(\n{data},\n{configuration}\n)"
+
+    def __getitem__(self, item: Union[str, Any]) -> Any:
         """
         Returns the *Zenodo* record at given id.
 
         Parameters
         ----------
-        id_ : str
+        item
             *Zenodo* recordid.
 
         Returns
         -------
-        Record
+        :class:`colour_datasets.Record`
             *Zenodo* record at given id.
 
         Examples
@@ -774,15 +728,15 @@ colour-science-datasets-tests/
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
-        return self._records[id_]
+        return self._records[item]
 
-    def __iter__(self):
+    def __iter__(self) -> Generator:
         """
         Iterates through the *Zenodo* community records.
 
-        Returns
-        -------
-        iterator
+        Yields
+        ------
+        Generator
             *Zenodo* community records iterator.
 
         Examples
@@ -792,15 +746,15 @@ colour-science-datasets-tests/
         ...     print(record) # doctest: +SKIP
         """
 
-        return iter(self._records)
+        yield from self._records
 
-    def __len__(self):
+    def __len__(self) -> Integer:
         """
         Returns *Zenodo* community records count.
 
         Returns
         -------
-        int
+        :class:`int`
             *Zenodo* community records count.
 
         Examples
@@ -814,24 +768,28 @@ colour-science-datasets-tests/
         return len(self._records)
 
     @staticmethod
-    def from_id(id_, configuration=None, retries=3):
+    def from_id(
+        id_: str,
+        configuration: Optional[Configuration] = None,
+        retries: Integer = 3,
+    ) -> Community:
         """
         :class:`colour_datasets.Community` class factory that builds an
         instance using given *Zenodo* community id.
 
         Parameters
         ----------
-        id_ : str
+        id_ :
             *Zenodo* community id.
-        configuration : Configuration, optional
-            configuration : Configuration
+        configuration :
+            configuration :
                 *Colour - Datasets* configuration.
-        retries : int, optional
+        retries :
             Number of retries in case where a networking error occurs.
 
         Returns
         -------
-        Community
+        :class:`colour_datasets.Community`
             *Zenodo* community data.
 
         Examples
@@ -907,14 +865,14 @@ colour-science-datasets-tests/
 
         return Community(data, configuration)
 
-    def synced(self):
+    def synced(self) -> Boolean:
         """
         Returns whether the *Zenodo* community data is synced to the local
         repository.
 
         Returns
         -------
-        bool
+        :class:`bool`
             Whether the *Zenodo* community data is synced to the local
             repository.
 
@@ -933,18 +891,18 @@ colour-science-datasets-tests/
 
         return all([record.synced() for record in self._records.values()])
 
-    def pull(self, use_urls_txt_file=True, retries=3):
+    def pull(self, use_urls_txt_file: Boolean = True, retries: Integer = 3):
         """
         Pulls the *Zenodo* community data to the local repository.
 
         Parameters
         ----------
-        use_urls_txt_file : bool, optional
+        use_urls_txt_file
             Whether to use the *urls.txt* file: if such a file is present in
             a *Zenodo* record data, the urls it defines take precedence over
             the record data files. The later will be used in the eventuality
             where the urls are not available.
-        retries : int, optional
+        retries
             Number of retries in case where a networking error occurs or the
             *MD5* hash is not matching.
 
@@ -984,7 +942,7 @@ colour-science-datasets-tests/
             shutil.rmtree(self.repository, onerror=_remove_readonly)
 
 
-def _remove_readonly(function, path, excinfo):
+def _remove_readonly(function: Callable, path: str, excinfo: Any):
     """
     Error handler for :func:`shutil.rmtree` definition that removes read-only
     files.

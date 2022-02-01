@@ -15,10 +15,13 @@ References
     https://haraldbrendel.com/files/led_spd_350_700.csv
 """
 
+from __future__ import annotations
+
 import numpy as np
 import os
 
 from colour import LinearInterpolator, SpectralShape, SpectralDistribution
+from colour.hints import Boolean, Dict, Optional
 from colour.utilities import as_int
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -55,24 +58,22 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
     :cite:`Brendel2020`
     """
 
-    ID = "4051012"
+    ID: str = "4051012"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Brendel2020.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, SpectralDistribution]:
         """
         Syncs, parses, converts and returns the *Brendel (2020)*
         *Measured Commercial LED Spectra* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Brendel (2020)* *Measured Commercial LED Spectra* dataset content.
 
         Examples
@@ -108,28 +109,26 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_BRENDEL2020 = None
+_DATASET_LOADER_BRENDEL2020: Optional[DatasetLoader_Brendel2020] = None
 """
 Singleton instance of the *Brendel (2020)* *Measured Commercial LED Spectra*
 dataset loader.
-
-_DATASET_LOADER_BRENDEL2020 : DatasetLoader_Brendel2020
 """
 
 
-def build_Brendel2020(load=True):
+def build_Brendel2020(load: Boolean = True) -> DatasetLoader_Brendel2020:
     """
     Singleton factory that builds the *Brendel (2020)*
     *Measured Commercial LED Spectra* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Brendel2020
+    :class:`colour_datasets.loaders.DatasetLoader_Brendel2020`
         Singleton instance of the *Brendel (2020)*
         *Measured Commercial LED Spectra* dataset loader.
 

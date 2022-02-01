@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from colour.hints import Optional
+
 from .configuration import Configuration, sandbox, use_sandbox
 from .zenodo import Community, Record
 
@@ -11,23 +15,21 @@ __all__ += [
     "Record",
 ]
 
-_COMMUNITY = None
+_COMMUNITY: Optional[Community] = None
 """
 Singleton instance of the *Zenodo* community that holds the datasets
 information.
-
-_COMMUNITY : Community
 """
 
 
-def datasets():
+def datasets() -> Community:
     """
     Singleton factory that returns *Zenodo* community that holds the datasets
     information.
 
     Returns
     -------
-    Community
+    :class:`colour_datasets.Community`
         Singleton instance of the *Zenodo* community.
 
     Examples

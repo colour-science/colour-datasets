@@ -16,6 +16,8 @@ References
     168-179. doi:10.1109/WACV.2013.6475015
 """
 
+from __future__ import annotations
+
 import codecs
 import numpy as np
 import os
@@ -23,6 +25,7 @@ import re
 
 from colour import SpectralShape
 from colour.characterisation import RGB_CameraSensitivities
+from colour.hints import Boolean, Dict, Optional
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -60,24 +63,22 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
     :cite:`Jiang2013`
     """
 
-    ID = "3245883"
+    ID: str = "3245883"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Jiang2013.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, RGB_CameraSensitivities]:
         """
         Syncs, parses, converts and returns the *Jiang et al. (2013)*
         *Camera Spectral Sensitivity Database* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Jiang et al. (2013)* *Camera Spectral Sensitivity Database*
             dataset content.
 
@@ -124,28 +125,26 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_JIANG2013 = None
+_DATASET_LOADER_JIANG2013: Optional[DatasetLoader_Jiang2013] = None
 """
 Singleton instance of the *Jiang et al. (2013)*
 *Camera Spectral Sensitivity Database* dataset loader.
-
-_DATASET_LOADER_JIANG2013 : DatasetLoader_Jiang2013
 """
 
 
-def build_Jiang2013(load=True):
+def build_Jiang2013(load: Boolean = True) -> DatasetLoader_Jiang2013:
     """
     Singleton factory that builds the *Jiang et al. (2013)*
     *Camera Spectral Sensitivity Database* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Jiang2013
+    :class:`colour_datasets.loaders.DatasetLoader_Jiang2013`
         Singleton instance of the *Jiang et al. (2013)*
         *Camera Spectral Sensitivity Database* dataset loader.
 

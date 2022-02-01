@@ -16,11 +16,14 @@ References
 282908037_A_Spectral_Database_of_Commonly_Used_Cine_Lighting
 """
 
+from __future__ import annotations
+
 import os
 import re
 from collections import defaultdict
 
 from colour.algebra import LinearInterpolator
+from colour.hints import Boolean, Dict, Optional
 from colour.io import read_sds_from_csv_file
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -58,24 +61,22 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
     :cite:`Karge2015`
     """
 
-    ID = "4642271"
+    ID: str = "4642271"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Karge2015.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, Dict[str, Dict]]:
         """
         Syncs, parses, converts and returns the *Karge et al. (2015)*
         *Spectral Database of Commonly Used Cine Lighting* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Karge et al. (2015)*
             *Spectral Database of Commonly Used Cine Lighting* dataset content.
 
@@ -124,28 +125,26 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
         return dict(self._content)
 
 
-_DATASET_LOADER_KARGE2015 = None
+_DATASET_LOADER_KARGE2015: Optional[DatasetLoader_Karge2015] = None
 """
 Singleton instance of the *Karge et al. (2015)*
 *Spectral Database of Commonly Used Cine Lighting* dataset loader.
-
-_DATASET_LOADER_KARGE2015 : DatasetLoader_Karge2015
 """
 
 
-def build_Karge2015(load=True):
+def build_Karge2015(load: Boolean = True) -> DatasetLoader_Karge2015:
     """
     Singleton factory that builds the *Karge et al. (2015)*
     *Spectral Database of Commonly Used Cine Lighting* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Karge2015
+    :class:`colour_datasets.loaders.DatasetLoader_Karge2015`
         Singleton instance of the *Karge et al. (2015)*
         *Spectral Database of Commonly Used Cine Lighting* dataset loader.
 

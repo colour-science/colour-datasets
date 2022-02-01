@@ -23,10 +23,14 @@ References
     Vision Research, 16(5), 445-IN3. doi:10.1016/0042-6989(76)90020-1
 """
 
+from __future__ import annotations
+
 import codecs
 import numpy as np
 import os
 from collections import namedtuple
+
+from colour.hints import Boolean, Dict, Optional, Tuple
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -68,28 +72,28 @@ class CorrespondingColourDataset_Luo1999(
 
     Parameters
     ----------
-    name : str
+    name
         *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset name.
-    XYZ_r : array_like
+    XYZ_r
         *CIE XYZ* tristimulus values of the reference illuminant.
-    XYZ_t : array_like
+    XYZ_t
         *CIE XYZ* tristimulus values of the test illuminant.
-    XYZ_cr : array_like
+    XYZ_cr
         Corresponding *CIE XYZ* tristimulus values under the reference
         illuminant.
-    XYZ_ct : array_like
+    XYZ_ct
         Corresponding *CIE XYZ* tristimulus values under the test illuminant.
-    Y_r : numeric
+    Y_r
         Reference white luminance :math:`Y_r` in :math:`cd/m^2`.
-    Y_t : numeric
+    Y_t
         Test white luminance :math:`Y_t` in :math:`cd/m^2`.
-    B_r : numeric
+    B_r
          Luminance factor :math:`B_r` of reference achromatic background as
          percentage.
-    B_t : numeric
+    B_t
          Luminance factor :math:`B_t` of test achromatic background as
          percentage.
-    metadata : dict
+    metadata
         Dataset metadata.
     """
 
@@ -113,24 +117,22 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
     :cite:`Breneman1987b`, :cite:`Luo1999`, :cite:`McCann1976`
     """
 
-    ID = "3270903"
+    ID: str = "3270903"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Luo1999.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, CorrespondingColourDataset_Luo1999]:
         """
         Syncs, parses, converts and returns the *Luo and Rhodes (1999)*
         *Corresponding-Colour Datasets* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset
             content.
 
@@ -172,11 +174,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
             "Experimental Method",
         )
 
-        corresponding_colour_datasets = dict(
+        corresponding_colour_datasets: Dict[str, Tuple] = dict(
             [
                 (
                     "CSAJ-C",
-                    [
+                    (
                         ("CSAJ.da.dat",),
                         (
                             1,
@@ -189,11 +191,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Haploscopic",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "CSAJ-Hunt",
-                    [
+                    (
                         (
                             "CSAJ.10.dat",
                             "CSAJ.50.dat",
@@ -213,11 +215,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Haploscopic",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "CSAJ-Stevens",
-                    [
+                    (
                         (
                             "Steve.10.dat",
                             "Steve.50.dat",
@@ -237,11 +239,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Haploscopic",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Helson",
-                    [
+                    (
                         ("helson.ca.dat",),
                         (
                             1,
@@ -254,11 +256,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Memory",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Lam & Rigg",
-                    [
+                    (
                         ("lam.da.dat",),
                         (
                             1,
@@ -271,11 +273,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Memory",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Lutchi (A)",
-                    [
+                    (
                         ("lutchi.da.dat",),
                         (
                             1,
@@ -288,11 +290,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Magnitude",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Lutchi (D50)",
-                    [
+                    (
                         ("lutchi.dd.dat",),
                         (
                             1,
@@ -305,11 +307,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Magnitude",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Lutchi (WF)",
-                    [
+                    (
                         ("lutchi.dw.dat",),
                         (
                             1,
@@ -322,11 +324,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Magnitude",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Kuo & Luo (A)",
-                    [
+                    (
                         ("Kuo.da.dat",),
                         (
                             1,
@@ -339,11 +341,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Magnitude",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Kuo & Luo (TL84)",
-                    [
+                    (
                         ("Kuo.dt.dat",),
                         (
                             1,
@@ -356,11 +358,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Magnitude",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Breneman-C",
-                    [
+                    (
                         (
                             "Brene.p1.dat",
                             "Brene.p2.dat",
@@ -387,11 +389,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Trans.",
                             "Magnitude",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Breneman-L",
-                    [
+                    (
                         (
                             "Brene.p5.dat",
                             "Brene.p7.dat",
@@ -408,11 +410,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Trans.",
                             "Haploscopic",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "Braun & Fairchild",
-                    [
+                    (
                         (
                             "RIT.1.dat",
                             "RIT.2.dat",
@@ -430,11 +432,11 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Mon., Refl.",
                             "Matching",
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "McCann",
-                    [
+                    (
                         (
                             "mcan.b.dat",
                             "mcan.g.dat",
@@ -453,7 +455,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             "Refl.",
                             "Haploscopic",
                         ),
-                    ],
+                    ),
                 ),
             ]
         )
@@ -468,7 +470,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                     self.record.repository, "dataset", filename
                 )
 
-                XYZ_r = XYZ_t = None
+                XYZ_r, XYZ_t = [], []
                 XYZ_cr, XYZ_ct = [], []
                 with codecs.open(path, encoding="utf-8") as dat_file:
                     lines = filter(
@@ -517,28 +519,26 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_LUO1999 = None
+_DATASET_LOADER_LUO1999: Optional[DatasetLoader_Luo1999] = None
 """
 Singleton instance of the *Luo and Rhodes (1999)*
 *Corresponding-Colour Datasets* dataset loader.
-
-_DATASET_LOADER_LUO1999 : DatasetLoader_Luo1999
 """
 
 
-def build_Luo1999(load=True):
+def build_Luo1999(load: Boolean = True) -> DatasetLoader_Luo1999:
     """
     Singleton factory that the builds *Luo and Rhodes (1999)*
     *Corresponding-Colour Datasets* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Luo1999
+    :class:`colour_datasets.loaders.DatasetLoader_Luo1999`
         Singleton instance of the *Luo and Rhodes (1999)*
         *Corresponding-Colour Datasets* dataset loader.
 

@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 import sys
 
+from colour.hints import Any, Boolean, Integer, Union
 from colour.utilities import CaseInsensitiveMapping, warning
 
 from colour_datasets.records import datasets
@@ -75,7 +78,7 @@ __all__ += [
     "build_Zhao2009",
 ]
 
-DATASET_LOADERS = CaseInsensitiveMapping(
+DATASET_LOADERS: CaseInsensitiveMapping = CaseInsensitiveMapping(
     {
         DatasetLoader_Asano2015.ID: build_Asano2015,
         DatasetLoader_Brendel2020.ID: build_Brendel2020,
@@ -94,8 +97,6 @@ DATASET_LOADERS = CaseInsensitiveMapping(
 )
 DATASET_LOADERS.__doc__ = """
 Dataset loaders ids and callables.
-
-DATASET_LOADERS : CaseInsensitiveMapping
 """
 
 from .kuopio import DATASET_LOADERS_KUOPIO_UNIVERSITY  # noqa
@@ -117,30 +118,28 @@ for _export in kuopio.__all__:
 
 del _module, _export
 
-_HAS_TITLE_KEYS = False
+_HAS_TITLE_KEYS: Boolean = False
 """
 Whether the :attr:`colour_datasets.loaders.DATASET_LOADERS` attribute has
 been updated with dataset titles. This variable is used in the one time
 initialisation step that ensures that datasets can also be loaded using their
 titles.
-
-_HAS_TITLE_KEYS : bool
 """
 
 
-def load(dataset):
+def load(dataset: Union[Integer, str]) -> Any:
     """
     Loads given dataset: The dataset is pulled locally, i.e. synced if required
     and then its data is loaded.
 
     Parameters
     ----------
-    dataset : str or int
+    dataset
         Dataset id, i.e. the *Zenodo* record number or title.
 
     Returns
     -------
-    object
+    :class:`object`
         Dataset data.
 
     Examples

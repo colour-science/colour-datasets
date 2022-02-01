@@ -8,8 +8,8 @@ import colour_datasets
 
 message_box(
     "Listing the available datasets.\n\n"
-    "Note: A ticked checkbox means that the particular dataset "
-    "has been synced locally."
+    "Note: A ticked checkbox means that the particular dataset has been "
+    "synced locally."
 )
 print(colour_datasets.datasets())
 

@@ -29,9 +29,13 @@ References
 http://colour.derby.ac.uk:80/colour/info/lutchi/
 """
 
+from __future__ import annotations
+
 import numpy as np
 import os
 from collections import namedtuple
+
+from colour.hints import Boolean, Dict, Optional, Tuple
 from colour.utilities import as_float_array, usage_warning
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -61,12 +65,12 @@ class ExperimentalGroupLuo1997(
 
     Parameters
     ----------
-    name : str
+    name
         *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* experimental
         group name.
-    phases : dict
+    phases
         Experimental phases.
-    metadata : dict
+    metadata
         Experimental group metadata.
     """
 
@@ -92,10 +96,10 @@ class ExperimentalPhaseLuo1997(
 
     Parameters
     ----------
-    name : str
+    name
         *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* experimental
         phase name.
-    JQCH_v : array_like
+    JQCH_v
         :math:`JQCH_v` array from the visual file where :math:`JQ`, :math:`C`,
         and :math:`H` are the mean visual results of the lightness or
         brightness, colourfulness and hue. The arithmetic mean was used for
@@ -103,19 +107,19 @@ class ExperimentalPhaseLuo1997(
         100 for yellow, 200 for green, 300 for blue and 400 for red) results,
         the geometric mean for brightness (0 for black) and colourfulness (0
         for neutral colours) results in open ended scales.
-    xyY_c : array_like
+    xyY_c
         *CIE xyY* colourspace array :math:`xyY_c` from the colorimetric file
         and measured using a telespectroradiometer (TSR).
-    S_Y_c : array_like
+    S_Y_c
         Scaling factor :math:`S_Y` of the Y values used for adjusting those in
         the colorimetric file, i.e. *CIE xyY* colourspace array :math:`xyY_c`.
-    Y_b : array_like
+    Y_b
         Relative luminance of background :math:`Y_b` in :math:`cd/m^2`.
-    Y_r : numeric
+    Y_r
         Reference white sample luminance :math:`Y_r` in :math:`cd/m^2`.
-    XYZ_o : array_like
+    XYZ_o
         *CIE XYZ* tristimulus values of the illuminant.
-    metadata : dict
+    metadata
         Experimental phase metadata.
     """
 
@@ -127,35 +131,34 @@ class DatasetLoader_Luo1997(AbstractDatasetLoader):
 
     Attributes
     ----------
-    ID
+    -   :attr:`colour_datasets.loaders.DatasetLoader_Luo1997.ID`
 
     Methods
     -------
-    load
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Luo1997.__init__`
+    -   :meth:`colour_datasets.loaders.DatasetLoader_Luo1997.load`
 
     References
     ----------
     :cite:`Luo1991`, :cite:`Luo1991a`, :cite:`Luo1993`, :cite:`Luo1997`
     """
 
-    ID = "4394536"
+    ID: str = "4394536"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Luo1997.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, ExperimentalGroupLuo1997]:
         """
         Syncs, parses, converts and returns the *Luo and Rhodes (1997)*
         *LUTCHI Colour Appearance Data* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* dataset
             content.
 
@@ -207,7 +210,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
             "Neutrals",
         )
 
-        experimental_groups_summary = dict(
+        experimental_groups_summary: Dict[str, Tuple] = dict(
             [
                 (
                     "R-HL",
@@ -279,11 +282,11 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
             ]
         )
 
-        experimental_groups = dict(
+        experimental_groups: Dict[str, Tuple] = dict(
             [
                 (
                     "R-HL",
-                    [
+                    (
                         (
                             1,
                             "nlmean.wh",
@@ -356,11 +359,11 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                             232,
                             np.array([112.92, 100, 28.62]),
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "R-LL",
-                    [
+                    (
                         (
                             1,
                             "nlmean.wl",
@@ -433,11 +436,11 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                             42,
                             np.array([117.26, 100, 22.44]),
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "R-VL",
-                    [
+                    (
                         (
                             1,
                             "mean4.p1",
@@ -582,11 +585,11 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                             0.4,
                             np.array([90.56, 100, 58.59]),
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "R-textile",
-                    [
+                    (
                         (
                             1,
                             "kuo.d65.vis",
@@ -623,11 +626,11 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                             250,
                             np.array([115.19, 100, 23.75]),
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "CRT",
-                    [
+                    (
                         (
                             1,
                             "lmean.ww",
@@ -760,11 +763,11 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                             20.3,
                             np.array([117.26, 100, 22.44]),
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "35mm",
-                    [
+                    (
                         (
                             1,
                             "mean.35.p1",
@@ -837,11 +840,11 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                             113,
                             np.array([95.32, 100, 53.37]),
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "LT",
-                    [
+                    (
                         (
                             1,
                             "mean.p1",
@@ -962,11 +965,11 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                             680,
                             np.array([93.34, 100, 57.98]),
                         ),
-                    ],
+                    ),
                 ),
                 (
                     "BIT",
-                    [
+                    (
                         (
                             1,
                             "bit_p1.vis",
@@ -1027,7 +1030,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                             3.6,
                             np.array([100.6, 100, 113.2]),
                         ),
-                    ],
+                    ),
                 ),
             ]
         )
@@ -1103,28 +1106,26 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
         return self._content
 
 
-_DATASET_LOADER_LUO1997 = None
+_DATASET_LOADER_LUO1997: Optional[DatasetLoader_Luo1997] = None
 """
 Singleton instance of the *Luo and Rhodes (1997)*
 *LUTCHI Colour Appearance Data* dataset loader.
-
-_DATASET_LOADER_LUO1997 : DatasetLoader_Luo1997
 """
 
 
-def build_Luo1997(load=True):
+def build_Luo1997(load: Boolean = True) -> DatasetLoader_Luo1997:
     """
     Singleton factory that the builds *Luo and Rhodes (1997)*
     *LUTCHI Colour Appearance Data* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Luo1997
+    :class:`colour_datasets.loaders.DatasetLoader_Luo1997`
         Singleton instance of the *Luo and Rhodes (1997)*
         *LUTCHI Colour Appearance Data* dataset loader.
 

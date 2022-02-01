@@ -12,7 +12,7 @@ from colour_datasets.loaders.kuopio import (
     MatFileMetadata_KuopioUniversity,
     read_sds_from_mat_file_KuopioUniversity,
 )
-from colour_datasets.loaders.kuopio import (
+from colour_datasets.loaders.kuopio import (  # type: ignore[attr-defined]
     DatasetLoader_MunsellColorsMattSpectrofotometerMeasured,
     DatasetLoader_MunsellColorsMattAOTFMeasured,
     DatasetLoader_MunsellColorsGlossySpectrofotometerMeasured,

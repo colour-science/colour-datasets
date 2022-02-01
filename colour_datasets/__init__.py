@@ -55,19 +55,26 @@ __minor_version__ = "1"
 __change_version__ = "1"
 __version__ = ".".join(
     (__major_version__, __minor_version__, __change_version__)
-)  # yapf: disable
+)
 
 try:
-    version = subprocess.check_output(  # nosec
-        ["git", "describe"],
-        cwd=os.path.dirname(__file__),
-        stderr=subprocess.STDOUT,
-    ).strip()
-    version = version.decode("utf-8")
+    _version = (
+        subprocess.check_output(  # nosec
+            ["git", "describe"],
+            cwd=os.path.dirname(__file__),
+            stderr=subprocess.STDOUT,
+        )
+        .strip()
+        .decode("utf-8")
+    )
 except Exception:
-    version = __version__
+    _version = __version__
 
-colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES["colour-datasets"] = version
+colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES[
+    "colour-datasets"
+] = _version
+
+del _version
 
 # TODO: Remove legacy printing support when deemed appropriate.
 try:

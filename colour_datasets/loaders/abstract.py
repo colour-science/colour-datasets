@@ -7,7 +7,13 @@ Defines the abstract class implementing support for dataset loading:
 -   :class:`colour_datasets.loaders.AbstractDatasetLoader`
 """
 
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
+from colour.hints import Any, Optional
+
+from colour_datasets.records import Record
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
@@ -48,92 +54,74 @@ class AbstractDatasetLoader(ABC):
 
     Parameters
     ----------
-    record : Record
+    record
         Dataset record.
     """
 
-    ID = None
+    ID: str = "Undefined"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
-    def __init__(self, record):
-        self._record = record
-        self._content = None
+    def __init__(self, record: Record):
+        self._record: Record = record
+        self._content: Optional[Any] = None
 
     @property
-    def record(self):
+    def record(self) -> Record:
         """
-        Getter and setter property for the dataset record.
-
-        Parameters
-        ----------
-        value : Record
-            Value to set the dataset record with.
+        Getter property for the dataset record.
 
         Returns
         -------
-        str
+        :class:`colour_datasets.Record`
             Dataset record.
         """
 
         return self._record
 
     @property
-    def id(self):
+    def id(self) -> str:
         """
         Getter and setter property for the dataset id.
 
-        Parameters
-        ----------
-        value : str
-            Value to set the dataset id with.
-
         Returns
         -------
-        str
+        :class:`str`
             Dataset id.
         """
 
         return self.__class__.ID
 
     @property
-    def content(self):
+    def content(self) -> Any:
         """
         Getter and setter property for the dataset content.
 
-        Parameters
-        ----------
-        value : object
-            Value to set the dataset content with.
-
         Returns
         -------
-        str
+        :class:`object`
            Dataset content.
         """
 
         return self._content
 
     @abstractmethod
-    def load(self):
+    def load(self) -> Any:
         """
         Syncs, parses, converts and returns the dataset content as a *Python*
         object.
 
         Returns
         -------
-        object
+        :class:`object`
             Dataset content as a *Python* object.
 
         Notes
         -----
         -   Sub-classes are required to call
             :meth:`colour_datasets.loaders.AbstractDatasetLoader.sync` method
-            when they implement it, e.g.
-            ``super(MyDatasetLoader, self).sync()``.
+            when they implement it, e.g. ``super().sync()``.
         """
 
         pass

@@ -5,9 +5,12 @@ Configuration
 Defines various objects related to the configuration of *Colour - Datasets*.
 """
 
+from __future__ import annotations
+
 import functools
 import os
 
+from colour.hints import Any, Boolean, Callable, Dict, Optional
 from colour.utilities import Structure
 from colour.utilities.documentation import (
     DocstringDict,
@@ -28,7 +31,7 @@ __all__ = [
     "sandbox",
 ]
 
-DEFAULT_CONFIGURATION = {
+DEFAULT_CONFIGURATION: Dict = {
     "repository": os.environ.get(
         "COLOUR_SCIENCE__COLOUR_DATASETS__REPOSITORY",
         os.path.join(
@@ -47,8 +50,6 @@ if is_documentation_building():  # pragma: no cover
     DEFAULT_CONFIGURATION = DocstringDict(DEFAULT_CONFIGURATION)
     DEFAULT_CONFIGURATION.__doc__ = """
 *Colour - Datasets* default configuration.
-
-DEFAULT_CONFIGURATION : dict
 """
 
 
@@ -60,31 +61,31 @@ class Configuration(Structure):
 
     Parameters
     ----------
-    configuration : dict, optional
+    configuration
         Configuration to use instead of the default one.
     """
 
-    def __init__(self, configuration=None):
+    def __init__(self, configuration: Optional[Dict] = None):
         super().__init__(
             DEFAULT_CONFIGURATION if configuration is None else configuration
         )
 
 
 def use_sandbox(
-    state=True,
-    api_url="https://sandbox.zenodo.org/api",
-    community="colour-science-datasets",
+    state: Boolean = True,
+    api_url: str = "https://sandbox.zenodo.org/api",
+    community: str = "colour-science-datasets",
 ):
     """
     Modifies the *Colour - Datasets* configuration to use *Zenodo* sandbox.
 
     Parameters
     ----------
-    state : bool, optional
+    state
         Whether to use *Zenodo* sandbox.
-    api_url : str, optional
+    api_url
         *Zenodo* sandbox url.
-    community : str, optional
+    community
         *Zenodo* community.
     """
 
@@ -105,22 +106,22 @@ class sandbox:
 
     Parameters
     ----------
-    api_url : str, optional
+    api_url
         *Zenodo* sandbox url.
-    community : str, optional
+    community
         *Zenodo* community.
     """
 
     def __init__(
         self,
-        api_url="https://sandbox.zenodo.org/api",
-        community="colour-science-datasets",
+        api_url: str = "https://sandbox.zenodo.org/api",
+        community: str = "colour-science-datasets",
     ):
 
         self._api_url = api_url
         self._community = community
 
-    def __enter__(self):
+    def __enter__(self) -> sandbox:
         """
         Called upon entering the context manager and decorator.
         """
@@ -129,20 +130,20 @@ class sandbox:
 
         return self
 
-    def __exit__(self, *args):
+    def __exit__(self, *args: Any):
         """
         Called upon exiting the context manager and decorator.
         """
 
         use_sandbox(False)
 
-    def __call__(self, function):
+    def __call__(self, function: Callable) -> Callable:
         """
         Calls the wrapped definition.
         """
 
         @functools.wraps(function)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args: Any, **kwargs: Any) -> Callable:
             with self:
                 return function(*args, **kwargs)
 

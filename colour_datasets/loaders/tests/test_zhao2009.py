@@ -23,13 +23,13 @@ __all__ = [
 
 class TestDatasetLoader_Zhao2009(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.zhao2009.DatasetLoader_Zhao2009`
+    Define :class:`colour_datasets.loaders.zhao2009.DatasetLoader_Zhao2009`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -39,7 +39,7 @@ class TestDatasetLoader_Zhao2009(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -49,7 +49,7 @@ class TestDatasetLoader_Zhao2009(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.zhao2009.\
+        Test :func:`colour_datasets.loaders.zhao2009.\
 DatasetLoader_Zhao2009.load` method.
         """
 
@@ -80,13 +80,13 @@ DatasetLoader_Zhao2009.load` method.
 
 class TestBuildZhao2009(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.zhao2009.build_Zhao2009`
+    Define :func:`colour_datasets.loaders.zhao2009.build_Zhao2009`
     definition unit tests methods.
     """
 
     def test_build_Zhao2009(self):
         """
-        Tests :func:`colour_datasets.loaders.zhao2009.build_Zhao2009`
+        Test :func:`colour_datasets.loaders.zhao2009.build_Zhao2009`
         definition.
         """
 

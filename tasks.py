@@ -57,7 +57,7 @@ BIBLIOGRAPHY_NAME = "BIBLIOGRAPHY.bib"
 @task
 def clean(ctx, docs=True, bytecode=False, mypy=True, pytest=True):
     """
-    Cleans the project.
+    Clean the project.
 
     Parameters
     ----------
@@ -102,7 +102,7 @@ def formatting(
     bibtex=True,
 ):
     """
-    Converts unicode characters to ASCII and cleanup the *BibTeX* file.
+    Convert unicode characters to ASCII and cleanup the *BibTeX* file.
 
     Parameters
     ----------
@@ -149,7 +149,7 @@ def quality(
     rstlint=True,
 ):
     """
-    Checks the codebase with *Mypy* and lints various *restructuredText*
+    Check the codebase with *Mypy* and lints various *restructuredText*
     files with *rst-lint*.
 
     Parameters
@@ -185,7 +185,7 @@ def quality(
 @task
 def precommit(ctx):
     """
-    Runs the "pre-commit" hooks on the codebase.
+    Run the "pre-commit" hooks on the codebase.
 
     Parameters
     ----------
@@ -200,7 +200,7 @@ def precommit(ctx):
 @task
 def tests(ctx):
     """
-    Runs the unit tests with *Pytest*.
+    Run the unit tests with *Pytest*.
 
     Parameters
     ----------
@@ -222,7 +222,7 @@ def tests(ctx):
 @task
 def examples(ctx):
     """
-    Runs the examples.
+    Run the examples.
 
     Parameters
     ----------
@@ -247,7 +247,7 @@ def examples(ctx):
 @task(formatting, quality, precommit, tests, examples)
 def preflight(ctx):
     """
-    Performs the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
+    Perform the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
     *examples*.
 
     Parameters
@@ -267,7 +267,7 @@ def preflight(ctx):
 @task
 def docs(ctx, html=True, pdf=True):
     """
-    Builds the documentation.
+    Build the documentation.
 
     Parameters
     ----------
@@ -320,7 +320,7 @@ def todo(ctx):
 @task
 def requirements(ctx):
     """
-    Exports the *requirements.txt* file.
+    Export the *requirements.txt* file.
 
     Parameters
     ----------
@@ -344,7 +344,7 @@ def requirements(ctx):
 @task(clean, preflight, docs, todo, requirements)
 def build(ctx):
     """
-    Builds the project and runs dependency tasks, i.e. *docs*, *todo*, and
+    Build the project and runs dependency tasks, i.e. *docs*, *todo*, and
     *preflight*.
 
     Parameters
@@ -444,7 +444,7 @@ def virtualise(ctx, tests=True):
 @task
 def tag(ctx):
     """
-    Tags the repository according to defined version using *git-flow*.
+    Tag the repository according to defined version using *git-flow*.
 
     Parameters
     ----------
@@ -498,7 +498,7 @@ def tag(ctx):
 @task(build)
 def release(ctx):
     """
-    Releases the project to *Pypi* with *Twine*.
+    Release the project to *Pypi* with *Twine*.
 
     Parameters
     ----------
@@ -520,7 +520,7 @@ def release(ctx):
 @task
 def sha256(ctx):
     """
-    Computes the project *Pypi* package *sha256* with *OpenSSL*.
+    Compute the project *Pypi* package *sha256* with *OpenSSL*.
 
     Parameters
     ----------

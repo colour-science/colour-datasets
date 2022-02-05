@@ -23,13 +23,13 @@ __all__ = [
 
 class TestDatasetLoader_XRite2016(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.xrite2016.DatasetLoader_XRite2016`
+    Define :class:`colour_datasets.loaders.xrite2016.DatasetLoader_XRite2016`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -39,7 +39,7 @@ class TestDatasetLoader_XRite2016(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -49,7 +49,7 @@ class TestDatasetLoader_XRite2016(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.xrite2016.\
+        Test :func:`colour_datasets.loaders.xrite2016.\
 DatasetLoader_XRite2016.load` method.
         """
 
@@ -71,13 +71,13 @@ DatasetLoader_XRite2016.load` method.
 
 class TestBuildXRite2016(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.xrite2016.build_XRite2016`
+    Define :func:`colour_datasets.loaders.xrite2016.build_XRite2016`
     definition unit tests methods.
     """
 
     def test_build_XRite2016(self):
         """
-        Tests :func:`colour_datasets.loaders.xrite2016.build_XRite2016`
+        Test :func:`colour_datasets.loaders.xrite2016.build_XRite2016`
         definition.
         """
 

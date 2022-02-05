@@ -28,7 +28,7 @@ SUBSTITUTIONS = {
 
 def unicode_to_ascii(root_directory):
     """
-    Recursively converts from unicode to ASCII *.py*, *.bib* and *.rst* files
+    Recursively convert from unicode to ASCII *.py*, *.bib* and *.rst* files
     in given directory.
 
     Parameters

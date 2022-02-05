@@ -44,7 +44,7 @@ __all__ = [
 
 class DatasetLoader_XRite2016(AbstractDatasetLoader):
     """
-    Defines the *X-Rite (2016)*
+    Define the *X-Rite (2016)*
     *New Color Specifications for ColorChecker SG and Classic Charts* dataset
     loader.
 

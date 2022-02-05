@@ -42,7 +42,7 @@ https://opensource.org/licenses/BSD-3-Clause
 
 def extract_todo_items(root_directory):
     """
-    Extracts the TODO items from given directory.
+    Extract the TODO items from given directory.
 
     Parameters
     ----------
@@ -93,7 +93,7 @@ def extract_todo_items(root_directory):
 
 def export_todo_items(todo_items, file_path):
     """
-    Exports TODO items to given file.
+    Export TODO items to given file.
 
     Parameters
     ----------

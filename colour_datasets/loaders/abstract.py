@@ -29,7 +29,7 @@ __all__ = [
 
 class AbstractDatasetLoader(ABC):
     """
-    Defines the base class for a dataset loader.
+    Define the base class for a dataset loader.
 
     This is an :class:`ABCMeta` abstract class that must be inherited by
     sub-classes.
@@ -128,7 +128,7 @@ class AbstractDatasetLoader(ABC):
 
     def sync(self):
         """
-        Syncs the dataset content, i.e. checks whether it is synced and pulls
+        Sync the dataset content, i.e. checks whether it is synced and pulls
         it if required.
         """
 

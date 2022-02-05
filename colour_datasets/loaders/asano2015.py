@@ -54,7 +54,7 @@ class Specification_Asano2015(
     )
 ):
     """
-    Defines the *Asano (2015)* specification for an observer.
+    Define the *Asano (2015)* specification for an observer.
 
     Parameters
     ----------
@@ -86,7 +86,7 @@ class Specification_Asano2015(
         others: Optional[Dict] = None,
     ):
         """
-        Returns a new instance of the
+        Return a new instance of the
         :class:`colour_datasets.loaders.asano2015.Specification_Asano2015`
         class.
         """
@@ -98,7 +98,7 @@ class Specification_Asano2015(
 
 class DatasetLoader_Asano2015(AbstractDatasetLoader):
     """
-    Defines the *Asano (2015)* *Observer Function Database* dataset loader.
+    Define the *Asano (2015)* *Observer Function Database* dataset loader.
 
     Attributes
     ----------
@@ -221,7 +221,7 @@ parse_workbook_Asano2015`
         workbook: str, template: str, observers: Tuple = (1, 10)
     ) -> Dict[str, Dict]:
         """
-        Parses given *Asano (2015)* *Observer Function Database* workbook.
+        Parse given *Asano (2015)* *Observer Function Database* workbook.
 
         Parameters
         ----------

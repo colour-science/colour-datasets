@@ -22,13 +22,13 @@ __all__ = [
 
 class TestDatasetLoader_Dyer2017(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.dyer2017.DatasetLoader_Dyer2017`
+    Define :class:`colour_datasets.loaders.dyer2017.DatasetLoader_Dyer2017`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -38,7 +38,7 @@ class TestDatasetLoader_Dyer2017(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -48,7 +48,7 @@ class TestDatasetLoader_Dyer2017(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.dyer2017.DatasetLoader_Dyer2017.\
+        Test :func:`colour_datasets.loaders.dyer2017.DatasetLoader_Dyer2017.\
 load` method.
         """
 
@@ -287,13 +287,13 @@ load` method.
 
 class TestBuildDyer2017(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.dyer2017.build_Dyer2017`
+    Define :func:`colour_datasets.loaders.dyer2017.build_Dyer2017`
     definition unit tests methods.
     """
 
     def test_build_Dyer2017(self):
         """
-        Tests :func:`colour_datasets.loaders.dyer2017.build_Dyer2017`
+        Test :func:`colour_datasets.loaders.dyer2017.build_Dyer2017`
         definition.
         """
 

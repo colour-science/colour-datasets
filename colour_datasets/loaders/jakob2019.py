@@ -41,7 +41,7 @@ __all__ = [
 
 class DatasetLoader_Jakob2019(AbstractDatasetLoader):
     """
-    Defines the *Jakob and Hanika (2019)*
+    Define the *Jakob and Hanika (2019)*
     *Spectral Upsampling Coefficient Tables* dataset loader.
 
     Attributes

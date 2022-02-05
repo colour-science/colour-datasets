@@ -22,13 +22,13 @@ __all__ = [
 
 class TestDatasetLoader_Luo1999(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.luo1999.DatasetLoader_Luo1999`
+    Define :class:`colour_datasets.loaders.luo1999.DatasetLoader_Luo1999`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -38,7 +38,7 @@ class TestDatasetLoader_Luo1999(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -48,7 +48,7 @@ class TestDatasetLoader_Luo1999(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.luo1999.DatasetLoader_Luo1999.\
+        Test :func:`colour_datasets.loaders.luo1999.DatasetLoader_Luo1999.\
 load` method.
         """
 
@@ -160,13 +160,13 @@ load` method.
 
 class TestBuildLuo1999(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.luo1999.build_Luo1999`
+    Define :func:`colour_datasets.loaders.luo1999.build_Luo1999`
     definition unit tests methods.
     """
 
     def test_build_Luo1999(self):
         """
-        Tests :func:`colour_datasets.loaders.luo1999.build_Luo1999`
+        Test :func:`colour_datasets.loaders.luo1999.build_Luo1999`
         definition.
         """
 

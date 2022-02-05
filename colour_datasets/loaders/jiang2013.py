@@ -46,7 +46,7 @@ __all__ = [
 
 class DatasetLoader_Jiang2013(AbstractDatasetLoader):
     """
-    Defines the *Jiang et al. (2013)* *Camera Spectral Sensitivity Database*
+    Define the *Jiang et al. (2013)* *Camera Spectral Sensitivity Database*
     dataset loader.
 
     Attributes

@@ -77,7 +77,7 @@ def use_sandbox(
     community: str = "colour-science-datasets",
 ):
     """
-    Modifies the *Colour - Datasets* configuration to use *Zenodo* sandbox.
+    Modify the *Colour - Datasets* configuration to use *Zenodo* sandbox.
 
     Parameters
     ----------
@@ -139,7 +139,7 @@ class sandbox:
 
     def __call__(self, function: Callable) -> Callable:
         """
-        Calls the wrapped definition.
+        Call the wrapped definition.
         """
 
         @functools.wraps(function)

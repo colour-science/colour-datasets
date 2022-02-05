@@ -23,13 +23,13 @@ __all__ = [
 
 class TestDatasetLoader_Jiang2013(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.jiang2013.DatasetLoader_Jiang2013`
+    Define :class:`colour_datasets.loaders.jiang2013.DatasetLoader_Jiang2013`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -39,7 +39,7 @@ class TestDatasetLoader_Jiang2013(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -49,7 +49,7 @@ class TestDatasetLoader_Jiang2013(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.jiang2013.\
+        Test :func:`colour_datasets.loaders.jiang2013.\
 DatasetLoader_Jiang2013.load` method.
         """
 
@@ -95,13 +95,13 @@ DatasetLoader_Jiang2013.load` method.
 
 class TestBuildJiang2013(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.jiang2013.build_Jiang2013`
+    Define :func:`colour_datasets.loaders.jiang2013.build_Jiang2013`
     definition unit tests methods.
     """
 
     def test_build_Jiang2013(self):
         """
-        Tests :func:`colour_datasets.loaders.jiang2013.build_Jiang2013`
+        Test :func:`colour_datasets.loaders.jiang2013.build_Jiang2013`
         definition.
         """
 

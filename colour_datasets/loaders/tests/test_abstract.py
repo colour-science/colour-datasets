@@ -20,13 +20,13 @@ __all__ = [
 
 class TestAbstractDatasetLoader(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.abstract.AbstractDatasetLoader`
+    Define :class:`colour_datasets.loaders.abstract.AbstractDatasetLoader`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID", "record", "id", "content")
@@ -36,7 +36,7 @@ class TestAbstractDatasetLoader(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load", "sync")

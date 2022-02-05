@@ -44,7 +44,7 @@ __all__ = [
 
 class DatasetLoader_Karge2015(AbstractDatasetLoader):
     """
-    Defines the *Karge et al. (2015)*
+    Define the *Karge et al. (2015)*
     *Spectral Database of Commonly Used Cine Lighting* dataset loader.
 
     Attributes

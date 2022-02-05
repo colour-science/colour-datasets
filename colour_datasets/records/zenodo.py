@@ -55,7 +55,7 @@ __all__ = [
 
 class Record:
     """
-    Defines an object storing a *Zenodo* record data and providing methods to
+    Define an object storing a *Zenodo* record data and providing methods to
     sync it in a local repository.
 
     Parameters
@@ -170,7 +170,7 @@ class Record:
 
     def __str__(self) -> str:
         """
-        Returns a formatted string representation of the *Zenodo* record.
+        Return a formatted string representation of the *Zenodo* record.
 
         Returns
         -------
@@ -189,7 +189,7 @@ class Record:
 
         def strip_html(text: str) -> str:
             """
-            Strips *HTML* tags from given text.
+            Strip *HTML* tags from given text.
             """
 
             text = text.replace("&nbsp;", " ").replace("\n\n", " ")
@@ -234,7 +234,7 @@ class Record:
 
     def __repr__(self) -> str:
         """
-        Returns an evaluable string representation of the *Zenodo* record.
+        Return an evaluable string representation of the *Zenodo* record.
 
         Returns
         -------
@@ -314,7 +314,7 @@ class Record:
 
     def synced(self) -> Boolean:
         """
-        Returns whether the *Zenodo* record data is synced to the local
+        Return whether the *Zenodo* record data is synced to the local
         repository.
 
         Returns
@@ -350,7 +350,7 @@ class Record:
 
     def pull(self, use_urls_txt_file: Boolean = True, retries: Integer = 3):
         """
-        Pulls the *Zenodo* record data to the local repository.
+        Pull the *Zenodo* record data to the local repository.
 
         Parameters
         ----------
@@ -395,7 +395,7 @@ class Record:
 
         def urls_download(urls: Dict):
             """
-            Downloads given urls.
+            Download given urls.
             """
 
             for url, md5 in urls.items():
@@ -489,7 +489,7 @@ class Record:
 
     def remove(self):
         """
-        Removes the *Zenodo* record data local repository.
+        Remove the *Zenodo* record data local repository.
 
         Examples
         --------
@@ -508,7 +508,7 @@ class Record:
 
 class Community(Mapping):
     """
-    Defines an object storing a *Zenodo* community data.
+    Define an object storing a *Zenodo* community data.
 
     Parameters
     ----------
@@ -621,7 +621,7 @@ class Community(Mapping):
 
     def __str__(self) -> str:
         """
-        Returns a formatted string representation of the *Zenodo* community.
+        Return a formatted string representation of the *Zenodo* community.
 
         Returns
         -------
@@ -670,7 +670,7 @@ colour-science-datasets-tests/
 
     def __repr__(self) -> str:
         """
-        Returns an evaluable string representation of the *Zenodo* community.
+        Return an evaluable string representation of the *Zenodo* community.
 
         Returns
         -------
@@ -707,7 +707,7 @@ colour-science-datasets-tests/
 
     def __getitem__(self, item: Union[str, Any]) -> Any:
         """
-        Returns the *Zenodo* record at given id.
+        Return the *Zenodo* record at given id.
 
         Parameters
         ----------
@@ -732,7 +732,7 @@ colour-science-datasets-tests/
 
     def __iter__(self) -> Generator:
         """
-        Iterates through the *Zenodo* community records.
+        Iterate through the *Zenodo* community records.
 
         Yields
         ------
@@ -750,7 +750,7 @@ colour-science-datasets-tests/
 
     def __len__(self) -> Integer:
         """
-        Returns *Zenodo* community records count.
+        Return *Zenodo* community records count.
 
         Returns
         -------
@@ -867,7 +867,7 @@ colour-science-datasets-tests/
 
     def synced(self) -> Boolean:
         """
-        Returns whether the *Zenodo* community data is synced to the local
+        Return whether the *Zenodo* community data is synced to the local
         repository.
 
         Returns
@@ -893,7 +893,7 @@ colour-science-datasets-tests/
 
     def pull(self, use_urls_txt_file: Boolean = True, retries: Integer = 3):
         """
-        Pulls the *Zenodo* community data to the local repository.
+        Pull the *Zenodo* community data to the local repository.
 
         Parameters
         ----------
@@ -925,7 +925,7 @@ colour-science-datasets-tests/
 
     def remove(self):
         """
-        Removes the *Zenodo* community data local repository.
+        Remove the *Zenodo* community data local repository.
 
         Examples
         --------

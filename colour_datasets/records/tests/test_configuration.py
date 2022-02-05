@@ -22,7 +22,7 @@ __all__ = [
 
 class TestUseSandbox(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.records.configuration.use_sandbox`
+    Define :func:`colour_datasets.records.configuration.use_sandbox`
     definition unit tests methods.
     """
 
@@ -35,7 +35,7 @@ class TestUseSandbox(unittest.TestCase):
 
     def test_use_sandbox(self):
         """
-        Tests :func:`colour_datasets.records.configuration.use_sandbox`
+        Test :func:`colour_datasets.records.configuration.use_sandbox`
         definition.
         """
 
@@ -49,13 +49,13 @@ class TestUseSandbox(unittest.TestCase):
 
 class TestSandbox(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.records.configuration.sandbox`
+    Define :func:`colour_datasets.records.configuration.sandbox`
     definition unit tests methods.
     """
 
     def test_sandbox(self):
         """
-        Tests :func:`colour_datasets.records.configuration.sandbox`
+        Test :func:`colour_datasets.records.configuration.sandbox`
         definition.
         """
 

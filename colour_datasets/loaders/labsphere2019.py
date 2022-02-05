@@ -39,7 +39,7 @@ __all__ = [
 
 class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
     """
-    Defines the *Labsphere (2019)* *Labsphere SRS-99-020* dataset loader.
+    Define the *Labsphere (2019)* *Labsphere SRS-99-020* dataset loader.
 
     Attributes
     ----------

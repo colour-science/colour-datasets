@@ -50,7 +50,7 @@ class ConstantPerceivedHueColourMatches_Ebner1998(
     )
 ):
     """
-    Defines *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
+    Define *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
     colour matches data for a given hue angle.
 
     Parameters
@@ -73,7 +73,7 @@ class ConstantPerceivedHueColourMatches_Ebner1998(
 
 class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     """
-    Defines the *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
+    Define the *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
     dataset loader.
 
     Attributes
@@ -131,7 +131,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
 
         def _parse_float_values(data: str) -> NDArray:
             """
-            Parses float values from given data.
+            Parse float values from given data.
             """
 
             values = as_float_array(

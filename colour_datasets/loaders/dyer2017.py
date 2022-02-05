@@ -56,7 +56,7 @@ __all__ = [
 
 class SpectralDataHeader_AMPAS:
     """
-    Defines the header object for an *A.M.P.A.S* spectral data.
+    Define the header object for an *A.M.P.A.S* spectral data.
 
     Parameters
     ----------
@@ -480,7 +480,7 @@ __init__`
 
 class SpectralDistribution_AMPAS(SpectralDistribution):
     """
-    Defines an *A.M.P.A.S* spectral distribution.
+    Define an *A.M.P.A.S* spectral distribution.
 
     This class can read *A.M.P.A.S* spectral data JSON files.
 
@@ -943,7 +943,7 @@ __init__`
 
     def read(self) -> SpectralDistribution:
         """
-        Reads and parses the spectral data JSON file path.
+        Read and parses the spectral data JSON file path.
 
         Returns
         -------
@@ -1000,7 +1000,7 @@ __init__`
 
 class MultiSpectralDistributions_AMPAS(MultiSpectralDistributions):
     """
-    Defines the *A.M.P.A.S* multi-spectral distributions.
+    Define the *A.M.P.A.S* multi-spectral distributions.
 
     This class can read *A.M.P.A.S* spectral data JSON files.
 
@@ -1463,7 +1463,7 @@ __init__`
 
     def read(self) -> MultiSpectralDistributions:
         """
-        Reads and parses the spectral data JSON file path.
+        Read and parses the spectral data JSON file path.
 
         Returns
         -------
@@ -1523,7 +1523,7 @@ __init__`
 
 class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     """
-    Defines the *Dyer et al. (2017)* *RAW to ACES Utility Data* dataset
+    Define the *Dyer et al. (2017)* *RAW to ACES Utility Data* dataset
     loader.
 
     Attributes

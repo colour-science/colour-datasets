@@ -32,13 +32,13 @@ __all__ = [
 
 class TestHashMd5(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.common.hash_md5` definition unit
+    Define :func:`colour_datasets.utilities.common.hash_md5` definition unit
     tests methods.
     """
 
     def test_hash_md5(self):
         """
-        Tests :func:`colour_datasets.utilities.common.hash_md5` definition.
+        Test :func:`colour_datasets.utilities.common.hash_md5` definition.
         """
 
         dataset = build_Labsphere2019()
@@ -66,13 +66,13 @@ class TestHashMd5(unittest.TestCase):
 
 class TestUrlDownload(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.common.url_download` definition
+    Define :func:`colour_datasets.utilities.common.url_download` definition
     unit tests methods.
     """
 
     def setUp(self):
         """
-        Initialises common tests attributes.
+        Initialise the common tests attributes.
         """
 
         self._temporary_file = tempfile.mktemp()
@@ -86,7 +86,7 @@ class TestUrlDownload(unittest.TestCase):
 
     def test_url_download(self):
         """
-        Tests :func:`colour_datasets.utilities.common.url_download` definition.
+        Test :func:`colour_datasets.utilities.common.url_download` definition.
         """
 
         dataset = build_Labsphere2019()
@@ -129,13 +129,13 @@ class TestUrlDownload(unittest.TestCase):
 
 class TestJsonOpen(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.common.json_open` definition
+    Define :func:`colour_datasets.utilities.common.json_open` definition
     unit tests methods.
     """
 
     def test_json_open(self):
         """
-        Tests :func:`colour_datasets.utilities.common.json_open` definition.
+        Test :func:`colour_datasets.utilities.common.json_open` definition.
         """
 
         data = json_open("https://zenodo.org/api/records/3245883")
@@ -147,13 +147,13 @@ class TestJsonOpen(unittest.TestCase):
 
 class TestUnpackGzipfile(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.common.unpack_gzipfile` definition
+    Define :func:`colour_datasets.utilities.common.unpack_gzipfile` definition
     unit tests methods.
     """
 
     def setUp(self):
         """
-        Initialises common tests attributes.
+        Initialise the common tests attributes.
         """
 
         self._temporary_directory = tempfile.mkdtemp()
@@ -167,7 +167,7 @@ class TestUnpackGzipfile(unittest.TestCase):
 
     def test_unpack_gzipfile(self):
         """
-        Tests :func:`colour_datasets.utilities.common.unpack_gzipfile`
+        Test :func:`colour_datasets.utilities.common.unpack_gzipfile`
         definition.
         """
 

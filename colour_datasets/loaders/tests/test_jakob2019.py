@@ -21,13 +21,13 @@ __all__ = [
 
 class TestDatasetLoader_Jakob2019(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.jakob2019.DatasetLoader_Jakob2019`
+    Define :class:`colour_datasets.loaders.jakob2019.DatasetLoader_Jakob2019`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -37,7 +37,7 @@ class TestDatasetLoader_Jakob2019(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -47,7 +47,7 @@ class TestDatasetLoader_Jakob2019(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.jakob2019.\
+        Test :func:`colour_datasets.loaders.jakob2019.\
 DatasetLoader_Jakob2019.load` method.
         """
 
@@ -60,13 +60,13 @@ DatasetLoader_Jakob2019.load` method.
 
 class TestBuildJakob2019(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.jakob2019.build_Jakob2019`
+    Define :func:`colour_datasets.loaders.jakob2019.build_Jakob2019`
     definition unit tests methods.
     """
 
     def test_build_Jakob2019(self):
         """
-        Tests :func:`colour_datasets.loaders.jakob2019.build_Jakob2019`
+        Test :func:`colour_datasets.loaders.jakob2019.build_Jakob2019`
         definition.
         """
 

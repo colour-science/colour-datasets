@@ -41,7 +41,7 @@ __all__ = [
 
 class DatasetLoader_Zhao2009(AbstractDatasetLoader):
     """
-    Defines the *Zhao et al. (2009)* *Spectral Sensitivity Database*
+    Define the *Zhao et al. (2009)* *Spectral Sensitivity Database*
     dataset loader.
 
     Attributes

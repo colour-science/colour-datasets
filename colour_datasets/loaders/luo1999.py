@@ -68,7 +68,7 @@ class CorrespondingColourDataset_Luo1999(
     )
 ):
     """
-    Defines a *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset.
+    Define a *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset.
 
     Parameters
     ----------
@@ -100,7 +100,7 @@ class CorrespondingColourDataset_Luo1999(
 
 class DatasetLoader_Luo1999(AbstractDatasetLoader):
     """
-    Defines the *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset
+    Define the *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset
     loader.
 
     Attributes

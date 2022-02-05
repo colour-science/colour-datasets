@@ -22,13 +22,13 @@ __all__ = [
 
 class TestDatasetLoader_Ebner1998(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.ebner1998.DatasetLoader_Ebner1998`
+    Define :class:`colour_datasets.loaders.ebner1998.DatasetLoader_Ebner1998`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -38,7 +38,7 @@ class TestDatasetLoader_Ebner1998(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -48,7 +48,7 @@ class TestDatasetLoader_Ebner1998(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.ebner1998.\
+        Test :func:`colour_datasets.loaders.ebner1998.\
 DatasetLoader_Ebner1998.load` method.
         """
 
@@ -132,13 +132,13 @@ DatasetLoader_Ebner1998.load` method.
 
 class TestBuildEbner1998(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.ebner1998.build_Ebner1998`
+    Define :func:`colour_datasets.loaders.ebner1998.build_Ebner1998`
     definition unit tests methods.
     """
 
     def test_build_Ebner1998(self):
         """
-        Tests :func:`colour_datasets.loaders.ebner1998.build_Ebner1998`
+        Test :func:`colour_datasets.loaders.ebner1998.build_Ebner1998`
         definition.
         """
 

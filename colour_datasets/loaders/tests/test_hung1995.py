@@ -22,13 +22,13 @@ __all__ = [
 
 class TestDatasetLoader_Hung1995(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.hung1995.DatasetLoader_Hung1995`
+    Define :class:`colour_datasets.loaders.hung1995.DatasetLoader_Hung1995`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -38,7 +38,7 @@ class TestDatasetLoader_Hung1995(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -48,7 +48,7 @@ class TestDatasetLoader_Hung1995(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.hung1995.DatasetLoader_Hung1995.\
+        Test :func:`colour_datasets.loaders.hung1995.DatasetLoader_Hung1995.\
 load` method.
         """
 
@@ -120,13 +120,13 @@ load` method.
 
 class TestBuildHung1995(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.hung1995.build_Hung1995`
+    Define :func:`colour_datasets.loaders.hung1995.build_Hung1995`
     definition unit tests methods.
     """
 
     def test_build_Hung1995(self):
         """
-        Tests :func:`colour_datasets.loaders.hung1995.build_Hung1995`
+        Test :func:`colour_datasets.loaders.hung1995.build_Hung1995`
         definition.
         """
 

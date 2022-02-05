@@ -42,7 +42,7 @@ __all__ = [
 
 class DatasetLoader_Brendel2020(AbstractDatasetLoader):
     """
-    Defines the *Brendel (2020)* *Measured Commercial LED Spectra* dataset
+    Define the *Brendel (2020)* *Measured Commercial LED Spectra* dataset
     loader.
 
     Attributes

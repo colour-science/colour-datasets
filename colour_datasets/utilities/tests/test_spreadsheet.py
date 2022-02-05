@@ -33,13 +33,13 @@ __all__ = [
 
 class TestRowToIndex(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.spreadsheet.row_to_index`
+    Define :func:`colour_datasets.utilities.spreadsheet.row_to_index`
     definition unit tests methods.
     """
 
     def test_row_to_index(self):
         """
-        Tests :func:`colour_datasets.utilities.spreadsheet.row_to_index`
+        Test :func:`colour_datasets.utilities.spreadsheet.row_to_index`
         definition.
         """
 
@@ -54,13 +54,13 @@ class TestRowToIndex(unittest.TestCase):
 
 class TestIndexToRow(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.spreadsheet.index_to_row`
+    Define :func:`colour_datasets.utilities.spreadsheet.index_to_row`
     definition unit tests methods.
     """
 
     def test_index_to_row(self):
         """
-        Tests :func:`colour_datasets.utilities.spreadsheet.index_to_row`
+        Test :func:`colour_datasets.utilities.spreadsheet.index_to_row`
         definition.
         """
 
@@ -73,13 +73,13 @@ class TestIndexToRow(unittest.TestCase):
 
 class TestColumnToIndex(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.spreadsheet.column_to_index`
+    Define :func:`colour_datasets.utilities.spreadsheet.column_to_index`
     definition unit tests methods.
     """
 
     def test_column_to_index(self):
         """
-        Tests :func:`colour_datasets.utilities.spreadsheet.column_to_index`
+        Test :func:`colour_datasets.utilities.spreadsheet.column_to_index`
         definition.
         """
 
@@ -94,13 +94,13 @@ class TestColumnToIndex(unittest.TestCase):
 
 class TestIndexToColumn(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.spreadsheet.index_to_column`
+    Define :func:`colour_datasets.utilities.spreadsheet.index_to_column`
     definition unit tests methods.
     """
 
     def test_index_to_column(self):
         """
-        Tests :func:`colour_datasets.utilities.spreadsheet.index_to_column`
+        Test :func:`colour_datasets.utilities.spreadsheet.index_to_column`
         definition.
         """
 
@@ -113,13 +113,13 @@ class TestIndexToColumn(unittest.TestCase):
 
 class TestCellRangeValues(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.utilities.spreadsheet.cell_range_values`
+    Define :func:`colour_datasets.utilities.spreadsheet.cell_range_values`
     definition unit tests methods.
     """
 
     def test_cell_range_values(self):
         """
-        Tests :func:`colour_datasets.utilities.spreadsheet.cell_range_values`
+        Test :func:`colour_datasets.utilities.spreadsheet.cell_range_values`
         definition.
         """
 

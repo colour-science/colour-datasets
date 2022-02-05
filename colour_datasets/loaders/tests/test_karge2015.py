@@ -23,13 +23,13 @@ __all__ = [
 
 class TestDatasetLoader_Karge2015(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.karge2015.DatasetLoader_Karge2015`
+    Define :class:`colour_datasets.loaders.karge2015.DatasetLoader_Karge2015`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -39,7 +39,7 @@ class TestDatasetLoader_Karge2015(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -49,7 +49,7 @@ class TestDatasetLoader_Karge2015(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.karge2015.\
+        Test :func:`colour_datasets.loaders.karge2015.\
 DatasetLoader_Karge2015.load` method.
         """
 
@@ -76,13 +76,13 @@ DatasetLoader_Karge2015.load` method.
 
 class TestBuildKarge2015(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.karge2015.build_Karge2015`
+    Define :func:`colour_datasets.loaders.karge2015.build_Karge2015`
     definition unit tests methods.
     """
 
     def test_build_Karge2015(self):
         """
-        Tests :func:`colour_datasets.loaders.karge2015.build_Karge2015`
+        Test :func:`colour_datasets.loaders.karge2015.build_Karge2015`
         definition.
         """
 

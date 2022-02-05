@@ -40,7 +40,7 @@ __all__ = [
 
 def _column_number_to_letters(number: Integer) -> str:
     """
-    Converts given column number into a column letters.
+    Convert given column number into a column letters.
 
     Right shifts the column index by 26 to find column letters in reverse
     order. These numbers are 1-based, and can be converted to ASCII
@@ -100,7 +100,7 @@ for i in range(1, 18279):
 
 def row_to_index(row: Union[Integer, str]) -> Integer:
     """
-    Returns the 0-based index of given row name.
+    Return the 0-based index of given row name.
 
     Parameters
     ----------
@@ -127,7 +127,7 @@ def row_to_index(row: Union[Integer, str]) -> Integer:
 
 def index_to_row(index: Integer) -> str:
     """
-    Returns the row name of given 0-based index.
+    Return the row name of given 0-based index.
 
     Parameters
     ----------
@@ -151,7 +151,7 @@ def index_to_row(index: Integer) -> str:
 
 def column_to_index(column: str) -> Integer:
     """
-    Returns the 0-based index of given column letters.
+    Return the 0-based index of given column letters.
 
     Parameters
     ----------
@@ -174,7 +174,7 @@ def column_to_index(column: str) -> Integer:
 
 def index_to_column(index: Integer) -> str:
     """
-    Returns the column letters of given 0-based index.
+    Return the column letters of given 0-based index.
 
     Parameters
     ----------
@@ -207,7 +207,7 @@ Regular expression to match a cell range, e.g. "A1:C3".
 
 def cell_range_values(sheet: xlrd.sheet.Sheet, cell_range: str) -> List[str]:
     """
-    Returns given workbook sheet cell range values, i.e. the values of the
+    Return given workbook sheet cell range values, i.e. the values of the
     rows and columns for given cell range.
 
     Parameters

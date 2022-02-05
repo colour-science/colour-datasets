@@ -24,13 +24,13 @@ __all__ = [
 
 class TestDatasetLoader_Asano2015(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.asano2015.DatasetLoader_Asano2015`
+    Define :class:`colour_datasets.loaders.asano2015.DatasetLoader_Asano2015`
     class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -40,7 +40,7 @@ class TestDatasetLoader_Asano2015(unittest.TestCase):
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load", "parse_workbook_Asano2015")
@@ -50,7 +50,7 @@ class TestDatasetLoader_Asano2015(unittest.TestCase):
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.asano2015.\
+        Test :func:`colour_datasets.loaders.asano2015.\
 DatasetLoader_Asano2015.load` method.
         """
 
@@ -142,13 +142,13 @@ DatasetLoader_Asano2015.load` method.
 
 class TestBuildAsano2015(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.asano2015.build_Asano2015`
+    Define :func:`colour_datasets.loaders.asano2015.build_Asano2015`
     definition unit tests methods.
     """
 
     def test_build_Asano2015(self):
         """
-        Tests :func:`colour_datasets.loaders.asano2015.build_Asano2015`
+        Test :func:`colour_datasets.loaders.asano2015.build_Asano2015`
         definition.
         """
 

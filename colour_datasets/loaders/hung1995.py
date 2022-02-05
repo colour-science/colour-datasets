@@ -49,7 +49,7 @@ class ConstantPerceivedHueColourMatches_Hung1995(
     )
 ):
     """
-    Defines *Hung and Berns (1995)* *Constant Hue Loci Data*
+    Define *Hung and Berns (1995)* *Constant Hue Loci Data*
     colour matches data for a given hue angle.
 
     Parameters
@@ -72,7 +72,7 @@ class ConstantPerceivedHueColourMatches_Hung1995(
 
 class DatasetLoader_Hung1995(AbstractDatasetLoader):
     """
-    Defines the *Hung and Berns (1995)* *Constant Hue Loci Data*
+    Define the *Hung and Berns (1995)* *Constant Hue Loci Data*
     dataset loader.
 
     Attributes

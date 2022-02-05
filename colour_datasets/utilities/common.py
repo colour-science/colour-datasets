@@ -64,7 +64,7 @@ class suppress_stdout:
 
     def __call__(self, function: Callable) -> Callable:
         """
-        Calls the wrapped definition.
+        Call the wrapped definition.
         """
 
         @functools.wraps(function)
@@ -87,7 +87,7 @@ class TqdmUpTo(tqdm):
         total_size: Optional[Integer] = None,
     ):
         """
-        Reports the progress of an action.
+        Report the progress of an action.
 
         Parameters
         ----------
@@ -107,7 +107,7 @@ class TqdmUpTo(tqdm):
 
 def hash_md5(filename: str, chunk_size: Integer = 2 ** 16) -> str:
     """
-    Computes the *Message Digest 5 (MD5)* hash of given file.
+    Compute the *Message Digest 5 (MD5)* hash of given file.
 
     Parameters
     ----------
@@ -139,7 +139,7 @@ def url_download(
     url: str, filename: str, md5: Optional[str] = None, retries: Integer = 3
 ):
     """
-    Downloads given url and saves its content at given file.
+    Download given url and saves its content at given file.
 
     Parameters
     ----------
@@ -198,7 +198,7 @@ def url_download(
 @cached(cache=TTLCache(maxsize=256, ttl=300))
 def json_open(url: str, retries: Integer = 3) -> Dict:
     """
-    Opens given url and return its content as *JSON*.
+    Open given url and return its content as *JSON*.
 
     Parameters
     ----------
@@ -251,7 +251,7 @@ def unpack_gzipfile(
     filename: str, extraction_directory: str, *args: Any
 ) -> Boolean:
     """
-    Unpacks given *GZIP* file to given extraction directory.
+    Unpack given *GZIP* file to given extraction directory.
 
     Parameters
     ----------

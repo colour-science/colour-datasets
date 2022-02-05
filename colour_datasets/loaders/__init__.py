@@ -129,7 +129,7 @@ titles.
 
 def load(dataset: Union[Integer, str]) -> Any:
     """
-    Loads given dataset: The dataset is pulled locally, i.e. synced if required
+    Load given dataset: The dataset is pulled locally, i.e. synced if required
     and then its data is loaded.
 
     Parameters

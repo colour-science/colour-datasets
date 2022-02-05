@@ -60,7 +60,7 @@ class ExperimentalGroupLuo1997(
     namedtuple("ExperimentalGroupLuo1997", ("name", "phases", "metadata"))
 ):
     """
-    Defines a *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data*
+    Define a *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data*
     experimental group, i.e. a group of experimental phases.
 
     Parameters
@@ -91,7 +91,7 @@ class ExperimentalPhaseLuo1997(
     )
 ):
     """
-    Defines a *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data*
+    Define a *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data*
     experimental phase.
 
     Parameters
@@ -126,7 +126,7 @@ class ExperimentalPhaseLuo1997(
 
 class DatasetLoader_Luo1997(AbstractDatasetLoader):
     """
-    Defines the *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* dataset
+    Define the *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data* dataset
     loader.
 
     Attributes

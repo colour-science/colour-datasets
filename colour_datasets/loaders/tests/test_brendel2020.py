@@ -27,13 +27,13 @@ __all__ = [
 
 class TestDatasetLoader_Brendel2020(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.brendel2020.\
+    Define :class:`colour_datasets.loaders.brendel2020.\
 DatasetLoader_Brendel2020` class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID",)
@@ -43,7 +43,7 @@ DatasetLoader_Brendel2020` class unit tests methods.
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -53,7 +53,7 @@ DatasetLoader_Brendel2020` class unit tests methods.
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.brendel2020.\
+        Test :func:`colour_datasets.loaders.brendel2020.\
 DatasetLoader_Brendel2020.load` method.
         """
 
@@ -69,13 +69,13 @@ DatasetLoader_Brendel2020.load` method.
 
 class TestBuildBrendel2020(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.brendel2020.build_Brendel2020`
+    Define :func:`colour_datasets.loaders.brendel2020.build_Brendel2020`
     definition unit tests methods.
     """
 
     def test_build_Brendel2020(self):
         """
-        Tests :func:`colour_datasets.loaders.brendel2020.build_Brendel2020`
+        Test :func:`colour_datasets.loaders.brendel2020.build_Brendel2020`
         definition.
         """
 

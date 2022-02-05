@@ -93,7 +93,7 @@ def read_sds_from_mat_file_KuopioUniversity(
     mat_file: str, metadata: MatFileMetadata_KuopioUniversity
 ) -> Dict[str, SpectralDistribution]:
     """
-    Reads the spectral distributions from given *University of Kuopio*
+    Read the spectral distributions from given *University of Kuopio*
     *Matlab* *.mat* file.
 
     Parameters
@@ -138,7 +138,7 @@ def read_sds_from_mat_file_KuopioUniversity(
 
 class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     """
-    Defines the base class for a *University of Kuopio* dataset loader.
+    Define the base class for a *University of Kuopio* dataset loader.
 
     Attributes
     ----------
@@ -200,7 +200,7 @@ def _build_dataset_loader_class_KuopioUniversity(
     ],
 ) -> Any:
     """
-    Class factory building *University of Kuopio* dataset loaders.
+    Clas factory building *University of Kuopio* dataset loaders.
 
     Parameters
     ----------

@@ -38,13 +38,13 @@ __all__ = [
 
 class TestReadSdsFromMatFileKuopioUniversity(unittest.TestCase):
     """
-    Defines :func:`colour_datasets.loaders.kuopio.\
+    Define :func:`colour_datasets.loaders.kuopio.\
 read_sds_from_mat_file_KuopioUniversity` definition unit tests methods.
     """
 
     def test_read_sds_from_mat_file_KuopioUniversity(self):
         """
-        Tests :func:`colour_datasets.loaders.kuopio.\
+        Test :func:`colour_datasets.loaders.kuopio.\
 read_sds_from_mat_file_KuopioUniversity` definition.
         """
 
@@ -101,13 +101,13 @@ read_sds_from_mat_file_KuopioUniversity` definition.
 
 class TestDatasetLoader_KuopioUniversity(unittest.TestCase):
     """
-    Defines :class:`colour_datasets.loaders.kuopio.\
+    Define :class:`colour_datasets.loaders.kuopio.\
 DatasetLoader_KuopioUniversity` class unit tests methods.
     """
 
     def test_required_attributes(self):
         """
-        Tests presence of required attributes.
+        Test the presence of required attributes.
         """
 
         required_attributes = ("ID", "METADATA")
@@ -127,7 +127,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
 
     def test_required_methods(self):
         """
-        Tests presence of required methods.
+        Test the presence of required methods.
         """
 
         required_methods = ("__init__", "load")
@@ -147,7 +147,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
 
     def test_load(self):
         """
-        Tests :func:`colour_datasets.loaders.kuopio.\
+        Test :func:`colour_datasets.loaders.kuopio.\
 DatasetLoader_KuopioUniversity.load` method.
         """
 

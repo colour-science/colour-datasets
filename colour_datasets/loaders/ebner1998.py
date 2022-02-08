@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Constant Perceived-Hue Data - Ebner and Fairchild (1998)
 ========================================================
@@ -17,58 +16,64 @@ References
     Graphic Arts III, (2 January 1998) (pp. 107-117). doi:10.1117/12.298269
 """
 
+from __future__ import annotations
+
 import codecs
 import numpy as np
 import os
 from collections import namedtuple
 
+from colour.hints import Boolean, Dict, Integer, NDArray, Optional
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'ConstantPerceivedHueColourMatches_Ebner1998',
-    'DatasetLoader_Ebner1998',
-    'build_Ebner1998',
+    "ConstantPerceivedHueColourMatches_Ebner1998",
+    "DatasetLoader_Ebner1998",
+    "build_Ebner1998",
 ]
 
 
 class ConstantPerceivedHueColourMatches_Ebner1998(
-        namedtuple('ConstantPerceivedHueColourMatches_Ebner1998',
-                   ('name', 'XYZ_r', 'XYZ_cr', 'XYZ_ct', 'metadata'))):
+    namedtuple(
+        "ConstantPerceivedHueColourMatches_Ebner1998",
+        ("name", "XYZ_r", "XYZ_cr", "XYZ_ct", "metadata"),
+    )
+):
     """
-    Defines *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
+    Define *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
     colour matches data for a given hue angle.
 
     Parameters
     ----------
-    name : str
+    name
         *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data* hue angle or
         name.
-    XYZ_r : array_like
+    XYZ_r
         *CIE XYZ* tristimulus values of the reference illuminant.
-    XYZ_cr : array_like
+    XYZ_cr
         *CIE XYZ* tristimulus values of the reference colour under the
         reference illuminant.
-    XYZ_ct : array_like
+    XYZ_ct
         *CIE XYZ* tristimulus values of the colour matches under the reference
         illuminant.
-    metadata : dict
+    metadata
         Dataset metadata.
     """
 
 
 class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     """
-    Defines the *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
+    Define the *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
     dataset loader.
 
     Attributes
@@ -85,25 +90,24 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     :cite:`Ebner1998`
     """
 
-    ID = '3362536'
+    ID: str = "3362536"
     """
     Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : str
     """
 
     def __init__(self):
-        super(DatasetLoader_Ebner1998,
-              self).__init__(datasets()[DatasetLoader_Ebner1998.ID])
+        super().__init__(datasets()[DatasetLoader_Ebner1998.ID])
 
-    def load(self):
+    def load(
+        self,
+    ) -> Dict[str, Dict[Integer, ConstantPerceivedHueColourMatches_Ebner1998]]:
         """
         Syncs, parses, converts and returns the *Ebner and Fairchild (1998)*
         *Constant Perceived-Hue Data* dataset content.
 
         Returns
         -------
-        dict
+        :class:`dict`
             *Ebner and Fairchild (1998)* Constant Perceived-Hue Data* dataset
             content.
 
@@ -117,66 +121,71 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         1
         """
 
-        super(DatasetLoader_Ebner1998, self).sync()
+        super().sync()
 
-        self._content = dict([('Constant Perceived-Hue Data', dict())])
+        self._content = dict([("Constant Perceived-Hue Data", dict())])
 
-        datafile_path = os.path.join(self.record.repository, 'dataset',
-                                     'Ebner_Constant_Hue_Data.txt')
+        datafile_path = os.path.join(
+            self.record.repository, "dataset", "Ebner_Constant_Hue_Data.txt"
+        )
 
-        def _parse_float_values(data):
+        def _parse_float_values(data: str) -> NDArray:
             """
-            Parses float values from given data.
+            Parse float values from given data.
             """
 
-            data = [float(x) / 100 for x in data.split('\t') if x]
-
-            values = as_float_array(data).reshape(-1, 3)
+            values = as_float_array(
+                [float(x) / 100 for x in data.split("\t") if x]
+            ).reshape(-1, 3)
 
             return np.squeeze(values)
 
-        with codecs.open(datafile_path, encoding='utf-8') as database_file:
+        with codecs.open(datafile_path, encoding="utf-8") as database_file:
             lines = filter(
-                None, (line.strip() for line in database_file.readlines()))
+                None, (line.strip() for line in database_file.readlines())
+            )
 
             for line in lines:
-                if line.startswith('White Point'):
-                    XYZ_r = _parse_float_values(line.split(':')[-1])
-                elif line.startswith('reference hue'):
-                    line = line.replace('reference hue ', '')
-                    hue, data = line.split('\t', 1)
-                    hue, data = int(hue), _parse_float_values(data)
+                if line.startswith("White Point"):
+                    XYZ_r = _parse_float_values(line.split(":")[-1])
+                elif line.startswith("reference hue"):
+                    line = line.replace("reference hue ", "")
+                    attribute, value = line.split("\t", 1)
+                    hue, data = int(attribute), _parse_float_values(value)
 
-                    self._content['Constant Perceived-Hue Data'][hue] = (
-                        ConstantPerceivedHueColourMatches_Ebner1998(
-                            'Reference Hue Angle - {0}'.format(hue), XYZ_r,
-                            data[0], data[1:], {'h': hue}))
+                    self._content["Constant Perceived-Hue Data"][
+                        hue
+                    ] = ConstantPerceivedHueColourMatches_Ebner1998(
+                        f"Reference Hue Angle - {hue}",
+                        XYZ_r,
+                        data[0],
+                        data[1:],
+                        {"h": hue},
+                    )
 
         return self._content
 
 
-_DATASET_LOADER_EBNER1998 = None
+_DATASET_LOADER_EBNER1998: Optional[DatasetLoader_Ebner1998] = None
 """
 Singleton instance of the *Ebner and Fairchild (1998)*
 *Constant Perceived-Hue Data* dataset loader.
-
-_DATASET_LOADER_EBNER1998 : DatasetLoader_Ebner1998
 """
 
 
-def build_Ebner1998(load=True):
+def build_Ebner1998(load: Boolean = True) -> DatasetLoader_Ebner1998:
     """
     Singleton factory that builds the *Ebner and Fairchild (1998)*
     *Constant Perceived-Hue Data* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Ebner1998
+    :class:`colour_datasets.loaders.DatasetLoader_Ebner1998`
         Singleton instance of the *Ebner and Fairchild (1998)*
         *Constant Perceived-Hue Data* dataset loader.
 

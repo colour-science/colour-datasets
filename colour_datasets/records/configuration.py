@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Configuration
 =============
@@ -6,55 +5,51 @@ Configuration
 Defines various objects related to the configuration of *Colour - Datasets*.
 """
 
+from __future__ import annotations
+
 import functools
 import os
 
+from colour.hints import Any, Boolean, Callable, Dict, Optional
 from colour.utilities import Structure
 from colour.utilities.documentation import (
     DocstringDict,
     is_documentation_building,
 )
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'DEFAULT_CONFIGURATION',
-    'Configuration',
-    'use_sandbox',
-    'sandbox',
+    "DEFAULT_CONFIGURATION",
+    "Configuration",
+    "use_sandbox",
+    "sandbox",
 ]
 
-DEFAULT_CONFIGURATION = {
-    'repository':
-        os.environ.get(
-            'COLOUR_SCIENCE__COLOUR_DATASETS__REPOSITORY',
-            os.path.join(
-                os.path.expanduser('~'),
-                '.colour-science',
-                'colour-datasets',
-            )),
-    'downloads_directory':
-        'downloads',
-    'deflate_directory':
-        'dataset',
-    'api_url':
-        'https://zenodo.org/api',
-    'community':
-        'colour-science-datasets',
-    'urls_txt_file':
-        'urls.txt',
+DEFAULT_CONFIGURATION: Dict = {
+    "repository": os.environ.get(
+        "COLOUR_SCIENCE__COLOUR_DATASETS__REPOSITORY",
+        os.path.join(
+            os.path.expanduser("~"),
+            ".colour-science",
+            "colour-datasets",
+        ),
+    ),
+    "downloads_directory": "downloads",
+    "deflate_directory": "dataset",
+    "api_url": "https://zenodo.org/api",
+    "community": "colour-science-datasets",
+    "urls_txt_file": "urls.txt",
 }
 if is_documentation_building():  # pragma: no cover
     DEFAULT_CONFIGURATION = DocstringDict(DEFAULT_CONFIGURATION)
     DEFAULT_CONFIGURATION.__doc__ = """
 *Colour - Datasets* default configuration.
-
-DEFAULT_CONFIGURATION : dict
 """
 
 
@@ -66,39 +61,42 @@ class Configuration(Structure):
 
     Parameters
     ----------
-    configuration : dict, optional
+    configuration
         Configuration to use instead of the default one.
     """
 
-    def __init__(self, configuration=None):
-        super(Configuration, self).__init__(
-            DEFAULT_CONFIGURATION if configuration is None else configuration)
+    def __init__(self, configuration: Optional[Dict] = None):
+        super().__init__(
+            DEFAULT_CONFIGURATION if configuration is None else configuration
+        )
 
 
-def use_sandbox(state=True,
-                api_url='https://sandbox.zenodo.org/api',
-                community='colour-science-datasets'):
+def use_sandbox(
+    state: Boolean = True,
+    api_url: str = "https://sandbox.zenodo.org/api",
+    community: str = "colour-science-datasets",
+):
     """
-    Modifies the *Colour - Datasets* configuration to use *Zenodo* sandbox.
+    Modify the *Colour - Datasets* configuration to use *Zenodo* sandbox.
 
     Parameters
     ----------
-    state : bool, optional
+    state
         Whether to use *Zenodo* sandbox.
-    api_url : str, optional
+    api_url
         *Zenodo* sandbox url.
-    community : str, optional
+    community
         *Zenodo* community.
     """
 
     global DEFAULT_CONFIGURATION
 
     if state:
-        DEFAULT_CONFIGURATION['api_url'] = api_url
-        DEFAULT_CONFIGURATION['community'] = community
+        DEFAULT_CONFIGURATION["api_url"] = api_url
+        DEFAULT_CONFIGURATION["community"] = community
     else:
-        DEFAULT_CONFIGURATION['api_url'] = 'https://zenodo.org/api'
-        DEFAULT_CONFIGURATION['community'] = 'colour-science-datasets'
+        DEFAULT_CONFIGURATION["api_url"] = "https://zenodo.org/api"
+        DEFAULT_CONFIGURATION["community"] = "colour-science-datasets"
 
 
 class sandbox:
@@ -108,20 +106,22 @@ class sandbox:
 
     Parameters
     ----------
-    api_url : str, optional
+    api_url
         *Zenodo* sandbox url.
-    community : str, optional
+    community
         *Zenodo* community.
     """
 
-    def __init__(self,
-                 api_url='https://sandbox.zenodo.org/api',
-                 community='colour-science-datasets'):
+    def __init__(
+        self,
+        api_url: str = "https://sandbox.zenodo.org/api",
+        community: str = "colour-science-datasets",
+    ):
 
         self._api_url = api_url
         self._community = community
 
-    def __enter__(self):
+    def __enter__(self) -> sandbox:
         """
         Called upon entering the context manager and decorator.
         """
@@ -130,20 +130,20 @@ class sandbox:
 
         return self
 
-    def __exit__(self, *args):
+    def __exit__(self, *args: Any):
         """
         Called upon exiting the context manager and decorator.
         """
 
         use_sandbox(False)
 
-    def __call__(self, function):
+    def __call__(self, function: Callable) -> Callable:
         """
-        Calls the wrapped definition.
+        Call the wrapped definition.
         """
 
         @functools.wraps(function)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args: Any, **kwargs: Any) -> Callable:
             with self:
                 return function(*args, **kwargs)
 

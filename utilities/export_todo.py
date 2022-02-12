@@ -4,6 +4,8 @@ Export TODOs
 ============
 """
 
+from __future__ import annotations
+
 import codecs
 import os
 from collections import OrderedDict
@@ -14,7 +16,11 @@ __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
 
-__all__ = ["TODO_FILE_TEMPLATE", "extract_todo_items", "export_todo_items"]
+__all__ = [
+    "TODO_FILE_TEMPLATE",
+    "extract_todo_items",
+    "export_todo_items",
+]
 
 TODO_FILE_TEMPLATE = """
 Colour - Datasets - TODO
@@ -40,18 +46,18 @@ https://opensource.org/licenses/BSD-3-Clause
 ]
 
 
-def extract_todo_items(root_directory):
+def extract_todo_items(root_directory: str) -> OrderedDict:
     """
     Extract the TODO items from given directory.
 
     Parameters
     ----------
-    root_directory : unicode
+    root_directory
         Directory to extract the TODO items from.
 
     Returns
     -------
-    OrderedDict
+    :class:`collections.OrderedDict`
         TODO items.
     """
 
@@ -91,15 +97,15 @@ def extract_todo_items(root_directory):
     return todo_items
 
 
-def export_todo_items(todo_items, file_path):
+def export_todo_items(todo_items: OrderedDict, file_path: str):
     """
     Export TODO items to given file.
 
     Parameters
     ----------
-    todo_items : OrderedDict
+    todo_items
         TODO items.
-    file_path : unicode
+    file_path
         File to write the TODO items to.
     """
 

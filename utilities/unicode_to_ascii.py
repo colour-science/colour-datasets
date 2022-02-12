@@ -4,6 +4,8 @@ Unicode to ASCII Utility
 ========================
 """
 
+from __future__ import annotations
+
 import codecs
 import os
 import unicodedata
@@ -16,7 +18,7 @@ __status__ = "Production"
 
 __all__ = ["SUBSTITUTIONS", "unicode_to_ascii"]
 
-SUBSTITUTIONS = {
+SUBSTITUTIONS: dict[str, str] = {
     "–": "-",
     "“": '"',
     "”": '"',
@@ -26,14 +28,14 @@ SUBSTITUTIONS = {
 }
 
 
-def unicode_to_ascii(root_directory):
+def unicode_to_ascii(root_directory: str):
     """
     Recursively convert from unicode to ASCII *.py*, *.bib* and *.rst* files
     in given directory.
 
     Parameters
     ----------
-    root_directory : unicode
+    root_directory
         Directory to convert the files from unicode to ASCII.
     """
 

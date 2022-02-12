@@ -158,7 +158,7 @@ class Record:
     @property
     def title(self) -> str:
         """
-        Getter and setter property for the *Zenodo* record title.
+        Getter property for the *Zenodo* record title.
 
         Returns
         -------
@@ -579,7 +579,7 @@ class Community(Mapping):
     @property
     def configuration(self) -> Configuration:
         """
-        Getter and setter property for the *Colour - Datasets* configuration.
+        Getter property for the *Colour - Datasets* configuration.
 
         Returns
         -------

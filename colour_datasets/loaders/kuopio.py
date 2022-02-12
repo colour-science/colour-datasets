@@ -9,7 +9,7 @@ datasets loading:
 -   :func:`colour_datasets.loaders.build_KuopioUniversity`
 
 Notes
-----
+-----
 -   The various *University of Kuopio* datasets loading classes are built at
     module import time.
 
@@ -152,9 +152,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     """
 
     ID: str = "Undefined"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     METADATA: Dict = {}
     """
@@ -168,7 +166,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
 
     def load(self) -> Dict[str, Dict[str, SpectralDistribution]]:
         """
-        Syncs, parses, converts and returns the *University of Kuopio* dataset
+        Sync, parse, convert and return the *University of Kuopio* dataset
         content.
 
         Returns
@@ -243,7 +241,7 @@ def _build_dataset_loader_class_KuopioUniversity(
     )
 
     load_method_docstring = """
-        Syncs, parses, converts and returns the *University of Kuopio* *{0}*
+        Sync, parse, convert and return the *University of Kuopio* *{0}*
         dataset content.
 
         Returns

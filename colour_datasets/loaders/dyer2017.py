@@ -175,9 +175,7 @@ __init__`
 
     @schema_version.setter
     def schema_version(self, value: Optional[str]):
-        """
-        Setter for the **self.schema_version** property.
-        """
+        """Setter for the **self.schema_version** property."""
 
         if value is not None:
             attest(
@@ -207,9 +205,7 @@ __init__`
 
     @catalog_number.setter
     def catalog_number(self, value: Optional[str]):
-        """
-        Setter for the **self.catalog_number** property.
-        """
+        """Setter for the **self.catalog_number** property."""
 
         if value is not None:
             attest(
@@ -239,9 +235,7 @@ __init__`
 
     @description.setter
     def description(self, value: Optional[str]):
-        """
-        Setter for the **self.description** property.
-        """
+        """Setter for the **self.description** property."""
 
         if value is not None:
             attest(
@@ -271,9 +265,7 @@ __init__`
 
     @document_creator.setter
     def document_creator(self, value: Optional[str]):
-        """
-        Setter for the **self.document_creator** property.
-        """
+        """Setter for the **self.document_creator** property."""
 
         if value is not None:
             attest(
@@ -303,9 +295,7 @@ __init__`
 
     @unique_identifier.setter
     def unique_identifier(self, value: Optional[str]):
-        """
-        Setter for the **self.unique_identifier** property.
-        """
+        """Setter for the **self.unique_identifier** property."""
 
         if value is not None:
             attest(
@@ -335,9 +325,7 @@ __init__`
 
     @measurement_equipment.setter
     def measurement_equipment(self, value: Optional[str]):
-        """
-        Setter for the **self.measurement_equipment** property.
-        """
+        """Setter for the **self.measurement_equipment** property."""
 
         if value is not None:
             attest(
@@ -368,9 +356,7 @@ __init__`
 
     @laboratory.setter
     def laboratory(self, value: Optional[str]):
-        """
-        Setter for the **self.measurement_equipment** property.
-        """
+        """Setter for the **self.measurement_equipment** property."""
 
         if value is not None:
             attest(
@@ -400,9 +386,7 @@ __init__`
 
     @document_creation_date.setter
     def document_creation_date(self, value: Optional[str]):
-        """
-        Setter for the **self.document_creation_date** property.
-        """
+        """Setter for the **self.document_creation_date** property."""
 
         if value is not None:
             attest(
@@ -433,9 +417,7 @@ __init__`
 
     @comments.setter
     def comments(self, value: Optional[str]):
-        """
-        Setter for the **self.comments** property.
-        """
+        """Setter for the **self.comments** property."""
 
         if value is not None:
             attest(
@@ -465,9 +447,7 @@ __init__`
 
     @license.setter
     def license(self, value: Optional[str]):
-        """
-        Setter for the **self.license** property.
-        """
+        """Setter for the **self.license** property."""
 
         if value is not None:
             attest(
@@ -661,9 +641,7 @@ __init__`
 
     @path.setter
     def path(self, value: Optional[str]):
-        """
-        Setter for the **self.path** property.
-        """
+        """Setter for the **self.path** property."""
 
         if value is not None:
             attest(
@@ -692,9 +670,7 @@ __init__`
 
     @header.setter
     def header(self, value: SpectralDataHeader_AMPAS):
-        """
-        Setter for the **self.header** property.
-        """
+        """Setter for the **self.header** property."""
 
         attest(
             isinstance(value, SpectralDataHeader_AMPAS),
@@ -757,9 +733,7 @@ __init__`
             ]
         ],
     ):
-        """
-        Setter for the **self.units** property.
-        """
+        """Setter for the **self.units** property."""
 
         if value is not None:
             attest(
@@ -824,9 +798,7 @@ __init__`
             ]
         ],
     ):
-        """
-        Setter for the **self.reflection_geometry** property.
-        """
+        """Setter for the **self.reflection_geometry** property."""
 
         if value is not None:
             attest(
@@ -865,9 +837,7 @@ __init__`
             Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
         ],
     ):
-        """
-        Setter for the **self.transmission_geometry** property.
-        """
+        """Setter for the **self.transmission_geometry** property."""
 
         if value is not None:
             assert is_string(value), (
@@ -896,9 +866,7 @@ __init__`
 
     @bandwidth_FWHM.setter
     def bandwidth_FWHM(self, value: Optional[Floating]):
-        """
-        Setter for the **self.bandwidth_FWHM** property.
-        """
+        """Setter for the **self.bandwidth_FWHM** property."""
 
         if value is not None:
             attest(
@@ -929,9 +897,7 @@ __init__`
 
     @bandwidth_corrected.setter
     def bandwidth_corrected(self, value: Optional[Boolean]):
-        """
-        Setter for the **self.bandwidth_corrected** property.
-        """
+        """Setter for the **self.bandwidth_corrected** property."""
 
         if value is not None:
             attest(
@@ -1181,9 +1147,7 @@ __init__`
 
     @path.setter
     def path(self, value: Optional[str]):
-        """
-        Setter for the **self.path** property.
-        """
+        """Setter for the **self.path** property."""
 
         if value is not None:
             attest(
@@ -1212,9 +1176,7 @@ __init__`
 
     @header.setter
     def header(self, value: SpectralDataHeader_AMPAS):
-        """
-        Setter for the **self.header** property.
-        """
+        """Setter for the **self.header** property."""
 
         attest(
             isinstance(value, SpectralDataHeader_AMPAS),
@@ -1277,9 +1239,7 @@ __init__`
             ]
         ],
     ):
-        """
-        Setter for the **self.units** property.
-        """
+        """Setter for the **self.units** property."""
 
         if value is not None:
             attest(
@@ -1344,9 +1304,7 @@ __init__`
             ]
         ],
     ):
-        """
-        Setter for the **self.reflection_geometry** property.
-        """
+        """Setter for the **self.reflection_geometry** property."""
 
         if value is not None:
             attest(
@@ -1385,9 +1343,7 @@ __init__`
             Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
         ],
     ):
-        """
-        Setter for the **self.transmission_geometry** property.
-        """
+        """Setter for the **self.transmission_geometry** property."""
 
         if value is not None:
             assert is_string(value), (
@@ -1416,9 +1372,7 @@ __init__`
 
     @bandwidth_FWHM.setter
     def bandwidth_FWHM(self, value: Optional[Floating]):
-        """
-        Setter for the **self.bandwidth_FWHM** property.
-        """
+        """Setter for the **self.bandwidth_FWHM** property."""
 
         if value is not None:
             attest(
@@ -1449,9 +1403,7 @@ __init__`
 
     @bandwidth_corrected.setter
     def bandwidth_corrected(self, value: Optional[Boolean]):
-        """
-        Setter for the **self.bandwidth_corrected** property.
-        """
+        """Setter for the **self.bandwidth_corrected** property."""
 
         if value is not None:
             attest(
@@ -1541,9 +1493,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     """
 
     ID: str = "3372171"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Dyer2017.ID])
@@ -1560,7 +1510,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         ],
     ]:
         """
-        Syncs, parses, converts and returns the *Dyer et al. (2017)*
+        Sync, parse, convert and return the *Dyer et al. (2017)*
         *RAW to ACES Utility Data* dataset content.
 
         Returns

@@ -188,9 +188,7 @@ class Record:
         """
 
         def strip_html(text: str) -> str:
-            """
-            Strip *HTML* tags from given text.
-            """
+            """Strip *HTML* tags from given text."""
 
             text = text.replace("&nbsp;", " ").replace("\n\n", " ")
 
@@ -394,9 +392,7 @@ class Record:
                 break
 
         def urls_download(urls: Dict):
-            """
-            Download given urls.
-            """
+            """Download given urls."""
 
             for url, md5 in urls.items():
                 filename = os.path.join(

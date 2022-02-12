@@ -1,6 +1,4 @@
-"""
-Defines the unit tests for the :mod:`colour_datasets.loaders.jakob2019` module.
-"""
+"""Defines the unit tests for the :mod:`colour_datasets.loaders.jakob2019` module."""
 
 import unittest
 
@@ -26,9 +24,7 @@ class TestDatasetLoader_Jakob2019(unittest.TestCase):
     """
 
     def test_required_attributes(self):
-        """
-        Test the presence of required attributes.
-        """
+        """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
 
@@ -36,9 +32,7 @@ class TestDatasetLoader_Jakob2019(unittest.TestCase):
             self.assertIn(attribute, dir(DatasetLoader_Jakob2019))
 
     def test_required_methods(self):
-        """
-        Test the presence of required methods.
-        """
+        """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
 

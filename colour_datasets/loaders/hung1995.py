@@ -90,9 +90,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
     """
 
     ID: str = "3367463"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Hung1995.ID])
@@ -101,7 +99,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         self,
     ) -> Dict[str, Dict[str, ConstantPerceivedHueColourMatches_Hung1995]]:
         """
-        Syncs, parses, converts and returns the *Hung and Berns (1995)*
+        Sync, parse, convert and return the *Hung and Berns (1995)*
         *Constant Hue Loci Data* dataset content.
 
         Returns

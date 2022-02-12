@@ -64,16 +64,14 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
     """
 
     ID: str = "3245883"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Jiang2013.ID])
 
     def load(self) -> Dict[str, RGB_CameraSensitivities]:
         """
-        Syncs, parses, converts and returns the *Jiang et al. (2013)*
+        Sync, parse, convert and return the *Jiang et al. (2013)*
         *Camera Spectral Sensitivity Database* dataset content.
 
         Returns

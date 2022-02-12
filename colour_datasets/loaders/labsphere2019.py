@@ -56,16 +56,14 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
     """
 
     ID: str = "3245875"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Labsphere2019.ID])
 
     def load(self) -> Dict[str, SpectralDistribution]:
         """
-        Syncs, parses, converts and returns the *Labsphere (2019)*
+        Sync, parse, convert and return the *Labsphere (2019)*
         *Labsphere SRS-99-020* dataset content.
 
         Returns

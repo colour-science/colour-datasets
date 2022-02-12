@@ -102,7 +102,7 @@ def use_sandbox(
 class sandbox:
     """
     A context manager and decorator temporarily setting the configuration to
-    use *Zenodo* sandbox.
+    the *Zenodo* sandbox.
 
     Parameters
     ----------
@@ -123,7 +123,8 @@ class sandbox:
 
     def __enter__(self) -> sandbox:
         """
-        Called upon entering the context manager and decorator.
+        Set the configuration to the *Zenodo* sandbox upon entering the context
+        manager.
         """
 
         use_sandbox(True, self._api_url, self._community)
@@ -131,16 +132,12 @@ class sandbox:
         return self
 
     def __exit__(self, *args: Any):
-        """
-        Called upon exiting the context manager and decorator.
-        """
+        """Restore the configuration upon exiting the context manager."""
 
         use_sandbox(False)
 
     def __call__(self, function: Callable) -> Callable:
-        """
-        Call the wrapped definition.
-        """
+        """Call the wrapped definition."""
 
         @functools.wraps(function)
         def wrapper(*args: Any, **kwargs: Any) -> Callable:

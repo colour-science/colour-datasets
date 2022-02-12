@@ -52,7 +52,7 @@ class Specification_Asano2015(
         "Specification_Asano2015",
         ("XYZ_2", "XYZ_10", "LMS_2", "LMS_10", "parameters", "others"),
     )
-):
+):  # noqa: D405,D407,D410,D411
     """
     Define the *Asano (2015)* specification for an observer.
 
@@ -117,16 +117,14 @@ parse_workbook_Asano2015`
     """
 
     ID: str = "3252742"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Asano2015.ID])
 
     def load(self) -> Dict[str, Specification_Asano2015]:
         """
-        Syncs, parses, converts and returns the *Asano (2015)*
+        Sync, parse, convert and return the *Asano (2015)*
         *Observer Function Database* dataset content.
 
         Returns

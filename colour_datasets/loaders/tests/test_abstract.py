@@ -1,6 +1,4 @@
-"""
-Defines the unit tests for the :mod:`colour_datasets.loaders.abstract` module.
-"""
+"""Defines the unit tests for the :mod:`colour_datasets.loaders.abstract` module."""
 
 import unittest
 
@@ -25,9 +23,7 @@ class TestAbstractDatasetLoader(unittest.TestCase):
     """
 
     def test_required_attributes(self):
-        """
-        Test the presence of required attributes.
-        """
+        """Test the presence of required attributes."""
 
         required_attributes = ("ID", "record", "id", "content")
 
@@ -35,9 +31,7 @@ class TestAbstractDatasetLoader(unittest.TestCase):
             self.assertIn(attribute, dir(AbstractDatasetLoader))
 
     def test_required_methods(self):
-        """
-        Test the presence of required methods.
-        """
+        """Test the presence of required methods."""
 
         required_methods = ("__init__", "load", "sync")
 

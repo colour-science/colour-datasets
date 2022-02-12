@@ -91,9 +91,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     """
 
     ID: str = "3362536"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Ebner1998.ID])
@@ -102,7 +100,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         self,
     ) -> Dict[str, Dict[Integer, ConstantPerceivedHueColourMatches_Ebner1998]]:
         """
-        Syncs, parses, converts and returns the *Ebner and Fairchild (1998)*
+        Sync, parse, convert and return the *Ebner and Fairchild (1998)*
         *Constant Perceived-Hue Data* dataset content.
 
         Returns
@@ -130,9 +128,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         )
 
         def _parse_float_values(data: str) -> NDArray:
-            """
-            Parse float values from given data.
-            """
+            """Parse float values from given data."""
 
             values = as_float_array(
                 [float(x) / 100 for x in data.split("\t") if x]

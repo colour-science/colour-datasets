@@ -1,6 +1,4 @@
-"""
-Defines the unit tests for the :mod:`colour_datasets.utilities.common` module.
-"""
+"""Defines the unit tests for the :mod:`colour_datasets.utilities.common` module."""
 
 import os
 import unittest
@@ -37,9 +35,7 @@ class TestHashMd5(unittest.TestCase):
     """
 
     def test_hash_md5(self):
-        """
-        Test :func:`colour_datasets.utilities.common.hash_md5` definition.
-        """
+        """Test :func:`colour_datasets.utilities.common.hash_md5` definition."""
 
         dataset = build_Labsphere2019()
         dataset.load()
@@ -71,23 +67,17 @@ class TestUrlDownload(unittest.TestCase):
     """
 
     def setUp(self):
-        """
-        Initialise the common tests attributes.
-        """
+        """Initialise the common tests attributes."""
 
         self._temporary_file = tempfile.mktemp()
 
     def tearDown(self):
-        """
-        After tests actions.
-        """
+        """After tests actions."""
 
         os.remove(self._temporary_file)
 
     def test_url_download(self):
-        """
-        Test :func:`colour_datasets.utilities.common.url_download` definition.
-        """
+        """Test :func:`colour_datasets.utilities.common.url_download` definition."""
 
         dataset = build_Labsphere2019()
         dataset.load()
@@ -134,9 +124,7 @@ class TestJsonOpen(unittest.TestCase):
     """
 
     def test_json_open(self):
-        """
-        Test :func:`colour_datasets.utilities.common.json_open` definition.
-        """
+        """Test :func:`colour_datasets.utilities.common.json_open` definition."""
 
         data = json_open("https://zenodo.org/api/records/3245883")
 
@@ -152,16 +140,12 @@ class TestUnpackGzipfile(unittest.TestCase):
     """
 
     def setUp(self):
-        """
-        Initialise the common tests attributes.
-        """
+        """Initialise the common tests attributes."""
 
         self._temporary_directory = tempfile.mkdtemp()
 
     def tearDown(self):
-        """
-        After tests actions.
-        """
+        """After tests actions."""
 
         shutil.rmtree(self._temporary_directory)
 

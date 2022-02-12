@@ -63,16 +63,14 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
     """
 
     ID: str = "3245895"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_XRite2016.ID])
 
     def load(self) -> Dict[str, ColourChecker]:
         """
-        Syncs, parses, converts and returns the *X-Rite (2016)*
+        Sync, parse, convert and return the *X-Rite (2016)*
         *New Color Specifications for ColorChecker SG and Classic Charts*
         dataset content.
 

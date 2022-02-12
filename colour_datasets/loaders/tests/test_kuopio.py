@@ -1,6 +1,4 @@
-"""
-Defines the unit tests for the :mod:`colour_datasets.loaders.kuopio` module.
-"""
+"""Defines the unit tests for the :mod:`colour_datasets.loaders.kuopio` module."""
 
 import numpy as np
 import os
@@ -106,9 +104,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
     """
 
     def test_required_attributes(self):
-        """
-        Test the presence of required attributes.
-        """
+        """Test the presence of required attributes."""
 
         required_attributes = ("ID", "METADATA")
 
@@ -126,9 +122,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
                 self.assertIn(attribute, dir(dataset_loader))
 
     def test_required_methods(self):
-        """
-        Test the presence of required methods.
-        """
+        """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
 

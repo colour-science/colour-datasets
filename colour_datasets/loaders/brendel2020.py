@@ -59,16 +59,14 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
     """
 
     ID: str = "4051012"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Brendel2020.ID])
 
     def load(self) -> Dict[str, SpectralDistribution]:
         """
-        Syncs, parses, converts and returns the *Brendel (2020)*
+        Sync, parse, convert and return the *Brendel (2020)*
         *Measured Commercial LED Spectra* dataset content.
 
         Returns

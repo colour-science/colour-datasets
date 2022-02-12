@@ -62,16 +62,14 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
     """
 
     ID: str = "4642271"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Karge2015.ID])
 
     def load(self) -> Dict[str, Dict[str, Dict]]:
         """
-        Syncs, parses, converts and returns the *Karge et al. (2015)*
+        Sync, parse, convert and return the *Karge et al. (2015)*
         *Spectral Database of Commonly Used Cine Lighting* dataset content.
 
         Returns

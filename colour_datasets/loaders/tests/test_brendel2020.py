@@ -32,9 +32,7 @@ DatasetLoader_Brendel2020` class unit tests methods.
     """
 
     def test_required_attributes(self):
-        """
-        Test the presence of required attributes.
-        """
+        """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
 
@@ -42,9 +40,7 @@ DatasetLoader_Brendel2020` class unit tests methods.
             self.assertIn(attribute, dir(DatasetLoader_Brendel2020))
 
     def test_required_methods(self):
-        """
-        Test the presence of required methods.
-        """
+        """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
 

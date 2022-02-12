@@ -144,16 +144,14 @@ class DatasetLoader_Luo1997(AbstractDatasetLoader):
     """
 
     ID: str = "4394536"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
         super().__init__(datasets()[DatasetLoader_Luo1997.ID])
 
     def load(self) -> Dict[str, ExperimentalGroupLuo1997]:
         """
-        Syncs, parses, converts and returns the *Luo and Rhodes (1997)*
+        Sync, parse, convert and return the *Luo and Rhodes (1997)*
         *LUTCHI Colour Appearance Data* dataset content.
 
         Returns

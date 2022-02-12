@@ -58,9 +58,7 @@ BIBLIOGRAPHY_NAME = "BIBLIOGRAPHY.bib"
 
 
 def _patch_invoke_annotations_support():
-    """
-    See https://github.com/pyinvoke/invoke/issues/357
-    """
+    """See https://github.com/pyinvoke/invoke/issues/357."""
 
     import invoke
     from unittest.mock import patch

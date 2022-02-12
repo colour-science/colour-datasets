@@ -59,9 +59,7 @@ class AbstractDatasetLoader(ABC):
     """
 
     ID: str = "Undefined"
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-    """
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self, record: Record):
         self._record: Record = record
@@ -109,7 +107,7 @@ class AbstractDatasetLoader(ABC):
     @abstractmethod
     def load(self) -> Any:
         """
-        Syncs, parses, converts and returns the dataset content as a *Python*
+        Sync, parse, convert and return the dataset content as a *Python*
         object.
 
         Returns

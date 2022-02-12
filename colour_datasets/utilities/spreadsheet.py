@@ -83,14 +83,10 @@ def _column_number_to_letters(number: Integer) -> str:
 
 
 _LETTERS_TO_NUMBER_CACHE: CaseInsensitiveMapping = CaseInsensitiveMapping()
-"""
-Letters, e.g. *Microsoft Excel* column letters to numbers cache.
-"""
+"""Letters, e.g. *Microsoft Excel* column letters to numbers cache."""
 
 _NUMBER_TO_LETTERS_CACHE: Dict = {}
-"""
-Numbers to letters, e.g. *Microsoft Excel* column letters cache.
-"""
+"""Numbers to letters, e.g. *Microsoft Excel* column letters cache."""
 
 for i in range(1, 18279):
     letter = _column_number_to_letters(i)
@@ -200,9 +196,7 @@ _CELL_RANGE_REGEX: re.Pattern = re.compile(
     r"^[$]?(?P<column_in>[A-Za-z]{1,3})?[$]?(?P<row_in>\d+)?"
     r"(:[$]?(?P<column_out>[A-Za-z]{1,3})?[$]?(?P<row_out>\d+)?)?$"
 )
-"""
-Regular expression to match a cell range, e.g. "A1:C3".
-"""
+"""Regular expression to match a cell range, e.g. "A1:C3"."""
 
 
 def cell_range_values(sheet: xlrd.sheet.Sheet, cell_range: str) -> List[str]:

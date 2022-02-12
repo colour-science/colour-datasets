@@ -1,6 +1,4 @@
-"""
-Defines the unit tests for the :mod:`colour_datasets.loaders.hung1995` module.
-"""
+"""Defines the unit tests for the :mod:`colour_datasets.loaders.hung1995` module."""
 
 import numpy as np
 import unittest
@@ -27,9 +25,7 @@ class TestDatasetLoader_Hung1995(unittest.TestCase):
     """
 
     def test_required_attributes(self):
-        """
-        Test the presence of required attributes.
-        """
+        """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
 
@@ -37,9 +33,7 @@ class TestDatasetLoader_Hung1995(unittest.TestCase):
             self.assertIn(attribute, dir(DatasetLoader_Hung1995))
 
     def test_required_methods(self):
-        """
-        Test the presence of required methods.
-        """
+        """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
 

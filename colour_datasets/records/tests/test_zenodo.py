@@ -30,9 +30,7 @@ class TestRecord(unittest.TestCase):
     """
 
     def setUp(self):
-        """
-        Initialise the common tests attributes.
-        """
+        """Initialise the common tests attributes."""
 
         self._data = json_open("https://zenodo.org/api/records/3245883")
         self._configuration = Configuration()
@@ -40,9 +38,7 @@ class TestRecord(unittest.TestCase):
         self._record = Record(self._data, self._configuration)
 
     def test_required_attributes(self):
-        """
-        Test the presence of required attributes.
-        """
+        """Test the presence of required attributes."""
 
         required_attributes = (
             "data",
@@ -56,9 +52,7 @@ class TestRecord(unittest.TestCase):
             self.assertIn(attribute, dir(Record))
 
     def test_required_methods(self):
-        """
-        Test the presence of required methods.
-        """
+        """Test the presence of required methods."""
 
         required_methods = (
             "__init__",
@@ -82,9 +76,7 @@ class TestRecord(unittest.TestCase):
         self.assertEqual(self._record.configuration, self._configuration)
 
     def test_data(self):
-        """
-        Test :func:colour_datasets.records.zenodo.Record.data` property.
-        """
+        """Test :func:colour_datasets.records.zenodo.Record.data` property."""
 
         self.assertEqual(self._record.data, self._data)
 
@@ -100,9 +92,7 @@ class TestRecord(unittest.TestCase):
         )
 
     def test_id(self):
-        """
-        Test :func:colour_datasets.records.zenodo.Record.id` property.
-        """
+        """Test :func:colour_datasets.records.zenodo.Record.id` property."""
 
         self.assertEqual(self._record.id, "3245883")
 
@@ -118,9 +108,7 @@ class TestRecord(unittest.TestCase):
         )
 
     def test__init__(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Record.__init__` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Record.__init__` method."""
 
         record = Record(self._data, self._configuration)
 
@@ -130,9 +118,7 @@ class TestRecord(unittest.TestCase):
         )
 
     def test__str__(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Record.__str__` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Record.__str__` method."""
 
         self.assertEqual(
             str(self._record),
@@ -178,9 +164,7 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt"""
         )
 
     def test__repr__(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Record.__repr__` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Record.__repr__` method."""
 
         self.assertIsInstance(
             eval(
@@ -192,9 +176,7 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt"""
         )
 
     def test_from_id(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Record.from_id` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Record.from_id` method."""
 
         record = Record.from_id("3245883")
 
@@ -205,9 +187,7 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt"""
         )
 
     def test_synced(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Record.synced` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Record.synced` method."""
 
         self._record.pull()
         self.assertTrue(self._record.synced())
@@ -215,18 +195,14 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt"""
         self.assertFalse(self._record.synced())
 
     def test_pull(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Record.pull` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Record.pull` method."""
 
         self._record.remove()
         self._record.pull()
         self.assertTrue(self._record.synced())
 
     def test_remove(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Record.remove` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Record.remove` method."""
 
         self._record.pull()
         self._record.remove()
@@ -240,9 +216,7 @@ class TestCommunity(unittest.TestCase):
     """
 
     def setUp(self):
-        """
-        Initialise the common tests attributes.
-        """
+        """Initialise the common tests attributes."""
 
         community_data = json_open(
             "https://zenodo.org/api/communities/colour-science-datasets"
@@ -261,9 +235,7 @@ class TestCommunity(unittest.TestCase):
         self._community = Community(self._data, self._configuration)
 
     def test_required_attributes(self):
-        """
-        Test the presence of required attributes.
-        """
+        """Test the presence of required attributes."""
 
         required_attributes = (
             "data",
@@ -276,9 +248,7 @@ class TestCommunity(unittest.TestCase):
             self.assertIn(attribute, dir(Community))
 
     def test_required_methods(self):
-        """
-        Test the presence of required methods.
-        """
+        """Test the presence of required methods."""
 
         required_methods = (
             "__init__",
@@ -305,9 +275,7 @@ class TestCommunity(unittest.TestCase):
         self.assertEqual(self._community.configuration, self._configuration)
 
     def test_data(self):
-        """
-        Test :func:colour_datasets.records.zenodo.Community.data` property.
-        """
+        """Test :func:colour_datasets.records.zenodo.Community.data` property."""
 
         self.assertEqual(self._community.data, self._data)
 
@@ -322,16 +290,12 @@ class TestCommunity(unittest.TestCase):
         )
 
     def test_records(self):
-        """
-        Test :func:colour_datasets.records.zenodo.Community.records` property.
-        """
+        """Test :func:colour_datasets.records.zenodo.Community.records` property."""
 
         self.assertIn("3245883", list(self._community.records))
 
     def test__init__(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Community.__init__` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Community.__init__` method."""
 
         community = Community(self._data, self._configuration)
 
@@ -341,9 +305,7 @@ class TestCommunity(unittest.TestCase):
         )
 
     def test__str__(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Community.__str__` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Community.__str__` method."""
 
         self._community.remove()
 
@@ -370,9 +332,7 @@ Datasets
         )
 
     def test__repr__(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Community.__repr__` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Community.__repr__` method."""
 
         self.assertIsInstance(
             eval(
@@ -412,9 +372,7 @@ Datasets
         self.assertEqual(len(self._community), len(self._community.records))
 
     def test_from_id(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Community.from_id` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Community.from_id` method."""
 
         community = Community.from_id("colour-science-datasets")
 
@@ -425,9 +383,7 @@ Datasets
         )
 
     def test_synced(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Community.synced` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Community.synced` method."""
 
         self._community.pull()
         self.assertTrue(self._community.synced())
@@ -435,18 +391,14 @@ Datasets
         self.assertFalse(self._community.synced())
 
     def test_pull(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Community.pull` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Community.pull` method."""
 
         self._community.remove()
         self._community.pull()
         self.assertTrue(self._community.synced())
 
     def test_remove(self):
-        """
-        Test :func:`colour_datasets.records.zenodo.Community.remove` method.
-        """
+        """Test :func:`colour_datasets.records.zenodo.Community.remove` method."""
 
         self._community.pull()
         self._community.remove()

@@ -40,14 +40,10 @@ __all__ = [
 
 
 class suppress_stdout:
-    """
-    A context manager and decorator temporarily suppressing standard output.
-    """
+    """A context manager and decorator temporarily suppressing standard output."""
 
     def __enter__(self) -> suppress_stdout:
-        """
-        Called upon entering the context manager and decorator.
-        """
+        """Redirect the standard output upon entering the context manager."""
 
         self._stdout = sys.stdout
         sys.stdout = open(os.devnull, "w")
@@ -55,17 +51,13 @@ class suppress_stdout:
         return self
 
     def __exit__(self, *args: Any):
-        """
-        Called upon exiting the context manager and decorator.
-        """
+        """Restore the standard output upon exiting the context manager."""
 
         sys.stdout.close()
         sys.stdout = self._stdout
 
     def __call__(self, function: Callable) -> Callable:
-        """
-        Call the wrapped definition.
-        """
+        """Call the wrapped definition."""
 
         @functools.wraps(function)
         def wrapper(*args: Any, **kwargs: Any) -> Callable:
@@ -76,9 +68,7 @@ class suppress_stdout:
 
 
 class TqdmUpTo(tqdm):
-    """
-    :class:`tqdm` sub-class used to report the progress of an action.
-    """
+    """:class:`tqdm` sub-class used to report the progress of an action."""
 
     def update_to(
         self,

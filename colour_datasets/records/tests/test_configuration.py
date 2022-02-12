@@ -27,9 +27,7 @@ class TestUseSandbox(unittest.TestCase):
     """
 
     def tearDown(self):
-        """
-        After tests actions.
-        """
+        """After tests actions."""
 
         use_sandbox(False)
 

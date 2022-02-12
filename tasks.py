@@ -3,14 +3,17 @@ Invoke - Tasks
 ==============
 """
 
+from __future__ import annotations
+
 import biblib.bib
 import fnmatch
 import os
 import re
 import uuid
-from invoke import task
+from invoke import Context, task
 
 import colour_datasets
+from colour.hints import Boolean
 from colour.utilities import message_box
 
 __author__ = "Colour Developers"
@@ -54,8 +57,41 @@ PYPI_PACKAGE_NAME = "colour-datasets"
 BIBLIOGRAPHY_NAME = "BIBLIOGRAPHY.bib"
 
 
+def _patch_invoke_annotations_support():
+    """
+    See https://github.com/pyinvoke/invoke/issues/357
+    """
+
+    import invoke
+    from unittest.mock import patch
+    from inspect import getfullargspec, ArgSpec
+
+    def patched_inspect_getargspec(function):
+        spec = getfullargspec(function)
+        return ArgSpec(*spec[0:4])
+
+    org_task_argspec = invoke.tasks.Task.argspec
+
+    def patched_task_argspec(*args, **kwargs):
+        with patch(
+            target="inspect.getargspec", new=patched_inspect_getargspec
+        ):
+            return org_task_argspec(*args, **kwargs)
+
+    invoke.tasks.Task.argspec = patched_task_argspec
+
+
+_patch_invoke_annotations_support()
+
+
 @task
-def clean(ctx, docs=True, bytecode=False, mypy=True, pytest=True):
+def clean(
+    ctx: Context,
+    docs: Boolean = True,
+    bytecode: Boolean = False,
+    mypy: Boolean = True,
+    pytest: Boolean = True,
+):
     """
     Clean the project.
 
@@ -97,9 +133,9 @@ def clean(ctx, docs=True, bytecode=False, mypy=True, pytest=True):
 
 @task
 def formatting(
-    ctx,
-    asciify=True,
-    bibtex=True,
+    ctx: Context,
+    asciify: Boolean = True,
+    bibtex: Boolean = True,
 ):
     """
     Convert unicode characters to ASCII and cleanup the *BibTeX* file.
@@ -144,9 +180,9 @@ def formatting(
 
 @task
 def quality(
-    ctx,
-    mypy=True,
-    rstlint=True,
+    ctx: Context,
+    mypy: Boolean = True,
+    rstlint: Boolean = True,
 ):
     """
     Check the codebase with *Mypy* and lints various *restructuredText*
@@ -183,7 +219,7 @@ def quality(
 
 
 @task
-def precommit(ctx):
+def precommit(ctx: Context):
     """
     Run the "pre-commit" hooks on the codebase.
 
@@ -198,7 +234,7 @@ def precommit(ctx):
 
 
 @task
-def tests(ctx):
+def tests(ctx: Context):
     """
     Run the unit tests with *Pytest*.
 
@@ -220,19 +256,14 @@ def tests(ctx):
 
 
 @task
-def examples(ctx):
+def examples(ctx: Context):
     """
     Run the examples.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     message_box("Running examples...")
@@ -245,43 +276,33 @@ def examples(ctx):
 
 
 @task(formatting, quality, precommit, tests, examples)
-def preflight(ctx):
+def preflight(ctx: Context):
     """
     Perform the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
     *examples*.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     message_box('Finishing "Preflight"...')
 
 
 @task
-def docs(ctx, html=True, pdf=True):
+def docs(ctx: Context, html: Boolean = True, pdf: Boolean = True):
     """
     Build the documentation.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-    html : bool, optional
+    html
         Whether to build the *HTML* documentation.
-    pdf : bool, optional
+    pdf
         Whether to build the *PDF* documentation.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     with ctx.prefix("export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True"):
@@ -296,19 +317,14 @@ def docs(ctx, html=True, pdf=True):
 
 
 @task
-def todo(ctx):
+def todo(ctx: Context):
     """
     Export the TODO items.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     message_box('Exporting "TODO" items...')
@@ -318,19 +334,14 @@ def todo(ctx):
 
 
 @task
-def requirements(ctx):
+def requirements(ctx: Context):
     """
     Export the *requirements.txt* file.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     message_box('Exporting "requirements.txt" file...')
@@ -342,20 +353,15 @@ def requirements(ctx):
 
 
 @task(clean, preflight, docs, todo, requirements)
-def build(ctx):
+def build(ctx: Context):
     """
     Build the project and runs dependency tasks, i.e. *docs*, *todo*, and
     *preflight*.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     message_box("Building...")
@@ -412,21 +418,16 @@ setup({0}
 
 
 @task
-def virtualise(ctx, tests=True):
+def virtualise(ctx: Context, tests: Boolean = True):
     """
     Create a virtual environment for the project build.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-    tests : bool, optional
+    tests
         Whether to run tests on the virtual environment.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     unique_name = f"{PYPI_PACKAGE_NAME}-{uuid.uuid1()}"
@@ -442,19 +443,14 @@ def virtualise(ctx, tests=True):
 
 
 @task
-def tag(ctx):
+def tag(ctx: Context):
     """
     Tag the repository according to defined version using *git-flow*.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     message_box("Tagging...")
@@ -496,19 +492,14 @@ def tag(ctx):
 
 
 @task(build)
-def release(ctx):
+def release(ctx: Context):
     """
     Release the project to *Pypi* with *Twine*.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     message_box("Releasing...")
@@ -518,19 +509,14 @@ def release(ctx):
 
 
 @task
-def sha256(ctx):
+def sha256(ctx: Context):
     """
     Compute the project *Pypi* package *sha256* with *OpenSSL*.
 
     Parameters
     ----------
-    ctx : invoke.context.Context
+    ctx
         Context.
-
-    Returns
-    -------
-    bool
-        Task success.
     """
 
     message_box('Computing "sha256"...')

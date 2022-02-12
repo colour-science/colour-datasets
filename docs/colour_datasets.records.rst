@@ -1,8 +1,6 @@
 Zenodo Records & Community
 ==========================
 
-.. contents:: :local:
-
 Configuration
 -------------
 

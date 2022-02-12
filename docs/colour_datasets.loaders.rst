@@ -1,8 +1,6 @@
 Datasets & Dataset Loading
 ==========================
 
-.. contents:: :local:
-
 Loading a Dataset
 -----------------
 

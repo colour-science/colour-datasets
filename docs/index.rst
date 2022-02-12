@@ -11,10 +11,6 @@ community.
 It is open source and freely available under the
 `New BSD License <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
 
-.. contents:: **Table of Contents**
-    :backlinks: none
-    :depth: 3
-
 .. sectnum::
 
 Features
@@ -43,64 +39,11 @@ When no explicit licensing information is available, the dataset adopts the
 **Other (Not Open)** licensing scheme, implying that assessing usage conditions
 is at the sole discretion of the users.
 
-Online
-------
-
-**Colour - Datasets** can be used online with
-`Google Colab <https://colab.research.google.com/notebook#fileId=1YwIfDTBVP3XUYJAyZVEDWj92DJCB0_3v&offline=true&sandboxMode=true>`__.
-
-Installation
-------------
-
-Primary Dependencies
-^^^^^^^^^^^^^^^^^^^^
-
-**Colour - Datasets** requires various dependencies in order to run:
-
-- `python>=3.5 <https://www.python.org/download/releases/>`__
-- `colour-science <https://pypi.org/project/colour-science/>`__
-- `cachetools <https://pypi.org/project/cachetools/>`__
-- `tqdm <https://pypi.org/project/tqdm/>`__
-- `xlrd <https://pypi.org/project/xlrd/>`__
-
-Pypi
-^^^^
-
-Once the dependencies are satisfied, **Colour - Datasets** can be installed from
-the `Python Package Index <http://pypi.python.org/pypi/colour-datasets>`__ by
-issuing this command in a shell::
-
-    pip install --user colour-datasets
-
-The tests suite dependencies are installed as follows::
-
-    pip install --user 'colour-datasets[tests]'
-
-The documentation building dependencies are installed as follows::
-
-    pip install --user 'colour-datasets[docs]'
-
-The overall development dependencies are installed as follows::
-
-    pip install --user 'colour-datasets[development]'
-
-Usage
------
-
-API
-^^^
-
-The main reference for
-`Colour - Datasets <https://github.com/colour-science/colour-datasets>`__
-is the manual:
-
-.. toctree::
-    :maxdepth: 4
-
-    manual
-
 Examples
 ^^^^^^^^
+
+**Colour - Datasets** can also be used online with
+`Google Colab <https://colab.research.google.com/notebook#fileId=1YwIfDTBVP3XUYJAyZVEDWj92DJCB0_3v&offline=true&sandboxMode=true>`__.
 
 Most of the objects are available from the ``colour_datasets`` namespace:
 
@@ -178,19 +121,21 @@ Alternatively, a dataset can be loaded by using its full title:
     >>> print(colour_datasets.load('3245895').keys())
     odict_keys(['ColorChecker24 - After November 2014', 'ColorChecker24 - Before November 2014', 'ColorCheckerSG - After November 2014', 'ColorCheckerSG - Before November 2014'])
 
-Contributing
-------------
+User Guide
+----------
 
-If you would like to contribute to `Colour - Datasets <https://github.com/colour-science/colour-datasets>`__,
-please refer to the following `Contributing <https://www.colour-science.org/contributing/>`__
-guide for `Colour <https://github.com/colour-science/colour>`__.
+.. toctree::
+    :maxdepth: 2
 
-Bibliography
-------------
+    user-guide
 
-The bibliography is available in the repository in
-`BibTeX <https://github.com/colour-science/colour-datasets/blob/develop/BIBLIOGRAPHY.bib>`__
-format.
+API Reference
+-------------
+
+.. toctree::
+    :maxdepth: 2
+
+    reference
 
 Code of Conduct
 ---------------
@@ -204,7 +149,6 @@ Contact & Social
 The *Colour Developers* can be reached via different means:
 
 - `Email <mailto:colour-developers@colour-science.org>`__
-- `Discourse <https://colour-science.discourse.group/>`__
 - `Facebook <https://www.facebook.com/python.colour.science>`__
 - `Github Discussions <https://github.com/colour-science/colour-datasets/discussions>`__
 - `Gitter <https://gitter.im/colour-science/colour>`__
@@ -214,6 +158,6 @@ About
 -----
 
 | **Colour - Datasets** by Colour Developers
-| Copyright © 2019-2021 – Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
+| Copyright 2019 Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
 | This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-datasets <https://github.com/colour-science/colour-datasets>`__

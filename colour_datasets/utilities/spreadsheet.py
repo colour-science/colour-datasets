@@ -19,7 +19,7 @@ from colour.hints import Dict, Integer, List, Union
 from colour.utilities import CaseInsensitiveMapping
 
 __author__ = "Colour Developers, Openpyxl Developers"
-__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__copyright__ = "Copyright 2019 Colour Developers"
 __copyright__ += ", "
 __copyright__ = "Copyright (C) 2010 openpyxl"
 __license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"

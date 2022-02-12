@@ -23,7 +23,7 @@ from cachetools import cached, TTLCache
 from colour.hints import Any, Boolean, Callable, Dict, Integer, Optional
 
 __author__ = "Colour Developers"
-__copyright__ = "Copyright (C) 2019-2021 - Colour Developers"
+__copyright__ = "Copyright 2019 Colour Developers"
 __license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
@@ -105,7 +105,7 @@ class TqdmUpTo(tqdm):
         self.update(chunks_count * chunk_size - self.n)
 
 
-def hash_md5(filename: str, chunk_size: Integer = 2 ** 16) -> str:
+def hash_md5(filename: str, chunk_size: Integer = 2**16) -> str:
     """
     Compute the *Message Digest 5 (MD5)* hash of given file.
 

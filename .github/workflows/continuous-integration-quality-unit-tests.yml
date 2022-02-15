@@ -35,9 +35,9 @@ jobs:
         poetry run python -m pip install --upgrade pip
         poetry install
       shell: bash
-    - name: Lint with flake8
+    - name: Pre-Commit (All Files)
       run: |
-        poetry run flake8 $CI_PACKAGE --count --show-source --statistics
+        poetry run pre-commit run --all-files
       shell: bash
     - name: Test Optimised Python Execution
       run: |

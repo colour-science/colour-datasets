@@ -255,14 +255,14 @@ class Record:
         data = "\n".join(
             [f"    {line}" for line in pformat(self._data).splitlines()]
         )
-        configuration = "    Configuration(\n{}\n    )".format(
-            "\n".join(
-                [
-                    f"        {line}"
-                    for line in pformat(self._configuration).splitlines()
-                ]
-            )
+
+        configuration = "\n".join(
+            [
+                f"        {line}"
+                for line in pformat(self._configuration).splitlines()
+            ]
         )
+        configuration = f"    Configuration(\n{configuration}\n    )"
 
         return f"{self.__class__.__name__}(\n{data},\n{configuration}\n)"
 
@@ -690,14 +690,13 @@ colour-science-datasets-tests/
             [f"    {line}" for line in pformat(self._data).splitlines()]
         )
 
-        configuration = "    Configuration(\n{}\n    )".format(
-            "\n".join(
-                [
-                    f"        {line}"
-                    for line in pformat(self._configuration).splitlines()
-                ]
-            )
+        configuration = "\n".join(
+            [
+                f"        {line}"
+                for line in pformat(self._configuration).splitlines()
+            ]
         )
+        configuration = f"    Configuration(\n{configuration}\n    )"
 
         return f"{self.__class__.__name__}(\n{data},\n{configuration}\n)"
 

@@ -117,7 +117,7 @@ development = [
     "toml",
     "twine",
 ]
-read-the-docs = [ "numpy", "pydata-sphinx-theme", "sphinxcontrib-bibtex" ]
+read-the-docs = [ "pydata-sphinx-theme", "sphinxcontrib-bibtex" ]
 
 [tool.black]
 line-length = 79

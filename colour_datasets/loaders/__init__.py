@@ -144,11 +144,12 @@ def load(dataset: Union[Integer, str]) -> Any:
 
     Examples
     --------
-    >>> len(load('3245883').keys())
+    >>> len(load('3245883').keys())  # doctest: +SKIP
     28
     >>> len(load(
     ...     'Camera Spectral Sensitivity Database - '
     ...     'Jiang et al. (2013)').keys())
+    ... # doctest: +SKIP
     28
     """
 

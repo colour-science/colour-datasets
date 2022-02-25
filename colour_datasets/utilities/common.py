@@ -214,7 +214,7 @@ def json_open(url: str, retries: Integer = 3) -> Dict:
     Examples
     --------
     # Doctests skip for Python 2.x compatibility.
-    >>> json_open('https://zenodo.org/api/records/3245883')[:38]
+    >>> json_open('https://zenodo.org/api/records/3245883')
     ... # doctest: +SKIP
     '{"conceptdoi":"10.5281/zenodo.3245882"'
     """
@@ -224,7 +224,7 @@ def json_open(url: str, retries: Integer = 3) -> Dict:
     attempt = 0
     while attempt != retries:
         try:
-            data = json.loads(urllib.request.urlopen(url).read())
+            return json.loads(urllib.request.urlopen(url).read())
         except (urllib.error.URLError, ValueError) as error:
             attempt += 1
             print(

@@ -219,39 +219,35 @@ def _build_dataset_loader_class_KuopioUniversity(
         *University of Kuopio* dataset loader class.
     """
 
-    class_docstring = """
-    Defines the *University of Kuopio* *{0}* dataset loader.
+    class_docstring = f"""
+    Defines the *University of Kuopio* *{title}* dataset loader.
 
     Attributes
     ----------
-    -   :attr:`colour_datasets.loaders.{0}.ID`
-    -   :attr:`colour_datasets.loaders.{0}.METADATA`
+    -   :attr:`colour_datasets.loaders.{title}.ID`
+    -   :attr:`colour_datasets.loaders.{title}.METADATA`
 
     Methods
     -------
-    -   :meth:`colour_datasets.loaders.{0}.__init__`
-    -   :meth:`colour_datasets.loaders.{0}.load`
+    -   :meth:`colour_datasets.loaders.{title}.__init__`
+    -   :meth:`colour_datasets.loaders.{title}.load`
 
     References
     ----------
-    :cite:`{1}`"""[
+    :cite:`{citation_key}`"""[
         1:
-    ].format(
-        title, citation_key
-    )
+    ]
 
-    load_method_docstring = """
-        Sync, parse, convert and return the *University of Kuopio* *{0}*
+    load_method_docstring = f"""
+        Sync, parse, convert and return the *University of Kuopio* *{title}*
         dataset content.
 
         Returns
         -------
         dict
-            *University of Kuopio* *{0}* dataset content. """[
+            *University of Kuopio* *{title}* dataset content."""[
         1:
-    ].format(
-        title
-    )
+    ]
 
     module = sys.modules["colour_datasets.loaders.kuopio"]
 

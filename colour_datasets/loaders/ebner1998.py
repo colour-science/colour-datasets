@@ -130,9 +130,12 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         def _parse_float_values(data: str) -> NDArray:
             """Parse float values from given data."""
 
-            values = as_float_array(
-                [float(x) / 100 for x in data.split("\t") if x]
-            ).reshape(-1, 3)
+            values = np.reshape(
+                as_float_array(
+                    [float(x) / 100 for x in data.split("\t") if x]
+                ),
+                (-1, 3),
+            )
 
             return np.squeeze(values)
 

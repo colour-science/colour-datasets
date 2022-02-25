@@ -25,31 +25,38 @@ package_data = {
 
 install_requires = [
     "cachetools",
-    "colour-science>=0.3.16,<0.4.0",
+    "colour-science>=0.4.0",
+    "imageio>=2,<3",
+    "opencv-python>=4,<5",
+    "scipy>=1.5,<2",
     "tqdm",
-    "xlrd",
+    "typing-extensions>=4,<5",
+    "xlrd>=1.2,<2",
 ]
 
 extras_require = {
     "development": [
         "biblib-simple",
-        "coverage",
+        "black",
+        "coverage!=6.3",
         "coveralls",
         "flake8",
+        "flynt",
         "invoke",
-        "mock",
-        "nose",
+        "mypy",
         "pre-commit",
+        "pydata-sphinx-theme",
+        "pydocstyle",
         "pytest",
+        "pytest-cov",
+        "pyupgrade",
         "restructuredtext-lint",
-        "sphinx<=3.1.2",
-        "sphinx_rtd_theme",
+        "sphinx>=4,<5",
         "sphinxcontrib-bibtex",
         "toml",
         "twine",
-        "yapf==0.23",
     ],
-    "read-the-docs": ["mock", "numpy", "sphinxcontrib-bibtex"],
+    "read-the-docs": ["pydata-sphinx-theme", "sphinxcontrib-bibtex"],
 }
 
 setup(
@@ -66,5 +73,5 @@ setup(
     package_data=package_data,
     install_requires=install_requires,
     extras_require=extras_require,
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*",
+    python_requires=">=3.8,<3.11",
 )

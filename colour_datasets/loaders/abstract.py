@@ -81,7 +81,7 @@ class AbstractDatasetLoader(ABC):
     @property
     def id(self) -> str:
         """
-        Getter and setter property for the dataset id.
+        Getter property for the dataset id.
 
         Returns
         -------
@@ -94,7 +94,7 @@ class AbstractDatasetLoader(ABC):
     @property
     def content(self) -> Any:
         """
-        Getter and setter property for the dataset content.
+        Getter property for the dataset content.
 
         Returns
         -------

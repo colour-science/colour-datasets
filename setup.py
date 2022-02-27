@@ -62,7 +62,7 @@ extras_require = {
 
 setup(
     name="colour-datasets",
-    version="0.1.1",
+    version="0.2.0",
     description="Colour science datasets for use with Colour",
     long_description=codecs.open("README.rst", encoding="utf8").read(),
     author="Colour Developers",

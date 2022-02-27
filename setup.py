@@ -27,6 +27,7 @@ install_requires = [
     "cachetools",
     "colour-science>=0.4.0",
     "imageio>=2,<3",
+    "numpy>=1.19,<2",
     "opencv-python>=4,<5",
     "scipy>=1.5,<2",
     "tqdm",

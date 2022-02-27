@@ -5,13 +5,13 @@ Colour - Datasets
 
 |actions| |coveralls| |codacy| |version|
 
-.. |actions| image:: https://img.shields.io/github/workflow/status/colour-science/colour-datasets/Continuous%20Integration?label=actions&logo=github&style=flat-square
+.. |actions| image:: https://img.shields.io/github/workflow/status/colour-science/colour-datasets/Continuous%20Integration%20-%20Quality%20&%20Unit%20Tests?label=actions&logo=github&style=flat-square
     :target: https://github.com/colour-science/colour-datasets/actions
     :alt: Develop Build Status
 .. |coveralls| image:: http://img.shields.io/coveralls/colour-science/colour-datasets/develop.svg?style=flat-square
     :target: https://coveralls.io/r/colour-science/colour-datasets
     :alt: Coverage Status
-.. |codacy| image:: https://img.shields.io/codacy/grade/984900e3a85e40239a0f8f633dd1ebcb/develop.svg?style=flat-square
+.. |codacy| image:: https://img.shields.io/codacy/grade/83345fbde65545d2a4499f32e72866ed/develop.svg?style=flat-square
     :target: https://www.codacy.com/app/colour-science/colour-datasets
     :alt: Code Grade
 .. |version| image:: https://img.shields.io/pypi/v/colour-datasets.svg?style=flat-square
@@ -156,8 +156,11 @@ Primary Dependencies
 **Colour - Datasets** requires various dependencies in order to run:
 
 - `python >= 3.8, < 4 <https://www.python.org/download/releases/>`__
-- `colour-science <https://pypi.org/project/colour-science/>`__
 - `cachetools <https://pypi.org/project/cachetools/>`__
+- `colour-science >= 4 <https://pypi.org/project/colour-science/>`__
+- `imageio >= 2, < 3 <https://imageio.github.io/>`__
+- `numpy >= 1.19, < 2 <https://pypi.org/project/numpy/>`__
+- `scipy >= 1.5, < 2 <https://pypi.org/project/scipy/>`__
 - `tqdm <https://pypi.org/project/tqdm/>`__
 - `xlrd <https://pypi.org/project/xlrd/>`__
 

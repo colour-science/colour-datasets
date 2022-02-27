@@ -1,8 +1,6 @@
 Datasets & Dataset Loading
 ==========================
 
-.. contents:: :local:
-
 Loading a Dataset
 -----------------
 
@@ -136,6 +134,20 @@ Forest Colors - Jaaskelainen et al. (1994)
     :toctree: generated/
 
     build_ForestColors
+
+LUTCHI Colour Appearance Data - Luo and Rhodes (1997)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Luo1997
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Luo1997
 
 Labsphere SRS-99-020 - Labsphere (2019)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -290,3 +302,31 @@ RAW to ACES Utility Data - Dyer et al. (2017)
     :toctree: generated/
 
     build_Dyer2017
+
+Spectral Database of Commonly Used Cine Lighting - Karge et al. (2015)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Zhao2009
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Zhao2009
+
+Spectral Sensitivity Database - Zhao et al. (2009)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Zhao2009
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Zhao2009

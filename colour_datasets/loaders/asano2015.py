@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Observer Function Database - Asano (2015)
 =========================================
@@ -15,54 +14,61 @@ References
     Personalized Color Imaging. R.I.T.
 """
 
-from __future__ import division, unicode_literals
+from __future__ import annotations
 
 import numpy as np
 import os
 import xlrd
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 
 from colour import SpectralShape
-from colour.colorimetry import (XYZ_ColourMatchingFunctions,
-                                LMS_ConeFundamentals)
+from colour.colorimetry import (
+    XYZ_ColourMatchingFunctions,
+    LMS_ConeFundamentals,
+)
+from colour.hints import Boolean, Dict, NDArray, Optional, Tuple
 from colour.utilities import as_float_array, tstack
 
-from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
+from colour_datasets.records import datasets
 from colour_datasets.utilities import cell_range_values, index_to_column
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright 2019 Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'Specification_Asano2015', 'DatasetLoader_Asano2015', 'build_Asano2015'
+    "Specification_Asano2015",
+    "DatasetLoader_Asano2015",
+    "build_Asano2015",
 ]
 
 
 class Specification_Asano2015(
-        namedtuple(
-            'Specification_Asano2015',
-            ('XYZ_2', 'XYZ_10', 'LMS_2', 'LMS_10', 'parameters', 'others'))):
+    namedtuple(
+        "Specification_Asano2015",
+        ("XYZ_2", "XYZ_10", "LMS_2", "LMS_10", "parameters", "others"),
+    )
+):  # noqa: D405,D407,D410,D411
     """
-    Defines the *Asano (2015)* specification for an observer.
+    Define the *Asano (2015)* specification for an observer.
 
     Parameters
     ----------
-    XYZ_2 : XYZ_ColourMatchingFunctions
+    XYZ_2
         *CIE XYZ* 2 degree colour matching functions.
-    XYZ_10 : XYZ_ColourMatchingFunctions
+    XYZ_10
         *CIE XYZ* 10 degree colour matching functions.
-    LMS_2 : LMS_ConeFundamentals
+    LMS_2
         *LMS* 2 degree cone fundamentals.
-    LMS_10 : LMS_ConeFundamentals
+    LMS_10
         *LMS* 10 degree cone fundamentals.
-    parameters : array_like
+    parameters
         Observer parameters.
-    others : array_like
+    others
         Other information.
 
     References
@@ -70,20 +76,29 @@ class Specification_Asano2015(
     :cite:`Asano2015`
     """
 
-    def __new__(cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others=None):
+    def __new__(
+        cls,
+        XYZ_2: XYZ_ColourMatchingFunctions,
+        XYZ_10: XYZ_ColourMatchingFunctions,
+        LMS_2: LMS_ConeFundamentals,
+        LMS_10: LMS_ConeFundamentals,
+        parameters: NDArray,
+        others: Optional[Dict] = None,
+    ):
         """
-        Returns a new instance of the
+        Return a new instance of the
         :class:`colour_datasets.loaders.asano2015.Specification_Asano2015`
         class.
         """
 
-        return super(Specification_Asano2015, cls).__new__(
-            cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others)
+        return super().__new__(
+            cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others
+        )
 
 
 class DatasetLoader_Asano2015(AbstractDatasetLoader):
     """
-    Defines the *Asano (2015)* *Observer Function Database* dataset loader.
+    Define the *Asano (2015)* *Observer Function Database* dataset loader.
 
     Attributes
     ----------
@@ -101,25 +116,20 @@ parse_workbook_Asano2015`
     :cite:`Asano2015`
     """
 
-    ID = '3252742'
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : unicode
-    """
+    ID: str = "3252742"
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
-        super(DatasetLoader_Asano2015,
-              self).__init__(datasets()[DatasetLoader_Asano2015.ID])
+        super().__init__(datasets()[DatasetLoader_Asano2015.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, Specification_Asano2015]:
         """
-        Syncs, parses, converts and returns the *Asano (2015)*
+        Sync, parse, convert and return the *Asano (2015)*
         *Observer Function Database* dataset content.
 
         Returns
         -------
-        OrderedDict
+        :class:`dict`
             *Asano (2015)* *Observer Function Database* dataset content.
 
         Examples
@@ -132,170 +142,195 @@ parse_workbook_Asano2015`
         2
         """
 
-        super(DatasetLoader_Asano2015, self).sync()
+        super().sync()
 
-        self._content = OrderedDict([
-            ('Categorical Observers', OrderedDict()),
-            ('Colour Normal Observers', OrderedDict()),
-        ])
+        self._content = dict(
+            [
+                ("Categorical Observers", dict()),
+                ("Colour Normal Observers", dict()),
+            ]
+        )
 
         # Categorical Observers
-        workbook_path = os.path.join(self.record.repository, 'dataset',
-                                     'Data_10CatObs.xls')
+        workbook_path = os.path.join(
+            self.record.repository, "dataset", "Data_10CatObs.xls"
+        )
 
         observers = (1, 10)
-        template = 'Asano 2015 {0} Categorical Observer No. {1} {2}'
+        template = "Asano 2015 {0} Categorical Observer No. {1} {2}"
         for index, observer in self.parse_workbook_Asano2015(
-                workbook_path, template, observers).items():
-            self._content['Categorical Observers'][index] = (
-                Specification_Asano2015(
-                    observer['XYZ_2'],
-                    observer['XYZ_10'],
-                    observer['LMS_2'],
-                    observer['LMS_10'],
-                    observer['parameters'],
-                ))
+            workbook_path, template, observers
+        ).items():
+            self._content["Categorical Observers"][
+                index
+            ] = Specification_Asano2015(
+                observer["XYZ_2"],
+                observer["XYZ_10"],
+                observer["LMS_2"],
+                observer["LMS_10"],
+                observer["parameters"],
+            )
 
         # Colour Normal Observers
-        workbook_path = os.path.join(self.record.repository, 'dataset',
-                                     'Data_151Obs.xls')
+        workbook_path = os.path.join(
+            self.record.repository, "dataset", "Data_151Obs.xls"
+        )
 
         observers = (1, 151)
 
         # Other Information
-        column_in, column_out = (index_to_column(observers[0] - 1),
-                                 index_to_column(observers[1]))
+        column_in, column_out = (
+            index_to_column(observers[0] - 1),
+            index_to_column(observers[1]),
+        )
         workbook = xlrd.open_workbook(workbook_path)
-        values = cell_range_values(
-            workbook.sheet_by_index(5), '{0}2:{1}9'.format(
-                column_in, column_out))
-        values.extend(
+        values_data = cell_range_values(
+            workbook.sheet_by_index(5), f"{column_in}2:{column_out}9"
+        )
+        values_data.extend(
             cell_range_values(
-                workbook.sheet_by_index(5), '{0}12:{1}16'.format(
-                    column_in, column_out)))
-        values = np.transpose(values)
-        header, values = values[0], values[1:]
+                workbook.sheet_by_index(5), f"{column_in}12:{column_out}16"
+            )
+        )
+        values_transposed = np.transpose(values_data)
+        header, values = values_transposed[0], values_transposed[1:]
 
-        template = 'Asano 2015 {0} Colour Normal Observer No. {1} {2}'
+        template = "Asano 2015 {0} Colour Normal Observer No. {1} {2}"
         for i, (index, observer) in enumerate(
-                self.parse_workbook_Asano2015(workbook_path, template,
-                                              observers).items()):
-            self._content['Colour Normal Observers'][index] = (
-                Specification_Asano2015(
-                    observer['XYZ_2'],
-                    observer['XYZ_10'],
-                    observer['LMS_2'],
-                    observer['LMS_10'],
-                    observer['parameters'],
-                    OrderedDict(zip(header, values[i])),
-                ))
+            self.parse_workbook_Asano2015(
+                workbook_path, template, observers
+            ).items()
+        ):
+            self._content["Colour Normal Observers"][
+                index
+            ] = Specification_Asano2015(
+                observer["XYZ_2"],
+                observer["XYZ_10"],
+                observer["LMS_2"],
+                observer["LMS_10"],
+                observer["parameters"],
+                dict(zip(header, values[i])),
+            )
 
         return self._content
 
     @staticmethod
-    def parse_workbook_Asano2015(workbook, template, observers=(1, 10)):
+    def parse_workbook_Asano2015(
+        workbook: str, template: str, observers: Tuple = (1, 10)
+    ) -> Dict[str, Dict]:
         """
-        Parses given *Asano (2015)* *Observer Function Database* workbook.
+        Parse given *Asano (2015)* *Observer Function Database* workbook.
 
         Parameters
         ----------
-        workbook : unicode
+        workbook
             *Asano (2015)* *Observer Function Database* workbook path.
-        template : unicode
+        template
             Template used to create the *CMFS* names.
-        observers : tuple, optional
+        observers
             Observers range.
 
         Returns
         -------
-        OrderedDict
+        :class:`dict`
             *Asano (2015)* *Observer Function Database* workbook observer data.
         """
 
-        workbook = xlrd.open_workbook(workbook)
+        book = xlrd.open_workbook(workbook)
 
         # "CIE XYZ" and "LMS" CMFS.
-        column_in, column_out = (index_to_column(observers[0] + 1),
-                                 index_to_column(observers[1] + 1))
+        column_in, column_out = (
+            index_to_column(observers[0] + 1),
+            index_to_column(observers[1] + 1),
+        )
 
         shape = SpectralShape(390, 780, 5)
         wavelengths = shape.range()
-        data = OrderedDict()
+        data: Dict = dict()
 
-        for i, cmfs in enumerate([(XYZ_ColourMatchingFunctions, 'XYZ'),
-                                  (LMS_ConeFundamentals, 'LMS')]):
+        for i, cmfs in enumerate(
+            [
+                (XYZ_ColourMatchingFunctions, "XYZ"),
+                (LMS_ConeFundamentals, "LMS"),
+            ]
+        ):
 
-            for j, degree in enumerate([(2, '2$^\\circ$'), (10,
-                                                            '10$^\\circ$')]):
+            for j, degree in enumerate(
+                [(2, "2$^\\circ$"), (10, "10$^\\circ$")]
+            ):
 
-                sheet = workbook.sheet_by_index(j + (i * 2))
+                sheet = book.sheet_by_index(j + (i * 2))
 
                 x = np.transpose(
-                    cell_range_values(
-                        sheet, '{0}3:{1}81'.format(column_in, column_out)))
+                    cell_range_values(sheet, f"{column_in}3:{column_out}81")
+                )
                 y = np.transpose(
-                    cell_range_values(
-                        sheet, '{0}82:{1}160'.format(column_in, column_out)))
+                    cell_range_values(sheet, f"{column_in}82:{column_out}160")
+                )
                 z = np.transpose(
-                    cell_range_values(
-                        sheet, '{0}161:{1}239'.format(column_in, column_out)))
+                    cell_range_values(sheet, f"{column_in}161:{column_out}239")
+                )
 
                 for k in range(observers[1]):
                     observer = k + 1
                     rgb = tstack([x[k], y[k], z[k]])
                     if data.get(observer) is None:
-                        data[observer] = OrderedDict()
+                        data[observer] = dict()
 
-                    key = '{0}_{1}'.format(cmfs[1], degree[0])
+                    key = f"{cmfs[1]}_{degree[0]}"
                     data[observer][key] = cmfs[0](
                         rgb,
                         domain=wavelengths,
                         name=template.format(degree[0], observer, cmfs[1]),
-                        strict_name=template.format(degree[0], observer,
-                                                    cmfs[1]))
+                        strict_name=template.format(
+                            degree[0], observer, cmfs[1]
+                        ),
+                    )
 
         # Parameters
-        column_in, column_out = (index_to_column(observers[0] - 1),
-                                 index_to_column(observers[1]))
+        column_in, column_out = (
+            index_to_column(observers[0] - 1),
+            index_to_column(observers[1]),
+        )
 
         values = np.transpose(
             cell_range_values(
-                workbook.sheet_by_index(4), '{0}2:{1}10'.format(
-                    column_in, column_out)))
+                book.sheet_by_index(4), f"{column_in}2:{column_out}10"
+            )
+        )
         header, values = values[0], values[1:]
 
         for i in range(observers[1]):
             observer = i + 1
-            data[observer]['parameters'] = OrderedDict(
-                zip(header, as_float_array(values[i])))
+            data[observer]["parameters"] = dict(
+                zip(header, as_float_array(values[i]))
+            )
 
         return data
 
 
-_DATASET_LOADER_ASANO2015 = None
+_DATASET_LOADER_ASANO2015: Optional[DatasetLoader_Asano2015] = None
 """
 Singleton instance of the *Asano (2015)* *Observer Function Database* dataset
 loader.
-
-_DATASET_LOADER_ASANO2015 : DatasetLoader_Asano2015
 """
 
 
-def build_Asano2015(load=True):
+def build_Asano2015(load: Boolean = True) -> DatasetLoader_Asano2015:
     """
     Singleton factory that the builds *Asano (2015)*
     *Observer Function Database* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Asano2015
-        Singleton instance of the *Asano (2015)*
-        *Observer Function Database* dataset loader.
+    :class:`colour_datasets.loaders.DatasetLoader_Asano2015`
+        Singleton instance of the *Asano (2015)* *Observer Function Database*
+        dataset loader.
 
     References
     ----------

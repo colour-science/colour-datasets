@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Measured Commercial LED Spectra - Brendel (2020)
 ================================================
@@ -16,31 +15,34 @@ References
     https://haraldbrendel.com/files/led_spd_350_700.csv
 """
 
-from __future__ import division, unicode_literals
+from __future__ import annotations
 
 import numpy as np
 import os
-from collections import OrderedDict
 
 from colour import LinearInterpolator, SpectralShape, SpectralDistribution
+from colour.hints import Boolean, Dict, Optional
 from colour.utilities import as_int
 
-from colour_datasets.records import datasets
 from colour_datasets.loaders import AbstractDatasetLoader
+from colour_datasets.records import datasets
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright 2019 Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
-__all__ = ['DatasetLoader_Brendel2020', 'build_Brendel2020']
+__all__ = [
+    "DatasetLoader_Brendel2020",
+    "build_Brendel2020",
+]
 
 
 class DatasetLoader_Brendel2020(AbstractDatasetLoader):
     """
-    Defines the *Brendel (2020)* *Measured Commercial LED Spectra* dataset
+    Define the *Brendel (2020)* *Measured Commercial LED Spectra* dataset
     loader.
 
     Attributes
@@ -56,25 +58,20 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
     :cite:`Brendel2020`
     """
 
-    ID = '4051012'
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
-
-    ID : unicode
-    """
+    ID: str = "4051012"
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
     def __init__(self):
-        super(DatasetLoader_Brendel2020,
-              self).__init__(datasets()[DatasetLoader_Brendel2020.ID])
+        super().__init__(datasets()[DatasetLoader_Brendel2020.ID])
 
-    def load(self):
+    def load(self) -> Dict[str, SpectralDistribution]:
         """
-        Syncs, parses, converts and returns the *Brendel (2020)*
+        Sync, parse, convert and return the *Brendel (2020)*
         *Measured Commercial LED Spectra* dataset content.
 
         Returns
         -------
-        OrderedDict
+        :class:`dict`
             *Brendel (2020)* *Measured Commercial LED Spectra* dataset content.
 
         Examples
@@ -87,51 +84,49 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
         29
         """
 
-        super(DatasetLoader_Brendel2020, self).sync()
+        super().sync()
 
-        self._content = OrderedDict()
+        self._content = dict()
 
         wavelengths = SpectralShape(350, 700, 2).range()
 
-        csv_path = os.path.join(self.record.repository, 'dataset',
-                                'led_spd_350_700.csv')
+        csv_path = os.path.join(
+            self.record.repository, "dataset", "led_spd_350_700.csv"
+        )
 
         for i, values in enumerate(
-                np.loadtxt(csv_path, delimiter=',', skiprows=1)):
+            np.loadtxt(csv_path, delimiter=",", skiprows=1)
+        ):
             peak = as_int(wavelengths[np.argmax(values)])
-            name = '{0}nm - LED {1} - Brendel (2020)'.format(peak, i)
+            name = f"{peak}nm - LED {i} - Brendel (2020)"
 
             self._content[name] = SpectralDistribution(
-                values,
-                wavelengths,
-                name=name,
-                interpolator=LinearInterpolator)
+                values, wavelengths, name=name, interpolator=LinearInterpolator
+            )
 
         return self._content
 
 
-_DATASET_LOADER_BRENDEL2020 = None
+_DATASET_LOADER_BRENDEL2020: Optional[DatasetLoader_Brendel2020] = None
 """
 Singleton instance of the *Brendel (2020)* *Measured Commercial LED Spectra*
 dataset loader.
-
-_DATASET_LOADER_BRENDEL2020 : DatasetLoader_Brendel2020
 """
 
 
-def build_Brendel2020(load=True):
+def build_Brendel2020(load: Boolean = True) -> DatasetLoader_Brendel2020:
     """
     Singleton factory that builds the *Brendel (2020)*
     *Measured Commercial LED Spectra* dataset loader.
 
     Parameters
     ----------
-    load : bool, optional
+    load
         Whether to load the dataset upon instantiation.
 
     Returns
     -------
-    DatasetLoader_Brendel2020
+    :class:`colour_datasets.loaders.DatasetLoader_Brendel2020`
         Singleton instance of the *Brendel (2020)*
         *Measured Commercial LED Spectra* dataset loader.
 

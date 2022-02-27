@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Abstract Dataset Loader
 =======================
@@ -8,25 +7,29 @@ Defines the abstract class implementing support for dataset loading:
 -   :class:`colour_datasets.loaders.AbstractDatasetLoader`
 """
 
-from __future__ import division, unicode_literals
+from __future__ import annotations
 
-from abc import ABCMeta, abstractmethod
-from six import add_metaclass
+from abc import ABC, abstractmethod
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2019-2020 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+from colour.hints import Any, Optional
 
-__all__ = ['AbstractDatasetLoader']
+from colour_datasets.records import Record
+
+__author__ = "Colour Developers"
+__copyright__ = "Copyright 2019 Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
+
+__all__ = [
+    "AbstractDatasetLoader",
+]
 
 
-@add_metaclass(ABCMeta)
-class AbstractDatasetLoader:
+class AbstractDatasetLoader(ABC):
     """
-    Defines the base class for a dataset loader.
+    Define the base class for a dataset loader.
 
     This is an :class:`ABCMeta` abstract class that must be inherited by
     sub-classes.
@@ -51,99 +54,79 @@ class AbstractDatasetLoader:
 
     Parameters
     ----------
-    record : Record
+    record
         Dataset record.
     """
 
-    ID = None
-    """
-    Dataset record id, i.e. the *Zenodo* record number.
+    ID: str = "Undefined"
+    """Dataset record id, i.e. the *Zenodo* record number."""
 
-    ID : unicode
-    """
-
-    def __init__(self, record):
-        self._record = record
-        self._content = None
+    def __init__(self, record: Record):
+        self._record: Record = record
+        self._content: Optional[Any] = None
 
     @property
-    def record(self):
+    def record(self) -> Record:
         """
-        Getter and setter property for the dataset record.
-
-        Parameters
-        ----------
-        value : Record
-            Value to set the dataset record with.
+        Getter property for the dataset record.
 
         Returns
         -------
-        unicode
+        :class:`colour_datasets.Record`
             Dataset record.
         """
 
         return self._record
 
     @property
-    def id(self):
+    def id(self) -> str:
         """
-        Getter and setter property for the dataset id.
-
-        Parameters
-        ----------
-        value : unicode
-            Value to set the dataset id with.
+        Getter property for the dataset id.
 
         Returns
         -------
-        unicode
+        :class:`str`
             Dataset id.
         """
 
         return self.__class__.ID
 
     @property
-    def content(self):
+    def content(self) -> Any:
         """
-        Getter and setter property for the dataset content.
-
-        Parameters
-        ----------
-        value : object
-            Value to set the dataset content with.
+        Getter property for the dataset content.
 
         Returns
         -------
-        unicode
+        :class:`object`
            Dataset content.
         """
 
         return self._content
 
     @abstractmethod
-    def load(self):
+    def load(self) -> Any:
         """
-        Syncs, parses, converts and returns the dataset content as a *Python*
+        Sync, parse, convert and return the dataset content as a *Python*
         object.
 
         Returns
         -------
-        object
+        :class:`object`
             Dataset content as a *Python* object.
 
         Notes
         -----
         -   Sub-classes are required to call
             :meth:`colour_datasets.loaders.AbstractDatasetLoader.sync` method
-            when they implement it, e.g.
-            ``super(MyDatasetLoader, self).sync()``.
+            when they implement it, e.g. ``super().sync()``.
         """
 
         pass
 
     def sync(self):
         """
-        Syncs the dataset content, i.e. checks whether it is synced and pulls
+        Sync the dataset content, i.e. checks whether it is synced and pulls
         it if required.
         """
 

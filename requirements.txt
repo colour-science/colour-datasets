@@ -12,7 +12,7 @@ cfgv==3.3.1
 charset-normalizer==2.0.12
 click==8.0.4
 colorama==0.4.4
-colour-science==0.4.0
+colour-science==0.4.1
 coverage==6.3.2
 coveralls==3.3.1
 distlib==0.3.4

@@ -198,7 +198,7 @@ def _build_dataset_loader_class_KuopioUniversity(
     ],
 ) -> Any:
     """
-    Clas factory building *University of Kuopio* dataset loaders.
+    Class factory building *University of Kuopio* dataset loaders.
 
     Parameters
     ----------

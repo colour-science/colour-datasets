@@ -215,17 +215,27 @@ class Record:
             ]
         )
 
-        representation = (
-            f'{metadata["title"]} - {metadata["version"]}\n'
-            f'{"=" * (len(self.title) + 3 + len(metadata["version"]))}\n\n'
-            f"Record ID        : {self.id}\n"
-            f"Authors          : {authors}\n"
-            f'License          : {metadata["license"]["id"]}\n'
-            f'DOI              : {metadata["doi"]}\n'
-            f'Publication Date : {metadata["publication_date"]}\n'
-            f'URL              : {self._data["links"]["html"]}\n\n'
-            f"Description\n-----------\n\n{description}\n\n"
-            f"Files\n-----\n\n{files}"
+        representation = "\n".join(
+            [
+                f'{metadata["title"]} - {metadata["version"]}',
+                f'{"=" * (len(self.title) + 3 + len(metadata["version"]))}',
+                "",
+                f"Record ID        : {self.id}",
+                f"Authors          : {authors}",
+                f'License          : {metadata["license"]["id"]}',
+                f'DOI              : {metadata["doi"]}',
+                f'Publication Date : {metadata["publication_date"]}',
+                f'URL              : {self._data["links"]["html"]}\n',
+                "Description",
+                "-----------",
+                "",
+                f"{description}",
+                "",
+                "Files",
+                "-----",
+                "",
+                f"{files}",
+            ]
         )
 
         return representation
@@ -652,14 +662,20 @@ colour-science-datasets-tests/
             [dataset for dataset in self.values() if dataset.synced()]
         )
 
-        representation = (
-            f"{self._configuration.community}\n"
-            f'{"=" * len(self._configuration.community)}\n\n'
-            f"Datasets : {len(self)}\n"
-            f"Synced   : {synced}\n"
-            f'URL      : {self._data["community"]["links"]["html"]}\n\n'
-            f"Datasets\n--------\n\n"
-            f"{datasets}"
+        representation = "\n".join(
+            [
+                f"{self._configuration.community}",
+                f'{"=" * len(self._configuration.community)}',
+                "",
+                f"Datasets : {len(self)}",
+                f"Synced   : {synced}",
+                f'URL      : {self._data["community"]["links"]["html"]}',
+                "",
+                "Datasets",
+                "--------",
+                "",
+                f"{datasets}",
+            ]
         )
 
         return representation

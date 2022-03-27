@@ -1,4 +1,5 @@
-"""Defines the unit tests for the :mod:`colour_datasets.utilities.common` module."""
+# !/usr/bin/env python
+"""Define the unit tests for the :mod:`colour_datasets.utilities.common` module."""
 
 import os
 import unittest

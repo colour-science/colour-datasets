@@ -1,4 +1,5 @@
-"""Defines the unit tests for the :mod:`colour_datasets.loaders.dyer2017` module."""
+# !/usr/bin/env python
+"""Define the unit tests for the :mod:`colour_datasets.loaders.dyer2017` module."""
 
 import numpy as np
 import unittest

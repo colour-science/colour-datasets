@@ -1,4 +1,5 @@
-"""Defines the unit tests for the :mod:`colour_datasets.loaders.jiang2013` module."""
+# !/usr/bin/env python
+"""Define the unit tests for the :mod:`colour_datasets.loaders.jiang2013` module."""
 
 import unittest
 

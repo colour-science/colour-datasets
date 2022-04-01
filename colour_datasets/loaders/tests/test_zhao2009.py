@@ -1,4 +1,5 @@
-"""Defines the unit tests for the :mod:`colour_datasets.loaders.zhao2009` module."""
+# !/usr/bin/env python
+"""Define the unit tests for the :mod:`colour_datasets.loaders.zhao2009` module."""
 
 import unittest
 

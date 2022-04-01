@@ -959,6 +959,8 @@ __init__`
             elif "type" in self._header._kwargs:
                 self.name = self._header._kwargs["type"]
 
+            self.strict_name = self.name
+
             return self
         else:
             raise ValueError("The spectral distribution path is undefined!")
@@ -1466,6 +1468,9 @@ __init__`
             elif "type" in self._header._kwargs:
                 self.name = self._header._kwargs["type"]
 
+            self.strict_name = self.name
+            self.strict_labels = self.labels
+
             return self
         else:
             raise ValueError(
@@ -1522,8 +1527,9 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         --------
         >>> from colour_datasets.utilities import suppress_stdout
         >>> dataset = DatasetLoader_Dyer2017()
-        >>> with suppress_stdout():
-        ...     dataset.load()
+        >>> dataset.load()
+        # >>> with suppress_stdout():
+        # ...     dataset.load()
         >>> len(dataset.content.keys())
         4
         """

@@ -1474,7 +1474,7 @@ __init__`
             return self
         else:
             raise ValueError(
-                "The multi=spectral distributions path is undefined!"
+                "The multi-spectral distributions path is undefined!"
             )
 
 
@@ -1527,9 +1527,8 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         --------
         >>> from colour_datasets.utilities import suppress_stdout
         >>> dataset = DatasetLoader_Dyer2017()
-        >>> dataset.load()
-        # >>> with suppress_stdout():
-        # ...     dataset.load()
+        >>> with suppress_stdout():
+        ...     dataset.load()
         >>> len(dataset.content.keys())
         4
         """

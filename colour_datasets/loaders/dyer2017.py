@@ -1474,7 +1474,7 @@ __init__`
             return self
         else:
             raise ValueError(
-                "The multi=spectral distributions path is undefined!"
+                "The multi-spectral distributions path is undefined!"
             )
 
 

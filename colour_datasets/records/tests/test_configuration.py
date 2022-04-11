@@ -1,5 +1,5 @@
 """
-Defines the unit tests for the :mod:`colour_datasets.records.configuration`
+Define the unit tests for the :mod:`colour_datasets.records.configuration`
 module.
 """
 

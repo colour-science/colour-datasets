@@ -1,5 +1,5 @@
 """
-Defines the unit tests for the :mod:`colour_datasets.loaders.labsphere2019`
+Define the unit tests for the :mod:`colour_datasets.loaders.labsphere2019`
 module.
 """
 

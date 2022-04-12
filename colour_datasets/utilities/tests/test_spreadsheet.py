@@ -1,5 +1,5 @@
 """
-Defines the unit tests for the :mod:`colour_datasets.utilities.spreadsheet`
+Define the unit tests for the :mod:`colour_datasets.utilities.spreadsheet`
 module.
 """
 

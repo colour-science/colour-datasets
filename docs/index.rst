@@ -63,7 +63,7 @@ definition:
     colour-science-datasets
     =======================
 
-    Datasets : 21
+    Datasets : 22
     Synced   : 1
     URL      : https://zenodo.org/communities/colour-science-datasets/
 
@@ -87,6 +87,7 @@ definition:
     [ ] 3245895 : New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
     [ ] 3252742 : Observer Function Database - Asano (2015)
     [ ] 3269922 : Paper Spectra - Haanpalo (n.d.)
+    [ ] 6590768 : Physlight - Camera Spectral Sensitivity Curves - Winquist et al. (2022)
     [ ] 3372171 : RAW to ACES Utility Data - Dyer et al. (2017)
     [ ] 4642271 : Spectral Database of Commonly Used Cine Lighting - Karge et al. (2015)
     [ ] 4297288 : Spectral Sensitivity Database - Zhao et al. (2009)

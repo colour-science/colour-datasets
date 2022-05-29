@@ -289,6 +289,20 @@ Paper Spectra - Haanpalo (n.d.)
 
     build_PaperSpectra
 
+Physlight - Camera Spectral Sensitivity Curves - Winquist et al. (2022)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Winquist2022
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Winquist2022
+
 RAW to ACES Utility Data - Dyer et al. (2017)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -60,7 +60,7 @@ DatasetLoader_Asano2015.load` method.
             SpectralShape(390, 780, 5),
         )
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.content["Categorical Observers"][1].XYZ_2[390],
             np.array(
                 [
@@ -72,7 +72,7 @@ DatasetLoader_Asano2015.load` method.
             decimal=7,
         )
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.content["Categorical Observers"][10].LMS_10[780],
             np.array(
                 [
@@ -97,7 +97,7 @@ DatasetLoader_Asano2015.load` method.
             SpectralShape(390, 780, 5),
         )
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.content["Colour Normal Observers"][1].XYZ_2[390],
             np.array(
                 [
@@ -109,7 +109,7 @@ DatasetLoader_Asano2015.load` method.
             decimal=7,
         )
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.content["Colour Normal Observers"][10].LMS_10[780],
             np.array(
                 [

@@ -20,7 +20,7 @@ import tempfile
 import textwrap
 import urllib
 import urllib.error
-from collections import Mapping
+from collections.abc import Mapping
 from html.parser import HTMLParser
 from pprint import pformat
 

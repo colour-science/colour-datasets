@@ -959,7 +959,7 @@ __init__`
             elif "type" in self._header._kwargs:
                 self.name = self._header._kwargs["type"]
 
-            self.strict_name = self.name
+            self.display_name = self.name
 
             return self
         else:
@@ -1468,8 +1468,8 @@ __init__`
             elif "type" in self._header._kwargs:
                 self.name = self._header._kwargs["type"]
 
-            self.strict_name = self.name
-            self.strict_labels = self.labels
+            self.display_name = self.name
+            self.display_labels = self.labels
 
             return self
         else:

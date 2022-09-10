@@ -282,7 +282,7 @@ parse_workbook_Asano2015`
                         rgb,
                         domain=wavelengths,
                         name=template.format(degree[0], observer, cmfs[1]),
-                        strict_name=template.format(
+                        display_name=template.format(
                             degree[0], observer, cmfs[1]
                         ),
                     )

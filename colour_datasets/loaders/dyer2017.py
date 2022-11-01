@@ -1529,6 +1529,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Dyer2017()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         4
         """

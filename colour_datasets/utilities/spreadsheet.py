@@ -110,7 +110,7 @@ def row_to_index(row: Union[Integer, str]) -> Integer:
 
     Examples
     --------
-    >>> row_to_index('1')
+    >>> row_to_index("1")
     0
     """
 
@@ -161,7 +161,7 @@ def column_to_index(column: str) -> Integer:
 
     Examples
     --------
-    >>> column_to_index('A')
+    >>> column_to_index("A")
     0
     """
 

@@ -191,6 +191,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
         >>> dataset = DatasetLoader_Luo1997()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         8
         """

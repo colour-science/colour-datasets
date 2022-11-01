@@ -86,6 +86,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Jiang2013()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         28
         """

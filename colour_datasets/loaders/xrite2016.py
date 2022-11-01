@@ -86,6 +86,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_XRite2016()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         4
         """

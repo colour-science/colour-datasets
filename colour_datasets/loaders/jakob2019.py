@@ -81,6 +81,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Jakob2019()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         4
         """

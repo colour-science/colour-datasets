@@ -81,6 +81,7 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Winquist2022()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         17
         """

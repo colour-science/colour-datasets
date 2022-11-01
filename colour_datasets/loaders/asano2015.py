@@ -138,6 +138,7 @@ parse_workbook_Asano2015`
         >>> dataset = DatasetLoader_Asano2015()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         2
         """

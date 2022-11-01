@@ -77,6 +77,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Labsphere2019()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         1
         """

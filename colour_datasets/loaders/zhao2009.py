@@ -81,6 +81,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Zhao2009()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         12
         """

@@ -154,6 +154,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Luo1999()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         37
         """

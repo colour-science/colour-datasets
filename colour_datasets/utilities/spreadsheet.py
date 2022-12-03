@@ -132,7 +132,7 @@ def index_to_row(index: Integer) -> str:
 
     Returns
     -------
-    :class:`str
+    :class:`str`
         Row name.
 
     Examples

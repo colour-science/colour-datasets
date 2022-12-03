@@ -169,7 +169,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
             http://www.rit-mcsl.org/fairchild/files/LUTCHI_Data.sit also
             contains an empty *cold65wnl* file. A single line break has been
             added to the original file so that it can be uploaded to *Zenodo*.
-        -   The *BIT.p\\*.\\** files are effectively named *bit_p\\*.\\*.
+        -   The *BIT.p\\*.\\** files are effectively named *bit_p\\*.\\**.
         -   The *cola.l* file does not exist and is assumed to be named
             *colal.l*.
         -   The *Self-luminous* entry for

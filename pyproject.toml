@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "colour-datasets"
-version = "0.2.0"
+version = "0.2.1"
 description = "Colour science datasets for use with Colour"
 license = "BSD-3-Clause"
 authors = [ "Colour Developers <colour-developers@colour-science.org>" ]

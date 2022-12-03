@@ -126,7 +126,7 @@ __init__`
         comments: Optional[str] = None,
         license: Optional[str] = None,
         **kwargs: Any,
-    ):
+    ) -> None:
 
         self._schema_version: Optional[str] = None
         self.schema_version = schema_version
@@ -571,7 +571,7 @@ __init__`
         ] = None,
         bandwidth_FWHM: Optional[Floating] = None,
         bandwidth_corrected: Optional[Boolean] = None,
-    ):
+    ) -> None:
         super().__init__()
 
         self._path: Optional[str] = None
@@ -959,6 +959,8 @@ __init__`
             elif "type" in self._header._kwargs:
                 self.name = self._header._kwargs["type"]
 
+            self.display_name = self.name
+
             return self
         else:
             raise ValueError("The spectral distribution path is undefined!")
@@ -1077,7 +1079,7 @@ __init__`
         ] = None,
         bandwidth_FWHM: Optional[Floating] = None,
         bandwidth_corrected: Optional[Boolean] = None,
-    ):
+    ) -> None:
         super().__init__()
 
         self._path: Optional[str] = None
@@ -1466,10 +1468,13 @@ __init__`
             elif "type" in self._header._kwargs:
                 self.name = self._header._kwargs["type"]
 
+            self.display_name = self.name
+            self.display_labels = self.labels
+
             return self
         else:
             raise ValueError(
-                "The multi=spectral distributions path is undefined!"
+                "The multi-spectral distributions path is undefined!"
             )
 
 
@@ -1495,7 +1500,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     ID: str = "3372171"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Dyer2017.ID])
 
     def load(
@@ -1524,6 +1529,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Dyer2017()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         4
         """

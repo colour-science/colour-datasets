@@ -1,4 +1,5 @@
-"""Defines the unit tests for the :mod:`colour_datasets.loaders.luo1997` module."""
+# !/usr/bin/env python
+"""Define the unit tests for the :mod:`colour_datasets.loaders.luo1997` module."""
 
 import numpy as np
 import unittest
@@ -49,7 +50,7 @@ load` method.
         dataset = DatasetLoader_Luo1997()
         self.assertEqual(len(dataset.load().keys()), 8)
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.content["R-HL"].phases["1"].JQCH_v,
             np.array(
                 [

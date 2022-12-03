@@ -1,4 +1,5 @@
-"""Defines the unit tests for the :mod:`colour_datasets.loaders.ebner1998` module."""
+# !/usr/bin/env python
+"""Define the unit tests for the :mod:`colour_datasets.loaders.ebner1998` module."""
 
 import numpy as np
 import unittest
@@ -72,7 +73,7 @@ DatasetLoader_Ebner1998.load` method.
             ],
         )
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["Constant Perceived-Hue Data"][96].XYZ_r,
             np.array(
                 [
@@ -83,7 +84,7 @@ DatasetLoader_Ebner1998.load` method.
             ),
             decimal=7,
         )
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["Constant Perceived-Hue Data"][96].XYZ_cr,
             np.array(
                 [
@@ -94,7 +95,7 @@ DatasetLoader_Ebner1998.load` method.
             ),
             decimal=7,
         )
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["Constant Perceived-Hue Data"][96].XYZ_ct,
             np.array(
                 [

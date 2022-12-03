@@ -1,4 +1,5 @@
-"""Defines the unit tests for the :mod:`colour_datasets.loaders.luo1999` module."""
+# !/usr/bin/env python
+"""Define the unit tests for the :mod:`colour_datasets.loaders.luo1999` module."""
 
 import numpy as np
 import unittest
@@ -49,7 +50,7 @@ load` method.
         dataset = DatasetLoader_Luo1999()
         self.assertEqual(len(dataset.load().keys()), 37)
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.content["CSAJ-C - da"].XYZ_ct,
             np.array(
                 [

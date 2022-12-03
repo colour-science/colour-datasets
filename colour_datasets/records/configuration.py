@@ -65,7 +65,7 @@ class Configuration(Structure):
         Configuration to use instead of the default one.
     """
 
-    def __init__(self, configuration: Optional[Dict] = None):
+    def __init__(self, configuration: Optional[Dict] = None) -> None:
         super().__init__(
             DEFAULT_CONFIGURATION if configuration is None else configuration
         )
@@ -116,7 +116,7 @@ class sandbox:
         self,
         api_url: str = "https://sandbox.zenodo.org/api",
         community: str = "colour-science-datasets",
-    ):
+    ) -> None:
 
         self._api_url = api_url
         self._community = community

@@ -161,7 +161,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     class instances.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[self.ID])
 
     def load(self) -> Dict[str, Dict[str, SpectralDistribution]]:
@@ -198,7 +198,7 @@ def _build_dataset_loader_class_KuopioUniversity(
     ],
 ) -> Any:
     """
-    Clas factory building *University of Kuopio* dataset loaders.
+    Class factory building *University of Kuopio* dataset loaders.
 
     Parameters
     ----------

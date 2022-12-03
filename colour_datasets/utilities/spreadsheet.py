@@ -16,7 +16,7 @@ import re
 import xlrd
 
 from colour.hints import Dict, Integer, List, Union
-from colour.utilities import CaseInsensitiveMapping
+from colour.utilities import CanonicalMapping
 
 __author__ = "Colour Developers, Openpyxl Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -82,7 +82,7 @@ def _column_number_to_letters(number: Integer) -> str:
     return "".join(reversed(letters))
 
 
-_LETTERS_TO_NUMBER_CACHE: CaseInsensitiveMapping = CaseInsensitiveMapping()
+_LETTERS_TO_NUMBER_CACHE: CanonicalMapping = CanonicalMapping()
 """Letters, e.g. *Microsoft Excel* column letters to numbers cache."""
 
 _NUMBER_TO_LETTERS_CACHE: Dict = {}
@@ -110,7 +110,7 @@ def row_to_index(row: Union[Integer, str]) -> Integer:
 
     Examples
     --------
-    >>> row_to_index('1')
+    >>> row_to_index("1")
     0
     """
 
@@ -132,7 +132,7 @@ def index_to_row(index: Integer) -> str:
 
     Returns
     -------
-    :class:`str
+    :class:`str`
         Row name.
 
     Examples
@@ -161,7 +161,7 @@ def column_to_index(column: str) -> Integer:
 
     Examples
     --------
-    >>> column_to_index('A')
+    >>> column_to_index("A")
     0
     """
 

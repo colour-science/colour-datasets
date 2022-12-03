@@ -64,7 +64,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
     ID: str = "4642271"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Karge2015.ID])
 
     def load(self) -> Dict[str, Dict[str, Dict]]:
@@ -84,6 +84,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Karge2015()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         7
         """

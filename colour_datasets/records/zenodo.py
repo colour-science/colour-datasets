@@ -20,7 +20,7 @@ import tempfile
 import textwrap
 import urllib
 import urllib.error
-from collections import Mapping
+from collections.abc import Mapping
 from html.parser import HTMLParser
 from pprint import pformat
 
@@ -85,7 +85,7 @@ class Record:
 
     Examples
     --------
-    >>> record = Record(json_open('https://zenodo.org/api/records/3245883'))
+    >>> record = Record(json_open("https://zenodo.org/api/records/3245883"))
 
     # Doctests skip for Python 2.x compatibility.
     >>> record.id  # doctest: +SKIP
@@ -96,7 +96,7 @@ class Record:
 
     def __init__(
         self, data: dict, configuration: Optional[Configuration] = None
-    ):
+    ) -> None:
 
         self._data: dict = data
         self._configuration: Configuration = optional(
@@ -179,8 +179,8 @@ class Record:
 
         Examples
         --------
-        >>> data = json_open('https://zenodo.org/api/records/3245883')
-        >>> print('\\n'.join(str(Record(data)).splitlines()[:4]))
+        >>> data = json_open("https://zenodo.org/api/records/3245883")
+        >>> print("\\n".join(str(Record(data)).splitlines()[:4]))
         Camera Spectral Sensitivity Database - Jiang et al. (2013) - 1.0.0
         ==================================================================
         <BLANKLINE>
@@ -215,17 +215,27 @@ class Record:
             ]
         )
 
-        representation = (
-            f'{metadata["title"]} - {metadata["version"]}\n'
-            f'{"=" * (len(self.title) + 3 + len(metadata["version"]))}\n\n'
-            f"Record ID        : {self.id}\n"
-            f"Authors          : {authors}\n"
-            f'License          : {metadata["license"]["id"]}\n'
-            f'DOI              : {metadata["doi"]}\n'
-            f'Publication Date : {metadata["publication_date"]}\n'
-            f'URL              : {self._data["links"]["html"]}\n\n'
-            f"Description\n-----------\n\n{description}\n\n"
-            f"Files\n-----\n\n{files}"
+        representation = "\n".join(
+            [
+                f'{metadata["title"]} - {metadata["version"]}',
+                f'{"=" * (len(self.title) + 3 + len(metadata["version"]))}',
+                "",
+                f"Record ID        : {self.id}",
+                f"Authors          : {authors}",
+                f'License          : {metadata["license"]["id"]}',
+                f'DOI              : {metadata["doi"]}',
+                f'Publication Date : {metadata["publication_date"]}',
+                f'URL              : {self._data["links"]["html"]}\n',
+                "Description",
+                "-----------",
+                "",
+                f"{description}",
+                "",
+                "Files",
+                "-----",
+                "",
+                f"{files}",
+            ]
         )
 
         return representation
@@ -241,10 +251,10 @@ class Record:
 
         Examples
         --------
-        >>> data = json_open('https://zenodo.org/api/records/3245883')
+        >>> data = json_open("https://zenodo.org/api/records/3245883")
 
         # Doctests skip for Python 2.x compatibility.
-        >>> print('\\n'.join(repr(Record(data)).splitlines()[:4]))
+        >>> print("\\n".join(repr(Record(data)).splitlines()[:4]))
         ... # doctest: +SKIP
         Record(
             {'conceptdoi': '10.5281/zenodo.3245882',
@@ -294,7 +304,7 @@ class Record:
         Examples
         --------
         # Doctests skip for Python 2.x compatibility.
-        >>> Record.from_id('3245883').title
+        >>> Record.from_id("3245883").title
         ... # doctest: +SKIP
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
@@ -323,9 +333,10 @@ class Record:
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> record = Record.from_id('3245883')
+        >>> record = Record.from_id("3245883")
         >>> with suppress_stdout():
         ...     record.pull()
+        ...
         >>> record.synced()
         True
         >>> record.remove()
@@ -364,10 +375,11 @@ class Record:
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> record = Record.from_id('3245883')
+        >>> record = Record.from_id("3245883")
         >>> record.remove()
         >>> with suppress_stdout():
         ...     record.pull()
+        ...
         >>> record.synced()
         True
         """
@@ -490,9 +502,10 @@ class Record:
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> record = Record.from_id('3245883')
+        >>> record = Record.from_id("3245883")
         >>> with suppress_stdout():
         ...     record.pull()
+        ...
         >>> record.remove()
         >>> record.synced()
         False
@@ -536,23 +549,27 @@ class Community(Mapping):
     Examples
     --------
     >>> community_data = json_open(
-    ...     'https://zenodo.org/api/communities/colour-science-datasets')
+    ...     "https://zenodo.org/api/communities/colour-science-datasets"
+    ... )
     >>> records_data = json_open(
-    ...     'https://zenodo.org/api/records/?q=communities:'
-    ...     'colour-science-datasets')
-    >>> community = Community({
-    ...     'community': community_data,
-    ...     'records': records_data,
-    ... })
+    ...     "https://zenodo.org/api/records/?q=communities:"
+    ...     "colour-science-datasets"
+    ... )
+    >>> community = Community(
+    ...     {
+    ...         "community": community_data,
+    ...         "records": records_data,
+    ...     }
+    ... )
 
     # Doctests skip for Python 2.x compatibility.
-    >>> community['3245883'].title  # doctest: +SKIP
+    >>> community["3245883"].title  # doctest: +SKIP
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
     def __init__(
         self, data: Dict, configuration: Optional[Configuration] = None
-    ):
+    ) -> None:
         self._data: Dict = data
         self._configuration: Configuration = optional(
             configuration, Configuration()
@@ -626,8 +643,8 @@ class Community(Mapping):
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets-tests')
-        >>> print('\\n'.join(str(community).splitlines()[:6]))
+        >>> community = Community.from_id("colour-science-datasets-tests")
+        >>> print("\\n".join(str(community).splitlines()[:6]))
         ... # doctest: +ELLIPSIS
         colour-science-datasets-tests
         =============================
@@ -652,14 +669,20 @@ colour-science-datasets-tests/
             [dataset for dataset in self.values() if dataset.synced()]
         )
 
-        representation = (
-            f"{self._configuration.community}\n"
-            f'{"=" * len(self._configuration.community)}\n\n'
-            f"Datasets : {len(self)}\n"
-            f"Synced   : {synced}\n"
-            f'URL      : {self._data["community"]["links"]["html"]}\n\n'
-            f"Datasets\n--------\n\n"
-            f"{datasets}"
+        representation = "\n".join(
+            [
+                f"{self._configuration.community}",
+                f'{"=" * len(self._configuration.community)}',
+                "",
+                f"Datasets : {len(self)}",
+                f"Synced   : {synced}",
+                f'URL      : {self._data["community"]["links"]["html"]}',
+                "",
+                "Datasets",
+                "--------",
+                "",
+                f"{datasets}",
+            ]
         )
 
         return representation
@@ -675,10 +698,10 @@ colour-science-datasets-tests/
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets-tests')
+        >>> community = Community.from_id("colour-science-datasets-tests")
 
         # Doctests skip for Python 2.x compatibility.
-        >>> print('\\n'.join(repr(community).splitlines()[:4]))
+        >>> print("\\n".join(repr(community).splitlines()[:4]))
         ... # doctest: +SKIP
         Community(
             {'community': {'created': '2019-06-09T10:45:47.999975+00:00',
@@ -716,10 +739,10 @@ colour-science-datasets-tests/
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets-tests')
+        >>> community = Community.from_id("colour-science-datasets-tests")
 
         # Doctests skip for Python 2.x compatibility.
-        >>> community['3245883'].title  # doctest: +SKIP
+        >>> community["3245883"].title  # doctest: +SKIP
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
@@ -737,8 +760,9 @@ colour-science-datasets-tests/
         Examples
         --------
         # Doctests skip for Python 2.x compatibility.
-        >>> for record in Community.from_id('colour-science-datasets-tests'):
-        ...     print(record) # doctest: +SKIP
+        >>> for record in Community.from_id("colour-science-datasets-tests"):
+        ...     print(record)  # doctest: +SKIP
+        ...
         """
 
         yield from self._records
@@ -755,7 +779,7 @@ colour-science-datasets-tests/
         Examples
         --------
         # Doctests skip for Python 2.x compatibility.
-        >>> len(Community.from_id('colour-science-datasets-tests'))
+        >>> len(Community.from_id("colour-science-datasets-tests"))
         ... # doctest: +SKIP
         3
         """
@@ -789,10 +813,10 @@ colour-science-datasets-tests/
 
         Examples
         --------
-        >>> community = Community.from_id('colour-science-datasets-tests')
+        >>> community = Community.from_id("colour-science-datasets-tests")
 
         # Doctests skip for Python 2.x compatibility.
-        >>> community['3245883'].title  # doctest: +SKIP
+        >>> community["3245883"].title  # doctest: +SKIP
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
@@ -874,9 +898,10 @@ colour-science-datasets-tests/
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets-tests')
+        >>> community = Community.from_id("colour-science-datasets-tests")
         >>> with suppress_stdout():
         ...     community.pull()  # doctest: +SKIP
+        ...
         >>> community.synced()  # doctest: +SKIP
         True
         >>> community.remove()
@@ -904,10 +929,11 @@ colour-science-datasets-tests/
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets-tests')
+        >>> community = Community.from_id("colour-science-datasets-tests")
         >>> community.remove()
         >>> with suppress_stdout():
         ...     community.pull()  # doctest: +SKIP
+        ...
         >>> community.synced()  # doctest: +SKIP
         True
         """
@@ -925,9 +951,10 @@ colour-science-datasets-tests/
         Examples
         --------
         >>> from colour_datasets.utilities import suppress_stdout
-        >>> community = Community.from_id('colour-science-datasets-tests')
+        >>> community = Community.from_id("colour-science-datasets-tests")
         >>> with suppress_stdout():
         ...     community.pull()  # doctest: +SKIP
+        ...
         >>> community.remove()
         >>> community.synced()
         False

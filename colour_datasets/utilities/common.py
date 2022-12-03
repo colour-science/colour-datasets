@@ -148,7 +148,8 @@ def url_download(
     --------
     >>> import os
     >>> url_download(
-    ...     'https://github.com/colour-science/colour-datasets', os.devnull)
+    ...     "https://github.com/colour-science/colour-datasets", os.devnull
+    ... )
     """
 
     attempt = 0
@@ -214,12 +215,12 @@ def json_open(url: str, retries: Integer = 3) -> Dict:
     Examples
     --------
     # Doctests skip for Python 2.x compatibility.
-    >>> json_open('https://zenodo.org/api/records/3245883')
+    >>> json_open("https://zenodo.org/api/records/3245883")
     ... # doctest: +SKIP
     '{"conceptdoi":"10.5281/zenodo.3245882"'
     """
 
-    data = {}
+    data: Dict = {}
 
     attempt = 0
     while attempt != retries:

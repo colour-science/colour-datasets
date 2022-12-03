@@ -58,7 +58,7 @@ load` method.
         dataset = DatasetLoader_Winquist2022()
         self.assertEqual(len(dataset.load().keys()), 17)
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["Canon EOS_1DX_Mark_II"][555],
             np.array([0.27472975, 0.88354587, 0.08992765]),
             decimal=7,

@@ -77,7 +77,7 @@ load` method.
             ],
         )
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["Constant Hue Loci Data - CL"]["Cyan"].XYZ_r,
             np.array(
                 [
@@ -88,7 +88,7 @@ load` method.
             ),
             decimal=7,
         )
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["Constant Hue Loci Data - CL"]["Cyan"].XYZ_cr,
             np.array(
                 [
@@ -99,7 +99,7 @@ load` method.
             ),
             decimal=7,
         )
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["Constant Hue Loci Data - CL"]["Cyan"].XYZ_ct,
             np.array(
                 [

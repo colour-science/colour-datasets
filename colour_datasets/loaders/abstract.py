@@ -61,7 +61,7 @@ class AbstractDatasetLoader(ABC):
     ID: str = "Undefined"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self, record: Record):
+    def __init__(self, record: Record) -> None:
         self._record: Record = record
         self._content: Optional[Any] = None
 

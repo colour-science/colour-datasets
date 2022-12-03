@@ -50,7 +50,7 @@ load` method.
         dataset = DatasetLoader_Luo1997()
         self.assertEqual(len(dataset.load().keys()), 8)
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.content["R-HL"].phases["1"].JQCH_v,
             np.array(
                 [

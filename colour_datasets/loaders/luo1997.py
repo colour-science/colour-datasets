@@ -146,7 +146,7 @@ class DatasetLoader_Luo1997(AbstractDatasetLoader):
     ID: str = "4394536"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Luo1997.ID])
 
     def load(self) -> Dict[str, ExperimentalGroupLuo1997]:
@@ -169,7 +169,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
             http://www.rit-mcsl.org/fairchild/files/LUTCHI_Data.sit also
             contains an empty *cold65wnl* file. A single line break has been
             added to the original file so that it can be uploaded to *Zenodo*.
-        -   The *BIT.p\\*.\\** files are effectively named *bit_p\\*.\\*.
+        -   The *BIT.p\\*.\\** files are effectively named *bit_p\\*.\\**.
         -   The *cola.l* file does not exist and is assumed to be named
             *colal.l*.
         -   The *Self-luminous* entry for
@@ -191,6 +191,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
         >>> dataset = DatasetLoader_Luo1997()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         8
         """

@@ -61,7 +61,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
     ID: str = "4051012"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Brendel2020.ID])
 
     def load(self) -> Dict[str, SpectralDistribution]:
@@ -80,6 +80,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Brendel2020()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         29
         """

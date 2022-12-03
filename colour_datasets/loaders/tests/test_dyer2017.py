@@ -53,7 +53,7 @@ load` method.
             ["camera", "cmf", "illuminant", "training"],
         )
 
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["camera"]["canon eos 5d mark ii"][555],
             np.array(
                 [
@@ -64,7 +64,7 @@ load` method.
             ),
             decimal=7,
         )
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["cmf"]["cie-1931"][555],
             np.array(
                 [
@@ -75,12 +75,12 @@ load` method.
             ),
             decimal=7,
         )
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["illuminant"]["iso7589"][555],
             np.array([0.485000000000000]),
             decimal=7,
         )
-        np.testing.assert_almost_equal(
+        np.testing.assert_array_almost_equal(
             dataset.load()["training"]["190-patch"][555],
             np.array(
                 [

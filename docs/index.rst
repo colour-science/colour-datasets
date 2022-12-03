@@ -98,7 +98,7 @@ A dataset is loaded by using its unique number: *3245895*:
 
 .. code-block:: python
 
-    >>> print(colour_datasets.load('3245895').keys())
+    >>> print(colour_datasets.load("3245895").keys())
 
 ::
 
@@ -119,7 +119,7 @@ Alternatively, a dataset can be loaded by using its full title:
 
 .. code-block:: python
 
-    >>> print(colour_datasets.load('3245895').keys())
+    >>> print(colour_datasets.load("3245895").keys())
     odict_keys(['ColorChecker24 - After November 2014', 'ColorChecker24 - Before November 2014', 'ColorCheckerSG - After November 2014', 'ColorCheckerSG - Before November 2014'])
 
 User Guide

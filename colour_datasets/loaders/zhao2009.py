@@ -61,7 +61,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
     ID: str = "4297288"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Zhao2009.ID])
 
     def load(self) -> Dict[str, RGB_CameraSensitivities]:
@@ -81,6 +81,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Zhao2009()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         12
         """

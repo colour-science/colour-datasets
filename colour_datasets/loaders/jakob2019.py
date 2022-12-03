@@ -61,7 +61,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
     ID: str = "4050598"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Jakob2019.ID])
 
     def load(self) -> Dict[str, LUT3D_Jakob2019]:
@@ -81,6 +81,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Jakob2019()
         >>> with suppress_stdout():
         ...     dataset.load()
+        ...
         >>> len(dataset.content.keys())
         4
         """

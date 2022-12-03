@@ -45,7 +45,7 @@ opencv-python==4.6.0.66
 packaging==21.3
 pathspec==0.10.2
 Pillow==9.3.0
-pip==22.3
+pip==22.3.1
 pkginfo==1.9.2
 platformdirs==2.5.4
 pluggy==1.0.0
@@ -88,10 +88,12 @@ toml==0.10.2
 tomli==2.0.1
 tqdm==4.64.1
 twine==4.0.2
+types-cachetools==5.2.1
+types-setuptools==65.6.0.1
 typing_extensions==4.4.0
 urllib3==1.26.13
 virtualenv==20.17.0
 webencodings==0.5.1
-wheel==0.37.1
+wheel==0.38.4
 xlrd==1.2.0
 zipp==3.11.0

@@ -96,7 +96,7 @@ class Record:
 
     def __init__(
         self, data: dict, configuration: Optional[Configuration] = None
-    ):
+    ) -> None:
 
         self._data: dict = data
         self._configuration: Configuration = optional(
@@ -569,7 +569,7 @@ class Community(Mapping):
 
     def __init__(
         self, data: Dict, configuration: Optional[Configuration] = None
-    ):
+    ) -> None:
         self._data: Dict = data
         self._configuration: Configuration = optional(
             configuration, Configuration()

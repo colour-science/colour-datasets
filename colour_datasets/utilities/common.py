@@ -220,7 +220,7 @@ def json_open(url: str, retries: Integer = 3) -> Dict:
     '{"conceptdoi":"10.5281/zenodo.3245882"'
     """
 
-    data = {}
+    data: Dict = {}
 
     attempt = 0
     while attempt != retries:

@@ -3,7 +3,7 @@ from __future__ import annotations
 import sys
 
 from colour.hints import Any, Boolean, Integer, Union
-from colour.utilities import CaseInsensitiveMapping, warning
+from colour.utilities import CanonicalMapping, warning
 
 from colour_datasets.records import datasets
 
@@ -83,7 +83,7 @@ __all__ += [
     "build_Zhao2009",
 ]
 
-DATASET_LOADERS: CaseInsensitiveMapping = CaseInsensitiveMapping(
+DATASET_LOADERS: CanonicalMapping = CanonicalMapping(
     {
         DatasetLoader_Asano2015.ID: build_Asano2015,
         DatasetLoader_Brendel2020.ID: build_Brendel2020,

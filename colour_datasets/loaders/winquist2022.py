@@ -61,7 +61,7 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
     ID: str = "6590768"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Winquist2022.ID])
 
     def load(self) -> Dict[str, MultiSpectralDistributions_AMPAS]:

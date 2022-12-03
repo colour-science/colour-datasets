@@ -119,7 +119,7 @@ parse_workbook_Asano2015`
     ID: str = "3252742"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Asano2015.ID])
 
     def load(self) -> Dict[str, Specification_Asano2015]:

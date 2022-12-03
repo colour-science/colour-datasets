@@ -126,7 +126,7 @@ __init__`
         comments: Optional[str] = None,
         license: Optional[str] = None,
         **kwargs: Any,
-    ):
+    ) -> None:
 
         self._schema_version: Optional[str] = None
         self.schema_version = schema_version
@@ -571,7 +571,7 @@ __init__`
         ] = None,
         bandwidth_FWHM: Optional[Floating] = None,
         bandwidth_corrected: Optional[Boolean] = None,
-    ):
+    ) -> None:
         super().__init__()
 
         self._path: Optional[str] = None
@@ -1079,7 +1079,7 @@ __init__`
         ] = None,
         bandwidth_FWHM: Optional[Floating] = None,
         bandwidth_corrected: Optional[Boolean] = None,
-    ):
+    ) -> None:
         super().__init__()
 
         self._path: Optional[str] = None
@@ -1500,7 +1500,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     ID: str = "3372171"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Dyer2017.ID])
 
     def load(

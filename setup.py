@@ -25,11 +25,11 @@ package_data = {
 
 install_requires = [
     "cachetools",
-    "colour-science>=0.4.0",
+    "colour-science>=0.4.2",
     "imageio>=2,<3",
-    "numpy>=1.19,<2",
+    "numpy>=1.20,<2",
     "opencv-python>=4,<5",
-    "scipy>=1.5,<2",
+    "scipy>=1.7,<2",
     "tqdm",
     "typing-extensions>=4,<5",
     "xlrd>=1.2,<2",
@@ -39,6 +39,7 @@ extras_require = {
     "development": [
         "biblib-simple",
         "black",
+        "blackdoc",
         "coverage!=6.3",
         "coveralls",
         "flake8",
@@ -74,5 +75,5 @@ setup(
     package_data=package_data,
     install_requires=install_requires,
     extras_require=extras_require,
-    python_requires=">=3.8,<3.11",
+    python_requires=">=3.9,<3.12",
 )

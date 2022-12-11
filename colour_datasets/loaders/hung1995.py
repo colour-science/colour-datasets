@@ -23,7 +23,7 @@ import os
 from collections import namedtuple
 
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -216,7 +216,7 @@ Singleton instance of the *Hung and Berns (1995)*
 """
 
 
-def build_Hung1995(load: Boolean = True) -> DatasetLoader_Hung1995:
+def build_Hung1995(load: bool = True) -> DatasetLoader_Hung1995:
     """
     Singleton factory that builds the *Hung and Berns (1995)*
     *Constant Hue Loci Data* dataset loader.

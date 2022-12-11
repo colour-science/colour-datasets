@@ -10,7 +10,7 @@ from __future__ import annotations
 import functools
 import os
 
-from colour.hints import Any, Boolean, Callable, Dict, Optional
+from colour.hints import Any, Callable, Dict, Optional
 from colour.utilities import Structure
 from colour.utilities.documentation import (
     DocstringDict,
@@ -72,7 +72,7 @@ class Configuration(Structure):
 
 
 def use_sandbox(
-    state: Boolean = True,
+    state: bool = True,
     api_url: str = "https://sandbox.zenodo.org/api",
     community: str = "colour-science-datasets",
 ):

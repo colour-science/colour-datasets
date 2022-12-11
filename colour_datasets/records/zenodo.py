@@ -26,11 +26,9 @@ from pprint import pformat
 
 from colour.hints import (
     Any,
-    Boolean,
     Callable,
     Dict,
     Generator,
-    Integer,
     List,
     Optional,
     Union,
@@ -194,7 +192,7 @@ class Record:
 
             parts: List[str] = []
             parser = HTMLParser()
-            parser.handle_data = parts.append  # type: ignore[assignment]
+            parser.handle_data = parts.append  # pyright: ignore
             parser.feed(text)
 
             return "".join(parts)
@@ -280,7 +278,7 @@ class Record:
     def from_id(
         id_: str,
         configuration: Optional[Configuration] = None,
-        retries: Integer = 3,
+        retries: int = 3,
     ) -> Record:
         """
         :class:`colour_datasets.Record` class factory that builds an instance
@@ -320,7 +318,7 @@ class Record:
 
         return Record(json_open(record_url, retries), configuration)
 
-    def synced(self) -> Boolean:
+    def synced(self) -> bool:
         """
         Return whether the *Zenodo* record data is synced to the local
         repository.
@@ -357,7 +355,7 @@ class Record:
             ]
         )
 
-    def pull(self, use_urls_txt_file: Boolean = True, retries: Integer = 3):
+    def pull(self, use_urls_txt_file: bool = True, retries: int = 3):
         """
         Pull the *Zenodo* record data to the local repository.
 
@@ -409,9 +407,9 @@ class Record:
             for url, md5 in urls.items():
                 filename = os.path.join(
                     downloads_directory,
-                    urllib.parse.unquote(  # type: ignore[attr-defined]
+                    urllib.parse.unquote(
                         url.split("/")[-1]
-                    ),
+                    ),  # pyright: ignore
                 )
                 url_download(url, filename, md5.split(":")[-1], retries)
 
@@ -767,7 +765,7 @@ colour-science-datasets-tests/
 
         yield from self._records
 
-    def __len__(self) -> Integer:
+    def __len__(self) -> int:
         """
         Return *Zenodo* community records count.
 
@@ -790,7 +788,7 @@ colour-science-datasets-tests/
     def from_id(
         id_: str,
         configuration: Optional[Configuration] = None,
-        retries: Integer = 3,
+        retries: int = 3,
     ) -> Community:
         """
         :class:`colour_datasets.Community` class factory that builds an
@@ -884,7 +882,7 @@ colour-science-datasets-tests/
 
         return Community(data, configuration)
 
-    def synced(self) -> Boolean:
+    def synced(self) -> bool:
         """
         Return whether the *Zenodo* community data is synced to the local
         repository.
@@ -911,7 +909,7 @@ colour-science-datasets-tests/
 
         return all([record.synced() for record in self._records.values()])
 
-    def pull(self, use_urls_txt_file: Boolean = True, retries: Integer = 3):
+    def pull(self, use_urls_txt_file: bool = True, retries: int = 3):
         """
         Pull the *Zenodo* community data to the local repository.
 

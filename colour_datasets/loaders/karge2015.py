@@ -23,7 +23,7 @@ import re
 from collections import defaultdict
 
 from colour.algebra import LinearInterpolator
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 from colour.io import read_sds_from_csv_file
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -131,7 +131,7 @@ Singleton instance of the *Karge et al. (2015)*
 """
 
 
-def build_Karge2015(load: Boolean = True) -> DatasetLoader_Karge2015:
+def build_Karge2015(load: bool = True) -> DatasetLoader_Karge2015:
     """
     Singleton factory that builds the *Karge et al. (2015)*
     *Spectral Database of Commonly Used Cine Lighting* dataset loader.

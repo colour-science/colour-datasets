@@ -23,7 +23,7 @@ import numpy as np
 import os
 from collections import namedtuple
 
-from colour.hints import Boolean, Dict, Integer, NDArray, Optional
+from colour.hints import Dict, NDArrayFloat, Optional
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -98,7 +98,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
 
     def load(
         self,
-    ) -> Dict[str, Dict[Integer, ConstantPerceivedHueColourMatches_Ebner1998]]:
+    ) -> Dict[str, Dict[int, ConstantPerceivedHueColourMatches_Ebner1998]]:
         """
         Sync, parse, convert and return the *Ebner and Fairchild (1998)*
         *Constant Perceived-Hue Data* dataset content.
@@ -128,7 +128,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
             self.record.repository, "dataset", "Ebner_Constant_Hue_Data.txt"
         )
 
-        def _parse_float_values(data: str) -> NDArray:
+        def _parse_float_values(data: str) -> NDArrayFloat:
             """Parse float values from given data."""
 
             values = np.reshape(
@@ -173,7 +173,7 @@ Singleton instance of the *Ebner and Fairchild (1998)*
 """
 
 
-def build_Ebner1998(load: Boolean = True) -> DatasetLoader_Ebner1998:
+def build_Ebner1998(load: bool = True) -> DatasetLoader_Ebner1998:
     """
     Singleton factory that builds the *Ebner and Fairchild (1998)*
     *Constant Perceived-Hue Data* dataset loader.

@@ -26,7 +26,7 @@ from colour.colorimetry import (
     XYZ_ColourMatchingFunctions,
     LMS_ConeFundamentals,
 )
-from colour.hints import Boolean, Dict, NDArray, Optional, Tuple
+from colour.hints import Dict, NDArrayFloat, Optional
 from colour.utilities import as_float_array, tstack
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -82,7 +82,7 @@ class Specification_Asano2015(
         XYZ_10: XYZ_ColourMatchingFunctions,
         LMS_2: LMS_ConeFundamentals,
         LMS_10: LMS_ConeFundamentals,
-        parameters: NDArray,
+        parameters: NDArrayFloat,
         others: Optional[Dict] = None,
     ):
         """
@@ -217,7 +217,7 @@ parse_workbook_Asano2015`
 
     @staticmethod
     def parse_workbook_Asano2015(
-        workbook: str, template: str, observers: Tuple = (1, 10)
+        workbook: str, template: str, observers: tuple = (1, 10)
     ) -> Dict[str, Dict]:
         """
         Parse given *Asano (2015)* *Observer Function Database* workbook.
@@ -317,7 +317,7 @@ loader.
 """
 
 
-def build_Asano2015(load: Boolean = True) -> DatasetLoader_Asano2015:
+def build_Asano2015(load: bool = True) -> DatasetLoader_Asano2015:
     """
     Singleton factory that the builds *Asano (2015)*
     *Observer Function Database* dataset loader.

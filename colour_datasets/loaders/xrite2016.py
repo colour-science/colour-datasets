@@ -24,7 +24,7 @@ import os
 
 from colour import CCS_ILLUMINANTS, Lab_to_XYZ, XYZ_to_xyY
 from colour.characterisation import ColourChecker
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -165,7 +165,7 @@ loader.
 """
 
 
-def build_XRite2016(load: Boolean = True) -> DatasetLoader_XRite2016:
+def build_XRite2016(load: bool = True) -> DatasetLoader_XRite2016:
     """
     Singleton factory that the builds *X-Rite (2016)*
     *New Color Specifications for ColorChecker SG and Classic Charts* dataset

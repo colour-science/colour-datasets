@@ -21,7 +21,7 @@ from __future__ import annotations
 import glob
 import os
 
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.loaders.dyer2017 import MultiSpectralDistributions_AMPAS
@@ -107,7 +107,7 @@ Singleton instance of the *Winquist et al. (2022)*
 """
 
 
-def build_Winquist2022(load: Boolean = True) -> DatasetLoader_Winquist2022:
+def build_Winquist2022(load: bool = True) -> DatasetLoader_Winquist2022:
     """
     Singleton factory that builds the *Winquist et al. (2022)*
     *Physlight - Camera Spectral Sensitivity Curves* dataset loader.

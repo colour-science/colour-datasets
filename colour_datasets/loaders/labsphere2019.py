@@ -18,7 +18,7 @@ import numpy as np
 import os
 
 from colour import SpectralDistribution
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 from colour.utilities import tsplit
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -110,7 +110,7 @@ loader.
 """
 
 
-def build_Labsphere2019(load: Boolean = True) -> DatasetLoader_Labsphere2019:
+def build_Labsphere2019(load: bool = True) -> DatasetLoader_Labsphere2019:
     """
     Singleton factory that builds the *Labsphere (2019)* *Labsphere SRS-99-020*
     dataset loader.

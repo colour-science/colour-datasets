@@ -115,6 +115,7 @@ development = [
     "pydocstyle",
     "pytest",
     "pytest-cov",
+    "pytest-xdist",
     "pyupgrade",
     "restructuredtext-lint",
     "sphinx",

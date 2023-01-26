@@ -44,7 +44,7 @@ import sys
 from collections import namedtuple
 
 from colour import SpectralDistribution, SpectralShape
-from colour.hints import Any, Boolean, Dict, Tuple, Type, cast
+from colour.hints import Any, Dict, Tuple, Type, cast
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -275,7 +275,7 @@ def _build_dataset_loader_class_KuopioUniversity(
 
 def build_KuopioUniversity(
     dataset_loader_class: Type[DatasetLoader_KuopioUniversity],
-    load: Boolean = True,
+    load: bool = True,
 ) -> DatasetLoader_KuopioUniversity:
     """
     Singleton factory that builds a *University of Kuopio* dataset loader.
@@ -499,7 +499,7 @@ References
 for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
     _module = sys.modules["colour_datasets.loaders.kuopio"]
     _dataset_loader_class = _build_dataset_loader_class_KuopioUniversity(
-        _id, *_data
+        _id, *_data  # pyright: ignore
     )
     _partial_function = functools.partial(
         build_KuopioUniversity, _dataset_loader_class

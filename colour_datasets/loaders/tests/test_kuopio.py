@@ -11,15 +11,15 @@ from colour_datasets.loaders.kuopio import (
     MatFileMetadata_KuopioUniversity,
     read_sds_from_mat_file_KuopioUniversity,
 )
-from colour_datasets.loaders.kuopio import (  # type: ignore[attr-defined]
-    DatasetLoader_MunsellColorsMattSpectrofotometerMeasured,
-    DatasetLoader_MunsellColorsMattAOTFMeasured,
-    DatasetLoader_MunsellColorsGlossySpectrofotometerMeasured,
-    DatasetLoader_MunsellColorsGlossyAllSpectrofotometerMeasured,
-    DatasetLoader_ForestColors,
-    DatasetLoader_PaperSpectra,
-    DatasetLoader_LumberSpectra,
-    DatasetLoader_AgfaIT872Set,
+from colour_datasets.loaders.kuopio import (
+    DatasetLoader_MunsellColorsMattSpectrofotometerMeasured,  # pyright: ignore
+    DatasetLoader_MunsellColorsMattAOTFMeasured,  # pyright: ignore
+    DatasetLoader_MunsellColorsGlossySpectrofotometerMeasured,  # pyright: ignore
+    DatasetLoader_MunsellColorsGlossyAllSpectrofotometerMeasured,  # pyright: ignore
+    DatasetLoader_ForestColors,  # pyright: ignore
+    DatasetLoader_PaperSpectra,  # pyright: ignore
+    DatasetLoader_LumberSpectra,  # pyright: ignore
+    DatasetLoader_AgfaIT872Set,  # pyright: ignore
 )
 
 __author__ = "Colour Developers"

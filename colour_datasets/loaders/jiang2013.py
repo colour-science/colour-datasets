@@ -25,7 +25,7 @@ import re
 
 from colour import SpectralShape
 from colour.characterisation import RGB_CameraSensitivities
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -131,7 +131,7 @@ Singleton instance of the *Jiang et al. (2013)*
 """
 
 
-def build_Jiang2013(load: Boolean = True) -> DatasetLoader_Jiang2013:
+def build_Jiang2013(load: bool = True) -> DatasetLoader_Jiang2013:
     """
     Singleton factory that builds the *Jiang et al. (2013)*
     *Camera Spectral Sensitivity Database* dataset loader.

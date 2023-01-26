@@ -20,7 +20,7 @@ import urllib.request
 from tqdm import tqdm
 from cachetools import cached, TTLCache
 
-from colour.hints import Any, Boolean, Callable, Dict, Integer, Optional
+from colour.hints import Any, Callable, Dict, Optional
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -72,9 +72,9 @@ class TqdmUpTo(tqdm):
 
     def update_to(
         self,
-        chunks_count: Integer = 1,
-        chunk_size: Integer = 1,
-        total_size: Optional[Integer] = None,
+        chunks_count: int = 1,
+        chunk_size: int = 1,
+        total_size: Optional[int] = None,
     ):
         """
         Report the progress of an action.
@@ -95,7 +95,7 @@ class TqdmUpTo(tqdm):
         self.update(chunks_count * chunk_size - self.n)
 
 
-def hash_md5(filename: str, chunk_size: Integer = 2**16) -> str:
+def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     """
     Compute the *Message Digest 5 (MD5)* hash of given file.
 
@@ -126,7 +126,7 @@ def hash_md5(filename: str, chunk_size: Integer = 2**16) -> str:
 
 
 def url_download(
-    url: str, filename: str, md5: Optional[str] = None, retries: Integer = 3
+    url: str, filename: str, md5: Optional[str] = None, retries: int = 3
 ):
     """
     Download given url and saves its content at given file.
@@ -187,7 +187,7 @@ def url_download(
 
 
 @cached(cache=TTLCache(maxsize=256, ttl=300))
-def json_open(url: str, retries: Integer = 3) -> Dict:
+def json_open(url: str, retries: int = 3) -> Dict:
     """
     Open given url and return its content as *JSON*.
 
@@ -240,7 +240,7 @@ def json_open(url: str, retries: Integer = 3) -> Dict:
 
 def unpack_gzipfile(
     filename: str, extraction_directory: str, *args: Any
-) -> Boolean:
+) -> bool:
     """
     Unpack given *GZIP* file to given extraction directory.
 

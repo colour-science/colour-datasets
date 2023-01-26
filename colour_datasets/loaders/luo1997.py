@@ -35,7 +35,7 @@ import numpy as np
 import os
 from collections import namedtuple
 
-from colour.hints import Boolean, Dict, Optional, Tuple
+from colour.hints import Dict, Optional, Tuple
 from colour.utilities import as_float_array, usage_warning
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -1112,7 +1112,7 @@ Singleton instance of the *Luo and Rhodes (1997)*
 """
 
 
-def build_Luo1997(load: Boolean = True) -> DatasetLoader_Luo1997:
+def build_Luo1997(load: bool = True) -> DatasetLoader_Luo1997:
     """
     Singleton factory that the builds *Luo and Rhodes (1997)*
     *LUTCHI Colour Appearance Data* dataset loader.

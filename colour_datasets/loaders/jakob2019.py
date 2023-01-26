@@ -20,7 +20,7 @@ from __future__ import annotations
 import glob
 import os
 
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 from colour.recovery import LUT3D_Jakob2019
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -124,7 +124,7 @@ Singleton instance of the *Jakob and Hanika (2019)*
 """
 
 
-def build_Jakob2019(load: Boolean = True) -> DatasetLoader_Jakob2019:
+def build_Jakob2019(load: bool = True) -> DatasetLoader_Jakob2019:
     """
     Singleton factory that builds the *Jakob and Hanika (2019)*
     *Spectral Upsampling Coefficient Tables* dataset loader.

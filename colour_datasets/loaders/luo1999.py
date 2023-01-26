@@ -30,7 +30,7 @@ import numpy as np
 import os
 from collections import namedtuple
 
-from colour.hints import Boolean, Dict, Optional, Tuple
+from colour.hints import Dict, Optional, Tuple, cast
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -502,18 +502,36 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                 name = f"{key} - {filename.split('.')[1]}"
                 dataset_metadata = dict(zip(metadata_headers, metadata))
 
-                Y_r = dataset_metadata["Illuminance (lux)"][i][0]
-                Y_t = dataset_metadata["Illuminance (lux)"][i][1]
+                Y_r = (
+                    dataset_metadata["Illuminance (lux)"][  # pyright: ignore
+                        i
+                    ][0],
+                )
+                Y_t = dataset_metadata["Illuminance (lux)"][  # pyright: ignore
+                    i
+                ][1]
 
-                B_r = dataset_metadata["Background (Y%)"][i][0]
-                B_t = dataset_metadata["Background (Y%)"][i][1]
+                B_r = dataset_metadata["Background (Y%)"][  # pyright: ignore
+                    i
+                ][0]
+                B_t = dataset_metadata["Background (Y%)"][  # pyright: ignore
+                    i
+                ][1]
 
-                dataset_metadata["Illuminance (lux)"] = dataset_metadata[
+                dataset_metadata[
                     "Illuminance (lux)"
-                ][i]
-                dataset_metadata["Background (Y%)"] = dataset_metadata[
+                ] = dataset_metadata[  # pyright: ignore
+                    "Illuminance (lux)"
+                ][
+                    i
+                ]
+                dataset_metadata[
                     "Background (Y%)"
-                ][i]
+                ] = dataset_metadata[  # pyright: ignore
+                    "Background (Y%)"
+                ][
+                    i
+                ]
 
                 self._content[name] = CorrespondingColourDataset_Luo1999(
                     name,
@@ -521,8 +539,8 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                     as_float_array(XYZ_t) / 100,
                     as_float_array(XYZ_cr) / 100,
                     as_float_array(XYZ_ct) / 100,
-                    Y_r * np.pi,
-                    Y_t * np.pi,
+                    cast(float, Y_r) * np.pi,
+                    cast(float, Y_t) * np.pi,
                     B_r,
                     B_t,
                     dataset_metadata,
@@ -538,7 +556,7 @@ Singleton instance of the *Luo and Rhodes (1999)*
 """
 
 
-def build_Luo1999(load: Boolean = True) -> DatasetLoader_Luo1999:
+def build_Luo1999(load: bool = True) -> DatasetLoader_Luo1999:
     """
     Singleton factory that the builds *Luo and Rhodes (1999)*
     *Corresponding-Colour Datasets* dataset loader.

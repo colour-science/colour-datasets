@@ -15,7 +15,7 @@ from __future__ import annotations
 import re
 import xlrd
 
-from colour.hints import Dict, Integer, List, Union
+from colour.hints import Dict, List, Union
 from colour.utilities import CanonicalMapping
 
 __author__ = "Colour Developers, Openpyxl Developers"
@@ -38,7 +38,7 @@ __all__ = [
 ]
 
 
-def _column_number_to_letters(number: Integer) -> str:
+def _column_number_to_letters(number: int) -> str:
     """
     Convert given column number into a column letters.
 
@@ -94,7 +94,7 @@ for i in range(1, 18279):
     _LETTERS_TO_NUMBER_CACHE[letter] = i
 
 
-def row_to_index(row: Union[Integer, str]) -> Integer:
+def row_to_index(row: Union[int, str]) -> int:
     """
     Return the 0-based index of given row name.
 
@@ -121,7 +121,7 @@ def row_to_index(row: Union[Integer, str]) -> Integer:
     return row - 1
 
 
-def index_to_row(index: Integer) -> str:
+def index_to_row(index: int) -> str:
     """
     Return the row name of given 0-based index.
 
@@ -145,7 +145,7 @@ def index_to_row(index: Integer) -> str:
     return str(index + 1)
 
 
-def column_to_index(column: str) -> Integer:
+def column_to_index(column: str) -> int:
     """
     Return the 0-based index of given column letters.
 
@@ -168,7 +168,7 @@ def column_to_index(column: str) -> Integer:
     return _LETTERS_TO_NUMBER_CACHE[column] - 1
 
 
-def index_to_column(index: Integer) -> str:
+def index_to_column(index: int) -> str:
     """
     Return the column letters of given 0-based index.
 

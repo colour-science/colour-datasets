@@ -24,9 +24,7 @@ from colour import MultiSpectralDistributions, SpectralDistribution
 from colour.continuous import MultiSignals, Signal
 from colour.hints import (
     Any,
-    Boolean,
     Dict,
-    Floating,
     Literal,
     Optional,
     Type,
@@ -569,8 +567,8 @@ __init__`
         transmission_geometry: Optional[
             Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
         ] = None,
-        bandwidth_FWHM: Optional[Floating] = None,
-        bandwidth_corrected: Optional[Boolean] = None,
+        bandwidth_FWHM: Optional[float] = None,
+        bandwidth_corrected: Optional[bool] = None,
     ) -> None:
         super().__init__()
 
@@ -616,9 +614,9 @@ __init__`
             Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
         ] = None
         self.transmission_geometry = transmission_geometry
-        self._bandwidth_FWHM: Optional[Floating] = None
+        self._bandwidth_FWHM: Optional[float] = None
         self.bandwidth_FWHM = bandwidth_FWHM
-        self._bandwidth_corrected: Optional[Boolean] = None
+        self._bandwidth_corrected: Optional[bool] = None
         self.bandwidth_corrected = bandwidth_corrected
 
     @property
@@ -847,7 +845,7 @@ __init__`
         self._transmission_geometry = value
 
     @property
-    def bandwidth_FWHM(self) -> Optional[Floating]:
+    def bandwidth_FWHM(self) -> Optional[float]:
         """
         Getter and setter property for the full-width half-maximum bandwidth.
 
@@ -865,7 +863,7 @@ __init__`
         return self._bandwidth_FWHM
 
     @bandwidth_FWHM.setter
-    def bandwidth_FWHM(self, value: Optional[Floating]):
+    def bandwidth_FWHM(self, value: Optional[float]):
         """Setter for the **self.bandwidth_FWHM** property."""
 
         if value is not None:
@@ -877,7 +875,7 @@ __init__`
         self._bandwidth_FWHM = value
 
     @property
-    def bandwidth_corrected(self) -> Optional[Boolean]:
+    def bandwidth_corrected(self) -> Optional[bool]:
         """
         Getter and setter property for whether bandwidth correction has been
         applied to the measured data.
@@ -896,7 +894,7 @@ __init__`
         return self._bandwidth_corrected
 
     @bandwidth_corrected.setter
-    def bandwidth_corrected(self, value: Optional[Boolean]):
+    def bandwidth_corrected(self, value: Optional[bool]):
         """Setter for the **self.bandwidth_corrected** property."""
 
         if value is not None:
@@ -1077,8 +1075,8 @@ __init__`
         transmission_geometry: Optional[
             Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
         ] = None,
-        bandwidth_FWHM: Optional[Floating] = None,
-        bandwidth_corrected: Optional[Boolean] = None,
+        bandwidth_FWHM: Optional[float] = None,
+        bandwidth_corrected: Optional[bool] = None,
     ) -> None:
         super().__init__()
 
@@ -1124,9 +1122,9 @@ __init__`
             Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
         ] = None
         self.transmission_geometry = transmission_geometry
-        self._bandwidth_FWHM: Optional[Floating] = None
+        self._bandwidth_FWHM: Optional[float] = None
         self.bandwidth_FWHM = bandwidth_FWHM
-        self._bandwidth_corrected: Optional[Boolean] = None
+        self._bandwidth_corrected: Optional[bool] = None
         self.bandwidth_corrected = bandwidth_corrected
 
     @property
@@ -1355,7 +1353,7 @@ __init__`
         self._transmission_geometry = value
 
     @property
-    def bandwidth_FWHM(self) -> Optional[Floating]:
+    def bandwidth_FWHM(self) -> Optional[float]:
         """
         Getter and setter property for the full-width half-maximum bandwidth.
 
@@ -1373,7 +1371,7 @@ __init__`
         return self._bandwidth_FWHM
 
     @bandwidth_FWHM.setter
-    def bandwidth_FWHM(self, value: Optional[Floating]):
+    def bandwidth_FWHM(self, value: Optional[float]):
         """Setter for the **self.bandwidth_FWHM** property."""
 
         if value is not None:
@@ -1385,7 +1383,7 @@ __init__`
         self._bandwidth_FWHM = value
 
     @property
-    def bandwidth_corrected(self) -> Optional[Boolean]:
+    def bandwidth_corrected(self) -> Optional[bool]:
         """
         Getter and setter property for whether bandwidth correction has been
         applied to the measured data.
@@ -1404,7 +1402,7 @@ __init__`
         return self._bandwidth_corrected
 
     @bandwidth_corrected.setter
-    def bandwidth_corrected(self, value: Optional[Boolean]):
+    def bandwidth_corrected(self, value: Optional[bool]):
         """Setter for the **self.bandwidth_corrected** property."""
 
         if value is not None:
@@ -1566,7 +1564,7 @@ dataset loader.
 """
 
 
-def build_Dyer2017(load: Boolean = True) -> DatasetLoader_Dyer2017:
+def build_Dyer2017(load: bool = True) -> DatasetLoader_Dyer2017:
     """
     Singleton factory that builds the *Dyer et al. (2017)*
     *RAW to ACES Utility Data* dataset loader.

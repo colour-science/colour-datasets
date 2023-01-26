@@ -21,7 +21,7 @@ import numpy as np
 import os
 
 from colour import LinearInterpolator, SpectralShape, SpectralDistribution
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 from colour.utilities import as_int
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -115,7 +115,7 @@ dataset loader.
 """
 
 
-def build_Brendel2020(load: Boolean = True) -> DatasetLoader_Brendel2020:
+def build_Brendel2020(load: bool = True) -> DatasetLoader_Brendel2020:
     """
     Singleton factory that builds the *Brendel (2020)*
     *Measured Commercial LED Spectra* dataset loader.

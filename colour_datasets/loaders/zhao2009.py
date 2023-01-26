@@ -21,7 +21,7 @@ import numpy as np
 import os
 
 from colour.characterisation import RGB_CameraSensitivities
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -125,7 +125,7 @@ Singleton instance of the *Zhao et al. (2009)*
 """
 
 
-def build_Zhao2009(load: Boolean = True) -> DatasetLoader_Zhao2009:
+def build_Zhao2009(load: bool = True) -> DatasetLoader_Zhao2009:
     """
     Singleton factory that builds the *Zhao et al. (2009)*
     *Spectral Sensitivity Database* dataset loader.

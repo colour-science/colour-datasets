@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import sys
 
-from colour.hints import Any, Boolean, Integer, Union
+from colour.hints import Any, Union
 from colour.utilities import CanonicalMapping, warning
 
 from colour_datasets.records import datasets
@@ -124,7 +124,7 @@ for _export in kuopio.__all__:
 
 del _module, _export
 
-_HAS_TITLE_KEYS: Boolean = False
+_HAS_TITLE_KEYS: bool = False
 """
 Whether the :attr:`colour_datasets.loaders.DATASET_LOADERS` attribute has
 been updated with dataset titles. This variable is used in the one time
@@ -133,7 +133,7 @@ titles.
 """
 
 
-def load(dataset: Union[Integer, str]) -> Any:
+def load(dataset: Union[int, str]) -> Any:
     """
     Load given dataset: The dataset is pulled locally, i.e. synced if required
     and then its data is loaded.

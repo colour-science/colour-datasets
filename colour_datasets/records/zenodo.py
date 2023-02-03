@@ -30,8 +30,6 @@ from colour.hints import (
     Dict,
     Generator,
     List,
-    Optional,
-    Union,
 )
 from colour.utilities import optional, warning
 
@@ -93,9 +91,8 @@ class Record:
     """
 
     def __init__(
-        self, data: dict, configuration: Optional[Configuration] = None
+        self, data: dict, configuration: Configuration | None = None
     ) -> None:
-
         self._data: dict = data
         self._configuration: Configuration = optional(
             configuration, Configuration()
@@ -141,7 +138,7 @@ class Record:
         return os.path.join(self._configuration.repository, self.id)
 
     @property
-    def id(self) -> str:
+    def id(self) -> str:  # noqa: A003
         """
         Getter property for the *Zenodo* record id.
 
@@ -277,7 +274,7 @@ class Record:
     @staticmethod
     def from_id(
         id_: str,
-        configuration: Optional[Configuration] = None,
+        configuration: Configuration | None = None,
         retries: int = 3,
     ) -> Record:
         """
@@ -382,7 +379,7 @@ class Record:
         True
         """
 
-        print(f'Pulling "{self.title}" record content...')
+        print(f'Pulling "{self.title}" record content...')  # noqa: T201
 
         if not os.path.exists(self._configuration.repository):
             os.makedirs(self._configuration.repository)
@@ -407,9 +404,9 @@ class Record:
             for url, md5 in urls.items():
                 filename = os.path.join(
                     downloads_directory,
-                    urllib.parse.unquote(
+                    urllib.parse.unquote(  # pyright: ignore
                         url.split("/")[-1]
-                    ),  # pyright: ignore
+                    ),
                 )
                 url_download(url, filename, md5.split(":")[-1], retries)
 
@@ -438,7 +435,7 @@ class Record:
 
                 urls_download(urls)
             else:
-                raise ValueError(
+                raise ValueError(  # noqa: TRY301
                     f'"{self._configuration.urls_txt_file}" file was not '
                     f"found in record data!"
                 )
@@ -482,7 +479,7 @@ class Record:
                 basename = basename.replace(".", "_")
                 unpacking_directory = os.path.join(deflate_directory, basename)
 
-                print(f'Unpacking "{filename}" archive...')
+                print(f'Unpacking "{filename}" archive...')  # noqa: T201
                 setuptools.archive_util.unpack_archive(
                     filename, unpacking_directory
                 )
@@ -566,7 +563,7 @@ class Community(Mapping):
     """
 
     def __init__(
-        self, data: Dict, configuration: Optional[Configuration] = None
+        self, data: Dict, configuration: Configuration | None = None
     ) -> None:
         self._data: Dict = data
         self._configuration: Configuration = optional(
@@ -721,7 +718,7 @@ colour-science-datasets-tests/
 
         return f"{self.__class__.__name__}(\n{data},\n{configuration}\n)"
 
-    def __getitem__(self, item: Union[str, Any]) -> Any:
+    def __getitem__(self, item: str | Any) -> Any:
         """
         Return the *Zenodo* record at given id.
 
@@ -787,7 +784,7 @@ colour-science-datasets-tests/
     @staticmethod
     def from_id(
         id_: str,
-        configuration: Optional[Configuration] = None,
+        configuration: Configuration | None = None,
         retries: int = 3,
     ) -> Community:
         """
@@ -855,7 +852,7 @@ colour-science-datasets-tests/
             }.items():
                 with open(key, "w") as json_file:
                     json.dump(value, json_file, indent=4, sort_keys=True)
-        except (urllib.error.URLError, ValueError):
+        except (urllib.error.URLError, ValueError) as error:
             warning(
                 'Retrieving the "{0}" community data failed '
                 "after {1} attempts, "
@@ -867,7 +864,9 @@ colour-science-datasets-tests/
                     os.path.exists(records_json_filename),
                 ]
             ):
-                raise RuntimeError("Local files were not found, aborting!")
+                raise RuntimeError(
+                    "Local files were not found, aborting!"
+                ) from error
 
             with open(community_json_filename) as json_file:
                 community_data = json.loads(json_file.read())
@@ -962,7 +961,9 @@ colour-science-datasets-tests/
             shutil.rmtree(self.repository, onerror=_remove_readonly)
 
 
-def _remove_readonly(function: Callable, path: str, excinfo: Any):
+def _remove_readonly(
+    function: Callable, path: str, excinfo: Any  # noqa: ARG001
+):
     """
     Error handler for :func:`shutil.rmtree` definition that removes read-only
     files.

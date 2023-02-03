@@ -21,7 +21,7 @@ import numpy as np
 import os
 
 from colour.characterisation import RGB_CameraSensitivities
-from colour.hints import Dict, Optional
+from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -103,7 +103,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
             "KODAK DCS 200",
         ]
 
-        self._content = dict()
+        self._content = {}
 
         for i, camera in enumerate(cameras):
             data = np.loadtxt(
@@ -118,7 +118,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_JIANG2009: Optional[DatasetLoader_Zhao2009] = None
+_DATASET_LOADER_JIANG2009: DatasetLoader_Zhao2009 | None = None
 """
 Singleton instance of the *Zhao et al. (2009)*
 *Spectral Sensitivity Database* dataset loader.

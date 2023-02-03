@@ -20,7 +20,7 @@ import urllib.request
 from tqdm import tqdm
 from cachetools import cached, TTLCache
 
-from colour.hints import Any, Callable, Dict, Optional
+from colour.hints import Any, Callable, Dict
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -46,7 +46,7 @@ class suppress_stdout:
         """Redirect the standard output upon entering the context manager."""
 
         self._stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")
+        sys.stdout = open(os.devnull, "w")  # noqa: SIM115
 
         return self
 
@@ -74,7 +74,7 @@ class TqdmUpTo(tqdm):
         self,
         chunks_count: int = 1,
         chunk_size: int = 1,
-        total_size: Optional[int] = None,
+        total_size: int | None = None,
     ):
         """
         Report the progress of an action.
@@ -112,7 +112,7 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
         *MD5* hash of given file.
     """
 
-    md5 = hashlib.md5()
+    md5 = hashlib.md5()  # noqa: S324
 
     with open(filename, "rb") as file_object:
         while True:
@@ -126,7 +126,7 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
 
 
 def url_download(
-    url: str, filename: str, md5: Optional[str] = None, retries: int = 3
+    url: str, filename: str, md5: str | None = None, retries: int = 3
 ):
     """
     Download given url and saves its content at given file.
@@ -168,22 +168,21 @@ def url_download(
                     data=None,
                 )
 
-            if md5 is not None:
-                if md5.lower() != hash_md5(filename):
-                    raise ValueError(
-                        f'"MD5" hash of "{filename}" file does not match the '
-                        f"expected hash!"
-                    )
+            if md5 is not None and md5.lower() != hash_md5(filename):
+                raise ValueError(  # noqa: TRY301
+                    f'"MD5" hash of "{filename}" file does not match the '
+                    f"expected hash!"
+                )
 
             attempt = retries
-        except (urllib.error.URLError, OSError, ValueError) as error:
+        except (urllib.error.URLError, OSError, ValueError):
             attempt += 1
-            print(
+            print(  # noqa: T201
                 f'An error occurred while downloading "{filename}" file '
                 f"during attempt {attempt}, retrying..."
             )
             if attempt == retries:
-                raise error
+                raise
 
 
 @cached(cache=TTLCache(maxsize=256, ttl=300))
@@ -226,20 +225,20 @@ def json_open(url: str, retries: int = 3) -> Dict:
     while attempt != retries:
         try:
             return json.loads(urllib.request.urlopen(url).read())
-        except (urllib.error.URLError, ValueError) as error:
+        except (urllib.error.URLError, ValueError):
             attempt += 1
-            print(
+            print(  # noqa: T201
                 f'An error occurred while opening "{url}" url during attempt '
                 f"{attempt}, retrying..."
             )
             if attempt == retries:
-                raise error
+                raise
 
     return data
 
 
 def unpack_gzipfile(
-    filename: str, extraction_directory: str, *args: Any
+    filename: str, extraction_directory: str, *args: Any  # noqa: ARG001
 ) -> bool:
     """
     Unpack given *GZIP* file to given extraction directory.
@@ -279,11 +278,11 @@ def unpack_gzipfile(
             extraction_path, "wb"
         ) as output_file:
             shutil.copyfileobj(gzip_file, output_file)
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)  # noqa: T201
         raise setuptools.archive_util.UnrecognizedFormat(
             f'{filename} is not a "GZIP" file!'
-        )
+        ) from error
 
     return True
 

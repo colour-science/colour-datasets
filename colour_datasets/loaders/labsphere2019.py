@@ -89,16 +89,11 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
         )
 
         values = tsplit(np.loadtxt(sd_path, delimiter="\t", skiprows=2))
-        self._content = dict(
-            [
-                (
-                    "Labsphere SRS-99-020",
-                    SpectralDistribution(
-                        values[1], values[0], name="Labsphere SRS-99-020"
-                    ),
-                ),
-            ]
-        )
+        self._content = {
+            "Labsphere SRS-99-020": SpectralDistribution(
+                values[1], values[0], name="Labsphere SRS-99-020"
+            ),
+        }
 
         return self._content
 

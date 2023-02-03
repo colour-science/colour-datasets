@@ -23,7 +23,7 @@ import numpy as np
 import os
 from collections import namedtuple
 
-from colour.hints import Dict, NDArrayFloat, Optional
+from colour.hints import Dict, NDArrayFloat
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -122,7 +122,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict([("Constant Perceived-Hue Data", dict())])
+        self._content = {"Constant Perceived-Hue Data": {}}
 
         datafile_path = os.path.join(
             self.record.repository, "dataset", "Ebner_Constant_Hue_Data.txt"
@@ -166,7 +166,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_EBNER1998: Optional[DatasetLoader_Ebner1998] = None
+_DATASET_LOADER_EBNER1998: DatasetLoader_Ebner1998 | None = None
 """
 Singleton instance of the *Ebner and Fairchild (1998)*
 *Constant Perceived-Hue Data* dataset loader.

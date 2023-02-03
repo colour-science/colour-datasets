@@ -35,6 +35,7 @@ References
 
 from __future__ import annotations
 
+import contextlib
 import functools
 import numpy as np
 import os
@@ -112,7 +113,7 @@ def read_sds_from_mat_file_KuopioUniversity(
 
     matlab_data = scipy.io.loadmat(mat_file)
 
-    sds = dict()
+    sds = {}
     table = matlab_data[metadata.key]
     wavelengths = metadata.shape.range()
 
@@ -177,7 +178,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
         for path, metadata in self.METADATA.items():
             mat_path = os.path.join(self.record.repository, "dataset", *path)
@@ -263,10 +264,8 @@ def _build_dataset_loader_class_KuopioUniversity(
     )
 
     dataset_loader_class.__doc__ = class_docstring
-    try:
+    with contextlib.suppress(AttributeError):
         dataset_loader_class.load.__doc__ = load_method_docstring
-    except AttributeError:
-        pass
 
     setattr(module, class_attribute, dataset_loader_class)
 
@@ -516,7 +515,7 @@ for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
 
     DATASET_LOADERS_KUOPIO_UNIVERSITY[_id] = _partial_function
 
-    __all__ += [
+    __all__ += [  # noqa: PLE0604
         _dataset_loader_class.__name__,
         _build_function_name,
     ]

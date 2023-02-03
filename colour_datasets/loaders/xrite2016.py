@@ -24,7 +24,7 @@ import os
 
 from colour import CCS_ILLUMINANTS, Lab_to_XYZ, XYZ_to_xyY
 from colour.characterisation import ColourChecker
-from colour.hints import Dict, Optional
+from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -112,7 +112,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
             "ICC D50"
         ]
 
-        self._content = dict()
+        self._content = {}
         for key, filename in zip(keys, filenames):
             directory = os.path.splitext(filename)[0]
             path = os.path.join(
@@ -157,7 +157,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_XRITE2016: Optional[DatasetLoader_XRite2016] = None
+_DATASET_LOADER_XRITE2016: DatasetLoader_XRite2016 | None = None
 """
 Singleton instance of the *X-Rite (2016)*
 *New Color Specifications for ColorChecker SG and Classic Charts* dataset

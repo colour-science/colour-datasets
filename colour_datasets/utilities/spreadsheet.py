@@ -15,8 +15,8 @@ from __future__ import annotations
 import re
 import xlrd
 
-from colour.hints import Dict, List, Union
-from colour.utilities import CanonicalMapping
+from colour.hints import Dict, List
+from colour.utilities import CanonicalMapping, attest
 
 __author__ = "Colour Developers, Openpyxl Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -67,9 +67,10 @@ def _column_number_to_letters(number: int) -> str:
     'DX'
     """
 
-    assert (
-        1 <= number <= 18278
-    ), f"Column number {number} must be in range [1, 18278]!"
+    attest(
+        1 <= number <= 18278,
+        f"Column number {number} must be in range [1, 18278]!",
+    )
 
     letters = []
     while number > 0:
@@ -94,7 +95,7 @@ for i in range(1, 18279):
     _LETTERS_TO_NUMBER_CACHE[letter] = i
 
 
-def row_to_index(row: Union[int, str]) -> int:
+def row_to_index(row: int | str) -> int:
     """
     Return the 0-based index of given row name.
 
@@ -116,7 +117,7 @@ def row_to_index(row: Union[int, str]) -> int:
 
     row = int(row)
 
-    assert row > 0, "Row must be greater than 0!"
+    attest(row > 0, "Row must be greater than 0!")
 
     return row - 1
 

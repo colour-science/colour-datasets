@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import sys
 
-from colour.hints import Any, Union
+from colour.hints import Any
 from colour.utilities import CanonicalMapping, warning
 
 from colour_datasets.records import datasets
@@ -105,22 +105,19 @@ DATASET_LOADERS.__doc__ = """
 Dataset loaders ids and callables.
 """
 
-from .kuopio import DATASET_LOADERS_KUOPIO_UNIVERSITY  # noqa
+from .kuopio import DATASET_LOADERS_KUOPIO_UNIVERSITY  # noqa: E402
 
 DATASET_LOADERS.update(DATASET_LOADERS_KUOPIO_UNIVERSITY)
 
-from . import kuopio  # noqa
+from . import kuopio  # noqa: E402
 
 _module = sys.modules["colour_datasets.loaders"]
 
 for _export in kuopio.__all__:
     if _export.startswith("DatasetLoader_") or _export.startswith("build_"):
-
         setattr(_module, _export, getattr(kuopio, _export))
 
-        __all__ += [
-            _export,
-        ]
+        __all__ += [_export]  # noqa: PLE0604
 
 del _module, _export
 
@@ -133,7 +130,7 @@ titles.
 """
 
 
-def load(dataset: Union[int, str]) -> Any:
+def load(dataset: int | str) -> Any:
     """
     Load given dataset: The dataset is pulled locally, i.e. synced if required
     and then its data is loaded.

@@ -10,7 +10,7 @@ from __future__ import annotations
 import functools
 import os
 
-from colour.hints import Any, Callable, Dict, Optional
+from colour.hints import Any, Callable, Dict
 from colour.utilities import Structure
 from colour.utilities.documentation import (
     DocstringDict,
@@ -65,7 +65,7 @@ class Configuration(Structure):
         Configuration to use instead of the default one.
     """
 
-    def __init__(self, configuration: Optional[Dict] = None) -> None:
+    def __init__(self, configuration: Dict | None = None) -> None:
         super().__init__(
             DEFAULT_CONFIGURATION if configuration is None else configuration
         )
@@ -89,7 +89,7 @@ def use_sandbox(
         *Zenodo* community.
     """
 
-    global DEFAULT_CONFIGURATION
+    global DEFAULT_CONFIGURATION  # noqa: PLW0602
 
     if state:
         DEFAULT_CONFIGURATION["api_url"] = api_url

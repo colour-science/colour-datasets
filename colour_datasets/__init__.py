@@ -15,6 +15,7 @@ Subpackages
 -   utilities:  Various utilities.
 """
 
+import contextlib
 import numpy as np
 import os
 import subprocess  # nosec
@@ -77,7 +78,5 @@ colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES[  # pyright: ignore
 del _version
 
 # TODO: Remove legacy printing support when deemed appropriate.
-try:
+with contextlib.suppress(TypeError):
     np.set_printoptions(legacy="1.13")
-except TypeError:
-    pass

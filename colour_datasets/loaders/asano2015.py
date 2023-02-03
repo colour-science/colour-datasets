@@ -26,7 +26,7 @@ from colour.colorimetry import (
     XYZ_ColourMatchingFunctions,
     LMS_ConeFundamentals,
 )
-from colour.hints import Dict, NDArrayFloat, Optional
+from colour.hints import Dict, NDArrayFloat
 from colour.utilities import as_float_array, tstack
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -52,7 +52,7 @@ class Specification_Asano2015(
         "Specification_Asano2015",
         ("XYZ_2", "XYZ_10", "LMS_2", "LMS_10", "parameters", "others"),
     )
-):  # noqa: D405,D407,D410,D411
+):
     """
     Define the *Asano (2015)* specification for an observer.
 
@@ -74,7 +74,7 @@ class Specification_Asano2015(
     References
     ----------
     :cite:`Asano2015`
-    """
+    """  # noqa: D405, D407, D410, D411
 
     def __new__(
         cls,
@@ -83,7 +83,7 @@ class Specification_Asano2015(
         LMS_2: LMS_ConeFundamentals,
         LMS_10: LMS_ConeFundamentals,
         parameters: NDArrayFloat,
-        others: Optional[Dict] = None,
+        others: Dict | None = None,
     ):
         """
         Return a new instance of the
@@ -122,7 +122,7 @@ parse_workbook_Asano2015`
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Asano2015.ID])
 
-    def load(self) -> Dict[str, Specification_Asano2015]:
+    def load(self) -> Dict[str, Dict[int, Specification_Asano2015]]:
         """
         Sync, parse, convert and return the *Asano (2015)*
         *Observer Function Database* dataset content.
@@ -145,12 +145,10 @@ parse_workbook_Asano2015`
 
         super().sync()
 
-        self._content = dict(
-            [
-                ("Categorical Observers", dict()),
-                ("Colour Normal Observers", dict()),
-            ]
-        )
+        self._content = {
+            "Categorical Observers": {},
+            "Colour Normal Observers": {},
+        }
 
         # Categorical Observers
         workbook_path = os.path.join(
@@ -247,7 +245,7 @@ parse_workbook_Asano2015`
 
         shape = SpectralShape(390, 780, 5)
         wavelengths = shape.range()
-        data: Dict = dict()
+        data: Dict = {}
 
         for i, cmfs in enumerate(
             [
@@ -276,7 +274,7 @@ parse_workbook_Asano2015`
                     observer = k + 1
                     rgb = tstack([x[k], y[k], z[k]])
                     if data.get(observer) is None:
-                        data[observer] = dict()
+                        data[observer] = {}
 
                     key = f"{cmfs[1]}_{degree[0]}"
                     data[observer][key] = cmfs[0](
@@ -310,7 +308,7 @@ parse_workbook_Asano2015`
         return data
 
 
-_DATASET_LOADER_ASANO2015: Optional[DatasetLoader_Asano2015] = None
+_DATASET_LOADER_ASANO2015: DatasetLoader_Asano2015 | None = None
 """
 Singleton instance of the *Asano (2015)* *Observer Function Database* dataset
 loader.

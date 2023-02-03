@@ -26,7 +26,6 @@ from colour.hints import (
     Any,
     Dict,
     Literal,
-    Optional,
     Type,
     Union,
     cast,
@@ -113,38 +112,37 @@ __init__`
 
     def __init__(
         self,
-        schema_version: Optional[str] = None,
-        catalog_number: Optional[str] = None,
-        description: Optional[str] = None,
-        document_creator: Optional[str] = None,
-        unique_identifier: Optional[str] = None,
-        measurement_equipment: Optional[str] = None,
-        laboratory: Optional[str] = None,
-        document_creation_date: Optional[str] = None,
-        comments: Optional[str] = None,
-        license: Optional[str] = None,
+        schema_version: str | None = None,
+        catalog_number: str | None = None,
+        description: str | None = None,
+        document_creator: str | None = None,
+        unique_identifier: str | None = None,
+        measurement_equipment: str | None = None,
+        laboratory: str | None = None,
+        document_creation_date: str | None = None,
+        comments: str | None = None,
+        license: str | None = None,  # noqa: A002
         **kwargs: Any,
     ) -> None:
-
-        self._schema_version: Optional[str] = None
+        self._schema_version: str | None = None
         self.schema_version = schema_version
-        self._catalog_number: Optional[str] = None
+        self._catalog_number: str | None = None
         self.catalog_number = catalog_number
-        self._description: Optional[str] = None
+        self._description: str | None = None
         self.description = description
-        self._document_creator: Optional[str] = None
+        self._document_creator: str | None = None
         self.document_creator = document_creator
-        self._unique_identifier: Optional[str] = None
+        self._unique_identifier: str | None = None
         self.unique_identifier = unique_identifier
-        self._measurement_equipment: Optional[str] = None
+        self._measurement_equipment: str | None = None
         self.measurement_equipment = measurement_equipment
-        self._laboratory: Optional[str] = None
+        self._laboratory: str | None = None
         self.laboratory = laboratory
-        self._document_creation_date: Optional[str] = None
+        self._document_creation_date: str | None = None
         self.document_creation_date = document_creation_date
-        self._comments: Optional[str] = None
+        self._comments: str | None = None
         self.comments = comments
-        self._license: Optional[str] = None
+        self._license: str | None = None
         self.license = license
 
         # TODO: Re-instate "manufacturer", "model", "illuminant" and "type"
@@ -154,7 +152,7 @@ __init__`
         self._kwargs: Any = kwargs
 
     @property
-    def schema_version(self) -> Optional[str]:
+    def schema_version(self) -> str | None:
         """
         Getter and setter property for the schema version.
 
@@ -172,7 +170,7 @@ __init__`
         return self._schema_version
 
     @schema_version.setter
-    def schema_version(self, value: Optional[str]):
+    def schema_version(self, value: str | None):
         """Setter for the **self.schema_version** property."""
 
         if value is not None:
@@ -184,7 +182,7 @@ __init__`
         self._schema_version = value
 
     @property
-    def catalog_number(self) -> Optional[str]:
+    def catalog_number(self) -> str | None:
         """
         Getter and setter property for the catalog number.
 
@@ -202,7 +200,7 @@ __init__`
         return self._catalog_number
 
     @catalog_number.setter
-    def catalog_number(self, value: Optional[str]):
+    def catalog_number(self, value: str | None):
         """Setter for the **self.catalog_number** property."""
 
         if value is not None:
@@ -214,7 +212,7 @@ __init__`
         self._catalog_number = value
 
     @property
-    def description(self) -> Optional[str]:
+    def description(self) -> str | None:
         """
         Getter and setter property for the description.
 
@@ -232,7 +230,7 @@ __init__`
         return self._description
 
     @description.setter
-    def description(self, value: Optional[str]):
+    def description(self, value: str | None):
         """Setter for the **self.description** property."""
 
         if value is not None:
@@ -244,7 +242,7 @@ __init__`
         self._description = value
 
     @property
-    def document_creator(self) -> Optional[str]:
+    def document_creator(self) -> str | None:
         """
         Getter and setter property for the document creator.
 
@@ -262,7 +260,7 @@ __init__`
         return self._document_creator
 
     @document_creator.setter
-    def document_creator(self, value: Optional[str]):
+    def document_creator(self, value: str | None):
         """Setter for the **self.document_creator** property."""
 
         if value is not None:
@@ -274,7 +272,7 @@ __init__`
         self._document_creator = value
 
     @property
-    def unique_identifier(self) -> Optional[str]:
+    def unique_identifier(self) -> str | None:
         """
         Getter and setter property for the unique identifier.
 
@@ -292,7 +290,7 @@ __init__`
         return self._unique_identifier
 
     @unique_identifier.setter
-    def unique_identifier(self, value: Optional[str]):
+    def unique_identifier(self, value: str | None):
         """Setter for the **self.unique_identifier** property."""
 
         if value is not None:
@@ -304,7 +302,7 @@ __init__`
         self._unique_identifier = value
 
     @property
-    def measurement_equipment(self) -> Optional[str]:
+    def measurement_equipment(self) -> str | None:
         """
         Getter and setter property for the measurement equipment.
 
@@ -322,7 +320,7 @@ __init__`
         return self._measurement_equipment
 
     @measurement_equipment.setter
-    def measurement_equipment(self, value: Optional[str]):
+    def measurement_equipment(self, value: str | None):
         """Setter for the **self.measurement_equipment** property."""
 
         if value is not None:
@@ -335,7 +333,7 @@ __init__`
         self._measurement_equipment = value
 
     @property
-    def laboratory(self) -> Optional[str]:
+    def laboratory(self) -> str | None:
         """
         Getter and setter property for the laboratory.
 
@@ -353,7 +351,7 @@ __init__`
         return self._laboratory
 
     @laboratory.setter
-    def laboratory(self, value: Optional[str]):
+    def laboratory(self, value: str | None):
         """Setter for the **self.measurement_equipment** property."""
 
         if value is not None:
@@ -365,7 +363,7 @@ __init__`
         self._laboratory = value
 
     @property
-    def document_creation_date(self) -> Optional[str]:
+    def document_creation_date(self) -> str | None:
         """
         Getter and setter property for the document creation date.
 
@@ -383,7 +381,7 @@ __init__`
         return self._document_creation_date
 
     @document_creation_date.setter
-    def document_creation_date(self, value: Optional[str]):
+    def document_creation_date(self, value: str | None):
         """Setter for the **self.document_creation_date** property."""
 
         if value is not None:
@@ -396,7 +394,7 @@ __init__`
         self._document_creation_date = value
 
     @property
-    def comments(self) -> Optional[str]:
+    def comments(self) -> str | None:
         """
         Getter and setter property for the comments.
 
@@ -414,7 +412,7 @@ __init__`
         return self._comments
 
     @comments.setter
-    def comments(self, value: Optional[str]):
+    def comments(self, value: str | None):
         """Setter for the **self.comments** property."""
 
         if value is not None:
@@ -426,7 +424,7 @@ __init__`
         self._comments = value
 
     @property
-    def license(self) -> Optional[str]:
+    def license(self) -> str | None:  # noqa: A003
         """
         Getter and setter property for the license.
 
@@ -444,7 +442,7 @@ __init__`
         return self._license
 
     @license.setter
-    def license(self, value: Optional[str]):
+    def license(self, value: str | None):  # noqa: A003
         """Setter for the **self.license** property."""
 
         if value is not None:
@@ -530,97 +528,92 @@ __init__`
 
     def __init__(
         self,
-        path: Optional[str] = None,
-        header: Optional[SpectralDataHeader_AMPAS] = None,
-        units: Optional[
-            Literal[
-                "absorptance",
-                "exitance",
-                "flux",
-                "intensity",
-                "irradiance",
-                "radiance",
-                "reflectance",
-                "relative",
-                "transmittance",
-                "R-Factor",
-                "T-Factor",
-                "other",
-            ]
-        ] = None,
-        reflection_geometry: Optional[
-            Literal[
-                "di:8",
-                "de:8",
-                "8:di",
-                "8:de",
-                "d:d",
-                "d:0",
-                "45a:0",
-                "45c:0",
-                "0:45a",
-                "45x:0",
-                "0:45x",
-                "other",
-            ]
-        ] = None,
-        transmission_geometry: Optional[
-            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        ] = None,
-        bandwidth_FWHM: Optional[float] = None,
-        bandwidth_corrected: Optional[bool] = None,
+        path: str | None = None,
+        header: SpectralDataHeader_AMPAS | None = None,
+        units: Literal[
+            "absorptance",
+            "exitance",
+            "flux",
+            "intensity",
+            "irradiance",
+            "radiance",
+            "reflectance",
+            "relative",
+            "transmittance",
+            "R-Factor",
+            "T-Factor",
+            "other",
+        ]
+        | None = None,
+        reflection_geometry: Literal[
+            "di:8",
+            "de:8",
+            "8:di",
+            "8:de",
+            "d:d",
+            "d:0",
+            "45a:0",
+            "45c:0",
+            "0:45a",
+            "45x:0",
+            "0:45x",
+            "other",
+        ]
+        | None = None,
+        transmission_geometry: Literal[
+            "0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"
+        ]
+        | None = None,
+        bandwidth_FWHM: float | None = None,
+        bandwidth_corrected: bool | None = None,
     ) -> None:
         super().__init__()
 
-        self._path: Optional[str] = None
+        self._path: str | None = None
         self.path = path
         self._header: SpectralDataHeader_AMPAS = SpectralDataHeader_AMPAS()
         self.header = optional(header, self._header)
-        self._units: Optional[
-            Literal[
-                "absorptance",
-                "exitance",
-                "flux",
-                "intensity",
-                "irradiance",
-                "radiance",
-                "reflectance",
-                "relative",
-                "transmittance",
-                "R-Factor",
-                "T-Factor",
-                "other",
-            ]
-        ] = None
+        self._units: Literal[
+            "absorptance",
+            "exitance",
+            "flux",
+            "intensity",
+            "irradiance",
+            "radiance",
+            "reflectance",
+            "relative",
+            "transmittance",
+            "R-Factor",
+            "T-Factor",
+            "other",
+        ] | None = None
         self.units = units
-        self._reflection_geometry: Optional[
-            Literal[
-                "di:8",
-                "de:8",
-                "8:di",
-                "8:de",
-                "d:d",
-                "d:0",
-                "45a:0",
-                "45c:0",
-                "0:45a",
-                "45x:0",
-                "0:45x",
-                "other",
-            ]
-        ] = None
+        self._reflection_geometry: Literal[
+            "di:8",
+            "de:8",
+            "8:di",
+            "8:de",
+            "d:d",
+            "d:0",
+            "45a:0",
+            "45c:0",
+            "0:45a",
+            "45x:0",
+            "0:45x",
+            "other",
+        ] | None = None
         self.reflection_geometry = reflection_geometry
-        self._transmission_geometry: Optional[
-            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        ] = None
+        self._transmission_geometry: Literal[
+            "0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"
+        ] | None = None
         self.transmission_geometry = transmission_geometry
-        self._bandwidth_FWHM: Optional[float] = None
+        self._bandwidth_FWHM: float | None = None
         self.bandwidth_FWHM = bandwidth_FWHM
-        self._bandwidth_corrected: Optional[bool] = None
+        self._bandwidth_corrected: bool | None = None
         self.bandwidth_corrected = bandwidth_corrected
 
     @property
-    def path(self) -> Optional[str]:
+    def path(self) -> str | None:
         """
         Getter and setter property for the path.
 
@@ -638,7 +631,7 @@ __init__`
         return self._path
 
     @path.setter
-    def path(self, value: Optional[str]):
+    def path(self, value: str | None):
         """Setter for the **self.path** property."""
 
         if value is not None:
@@ -679,7 +672,7 @@ __init__`
     @property
     def units(
         self,
-    ) -> Optional[
+    ) -> (
         Literal[
             "absorptance",
             "exitance",
@@ -694,7 +687,8 @@ __init__`
             "T-Factor",
             "other",
         ]
-    ]:
+        | None
+    ):
         """
         Getter and setter property for the units.
 
@@ -714,22 +708,21 @@ __init__`
     @units.setter
     def units(
         self,
-        value: Optional[
-            Literal[
-                "absorptance",
-                "exitance",
-                "flux",
-                "intensity",
-                "irradiance",
-                "radiance",
-                "reflectance",
-                "relative",
-                "transmittance",
-                "R-Factor",
-                "T-Factor",
-                "other",
-            ]
-        ],
+        value: Literal[
+            "absorptance",
+            "exitance",
+            "flux",
+            "intensity",
+            "irradiance",
+            "radiance",
+            "reflectance",
+            "relative",
+            "transmittance",
+            "R-Factor",
+            "T-Factor",
+            "other",
+        ]
+        | None,
     ):
         """Setter for the **self.units** property."""
 
@@ -744,7 +737,7 @@ __init__`
     @property
     def reflection_geometry(
         self,
-    ) -> Optional[
+    ) -> (
         Literal[
             "di:8",
             "de:8",
@@ -759,7 +752,8 @@ __init__`
             "0:45x",
             "other",
         ]
-    ]:
+        | None
+    ):
         """
         Getter and setter property for the reflection geometry.
 
@@ -779,22 +773,21 @@ __init__`
     @reflection_geometry.setter
     def reflection_geometry(
         self,
-        value: Optional[
-            Literal[
-                "di:8",
-                "de:8",
-                "8:di",
-                "8:de",
-                "d:d",
-                "d:0",
-                "45a:0",
-                "45c:0",
-                "0:45a",
-                "45x:0",
-                "0:45x",
-                "other",
-            ]
-        ],
+        value: Literal[
+            "di:8",
+            "de:8",
+            "8:di",
+            "8:de",
+            "d:d",
+            "d:0",
+            "45a:0",
+            "45c:0",
+            "0:45a",
+            "45x:0",
+            "0:45x",
+            "other",
+        ]
+        | None,
     ):
         """Setter for the **self.reflection_geometry** property."""
 
@@ -809,9 +802,7 @@ __init__`
     @property
     def transmission_geometry(
         self,
-    ) -> Optional[
-        Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-    ]:
+    ) -> Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None:
         """
         Getter and setter property for the transmission geometry.
 
@@ -831,21 +822,21 @@ __init__`
     @transmission_geometry.setter
     def transmission_geometry(
         self,
-        value: Optional[
-            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        ],
+        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
+        | None,
     ):
         """Setter for the **self.transmission_geometry** property."""
 
         if value is not None:
-            assert is_string(value), (
+            attest(
+                is_string(value),
                 f'"transmission_geometry" property: "{value}" type is not "str"!',
             )
 
         self._transmission_geometry = value
 
     @property
-    def bandwidth_FWHM(self) -> Optional[float]:
+    def bandwidth_FWHM(self) -> float | None:
         """
         Getter and setter property for the full-width half-maximum bandwidth.
 
@@ -863,7 +854,7 @@ __init__`
         return self._bandwidth_FWHM
 
     @bandwidth_FWHM.setter
-    def bandwidth_FWHM(self, value: Optional[float]):
+    def bandwidth_FWHM(self, value: float | None):
         """Setter for the **self.bandwidth_FWHM** property."""
 
         if value is not None:
@@ -875,7 +866,7 @@ __init__`
         self._bandwidth_FWHM = value
 
     @property
-    def bandwidth_corrected(self) -> Optional[bool]:
+    def bandwidth_corrected(self) -> bool | None:
         """
         Getter and setter property for whether bandwidth correction has been
         applied to the measured data.
@@ -894,7 +885,7 @@ __init__`
         return self._bandwidth_corrected
 
     @bandwidth_corrected.setter
-    def bandwidth_corrected(self, value: Optional[bool]):
+    def bandwidth_corrected(self, value: bool | None):
         """Setter for the **self.bandwidth_corrected** property."""
 
         if value is not None:
@@ -1038,97 +1029,92 @@ __init__`
 
     def __init__(
         self,
-        path: Optional[str] = None,
-        header: Optional[SpectralDataHeader_AMPAS] = None,
-        units: Optional[
-            Literal[
-                "absorptance",
-                "exitance",
-                "flux",
-                "intensity",
-                "irradiance",
-                "radiance",
-                "reflectance",
-                "relative",
-                "transmittance",
-                "R-Factor",
-                "T-Factor",
-                "other",
-            ]
-        ] = None,
-        reflection_geometry: Optional[
-            Literal[
-                "di:8",
-                "de:8",
-                "8:di",
-                "8:de",
-                "d:d",
-                "d:0",
-                "45a:0",
-                "45c:0",
-                "0:45a",
-                "45x:0",
-                "0:45x",
-                "other",
-            ]
-        ] = None,
-        transmission_geometry: Optional[
-            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        ] = None,
-        bandwidth_FWHM: Optional[float] = None,
-        bandwidth_corrected: Optional[bool] = None,
+        path: str | None = None,
+        header: SpectralDataHeader_AMPAS | None = None,
+        units: Literal[
+            "absorptance",
+            "exitance",
+            "flux",
+            "intensity",
+            "irradiance",
+            "radiance",
+            "reflectance",
+            "relative",
+            "transmittance",
+            "R-Factor",
+            "T-Factor",
+            "other",
+        ]
+        | None = None,
+        reflection_geometry: Literal[
+            "di:8",
+            "de:8",
+            "8:di",
+            "8:de",
+            "d:d",
+            "d:0",
+            "45a:0",
+            "45c:0",
+            "0:45a",
+            "45x:0",
+            "0:45x",
+            "other",
+        ]
+        | None = None,
+        transmission_geometry: Literal[
+            "0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"
+        ]
+        | None = None,
+        bandwidth_FWHM: float | None = None,
+        bandwidth_corrected: bool | None = None,
     ) -> None:
         super().__init__()
 
-        self._path: Optional[str] = None
+        self._path: str | None = None
         self.path = path
         self._header: SpectralDataHeader_AMPAS = SpectralDataHeader_AMPAS()
         self.header = optional(header, self._header)
-        self._units: Optional[
-            Literal[
-                "absorptance",
-                "exitance",
-                "flux",
-                "intensity",
-                "irradiance",
-                "radiance",
-                "reflectance",
-                "relative",
-                "transmittance",
-                "R-Factor",
-                "T-Factor",
-                "other",
-            ]
-        ] = None
+        self._units: Literal[
+            "absorptance",
+            "exitance",
+            "flux",
+            "intensity",
+            "irradiance",
+            "radiance",
+            "reflectance",
+            "relative",
+            "transmittance",
+            "R-Factor",
+            "T-Factor",
+            "other",
+        ] | None = None
         self.units = units
-        self._reflection_geometry: Optional[
-            Literal[
-                "di:8",
-                "de:8",
-                "8:di",
-                "8:de",
-                "d:d",
-                "d:0",
-                "45a:0",
-                "45c:0",
-                "0:45a",
-                "45x:0",
-                "0:45x",
-                "other",
-            ]
-        ] = None
+        self._reflection_geometry: Literal[
+            "di:8",
+            "de:8",
+            "8:di",
+            "8:de",
+            "d:d",
+            "d:0",
+            "45a:0",
+            "45c:0",
+            "0:45a",
+            "45x:0",
+            "0:45x",
+            "other",
+        ] | None = None
         self.reflection_geometry = reflection_geometry
-        self._transmission_geometry: Optional[
-            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        ] = None
+        self._transmission_geometry: Literal[
+            "0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"
+        ] | None = None
         self.transmission_geometry = transmission_geometry
-        self._bandwidth_FWHM: Optional[float] = None
+        self._bandwidth_FWHM: float | None = None
         self.bandwidth_FWHM = bandwidth_FWHM
-        self._bandwidth_corrected: Optional[bool] = None
+        self._bandwidth_corrected: bool | None = None
         self.bandwidth_corrected = bandwidth_corrected
 
     @property
-    def path(self) -> Optional[str]:
+    def path(self) -> str | None:
         """
         Getter and setter property for the path.
 
@@ -1146,7 +1132,7 @@ __init__`
         return self._path
 
     @path.setter
-    def path(self, value: Optional[str]):
+    def path(self, value: str | None):
         """Setter for the **self.path** property."""
 
         if value is not None:
@@ -1187,7 +1173,7 @@ __init__`
     @property
     def units(
         self,
-    ) -> Optional[
+    ) -> (
         Literal[
             "absorptance",
             "exitance",
@@ -1202,7 +1188,8 @@ __init__`
             "T-Factor",
             "other",
         ]
-    ]:
+        | None
+    ):
         """
         Getter and setter property for the units.
 
@@ -1222,22 +1209,21 @@ __init__`
     @units.setter
     def units(
         self,
-        value: Optional[
-            Literal[
-                "absorptance",
-                "exitance",
-                "flux",
-                "intensity",
-                "irradiance",
-                "radiance",
-                "reflectance",
-                "relative",
-                "transmittance",
-                "R-Factor",
-                "T-Factor",
-                "other",
-            ]
-        ],
+        value: Literal[
+            "absorptance",
+            "exitance",
+            "flux",
+            "intensity",
+            "irradiance",
+            "radiance",
+            "reflectance",
+            "relative",
+            "transmittance",
+            "R-Factor",
+            "T-Factor",
+            "other",
+        ]
+        | None,
     ):
         """Setter for the **self.units** property."""
 
@@ -1252,7 +1238,7 @@ __init__`
     @property
     def reflection_geometry(
         self,
-    ) -> Optional[
+    ) -> (
         Literal[
             "di:8",
             "de:8",
@@ -1267,7 +1253,8 @@ __init__`
             "0:45x",
             "other",
         ]
-    ]:
+        | None
+    ):
         """
         Getter and setter property for the reflection geometry.
 
@@ -1287,22 +1274,21 @@ __init__`
     @reflection_geometry.setter
     def reflection_geometry(
         self,
-        value: Optional[
-            Literal[
-                "di:8",
-                "de:8",
-                "8:di",
-                "8:de",
-                "d:d",
-                "d:0",
-                "45a:0",
-                "45c:0",
-                "0:45a",
-                "45x:0",
-                "0:45x",
-                "other",
-            ]
-        ],
+        value: Literal[
+            "di:8",
+            "de:8",
+            "8:di",
+            "8:de",
+            "d:d",
+            "d:0",
+            "45a:0",
+            "45c:0",
+            "0:45a",
+            "45x:0",
+            "0:45x",
+            "other",
+        ]
+        | None,
     ):
         """Setter for the **self.reflection_geometry** property."""
 
@@ -1317,9 +1303,7 @@ __init__`
     @property
     def transmission_geometry(
         self,
-    ) -> Optional[
-        Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-    ]:
+    ) -> Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None:
         """
         Getter and setter property for the transmission geometry.
 
@@ -1339,21 +1323,21 @@ __init__`
     @transmission_geometry.setter
     def transmission_geometry(
         self,
-        value: Optional[
-            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        ],
+        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
+        | None,
     ):
         """Setter for the **self.transmission_geometry** property."""
 
         if value is not None:
-            assert is_string(value), (
+            attest(
+                is_string(value),
                 f'"transmission_geometry" property: "{value}" type is not "str"!',
             )
 
         self._transmission_geometry = value
 
     @property
-    def bandwidth_FWHM(self) -> Optional[float]:
+    def bandwidth_FWHM(self) -> float | None:
         """
         Getter and setter property for the full-width half-maximum bandwidth.
 
@@ -1371,7 +1355,7 @@ __init__`
         return self._bandwidth_FWHM
 
     @bandwidth_FWHM.setter
-    def bandwidth_FWHM(self, value: Optional[float]):
+    def bandwidth_FWHM(self, value: float | None):
         """Setter for the **self.bandwidth_FWHM** property."""
 
         if value is not None:
@@ -1383,7 +1367,7 @@ __init__`
         self._bandwidth_FWHM = value
 
     @property
-    def bandwidth_corrected(self) -> Optional[bool]:
+    def bandwidth_corrected(self) -> bool | None:
         """
         Getter and setter property for whether bandwidth correction has been
         applied to the measured data.
@@ -1402,7 +1386,7 @@ __init__`
         return self._bandwidth_corrected
 
     @bandwidth_corrected.setter
-    def bandwidth_corrected(self, value: Optional[bool]):
+    def bandwidth_corrected(self, value: bool | None):
         """Setter for the **self.bandwidth_corrected** property."""
 
         if value is not None:
@@ -1507,9 +1491,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         str,
         Dict[
             str,
-            Union[
-                SpectralDistribution_AMPAS, MultiSpectralDistributions_AMPAS
-            ],
+            SpectralDistribution_AMPAS | MultiSpectralDistributions_AMPAS,
         ],
     ]:
         """
@@ -1534,10 +1516,10 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
         for directory in ("camera", "cmf", "illuminant", "training"):
-            self._content[directory] = dict()
+            self._content[directory] = {}
             factory = cast(
                 Union[
                     Type[SpectralDistribution_AMPAS],
@@ -1557,7 +1539,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_DYER2017: Optional[DatasetLoader_Dyer2017] = None
+_DATASET_LOADER_DYER2017: DatasetLoader_Dyer2017 | None = None
 """
 Singleton instance of the *Dyer et al. (2017)* *RAW to ACES Utility Data*
 dataset loader.

@@ -21,7 +21,7 @@ import numpy as np
 import os
 
 from colour import LinearInterpolator, SpectralShape, SpectralDistribution
-from colour.hints import Dict, Optional
+from colour.hints import Dict
 from colour.utilities import as_int
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -87,7 +87,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
         wavelengths = SpectralShape(350, 700, 2).range()
 
@@ -108,7 +108,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_BRENDEL2020: Optional[DatasetLoader_Brendel2020] = None
+_DATASET_LOADER_BRENDEL2020: DatasetLoader_Brendel2020 | None = None
 """
 Singleton instance of the *Brendel (2020)* *Measured Commercial LED Spectra*
 dataset loader.

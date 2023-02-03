@@ -21,7 +21,7 @@ from __future__ import annotations
 import glob
 import os
 
-from colour.hints import Dict, Optional
+from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.loaders.dyer2017 import MultiSpectralDistributions_AMPAS
@@ -88,7 +88,7 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
         glob_pattern = os.path.join(
             self.record.repository, "dataset", "*.json"
@@ -100,7 +100,7 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_WINQUIST2022: Optional[DatasetLoader_Winquist2022] = None
+_DATASET_LOADER_WINQUIST2022: DatasetLoader_Winquist2022 | None = None
 """
 Singleton instance of the *Winquist et al. (2022)*
 *Physlight - Camera Spectral Sensitivity Curves* dataset loader.

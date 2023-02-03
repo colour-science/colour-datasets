@@ -23,7 +23,7 @@ import re
 from collections import defaultdict
 
 from colour.algebra import LinearInterpolator
-from colour.hints import Dict, Optional
+from colour.hints import Dict
 from colour.io import read_sds_from_csv_file
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -109,7 +109,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
             category = "Normalised" if "normalized" in path else "Raw"
             path = os.path.join(database_root, path)
 
-            sds = dict()
+            sds = {}
             for name, sd in read_sds_from_csv_file(
                 path, transpose=True, delimiter=";"
             ).items():
@@ -124,7 +124,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
         return dict(self._content)
 
 
-_DATASET_LOADER_KARGE2015: Optional[DatasetLoader_Karge2015] = None
+_DATASET_LOADER_KARGE2015: DatasetLoader_Karge2015 | None = None
 """
 Singleton instance of the *Karge et al. (2015)*
 *Spectral Database of Commonly Used Cine Lighting* dataset loader.

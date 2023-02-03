@@ -23,7 +23,7 @@ import os
 from collections import namedtuple
 
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
-from colour.hints import Dict, Optional
+from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -120,29 +120,18 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
-        filenames = dict(
-            [
-                ("Table I.csv", "Reference colors."),
-                (
-                    "Table II.csv",
-                    "Intra- and interobserver variances for each "
-                    "reference hue expressed in circumferential "
-                    "hue-angle difference.",
-                ),
-                (
-                    "Table III.csv",
-                    "Weight-averaged constant hue loci for the CL "
-                    "experiment.",
-                ),
-                (
-                    "Table IV.csv",
-                    "Weight-averaged constant hue loci for the VL "
-                    "experiment.",
-                ),
-            ]
-        )
+        filenames = {
+            "Table I.csv": "Reference colors.",
+            "Table II.csv": "Intra- and interobserver variances for each "
+            "reference hue expressed in circumferential "
+            "hue-angle difference.",
+            "Table III.csv": "Weight-averaged constant hue loci for the CL "
+            "experiment.",
+            "Table IV.csv": "Weight-averaged constant hue loci for the VL "
+            "experiment.",
+        }
 
         for filename in filenames:
             datafile_path = os.path.join(
@@ -178,7 +167,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
         for table, experiment in [("Table III", "CL"), ("Table IV", "VL")]:
             key = f"Constant Hue Loci Data - {experiment}"
-            self._content[key] = dict()
+            self._content[key] = {}
             for hue in hues:
                 for sample_r in self._content["Table I"]:
                     sample_r = sample_r.tolist()
@@ -193,7 +182,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
                 }
                 for sample_t in self._content[table]:
                     sample_t = sample_t.tolist()
-                    if not sample_t[0] == hue:
+                    if sample_t[0] != hue:
                         continue
 
                     XYZ_ct.append(sample_t[2:])
@@ -209,7 +198,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_HUNG1995: Optional[DatasetLoader_Hung1995] = None
+_DATASET_LOADER_HUNG1995: DatasetLoader_Hung1995 | None = None
 """
 Singleton instance of the *Hung and Berns (1995)*
 *Constant Hue Loci Data* dataset loader.

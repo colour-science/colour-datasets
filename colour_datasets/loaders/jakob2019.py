@@ -10,7 +10,7 @@ Defines the objects implementing support for *Jakob and Hanika (2019)*
 
 References
 ----------
--   :cite:`Jakob2019` : Jakob, W., & Hanika, J. (2019). A Low‐Dimensional
+-   :cite:`Jakob2019` : Jakob, W., & Hanika, J. (2019). A Low-Dimensional
     Function Space for Efficient Spectral Upsampling. Computer Graphics Forum,
     38(2), 147-155. doi:10.1111/cgf.13626
 """
@@ -20,7 +20,7 @@ from __future__ import annotations
 import glob
 import os
 
-from colour.hints import Dict, Optional
+from colour.hints import Dict
 from colour.recovery import LUT3D_Jakob2019
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -88,7 +88,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
         tables_path = os.path.join(
             self.record.repository,
@@ -117,7 +117,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_JAKOB2019: Optional[DatasetLoader_Jakob2019] = None
+_DATASET_LOADER_JAKOB2019: DatasetLoader_Jakob2019 | None = None
 """
 Singleton instance of the *Jakob and Hanika (2019)*
 *Spectral Upsampling Coefficient Tables* dataset loader.

@@ -28,7 +28,7 @@ under the
 community.
 
 It is open source and freely available under the
-`New BSD License <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
+`BSD-3-Clause <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
 
 .. contents:: **Table of Contents**
     :backlinks: none
@@ -220,5 +220,5 @@ About
 
 | **Colour - Datasets** by Colour Developers
 | Copyright 2019 Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
-| This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
+| This software is released under terms of BSD-3-Clause: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-datasets <https://github.com/colour-science/colour-datasets>`__

@@ -35,7 +35,7 @@ from colour_datasets.utilities import cell_range_values, index_to_column
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"

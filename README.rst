@@ -24,7 +24,7 @@ Colour science datasets for use with
 `Colour <https://github.com/colour-science/colour>`__ or any Python package
 manipulating colours. The datasets are hosted in `Zenodo <https://zenodo.org>`__
 under the
-`Colour Science - Datasets <https://zenodo.org/communities/colour-science-datasets/>`__
+`Colour Science - Datasets <https://zenodo.org/communities/colour-science-datasets>`__
 community.
 
 It is open source and freely available under the
@@ -50,7 +50,7 @@ when trying to access or use colour science datasets:
 
 **Colour - Datasets** offers all the above: it allows users to ingest and load
 colour science datasets with a single function call. The datasets information
-is hosted on `Zenodo <https://zenodo.org/communities/colour-science-datasets/>`__
+is hosted on `Zenodo <https://zenodo.org/communities/colour-science-datasets>`__
 where the record for a dataset typically contain:
 
 - An *urls.txt* file describing the urls to source the dataset files from.
@@ -156,14 +156,14 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
-- `python >= 3.8, < 4 <https://www.python.org/download/releases/>`__
-- `cachetools <https://pypi.org/project/cachetools/>`__
-- `colour-science >= 4 <https://pypi.org/project/colour-science/>`__
-- `imageio >= 2, < 3 <https://imageio.github.io/>`__
-- `numpy >= 1.19, < 2 <https://pypi.org/project/numpy/>`__
-- `scipy >= 1.5, < 2 <https://pypi.org/project/scipy/>`__
-- `tqdm <https://pypi.org/project/tqdm/>`__
-- `xlrd <https://pypi.org/project/xlrd/>`__
+- `python >= 3.8, < 4 <https://www.python.org/download/releases>`__
+- `cachetools <https://pypi.org/project/cachetools>`__
+- `colour-science >= 4 <https://pypi.org/project/colour-science>`__
+- `imageio >= 2, < 3 <https://imageio.github.io>`__
+- `numpy >= 1.19, < 2 <https://pypi.org/project/numpy>`__
+- `scipy >= 1.5, < 2 <https://pypi.org/project/scipy>`__
+- `tqdm <https://pypi.org/project/tqdm>`__
+- `xlrd <https://pypi.org/project/xlrd>`__
 
 Pypi
 ~~~~
@@ -182,7 +182,7 @@ Contributing
 ^^^^^^^^^^^^
 
 If you would like to contribute to `Colour - Datasets <https://github.com/colour-science/colour-datasets>`__,
-please refer to the following `Contributing <https://www.colour-science.org/contributing/>`__
+please refer to the following `Contributing <https://www.colour-science.org/contributing>`__
 guide for `Colour <https://github.com/colour-science/colour>`__.
 
 Bibliography
@@ -202,7 +202,7 @@ Code of Conduct
 ---------------
 
 The *Code of Conduct*, adapted from the `Contributor Covenant 1.4 <https://www.contributor-covenant.org/version/1/4/code-of-conduct.html>`__,
-is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct/>`__ page.
+is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct>`__ page.
 
 Contact & Social
 ----------------

@@ -37,6 +37,11 @@ __all__ = [
     "cell_range_values",
 ]
 
+# https://stackoverflow.com/questions/64264563/\
+# attributeerror-elementtree-object-has-no-attribute-getiterator-when-trying
+xlrd.xlsx.ensure_elementtree_imported(False, None)
+xlrd.xlsx.Element_has_iter = True
+
 
 def _column_number_to_letters(number: int) -> str:
     """
@@ -62,8 +67,7 @@ def _column_number_to_letters(number: int) -> str:
 
     Examples
     --------
-    # Doctests skip for Python 2.x compatibility.
-    >>> _column_number_to_letters(128)  # doctest: +SKIP
+    >>> _column_number_to_letters(128)
     'DX'
     """
 

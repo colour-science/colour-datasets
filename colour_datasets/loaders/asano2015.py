@@ -253,11 +253,9 @@ parse_workbook_Asano2015`
                 (LMS_ConeFundamentals, "LMS"),
             ]
         ):
-
             for j, degree in enumerate(
                 [(2, "2$^\\circ$"), (10, "10$^\\circ$")]
             ):
-
                 sheet = book.sheet_by_index(j + (i * 2))
 
                 x = np.transpose(

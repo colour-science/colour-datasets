@@ -146,12 +146,13 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
             i, j = (6, 4) if len(samples_data) == 24 else (14, 10)
             samples = np.transpose(
-                np.array(samples_data).reshape([i, j, 2]), [1, 0, 2]
+                np.array(samples_data, dtype=object).reshape([i, j, 2]),
+                [1, 0, 2],
             )
             keys, values = zip(*samples.reshape([-1, 2]))
             values = XYZ_to_xyY(Lab_to_XYZ(values, illuminant))
             self._content[key] = ColourChecker(
-                key, dict(zip(keys, values)), illuminant
+                key, dict(zip(keys, values)), illuminant, j, i
             )
 
         return self._content

@@ -152,7 +152,7 @@ def build_Jiang2013(load: bool = True) -> DatasetLoader_Jiang2013:
     :cite:`Jiang2013`
     """
 
-    global _DATASET_LOADER_JIANG2013
+    global _DATASET_LOADER_JIANG2013  # noqa: PLW0603
 
     if _DATASET_LOADER_JIANG2013 is None:
         _DATASET_LOADER_JIANG2013 = DatasetLoader_Jiang2013()

@@ -1556,7 +1556,7 @@ def build_Dyer2017(load: bool = True) -> DatasetLoader_Dyer2017:
     :cite:`Dyer2017`
     """
 
-    global _DATASET_LOADER_DYER2017
+    global _DATASET_LOADER_DYER2017  # noqa: PLW0603
 
     if _DATASET_LOADER_DYER2017 is None:
         _DATASET_LOADER_DYER2017 = DatasetLoader_Dyer2017()

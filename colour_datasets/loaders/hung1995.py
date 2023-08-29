@@ -170,7 +170,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
             self._content[key] = {}
             for hue in hues:
                 for sample_r in self._content["Table I"]:
-                    sample_r = sample_r.tolist()
+                    sample_r = sample_r.tolist()  # noqa: PLW2901
                     if sample_r[0] == hue:
                         XYZ_cr = xyY_to_XYZ(sample_r[1:4]) / 100
                         break
@@ -181,7 +181,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
                     "C*uv": [],
                 }
                 for sample_t in self._content[table]:
-                    sample_t = sample_t.tolist()
+                    sample_t = sample_t.tolist()  # noqa: PLW2901
                     if sample_t[0] != hue:
                         continue
 
@@ -226,7 +226,7 @@ def build_Hung1995(load: bool = True) -> DatasetLoader_Hung1995:
     :cite:`Hung1995`
     """
 
-    global _DATASET_LOADER_HUNG1995
+    global _DATASET_LOADER_HUNG1995  # noqa: PLW0603
 
     if _DATASET_LOADER_HUNG1995 is None:
         _DATASET_LOADER_HUNG1995 = DatasetLoader_Hung1995()

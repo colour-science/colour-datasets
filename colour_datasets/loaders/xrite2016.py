@@ -188,7 +188,7 @@ def build_XRite2016(load: bool = True) -> DatasetLoader_XRite2016:
     :cite:`X-Rite2016`
     """
 
-    global _DATASET_LOADER_XRITE2016
+    global _DATASET_LOADER_XRITE2016  # noqa: PLW0603
 
     if _DATASET_LOADER_XRITE2016 is None:
         _DATASET_LOADER_XRITE2016 = DatasetLoader_XRite2016()

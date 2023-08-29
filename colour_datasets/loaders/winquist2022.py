@@ -128,7 +128,7 @@ def build_Winquist2022(load: bool = True) -> DatasetLoader_Winquist2022:
     :cite:`Winquist2022`
     """
 
-    global _DATASET_LOADER_WINQUIST2022
+    global _DATASET_LOADER_WINQUIST2022  # noqa: PLW0603
 
     if _DATASET_LOADER_WINQUIST2022 is None:
         _DATASET_LOADER_WINQUIST2022 = DatasetLoader_Winquist2022()

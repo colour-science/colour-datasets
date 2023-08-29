@@ -114,7 +114,7 @@ from . import kuopio  # noqa: E402
 _module = sys.modules["colour_datasets.loaders"]
 
 for _export in kuopio.__all__:
-    if _export.startswith("DatasetLoader_") or _export.startswith("build_"):
+    if _export.startswith(("DatasetLoader_", "build_")):
         setattr(_module, _export, getattr(kuopio, _export))
 
         __all__ += [_export]  # noqa: PLE0604
@@ -158,7 +158,7 @@ def load(dataset: int | str) -> Any:
     28
     """
 
-    global _HAS_TITLE_KEYS
+    global _HAS_TITLE_KEYS  # noqa: PLW0603
 
     if not _HAS_TITLE_KEYS:
         for key in list(DATASET_LOADERS.keys())[:]:

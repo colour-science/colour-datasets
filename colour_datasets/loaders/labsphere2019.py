@@ -126,7 +126,7 @@ def build_Labsphere2019(load: bool = True) -> DatasetLoader_Labsphere2019:
     :cite:`Labsphere2019`
     """
 
-    global _DATASET_LOADER_LABSPHERE2019
+    global _DATASET_LOADER_LABSPHERE2019  # noqa: PLW0603
 
     if _DATASET_LOADER_LABSPHERE2019 is None:
         _DATASET_LOADER_LABSPHERE2019 = DatasetLoader_Labsphere2019()

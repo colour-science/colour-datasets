@@ -336,7 +336,7 @@ def build_Asano2015(load: bool = True) -> DatasetLoader_Asano2015:
     :cite:`Asano2015`
     """
 
-    global _DATASET_LOADER_ASANO2015
+    global _DATASET_LOADER_ASANO2015  # noqa: PLW0603
 
     if _DATASET_LOADER_ASANO2015 is None:
         _DATASET_LOADER_ASANO2015 = DatasetLoader_Asano2015()

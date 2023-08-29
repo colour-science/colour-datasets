@@ -146,7 +146,7 @@ def build_Zhao2009(load: bool = True) -> DatasetLoader_Zhao2009:
     :cite:`Zhao2009`
     """
 
-    global _DATASET_LOADER_JIANG2009
+    global _DATASET_LOADER_JIANG2009  # noqa: PLW0603
 
     if _DATASET_LOADER_JIANG2009 is None:
         _DATASET_LOADER_JIANG2009 = DatasetLoader_Zhao2009()

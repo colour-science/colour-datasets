@@ -511,7 +511,7 @@ def build_Luo1999(load: bool = True) -> DatasetLoader_Luo1999:
     :cite:`Breneman1987b`, :cite:`Luo1999`, :cite:`McCann1976`
     """
 
-    global _DATASET_LOADER_LUO1999
+    global _DATASET_LOADER_LUO1999  # noqa: PLW0603
 
     if _DATASET_LOADER_LUO1999 is None:
         _DATASET_LOADER_LUO1999 = DatasetLoader_Luo1999()

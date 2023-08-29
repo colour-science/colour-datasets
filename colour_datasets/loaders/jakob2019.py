@@ -145,7 +145,7 @@ def build_Jakob2019(load: bool = True) -> DatasetLoader_Jakob2019:
     :cite:`Jakob2019`
     """
 
-    global _DATASET_LOADER_JAKOB2019
+    global _DATASET_LOADER_JAKOB2019  # noqa: PLW0603
 
     if _DATASET_LOADER_JAKOB2019 is None:
         _DATASET_LOADER_JAKOB2019 = DatasetLoader_Jakob2019()

@@ -161,7 +161,7 @@ def url_download(
                 miniters=1,
                 desc=f"Downloading \"{url.split('/')[-1]}\" file",
             ) as progress:
-                urllib.request.urlretrieve(
+                urllib.request.urlretrieve(  # noqa: S310
                     url,
                     filename=filename,
                     reporthook=progress.update_to,
@@ -224,7 +224,9 @@ def json_open(url: str, retries: int = 3) -> Dict:
     attempt = 0
     while attempt != retries:
         try:
-            return json.loads(urllib.request.urlopen(url).read())
+            request = urllib.request.Request(url)
+            with urllib.request.urlopen(request) as response:  # noqa: S310
+                return json.loads(response.read())
         except (urllib.error.URLError, ValueError):
             attempt += 1
             print(  # noqa: T201

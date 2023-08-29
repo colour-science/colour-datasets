@@ -70,7 +70,7 @@ class TestUrlDownload(unittest.TestCase):
     def setUp(self):
         """Initialise the common tests attributes."""
 
-        self._temporary_file = tempfile.mktemp()
+        self._temporary_file = tempfile.NamedTemporaryFile(delete=False).name
 
     def tearDown(self):
         """After tests actions."""

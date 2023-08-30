@@ -454,36 +454,18 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                 name = f"{key} - {filename.split('.')[1]}"
                 dataset_metadata = dict(zip(metadata_headers, metadata))
 
-                Y_r = (
-                    dataset_metadata["Illuminance (lux)"][  # pyright: ignore
-                        i
-                    ][0],
-                )
-                Y_t = dataset_metadata["Illuminance (lux)"][  # pyright: ignore
-                    i
-                ][1]
+                Y_r = dataset_metadata["Illuminance (lux)"][i][0]
+                Y_t = dataset_metadata["Illuminance (lux)"][i][1]
 
-                B_r = dataset_metadata["Background (Y%)"][  # pyright: ignore
-                    i
-                ][0]
-                B_t = dataset_metadata["Background (Y%)"][  # pyright: ignore
-                    i
-                ][1]
+                B_r = dataset_metadata["Background (Y%)"][i][0]
+                B_t = dataset_metadata["Background (Y%)"][i][1]
 
-                dataset_metadata[
+                dataset_metadata["Illuminance (lux)"] = dataset_metadata[
                     "Illuminance (lux)"
-                ] = dataset_metadata[  # pyright: ignore
-                    "Illuminance (lux)"
-                ][
-                    i
-                ]
-                dataset_metadata[
+                ][i]
+                dataset_metadata["Background (Y%)"] = dataset_metadata[
                     "Background (Y%)"
-                ] = dataset_metadata[  # pyright: ignore
-                    "Background (Y%)"
-                ][
-                    i
-                ]
+                ][i]
 
                 self._content[name] = CorrespondingColourDataset_Luo1999(
                     name,

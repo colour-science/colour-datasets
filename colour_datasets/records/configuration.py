@@ -117,7 +117,6 @@ class sandbox:
         api_url: str = "https://sandbox.zenodo.org/api",
         community: str = "colour-science-datasets",
     ) -> None:
-
         self._api_url = api_url
         self._community = community
 

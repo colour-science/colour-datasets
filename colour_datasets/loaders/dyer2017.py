@@ -22,14 +22,7 @@ import os
 
 from colour import MultiSpectralDistributions, SpectralDistribution
 from colour.continuous import MultiSignals, Signal
-from colour.hints import (
-    Any,
-    Dict,
-    Literal,
-    Type,
-    Union,
-    cast,
-)
+from colour.hints import Any, Dict, Literal
 from colour.utilities import attest, is_numeric, is_string, optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -1520,14 +1513,10 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
 
         for directory in ("camera", "cmf", "illuminant", "training"):
             self._content[directory] = {}
-            factory = cast(
-                Union[
-                    Type[SpectralDistribution_AMPAS],
-                    Type[MultiSpectralDistributions_AMPAS],
-                ],
+            factory = (
                 SpectralDistribution_AMPAS
                 if directory == "illuminant"
-                else MultiSpectralDistributions_AMPAS,
+                else MultiSpectralDistributions_AMPAS
             )
             glob_pattern = os.path.join(
                 self.record.repository, "dataset", "data", directory, "*.json"

@@ -31,7 +31,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -107,7 +107,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
                 .replace("_", " ")
             )
             category = "Normalised" if "normalized" in path else "Raw"
-            path = os.path.join(database_root, path)
+            path = os.path.join(database_root, path)  # noqa: PLW2901
 
             sds = {}
             for name, sd in read_sds_from_csv_file(
@@ -152,7 +152,7 @@ def build_Karge2015(load: bool = True) -> DatasetLoader_Karge2015:
     :cite:`Karge2015`
     """
 
-    global _DATASET_LOADER_KARGE2015
+    global _DATASET_LOADER_KARGE2015  # noqa: PLW0603
 
     if _DATASET_LOADER_KARGE2015 is None:
         _DATASET_LOADER_KARGE2015 = DatasetLoader_Karge2015()

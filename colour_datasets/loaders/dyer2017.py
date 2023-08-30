@@ -22,14 +22,7 @@ import os
 
 from colour import MultiSpectralDistributions, SpectralDistribution
 from colour.continuous import MultiSignals, Signal
-from colour.hints import (
-    Any,
-    Dict,
-    Literal,
-    Type,
-    Union,
-    cast,
-)
+from colour.hints import Any, Dict, Literal
 from colour.utilities import attest, is_numeric, is_string, optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -37,7 +30,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -1520,14 +1513,10 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
 
         for directory in ("camera", "cmf", "illuminant", "training"):
             self._content[directory] = {}
-            factory = cast(
-                Union[
-                    Type[SpectralDistribution_AMPAS],
-                    Type[MultiSpectralDistributions_AMPAS],
-                ],
+            factory = (
                 SpectralDistribution_AMPAS
                 if directory == "illuminant"
-                else MultiSpectralDistributions_AMPAS,
+                else MultiSpectralDistributions_AMPAS
             )
             glob_pattern = os.path.join(
                 self.record.repository, "dataset", "data", directory, "*.json"
@@ -1567,7 +1556,7 @@ def build_Dyer2017(load: bool = True) -> DatasetLoader_Dyer2017:
     :cite:`Dyer2017`
     """
 
-    global _DATASET_LOADER_DYER2017
+    global _DATASET_LOADER_DYER2017  # noqa: PLW0603
 
     if _DATASET_LOADER_DYER2017 is None:
         _DATASET_LOADER_DYER2017 = DatasetLoader_Dyer2017()

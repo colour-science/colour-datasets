@@ -43,6 +43,7 @@ import re
 import scipy.io
 import sys
 from collections import namedtuple
+from typing import ClassVar
 
 from colour import SpectralDistribution, SpectralShape
 from colour.hints import Any, Dict, Tuple, Type, cast
@@ -52,7 +53,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -155,7 +156,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     ID: str = "Undefined"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    METADATA: Dict = {}
+    METADATA: ClassVar[Dict] = {}
     """
     Mapping of paths and
     :class:`colour_datasets.loaders.kuopio.MatFileMetadata_KuopioUniversity`
@@ -498,7 +499,7 @@ References
 for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
     _module = sys.modules["colour_datasets.loaders.kuopio"]
     _dataset_loader_class = _build_dataset_loader_class_KuopioUniversity(
-        _id, *_data  # pyright: ignore
+        _id, *_data
     )
     _partial_function = functools.partial(
         build_KuopioUniversity, _dataset_loader_class

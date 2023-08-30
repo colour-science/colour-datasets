@@ -38,7 +38,7 @@ def datasets() -> Community:
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
-    global _COMMUNITY
+    global _COMMUNITY  # noqa: PLW0603
 
     if _COMMUNITY is None:
         _COMMUNITY = Community.from_id(Configuration().community)

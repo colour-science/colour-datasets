@@ -12,7 +12,7 @@ from colour_datasets.utilities import json_open
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -167,7 +167,7 @@ a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt"""
         """Test :func:`colour_datasets.records.zenodo.Record.__repr__` method."""
 
         self.assertIsInstance(
-            eval(  # noqa: PGH001
+            eval(  # noqa: PGH001, S307
                 repr(self._record),
                 {},
                 {"Record": Record, "Configuration": Configuration},
@@ -335,7 +335,7 @@ Datasets
         """Test :func:`colour_datasets.records.zenodo.Community.__repr__` method."""
 
         self.assertIsInstance(
-            eval(  # noqa: PGH001
+            eval(  # noqa: PGH001, S307
                 repr(self._community),
                 {},
                 {"Community": Community, "Configuration": Configuration},

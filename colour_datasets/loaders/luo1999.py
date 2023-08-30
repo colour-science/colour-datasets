@@ -38,7 +38,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -454,36 +454,18 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                 name = f"{key} - {filename.split('.')[1]}"
                 dataset_metadata = dict(zip(metadata_headers, metadata))
 
-                Y_r = (
-                    dataset_metadata["Illuminance (lux)"][  # pyright: ignore
-                        i
-                    ][0],
-                )
-                Y_t = dataset_metadata["Illuminance (lux)"][  # pyright: ignore
-                    i
-                ][1]
+                Y_r = dataset_metadata["Illuminance (lux)"][i][0]
+                Y_t = dataset_metadata["Illuminance (lux)"][i][1]
 
-                B_r = dataset_metadata["Background (Y%)"][  # pyright: ignore
-                    i
-                ][0]
-                B_t = dataset_metadata["Background (Y%)"][  # pyright: ignore
-                    i
-                ][1]
+                B_r = dataset_metadata["Background (Y%)"][i][0]
+                B_t = dataset_metadata["Background (Y%)"][i][1]
 
-                dataset_metadata[
+                dataset_metadata["Illuminance (lux)"] = dataset_metadata[
                     "Illuminance (lux)"
-                ] = dataset_metadata[  # pyright: ignore
-                    "Illuminance (lux)"
-                ][
-                    i
-                ]
-                dataset_metadata[
+                ][i]
+                dataset_metadata["Background (Y%)"] = dataset_metadata[
                     "Background (Y%)"
-                ] = dataset_metadata[  # pyright: ignore
-                    "Background (Y%)"
-                ][
-                    i
-                ]
+                ][i]
 
                 self._content[name] = CorrespondingColourDataset_Luo1999(
                     name,
@@ -529,7 +511,7 @@ def build_Luo1999(load: bool = True) -> DatasetLoader_Luo1999:
     :cite:`Breneman1987b`, :cite:`Luo1999`, :cite:`McCann1976`
     """
 
-    global _DATASET_LOADER_LUO1999
+    global _DATASET_LOADER_LUO1999  # noqa: PLW0603
 
     if _DATASET_LOADER_LUO1999 is None:
         _DATASET_LOADER_LUO1999 = DatasetLoader_Luo1999()

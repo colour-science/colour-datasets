@@ -35,7 +35,7 @@ from colour_datasets.utilities import cell_range_values, index_to_column
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -253,11 +253,9 @@ parse_workbook_Asano2015`
                 (LMS_ConeFundamentals, "LMS"),
             ]
         ):
-
             for j, degree in enumerate(
                 [(2, "2$^\\circ$"), (10, "10$^\\circ$")]
             ):
-
                 sheet = book.sheet_by_index(j + (i * 2))
 
                 x = np.transpose(
@@ -336,7 +334,7 @@ def build_Asano2015(load: bool = True) -> DatasetLoader_Asano2015:
     :cite:`Asano2015`
     """
 
-    global _DATASET_LOADER_ASANO2015
+    global _DATASET_LOADER_ASANO2015  # noqa: PLW0603
 
     if _DATASET_LOADER_ASANO2015 is None:
         _DATASET_LOADER_ASANO2015 = DatasetLoader_Asano2015()

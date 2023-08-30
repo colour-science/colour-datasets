@@ -24,7 +24,7 @@ from colour.hints import Any, Callable, Dict
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -161,7 +161,7 @@ def url_download(
                 miniters=1,
                 desc=f"Downloading \"{url.split('/')[-1]}\" file",
             ) as progress:
-                urllib.request.urlretrieve(
+                urllib.request.urlretrieve(  # noqa: S310
                     url,
                     filename=filename,
                     reporthook=progress.update_to,
@@ -224,7 +224,9 @@ def json_open(url: str, retries: int = 3) -> Dict:
     attempt = 0
     while attempt != retries:
         try:
-            return json.loads(urllib.request.urlopen(url).read())
+            request = urllib.request.Request(url)
+            with urllib.request.urlopen(request) as response:  # noqa: S310
+                return json.loads(response.read())
         except (urllib.error.URLError, ValueError):
             attempt += 1
             print(  # noqa: T201

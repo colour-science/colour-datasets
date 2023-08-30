@@ -22,7 +22,7 @@ __author__ = "Colour Developers, Openpyxl Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
 __copyright__ += ", "
 __copyright__ = "Copyright (C) 2010 openpyxl"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __license__ += ", "
 __license__ += "MIT Licence - https://opensource.org/licenses/MIT"
 __maintainer__ = "Colour Developers"
@@ -36,6 +36,11 @@ __all__ = [
     "index_to_row",
     "cell_range_values",
 ]
+
+# https://stackoverflow.com/questions/64264563/\
+# attributeerror-elementtree-object-has-no-attribute-getiterator-when-trying
+xlrd.xlsx.ensure_elementtree_imported(False, None)
+xlrd.xlsx.Element_has_iter = True
 
 
 def _column_number_to_letters(number: int) -> str:
@@ -62,8 +67,7 @@ def _column_number_to_letters(number: int) -> str:
 
     Examples
     --------
-    # Doctests skip for Python 2.x compatibility.
-    >>> _column_number_to_letters(128)  # doctest: +SKIP
+    >>> _column_number_to_letters(128)
     'DX'
     """
 

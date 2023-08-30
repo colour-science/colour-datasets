@@ -5,11 +5,11 @@ Colour science datasets for use with
 `Colour <https://github.com/colour-science/colour>`__ or any Python package
 manipulating colours. The datasets are hosted in `Zenodo <https://zenodo.org>`__
 under the
-`Colour Science - Datasets <https://zenodo.org/communities/colour-science-datasets/>`__
+`Colour Science - Datasets <https://zenodo.org/communities/colour-science-datasets>`__
 community.
 
 It is open source and freely available under the
-`New BSD License <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
+`BSD-3-Clause <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
 
 .. sectnum::
 
@@ -27,7 +27,7 @@ when trying to access or use colour science datasets:
 
 **Colour - Datasets** offers all the above: it allows users to ingest and load
 colour science datasets with a single function call. The datasets information
-is hosted on `Zenodo <https://zenodo.org/communities/colour-science-datasets/>`__
+is hosted on `Zenodo <https://zenodo.org/communities/colour-science-datasets>`__
 where the record for a dataset typically contain:
 
 - An *urls.txt* file describing the urls to source the dataset files from.
@@ -142,7 +142,7 @@ Code of Conduct
 ---------------
 
 The *Code of Conduct*, adapted from the `Contributor Covenant 1.4 <https://www.contributor-covenant.org/version/1/4/code-of-conduct.html>`__,
-is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct/>`__ page.
+is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct>`__ page.
 
 Contact & Social
 ----------------
@@ -160,5 +160,5 @@ About
 
 | **Colour - Datasets** by Colour Developers
 | Copyright 2019 Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
-| This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
+| This software is released under terms of BSD-3-Clause: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-datasets <https://github.com/colour-science/colour-datasets>`__

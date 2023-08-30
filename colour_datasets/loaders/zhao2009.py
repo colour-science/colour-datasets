@@ -28,7 +28,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -146,7 +146,7 @@ def build_Zhao2009(load: bool = True) -> DatasetLoader_Zhao2009:
     :cite:`Zhao2009`
     """
 
-    global _DATASET_LOADER_JIANG2009
+    global _DATASET_LOADER_JIANG2009  # noqa: PLW0603
 
     if _DATASET_LOADER_JIANG2009 is None:
         _DATASET_LOADER_JIANG2009 = DatasetLoader_Zhao2009()

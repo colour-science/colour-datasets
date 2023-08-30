@@ -38,7 +38,7 @@ from colour_datasets.records import Configuration
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -413,7 +413,7 @@ class Record:
         try:
             if use_urls_txt_file and urls_txt:
                 urls = {}
-                urls_txt_file = tempfile.mktemp()
+                urls_txt_file = tempfile.NamedTemporaryFile(delete=False).name
                 url_download(
                     urls_txt["links"]["self"],
                     urls_txt_file,
@@ -466,7 +466,9 @@ class Record:
         shutil.copytree(downloads_directory, deflate_directory)
 
         for filename in os.listdir(deflate_directory):
-            filename = os.path.join(deflate_directory, filename)
+            filename = os.path.join(  # noqa: PLW2901
+                deflate_directory, filename
+            )
             if not os.path.isfile(filename):
                 continue
 
@@ -906,7 +908,7 @@ colour-science-datasets-tests/
         False
         """
 
-        return all([record.synced() for record in self._records.values()])
+        return all(record.synced() for record in self._records.values())
 
     def pull(self, use_urls_txt_file: bool = True, retries: int = 3):
         """

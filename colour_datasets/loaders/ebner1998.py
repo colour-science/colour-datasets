@@ -31,7 +31,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -149,7 +149,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
                 if line.startswith("White Point"):
                     XYZ_r = _parse_float_values(line.split(":")[-1])
                 elif line.startswith("reference hue"):
-                    line = line.replace("reference hue ", "")
+                    line = line.replace("reference hue ", "")  # noqa: PLW2901
                     attribute, value = line.split("\t", 1)
                     hue, data = int(attribute), _parse_float_values(value)
 
@@ -194,7 +194,7 @@ def build_Ebner1998(load: bool = True) -> DatasetLoader_Ebner1998:
     :cite:`Ebner1998`
     """
 
-    global _DATASET_LOADER_EBNER1998
+    global _DATASET_LOADER_EBNER1998  # noqa: PLW0603
 
     if _DATASET_LOADER_EBNER1998 is None:
         _DATASET_LOADER_EBNER1998 = DatasetLoader_Ebner1998()

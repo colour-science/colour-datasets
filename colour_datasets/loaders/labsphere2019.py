@@ -26,7 +26,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -126,7 +126,7 @@ def build_Labsphere2019(load: bool = True) -> DatasetLoader_Labsphere2019:
     :cite:`Labsphere2019`
     """
 
-    global _DATASET_LOADER_LABSPHERE2019
+    global _DATASET_LOADER_LABSPHERE2019  # noqa: PLW0603
 
     if _DATASET_LOADER_LABSPHERE2019 is None:
         _DATASET_LOADER_LABSPHERE2019 = DatasetLoader_Labsphere2019()

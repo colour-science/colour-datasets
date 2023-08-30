@@ -33,7 +33,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -152,7 +152,7 @@ def build_Jiang2013(load: bool = True) -> DatasetLoader_Jiang2013:
     :cite:`Jiang2013`
     """
 
-    global _DATASET_LOADER_JIANG2013
+    global _DATASET_LOADER_JIANG2013  # noqa: PLW0603
 
     if _DATASET_LOADER_JIANG2013 is None:
         _DATASET_LOADER_JIANG2013 = DatasetLoader_Jiang2013()

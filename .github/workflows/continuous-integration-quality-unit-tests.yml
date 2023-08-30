@@ -29,6 +29,8 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Poetry
+      env:
+        POETRY_VERSION: 1.4.0
       run: |
         curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.poetry python3 -
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
@@ -48,7 +50,7 @@ jobs:
       shell: bash
     - name: Test with Pytest
       run: |
-        poetry run python -W ignore -m pytest --disable-warnings --doctest-modules --ignore=$CI_PACKAGE/examples --cov=$CI_PACKAGE $CI_PACKAGE
+        poetry run python -W ignore -m pytest --doctest-modules --ignore=$CI_PACKAGE/examples --cov=$CI_PACKAGE $CI_PACKAGE
       shell: bash
     - name: Upload Coverage to coveralls.io
       run: |

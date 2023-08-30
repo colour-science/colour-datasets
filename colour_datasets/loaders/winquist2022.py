@@ -29,7 +29,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -128,7 +128,7 @@ def build_Winquist2022(load: bool = True) -> DatasetLoader_Winquist2022:
     :cite:`Winquist2022`
     """
 
-    global _DATASET_LOADER_WINQUIST2022
+    global _DATASET_LOADER_WINQUIST2022  # noqa: PLW0603
 
     if _DATASET_LOADER_WINQUIST2022 is None:
         _DATASET_LOADER_WINQUIST2022 = DatasetLoader_Winquist2022()

@@ -43,7 +43,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright (C) 2019 - Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-science@googlegroups.com"
 __status__ = "Production"
@@ -1000,7 +1000,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
             ) in phases:
                 filenames.add(visual_filename)
                 filenames.add(colorimetric_filename)
-                phase = str(phase)
+                phase = str(phase)  # noqa: PLW2901
                 visual_path = os.path.join(
                     self.record.repository, "dataset", visual_filename
                 )
@@ -1081,7 +1081,7 @@ def build_Luo1997(load: bool = True) -> DatasetLoader_Luo1997:
     :cite:`Luo1991`, :cite:`Luo1991a`, :cite:`Luo1993`, :cite:`Luo1997`
     """
 
-    global _DATASET_LOADER_LUO1997
+    global _DATASET_LOADER_LUO1997  # noqa: PLW0603
 
     if _DATASET_LOADER_LUO1997 is None:
         _DATASET_LOADER_LUO1997 = DatasetLoader_Luo1997()

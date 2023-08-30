@@ -26,7 +26,7 @@ from colour.colorimetry import (
     XYZ_ColourMatchingFunctions,
     LMS_ConeFundamentals,
 )
-from colour.hints import Boolean, Dict, NDArray, Optional, Tuple
+from colour.hints import Dict, NDArrayFloat
 from colour.utilities import as_float_array, tstack
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -35,7 +35,7 @@ from colour_datasets.utilities import cell_range_values, index_to_column
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -52,7 +52,7 @@ class Specification_Asano2015(
         "Specification_Asano2015",
         ("XYZ_2", "XYZ_10", "LMS_2", "LMS_10", "parameters", "others"),
     )
-):  # noqa: D405,D407,D410,D411
+):
     """
     Define the *Asano (2015)* specification for an observer.
 
@@ -74,7 +74,7 @@ class Specification_Asano2015(
     References
     ----------
     :cite:`Asano2015`
-    """
+    """  # noqa: D405, D407, D410, D411
 
     def __new__(
         cls,
@@ -82,8 +82,8 @@ class Specification_Asano2015(
         XYZ_10: XYZ_ColourMatchingFunctions,
         LMS_2: LMS_ConeFundamentals,
         LMS_10: LMS_ConeFundamentals,
-        parameters: NDArray,
-        others: Optional[Dict] = None,
+        parameters: NDArrayFloat,
+        others: Dict | None = None,
     ):
         """
         Return a new instance of the
@@ -122,7 +122,7 @@ parse_workbook_Asano2015`
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Asano2015.ID])
 
-    def load(self) -> Dict[str, Specification_Asano2015]:
+    def load(self) -> Dict[str, Dict[int, Specification_Asano2015]]:
         """
         Sync, parse, convert and return the *Asano (2015)*
         *Observer Function Database* dataset content.
@@ -145,12 +145,10 @@ parse_workbook_Asano2015`
 
         super().sync()
 
-        self._content = dict(
-            [
-                ("Categorical Observers", dict()),
-                ("Colour Normal Observers", dict()),
-            ]
-        )
+        self._content = {
+            "Categorical Observers": {},
+            "Colour Normal Observers": {},
+        }
 
         # Categorical Observers
         workbook_path = os.path.join(
@@ -217,7 +215,7 @@ parse_workbook_Asano2015`
 
     @staticmethod
     def parse_workbook_Asano2015(
-        workbook: str, template: str, observers: Tuple = (1, 10)
+        workbook: str, template: str, observers: tuple = (1, 10)
     ) -> Dict[str, Dict]:
         """
         Parse given *Asano (2015)* *Observer Function Database* workbook.
@@ -247,7 +245,7 @@ parse_workbook_Asano2015`
 
         shape = SpectralShape(390, 780, 5)
         wavelengths = shape.range()
-        data: Dict = dict()
+        data: Dict = {}
 
         for i, cmfs in enumerate(
             [
@@ -255,11 +253,9 @@ parse_workbook_Asano2015`
                 (LMS_ConeFundamentals, "LMS"),
             ]
         ):
-
             for j, degree in enumerate(
                 [(2, "2$^\\circ$"), (10, "10$^\\circ$")]
             ):
-
                 sheet = book.sheet_by_index(j + (i * 2))
 
                 x = np.transpose(
@@ -276,7 +272,7 @@ parse_workbook_Asano2015`
                     observer = k + 1
                     rgb = tstack([x[k], y[k], z[k]])
                     if data.get(observer) is None:
-                        data[observer] = dict()
+                        data[observer] = {}
 
                     key = f"{cmfs[1]}_{degree[0]}"
                     data[observer][key] = cmfs[0](
@@ -310,14 +306,14 @@ parse_workbook_Asano2015`
         return data
 
 
-_DATASET_LOADER_ASANO2015: Optional[DatasetLoader_Asano2015] = None
+_DATASET_LOADER_ASANO2015: DatasetLoader_Asano2015 | None = None
 """
 Singleton instance of the *Asano (2015)* *Observer Function Database* dataset
 loader.
 """
 
 
-def build_Asano2015(load: Boolean = True) -> DatasetLoader_Asano2015:
+def build_Asano2015(load: bool = True) -> DatasetLoader_Asano2015:
     """
     Singleton factory that the builds *Asano (2015)*
     *Observer Function Database* dataset loader.
@@ -338,7 +334,7 @@ def build_Asano2015(load: Boolean = True) -> DatasetLoader_Asano2015:
     :cite:`Asano2015`
     """
 
-    global _DATASET_LOADER_ASANO2015
+    global _DATASET_LOADER_ASANO2015  # noqa: PLW0603
 
     if _DATASET_LOADER_ASANO2015 is None:
         _DATASET_LOADER_ASANO2015 = DatasetLoader_Asano2015()

@@ -25,7 +25,7 @@ import re
 
 from colour import SpectralShape
 from colour.characterisation import RGB_CameraSensitivities
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -33,7 +33,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -95,7 +95,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
 
         shape = SpectralShape(400, 720, 10)
 
-        self._content = dict()
+        self._content = {}
         database_path = os.path.join(
             self.record.repository, "dataset", "camspec_database.txt"
         )
@@ -124,14 +124,14 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_JIANG2013: Optional[DatasetLoader_Jiang2013] = None
+_DATASET_LOADER_JIANG2013: DatasetLoader_Jiang2013 | None = None
 """
 Singleton instance of the *Jiang et al. (2013)*
 *Camera Spectral Sensitivity Database* dataset loader.
 """
 
 
-def build_Jiang2013(load: Boolean = True) -> DatasetLoader_Jiang2013:
+def build_Jiang2013(load: bool = True) -> DatasetLoader_Jiang2013:
     """
     Singleton factory that builds the *Jiang et al. (2013)*
     *Camera Spectral Sensitivity Database* dataset loader.
@@ -152,7 +152,7 @@ def build_Jiang2013(load: Boolean = True) -> DatasetLoader_Jiang2013:
     :cite:`Jiang2013`
     """
 
-    global _DATASET_LOADER_JIANG2013
+    global _DATASET_LOADER_JIANG2013  # noqa: PLW0603
 
     if _DATASET_LOADER_JIANG2013 is None:
         _DATASET_LOADER_JIANG2013 = DatasetLoader_Jiang2013()

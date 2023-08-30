@@ -16,7 +16,7 @@ from colour_datasets.utilities import (
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -70,7 +70,7 @@ class TestUrlDownload(unittest.TestCase):
     def setUp(self):
         """Initialise the common tests attributes."""
 
-        self._temporary_file = tempfile.mktemp()
+        self._temporary_file = tempfile.NamedTemporaryFile(delete=False).name
 
     def tearDown(self):
         """After tests actions."""

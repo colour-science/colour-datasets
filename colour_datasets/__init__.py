@@ -6,7 +6,7 @@ Colour science datasets for use with
 `Colour <https://github.com/colour-science/colour>`__ or any Python package
 manipulating colours. The datasets are hosted in
 `Zenodo <https://zenodo.org>`__ under the `Colour Science - Datasets \
-<https://zenodo.org/communities/colour-science-datasets/>`__ community.
+<https://zenodo.org/communities/colour-science-datasets>`__ community.
 
 Subpackages
 -----------
@@ -15,9 +15,10 @@ Subpackages
 -   utilities:  Various utilities.
 """
 
+import contextlib
 import numpy as np
 import os
-import subprocess  # nosec
+import subprocess
 
 import colour
 
@@ -28,7 +29,7 @@ from .loaders import load
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -52,15 +53,15 @@ __application_name__ = "Colour - Datasets"
 
 __major_version__ = "0"
 __minor_version__ = "2"
-__change_version__ = "1"
+__change_version__ = "2"
 __version__ = ".".join(
     (__major_version__, __minor_version__, __change_version__)
 )
 
 try:
     _version = (
-        subprocess.check_output(  # nosec
-            ["git", "describe"],
+        subprocess.check_output(
+            ["git", "describe"],  # noqa: S603, S607
             cwd=os.path.dirname(__file__),
             stderr=subprocess.STDOUT,
         )
@@ -70,14 +71,12 @@ try:
 except Exception:
     _version = __version__
 
-colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES[
+colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES[  # pyright: ignore
     "colour-datasets"
 ] = _version
 
 del _version
 
 # TODO: Remove legacy printing support when deemed appropriate.
-try:
+with contextlib.suppress(TypeError):
     np.set_printoptions(legacy="1.13")
-except TypeError:
-    pass

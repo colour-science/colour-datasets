@@ -15,14 +15,14 @@ from __future__ import annotations
 import re
 import xlrd
 
-from colour.hints import Dict, Integer, List, Union
-from colour.utilities import CanonicalMapping
+from colour.hints import Dict, List
+from colour.utilities import CanonicalMapping, attest
 
 __author__ = "Colour Developers, Openpyxl Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
 __copyright__ += ", "
 __copyright__ = "Copyright (C) 2010 openpyxl"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __license__ += ", "
 __license__ += "MIT Licence - https://opensource.org/licenses/MIT"
 __maintainer__ = "Colour Developers"
@@ -37,8 +37,13 @@ __all__ = [
     "cell_range_values",
 ]
 
+# https://stackoverflow.com/questions/64264563/\
+# attributeerror-elementtree-object-has-no-attribute-getiterator-when-trying
+xlrd.xlsx.ensure_elementtree_imported(False, None)
+xlrd.xlsx.Element_has_iter = True
 
-def _column_number_to_letters(number: Integer) -> str:
+
+def _column_number_to_letters(number: int) -> str:
     """
     Convert given column number into a column letters.
 
@@ -62,14 +67,14 @@ def _column_number_to_letters(number: Integer) -> str:
 
     Examples
     --------
-    # Doctests skip for Python 2.x compatibility.
-    >>> _column_number_to_letters(128)  # doctest: +SKIP
+    >>> _column_number_to_letters(128)
     'DX'
     """
 
-    assert (
-        1 <= number <= 18278
-    ), f"Column number {number} must be in range [1, 18278]!"
+    attest(
+        1 <= number <= 18278,
+        f"Column number {number} must be in range [1, 18278]!",
+    )
 
     letters = []
     while number > 0:
@@ -94,7 +99,7 @@ for i in range(1, 18279):
     _LETTERS_TO_NUMBER_CACHE[letter] = i
 
 
-def row_to_index(row: Union[Integer, str]) -> Integer:
+def row_to_index(row: int | str) -> int:
     """
     Return the 0-based index of given row name.
 
@@ -116,12 +121,12 @@ def row_to_index(row: Union[Integer, str]) -> Integer:
 
     row = int(row)
 
-    assert row > 0, "Row must be greater than 0!"
+    attest(row > 0, "Row must be greater than 0!")
 
     return row - 1
 
 
-def index_to_row(index: Integer) -> str:
+def index_to_row(index: int) -> str:
     """
     Return the row name of given 0-based index.
 
@@ -145,7 +150,7 @@ def index_to_row(index: Integer) -> str:
     return str(index + 1)
 
 
-def column_to_index(column: str) -> Integer:
+def column_to_index(column: str) -> int:
     """
     Return the 0-based index of given column letters.
 
@@ -168,7 +173,7 @@ def column_to_index(column: str) -> Integer:
     return _LETTERS_TO_NUMBER_CACHE[column] - 1
 
 
-def index_to_column(index: Integer) -> str:
+def index_to_column(index: int) -> str:
     """
     Return the column letters of given 0-based index.
 

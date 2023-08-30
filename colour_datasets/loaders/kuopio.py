@@ -35,6 +35,7 @@ References
 
 from __future__ import annotations
 
+import contextlib
 import functools
 import numpy as np
 import os
@@ -42,16 +43,17 @@ import re
 import scipy.io
 import sys
 from collections import namedtuple
+from typing import ClassVar
 
 from colour import SpectralDistribution, SpectralShape
-from colour.hints import Any, Boolean, Dict, Tuple, Type, cast
+from colour.hints import Any, Dict, Tuple, Type, cast
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -112,7 +114,7 @@ def read_sds_from_mat_file_KuopioUniversity(
 
     matlab_data = scipy.io.loadmat(mat_file)
 
-    sds = dict()
+    sds = {}
     table = matlab_data[metadata.key]
     wavelengths = metadata.shape.range()
 
@@ -154,7 +156,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     ID: str = "Undefined"
     """Dataset record id, i.e. the *Zenodo* record number."""
 
-    METADATA: Dict = {}
+    METADATA: ClassVar[Dict] = {}
     """
     Mapping of paths and
     :class:`colour_datasets.loaders.kuopio.MatFileMetadata_KuopioUniversity`
@@ -177,7 +179,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
         for path, metadata in self.METADATA.items():
             mat_path = os.path.join(self.record.repository, "dataset", *path)
@@ -263,10 +265,8 @@ def _build_dataset_loader_class_KuopioUniversity(
     )
 
     dataset_loader_class.__doc__ = class_docstring
-    try:
+    with contextlib.suppress(AttributeError):
         dataset_loader_class.load.__doc__ = load_method_docstring
-    except AttributeError:
-        pass
 
     setattr(module, class_attribute, dataset_loader_class)
 
@@ -275,7 +275,7 @@ def _build_dataset_loader_class_KuopioUniversity(
 
 def build_KuopioUniversity(
     dataset_loader_class: Type[DatasetLoader_KuopioUniversity],
-    load: Boolean = True,
+    load: bool = True,
 ) -> DatasetLoader_KuopioUniversity:
     """
     Singleton factory that builds a *University of Kuopio* dataset loader.
@@ -516,7 +516,7 @@ for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
 
     DATASET_LOADERS_KUOPIO_UNIVERSITY[_id] = _partial_function
 
-    __all__ += [
+    __all__ += [  # noqa: PLE0604
         _dataset_loader_class.__name__,
         _build_function_name,
     ]

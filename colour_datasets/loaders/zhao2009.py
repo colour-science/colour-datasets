@@ -21,14 +21,14 @@ import numpy as np
 import os
 
 from colour.characterisation import RGB_CameraSensitivities
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -103,7 +103,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
             "KODAK DCS 200",
         ]
 
-        self._content = dict()
+        self._content = {}
 
         for i, camera in enumerate(cameras):
             data = np.loadtxt(
@@ -118,14 +118,14 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_JIANG2009: Optional[DatasetLoader_Zhao2009] = None
+_DATASET_LOADER_JIANG2009: DatasetLoader_Zhao2009 | None = None
 """
 Singleton instance of the *Zhao et al. (2009)*
 *Spectral Sensitivity Database* dataset loader.
 """
 
 
-def build_Zhao2009(load: Boolean = True) -> DatasetLoader_Zhao2009:
+def build_Zhao2009(load: bool = True) -> DatasetLoader_Zhao2009:
     """
     Singleton factory that builds the *Zhao et al. (2009)*
     *Spectral Sensitivity Database* dataset loader.
@@ -146,7 +146,7 @@ def build_Zhao2009(load: Boolean = True) -> DatasetLoader_Zhao2009:
     :cite:`Zhao2009`
     """
 
-    global _DATASET_LOADER_JIANG2009
+    global _DATASET_LOADER_JIANG2009  # noqa: PLW0603
 
     if _DATASET_LOADER_JIANG2009 is None:
         _DATASET_LOADER_JIANG2009 = DatasetLoader_Zhao2009()

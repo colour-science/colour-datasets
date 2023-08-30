@@ -21,7 +21,7 @@ from __future__ import annotations
 import glob
 import os
 
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.loaders.dyer2017 import MultiSpectralDistributions_AMPAS
@@ -29,7 +29,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -88,7 +88,7 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
         glob_pattern = os.path.join(
             self.record.repository, "dataset", "*.json"
@@ -100,14 +100,14 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_WINQUIST2022: Optional[DatasetLoader_Winquist2022] = None
+_DATASET_LOADER_WINQUIST2022: DatasetLoader_Winquist2022 | None = None
 """
 Singleton instance of the *Winquist et al. (2022)*
 *Physlight - Camera Spectral Sensitivity Curves* dataset loader.
 """
 
 
-def build_Winquist2022(load: Boolean = True) -> DatasetLoader_Winquist2022:
+def build_Winquist2022(load: bool = True) -> DatasetLoader_Winquist2022:
     """
     Singleton factory that builds the *Winquist et al. (2022)*
     *Physlight - Camera Spectral Sensitivity Curves* dataset loader.
@@ -128,7 +128,7 @@ def build_Winquist2022(load: Boolean = True) -> DatasetLoader_Winquist2022:
     :cite:`Winquist2022`
     """
 
-    global _DATASET_LOADER_WINQUIST2022
+    global _DATASET_LOADER_WINQUIST2022  # noqa: PLW0603
 
     if _DATASET_LOADER_WINQUIST2022 is None:
         _DATASET_LOADER_WINQUIST2022 = DatasetLoader_Winquist2022()

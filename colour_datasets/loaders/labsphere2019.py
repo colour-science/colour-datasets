@@ -18,7 +18,7 @@ import numpy as np
 import os
 
 from colour import SpectralDistribution
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict, Optional
 from colour.utilities import tsplit
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -26,7 +26,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -89,16 +89,11 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
         )
 
         values = tsplit(np.loadtxt(sd_path, delimiter="\t", skiprows=2))
-        self._content = dict(
-            [
-                (
-                    "Labsphere SRS-99-020",
-                    SpectralDistribution(
-                        values[1], values[0], name="Labsphere SRS-99-020"
-                    ),
-                ),
-            ]
-        )
+        self._content = {
+            "Labsphere SRS-99-020": SpectralDistribution(
+                values[1], values[0], name="Labsphere SRS-99-020"
+            ),
+        }
 
         return self._content
 
@@ -110,7 +105,7 @@ loader.
 """
 
 
-def build_Labsphere2019(load: Boolean = True) -> DatasetLoader_Labsphere2019:
+def build_Labsphere2019(load: bool = True) -> DatasetLoader_Labsphere2019:
     """
     Singleton factory that builds the *Labsphere (2019)* *Labsphere SRS-99-020*
     dataset loader.
@@ -131,7 +126,7 @@ def build_Labsphere2019(load: Boolean = True) -> DatasetLoader_Labsphere2019:
     :cite:`Labsphere2019`
     """
 
-    global _DATASET_LOADER_LABSPHERE2019
+    global _DATASET_LOADER_LABSPHERE2019  # noqa: PLW0603
 
     if _DATASET_LOADER_LABSPHERE2019 is None:
         _DATASET_LOADER_LABSPHERE2019 = DatasetLoader_Labsphere2019()

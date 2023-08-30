@@ -11,13 +11,13 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from colour.hints import Any, Optional
+from colour.hints import Any
 
 from colour_datasets.records import Record
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -63,7 +63,7 @@ class AbstractDatasetLoader(ABC):
 
     def __init__(self, record: Record) -> None:
         self._record: Record = record
-        self._content: Optional[Any] = None
+        self._content: Any | None = None
 
     @property
     def record(self) -> Record:
@@ -79,7 +79,7 @@ class AbstractDatasetLoader(ABC):
         return self._record
 
     @property
-    def id(self) -> str:
+    def id(self) -> str:  # noqa: A003
         """
         Getter property for the dataset id.
 
@@ -121,8 +121,6 @@ class AbstractDatasetLoader(ABC):
             :meth:`colour_datasets.loaders.AbstractDatasetLoader.sync` method
             when they implement it, e.g. ``super().sync()``.
         """
-
-        pass
 
     def sync(self):
         """

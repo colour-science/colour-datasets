@@ -26,14 +26,10 @@ from pprint import pformat
 
 from colour.hints import (
     Any,
-    Boolean,
     Callable,
     Dict,
     Generator,
-    Integer,
     List,
-    Optional,
-    Union,
 )
 from colour.utilities import optional, warning
 
@@ -42,7 +38,7 @@ from colour_datasets.records import Configuration
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -95,9 +91,8 @@ class Record:
     """
 
     def __init__(
-        self, data: dict, configuration: Optional[Configuration] = None
+        self, data: dict, configuration: Configuration | None = None
     ) -> None:
-
         self._data: dict = data
         self._configuration: Configuration = optional(
             configuration, Configuration()
@@ -143,7 +138,7 @@ class Record:
         return os.path.join(self._configuration.repository, self.id)
 
     @property
-    def id(self) -> str:
+    def id(self) -> str:  # noqa: A003
         """
         Getter property for the *Zenodo* record id.
 
@@ -194,7 +189,7 @@ class Record:
 
             parts: List[str] = []
             parser = HTMLParser()
-            parser.handle_data = parts.append  # type: ignore[assignment]
+            parser.handle_data = parts.append  # pyright: ignore
             parser.feed(text)
 
             return "".join(parts)
@@ -279,8 +274,8 @@ class Record:
     @staticmethod
     def from_id(
         id_: str,
-        configuration: Optional[Configuration] = None,
-        retries: Integer = 3,
+        configuration: Configuration | None = None,
+        retries: int = 3,
     ) -> Record:
         """
         :class:`colour_datasets.Record` class factory that builds an instance
@@ -320,7 +315,7 @@ class Record:
 
         return Record(json_open(record_url, retries), configuration)
 
-    def synced(self) -> Boolean:
+    def synced(self) -> bool:
         """
         Return whether the *Zenodo* record data is synced to the local
         repository.
@@ -357,7 +352,7 @@ class Record:
             ]
         )
 
-    def pull(self, use_urls_txt_file: Boolean = True, retries: Integer = 3):
+    def pull(self, use_urls_txt_file: bool = True, retries: int = 3):
         """
         Pull the *Zenodo* record data to the local repository.
 
@@ -384,7 +379,7 @@ class Record:
         True
         """
 
-        print(f'Pulling "{self.title}" record content...')
+        print(f'Pulling "{self.title}" record content...')  # noqa: T201
 
         if not os.path.exists(self._configuration.repository):
             os.makedirs(self._configuration.repository)
@@ -409,7 +404,7 @@ class Record:
             for url, md5 in urls.items():
                 filename = os.path.join(
                     downloads_directory,
-                    urllib.parse.unquote(  # type: ignore[attr-defined]
+                    urllib.parse.unquote(  # pyright: ignore
                         url.split("/")[-1]
                     ),
                 )
@@ -418,7 +413,7 @@ class Record:
         try:
             if use_urls_txt_file and urls_txt:
                 urls = {}
-                urls_txt_file = tempfile.mktemp()
+                urls_txt_file = tempfile.NamedTemporaryFile(delete=False).name
                 url_download(
                     urls_txt["links"]["self"],
                     urls_txt_file,
@@ -440,7 +435,7 @@ class Record:
 
                 urls_download(urls)
             else:
-                raise ValueError(
+                raise ValueError(  # noqa: TRY301
                     f'"{self._configuration.urls_txt_file}" file was not '
                     f"found in record data!"
                 )
@@ -471,7 +466,9 @@ class Record:
         shutil.copytree(downloads_directory, deflate_directory)
 
         for filename in os.listdir(deflate_directory):
-            filename = os.path.join(deflate_directory, filename)
+            filename = os.path.join(  # noqa: PLW2901
+                deflate_directory, filename
+            )
             if not os.path.isfile(filename):
                 continue
 
@@ -484,7 +481,7 @@ class Record:
                 basename = basename.replace(".", "_")
                 unpacking_directory = os.path.join(deflate_directory, basename)
 
-                print(f'Unpacking "{filename}" archive...')
+                print(f'Unpacking "{filename}" archive...')  # noqa: T201
                 setuptools.archive_util.unpack_archive(
                     filename, unpacking_directory
                 )
@@ -568,7 +565,7 @@ class Community(Mapping):
     """
 
     def __init__(
-        self, data: Dict, configuration: Optional[Configuration] = None
+        self, data: Dict, configuration: Configuration | None = None
     ) -> None:
         self._data: Dict = data
         self._configuration: Configuration = optional(
@@ -723,7 +720,7 @@ colour-science-datasets-tests/
 
         return f"{self.__class__.__name__}(\n{data},\n{configuration}\n)"
 
-    def __getitem__(self, item: Union[str, Any]) -> Any:
+    def __getitem__(self, item: str | Any) -> Any:
         """
         Return the *Zenodo* record at given id.
 
@@ -767,7 +764,7 @@ colour-science-datasets-tests/
 
         yield from self._records
 
-    def __len__(self) -> Integer:
+    def __len__(self) -> int:
         """
         Return *Zenodo* community records count.
 
@@ -789,8 +786,8 @@ colour-science-datasets-tests/
     @staticmethod
     def from_id(
         id_: str,
-        configuration: Optional[Configuration] = None,
-        retries: Integer = 3,
+        configuration: Configuration | None = None,
+        retries: int = 3,
     ) -> Community:
         """
         :class:`colour_datasets.Community` class factory that builds an
@@ -857,7 +854,7 @@ colour-science-datasets-tests/
             }.items():
                 with open(key, "w") as json_file:
                     json.dump(value, json_file, indent=4, sort_keys=True)
-        except (urllib.error.URLError, ValueError):
+        except (urllib.error.URLError, ValueError) as error:
             warning(
                 'Retrieving the "{0}" community data failed '
                 "after {1} attempts, "
@@ -869,7 +866,9 @@ colour-science-datasets-tests/
                     os.path.exists(records_json_filename),
                 ]
             ):
-                raise RuntimeError("Local files were not found, aborting!")
+                raise RuntimeError(
+                    "Local files were not found, aborting!"
+                ) from error
 
             with open(community_json_filename) as json_file:
                 community_data = json.loads(json_file.read())
@@ -884,7 +883,7 @@ colour-science-datasets-tests/
 
         return Community(data, configuration)
 
-    def synced(self) -> Boolean:
+    def synced(self) -> bool:
         """
         Return whether the *Zenodo* community data is synced to the local
         repository.
@@ -909,9 +908,9 @@ colour-science-datasets-tests/
         False
         """
 
-        return all([record.synced() for record in self._records.values()])
+        return all(record.synced() for record in self._records.values())
 
-    def pull(self, use_urls_txt_file: Boolean = True, retries: Integer = 3):
+    def pull(self, use_urls_txt_file: bool = True, retries: int = 3):
         """
         Pull the *Zenodo* community data to the local repository.
 
@@ -964,7 +963,9 @@ colour-science-datasets-tests/
             shutil.rmtree(self.repository, onerror=_remove_readonly)
 
 
-def _remove_readonly(function: Callable, path: str, excinfo: Any):
+def _remove_readonly(
+    function: Callable, path: str, excinfo: Any  # noqa: ARG001
+):
     """
     Error handler for :func:`shutil.rmtree` definition that removes read-only
     files.

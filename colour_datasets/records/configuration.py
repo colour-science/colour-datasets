@@ -10,7 +10,7 @@ from __future__ import annotations
 import functools
 import os
 
-from colour.hints import Any, Boolean, Callable, Dict, Optional
+from colour.hints import Any, Callable, Dict
 from colour.utilities import Structure
 from colour.utilities.documentation import (
     DocstringDict,
@@ -19,7 +19,7 @@ from colour.utilities.documentation import (
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -65,14 +65,14 @@ class Configuration(Structure):
         Configuration to use instead of the default one.
     """
 
-    def __init__(self, configuration: Optional[Dict] = None) -> None:
+    def __init__(self, configuration: Dict | None = None) -> None:
         super().__init__(
             DEFAULT_CONFIGURATION if configuration is None else configuration
         )
 
 
 def use_sandbox(
-    state: Boolean = True,
+    state: bool = True,
     api_url: str = "https://sandbox.zenodo.org/api",
     community: str = "colour-science-datasets",
 ):
@@ -89,7 +89,7 @@ def use_sandbox(
         *Zenodo* community.
     """
 
-    global DEFAULT_CONFIGURATION
+    global DEFAULT_CONFIGURATION  # noqa: PLW0602
 
     if state:
         DEFAULT_CONFIGURATION["api_url"] = api_url
@@ -117,7 +117,6 @@ class sandbox:
         api_url: str = "https://sandbox.zenodo.org/api",
         community: str = "colour-science-datasets",
     ) -> None:
-
         self._api_url = api_url
         self._community = community
 

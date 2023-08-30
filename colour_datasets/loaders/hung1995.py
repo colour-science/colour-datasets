@@ -23,14 +23,14 @@ import os
 from collections import namedtuple
 
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -120,29 +120,18 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
-        filenames = dict(
-            [
-                ("Table I.csv", "Reference colors."),
-                (
-                    "Table II.csv",
-                    "Intra- and interobserver variances for each "
-                    "reference hue expressed in circumferential "
-                    "hue-angle difference.",
-                ),
-                (
-                    "Table III.csv",
-                    "Weight-averaged constant hue loci for the CL "
-                    "experiment.",
-                ),
-                (
-                    "Table IV.csv",
-                    "Weight-averaged constant hue loci for the VL "
-                    "experiment.",
-                ),
-            ]
-        )
+        filenames = {
+            "Table I.csv": "Reference colors.",
+            "Table II.csv": "Intra- and interobserver variances for each "
+            "reference hue expressed in circumferential "
+            "hue-angle difference.",
+            "Table III.csv": "Weight-averaged constant hue loci for the CL "
+            "experiment.",
+            "Table IV.csv": "Weight-averaged constant hue loci for the VL "
+            "experiment.",
+        }
 
         for filename in filenames:
             datafile_path = os.path.join(
@@ -178,10 +167,10 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
 
         for table, experiment in [("Table III", "CL"), ("Table IV", "VL")]:
             key = f"Constant Hue Loci Data - {experiment}"
-            self._content[key] = dict()
+            self._content[key] = {}
             for hue in hues:
                 for sample_r in self._content["Table I"]:
-                    sample_r = sample_r.tolist()
+                    sample_r = sample_r.tolist()  # noqa: PLW2901
                     if sample_r[0] == hue:
                         XYZ_cr = xyY_to_XYZ(sample_r[1:4]) / 100
                         break
@@ -192,8 +181,8 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
                     "C*uv": [],
                 }
                 for sample_t in self._content[table]:
-                    sample_t = sample_t.tolist()
-                    if not sample_t[0] == hue:
+                    sample_t = sample_t.tolist()  # noqa: PLW2901
+                    if sample_t[0] != hue:
                         continue
 
                     XYZ_ct.append(sample_t[2:])
@@ -209,14 +198,14 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_HUNG1995: Optional[DatasetLoader_Hung1995] = None
+_DATASET_LOADER_HUNG1995: DatasetLoader_Hung1995 | None = None
 """
 Singleton instance of the *Hung and Berns (1995)*
 *Constant Hue Loci Data* dataset loader.
 """
 
 
-def build_Hung1995(load: Boolean = True) -> DatasetLoader_Hung1995:
+def build_Hung1995(load: bool = True) -> DatasetLoader_Hung1995:
     """
     Singleton factory that builds the *Hung and Berns (1995)*
     *Constant Hue Loci Data* dataset loader.
@@ -237,7 +226,7 @@ def build_Hung1995(load: Boolean = True) -> DatasetLoader_Hung1995:
     :cite:`Hung1995`
     """
 
-    global _DATASET_LOADER_HUNG1995
+    global _DATASET_LOADER_HUNG1995  # noqa: PLW0603
 
     if _DATASET_LOADER_HUNG1995 is None:
         _DATASET_LOADER_HUNG1995 = DatasetLoader_Hung1995()

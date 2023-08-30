@@ -21,7 +21,7 @@ import numpy as np
 import os
 
 from colour import LinearInterpolator, SpectralShape, SpectralDistribution
-from colour.hints import Boolean, Dict, Optional
+from colour.hints import Dict
 from colour.utilities import as_int
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -29,7 +29,7 @@ from colour_datasets.records import datasets
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -87,7 +87,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
 
         super().sync()
 
-        self._content = dict()
+        self._content = {}
 
         wavelengths = SpectralShape(350, 700, 2).range()
 
@@ -108,14 +108,14 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_BRENDEL2020: Optional[DatasetLoader_Brendel2020] = None
+_DATASET_LOADER_BRENDEL2020: DatasetLoader_Brendel2020 | None = None
 """
 Singleton instance of the *Brendel (2020)* *Measured Commercial LED Spectra*
 dataset loader.
 """
 
 
-def build_Brendel2020(load: Boolean = True) -> DatasetLoader_Brendel2020:
+def build_Brendel2020(load: bool = True) -> DatasetLoader_Brendel2020:
     """
     Singleton factory that builds the *Brendel (2020)*
     *Measured Commercial LED Spectra* dataset loader.
@@ -136,7 +136,7 @@ def build_Brendel2020(load: Boolean = True) -> DatasetLoader_Brendel2020:
     :cite:`Brendel2020`
     """
 
-    global _DATASET_LOADER_BRENDEL2020
+    global _DATASET_LOADER_BRENDEL2020  # noqa: PLW0603
 
     if _DATASET_LOADER_BRENDEL2020 is None:
         _DATASET_LOADER_BRENDEL2020 = DatasetLoader_Brendel2020()

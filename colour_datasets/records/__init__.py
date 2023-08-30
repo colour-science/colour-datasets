@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from colour.hints import Optional
 
 from .configuration import Configuration, sandbox, use_sandbox
 from .zenodo import Community, Record
@@ -15,7 +14,7 @@ __all__ += [
     "Record",
 ]
 
-_COMMUNITY: Optional[Community] = None
+_COMMUNITY: Community | None = None
 """
 Singleton instance of the *Zenodo* community that holds the datasets
 information.
@@ -39,7 +38,7 @@ def datasets() -> Community:
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
-    global _COMMUNITY
+    global _COMMUNITY  # noqa: PLW0603
 
     if _COMMUNITY is None:
         _COMMUNITY = Community.from_id(Configuration().community)

@@ -19,6 +19,7 @@ from .karge2015 import DatasetLoader_Karge2015, build_Karge2015
 from .labsphere2019 import DatasetLoader_Labsphere2019, build_Labsphere2019
 from .luo1997 import DatasetLoader_Luo1997, build_Luo1997
 from .luo1999 import DatasetLoader_Luo1999, build_Luo1999
+from .solomotav2023 import DatasetLoader_Solomotav2023, build_Solomotav2023
 from .winquist2022 import DatasetLoader_Winquist2022, build_Winquist2022
 from .xrite2016 import DatasetLoader_XRite2016, build_XRite2016
 from .zhao2009 import DatasetLoader_Zhao2009, build_Zhao2009
@@ -71,6 +72,10 @@ __all__ += [
     "build_Luo1999",
 ]
 __all__ += [
+    "DatasetLoader_Solomotav2023",
+    "build_Solomotav2023",
+]
+__all__ += [
     "DatasetLoader_Winquist2022",
     "build_Winquist2022",
 ]
@@ -96,6 +101,7 @@ DATASET_LOADERS: CanonicalMapping = CanonicalMapping(
         DatasetLoader_Labsphere2019.ID: build_Labsphere2019,
         DatasetLoader_Luo1997.ID: build_Luo1997,
         DatasetLoader_Luo1999.ID: build_Luo1999,
+        DatasetLoader_Solomotav2023.ID: build_Solomotav2023,
         DatasetLoader_Winquist2022.ID: build_Winquist2022,
         DatasetLoader_XRite2016.ID: build_XRite2016,
         DatasetLoader_Zhao2009.ID: build_Zhao2009,

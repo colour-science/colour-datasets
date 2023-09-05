@@ -65,6 +65,20 @@ Agfa IT8.7/2 Set - Marszalec (n.d.)
 
     build_AgfaIT872Set
 
+Camera Dataset - Solomatov and Akkaynak (2023)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Solomotav2023
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Solomotav2023
+
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

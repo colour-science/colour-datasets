@@ -33,8 +33,7 @@ def datasets() -> Community:
 
     Examples
     --------
-    # Doctests skip for Python 2.x compatibility.
-    >>> datasets()["3245883"].title  # doctest: +SKIP
+    >>> datasets()["3245883"].title
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 

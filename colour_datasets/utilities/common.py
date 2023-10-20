@@ -213,7 +213,6 @@ def json_open(url: str, retries: int = 3) -> Dict:
 
     Examples
     --------
-    # Doctests skip for Python 2.x compatibility.
     >>> json_open("https://zenodo.org/api/records/3245883")
     ... # doctest: +SKIP
     '{"conceptdoi":"10.5281/zenodo.3245882"'

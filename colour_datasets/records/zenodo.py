@@ -82,11 +82,9 @@ class Record:
     Examples
     --------
     >>> record = Record(json_open("https://zenodo.org/api/records/3245883"))
-
-    # Doctests skip for Python 2.x compatibility.
-    >>> record.id  # doctest: +SKIP
+    >>> record.id
     '3245883'
-    >>> record.title  # doctest: +SKIP
+    >>> record.title
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
@@ -203,10 +201,11 @@ class Record:
         description = "\n".join(
             textwrap.wrap(strip_html(metadata["description"]), 79)
         )
+
         files = "\n".join(
             [
-                f"- {file_data['key']} : {file_data['links']['self']}"
-                for file_data in sorted(files, key=lambda x: x["key"])
+                f"- {file_data['filename']} : {file_data['links']['self']}"
+                for file_data in sorted(files, key=lambda x: x["filename"])
             ]
         )
 
@@ -220,7 +219,7 @@ class Record:
                 f'License          : {metadata["license"]["id"]}',
                 f'DOI              : {metadata["doi"]}',
                 f'Publication Date : {metadata["publication_date"]}',
-                f'URL              : {self._data["links"]["html"]}\n',
+                f'URL              : {self._data["links"]["self_html"]}\n',
                 "Description",
                 "-----------",
                 "",
@@ -247,10 +246,7 @@ class Record:
         Examples
         --------
         >>> data = json_open("https://zenodo.org/api/records/3245883")
-
-        # Doctests skip for Python 2.x compatibility.
         >>> print("\\n".join(repr(Record(data)).splitlines()[:4]))
-        ... # doctest: +SKIP
         Record(
             {'conceptdoi': '10.5281/zenodo.3245882',
              'conceptrecid': '3245882',
@@ -298,9 +294,7 @@ class Record:
 
         Examples
         --------
-        # Doctests skip for Python 2.x compatibility.
         >>> Record.from_id("3245883").title
-        ... # doctest: +SKIP
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
@@ -394,11 +388,11 @@ class Record:
         # given by the content of :attr:`URLS_TXT_FILE` attribute file.
         urls_txt = None
         for file_data in self.data["files"]:
-            if file_data["key"] == self._configuration.urls_txt_file:
+            if file_data["filename"] == self._configuration.urls_txt_file:
                 urls_txt = file_data
                 break
 
-        def urls_download(urls: Dict):
+        def urls_download(urls: Dict, is_content_url=False):
             """Download given urls."""
 
             for url, md5 in urls.items():
@@ -408,6 +402,9 @@ class Record:
                         url.split("/")[-1]
                     ),
                 )
+                url = (  # noqa: PLW2901
+                    f"{url}/content" if is_content_url else url
+                )
                 url_download(url, filename, md5.split(":")[-1], retries)
 
         try:
@@ -415,7 +412,7 @@ class Record:
                 urls = {}
                 urls_txt_file = tempfile.NamedTemporaryFile(delete=False).name
                 url_download(
-                    urls_txt["links"]["self"],
+                    urls_txt["links"]["download"],
                     urls_txt_file,
                     urls_txt["checksum"].split(":")[-1],
                     retries,
@@ -448,14 +445,19 @@ class Record:
 
             urls = {}
             for file_data in self.data["files"]:
-                if file_data["key"] == self._configuration.urls_txt_file:
+                if file_data["filename"] == self._configuration.urls_txt_file:
                     continue
 
-                urls[file_data["links"]["self"]] = file_data["checksum"].split(
-                    ":"
-                )[-1]
+                # TODO: Remove the following space escaping: The new Zenodo API
+                # is not quoting filenames properly thus we are temporarily
+                # escaping spaces for now.
+                # https://github.com/colour-science/colour-datasets/issues/
+                # 36#issuecomment-1773464695
+                url = file_data["links"]["self"].replace(" ", "%20")
 
-            urls_download(urls)
+                urls[url] = file_data["checksum"].split(":")[-1]
+
+            urls_download(urls, is_content_url=True)
 
         deflate_directory = os.path.join(
             self.repository, self._configuration.deflate_directory
@@ -548,19 +550,14 @@ class Community(Mapping):
     >>> community_data = json_open(
     ...     "https://zenodo.org/api/communities/colour-science-datasets"
     ... )
-    >>> records_data = json_open(
-    ...     "https://zenodo.org/api/records/?q=communities:"
-    ...     "colour-science-datasets"
-    ... )
+    >>> records_data = json_open(community_data["links"]["records"])
     >>> community = Community(
     ...     {
     ...         "community": community_data,
     ...         "records": records_data,
     ...     }
     ... )
-
-    # Doctests skip for Python 2.x compatibility.
-    >>> community["3245883"].title  # doctest: +SKIP
+    >>> community["3245883"].title
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
@@ -649,7 +646,7 @@ class Community(Mapping):
         Datasets : ...
         Synced   : ...
         URL      : https://zenodo.org/communities/\
-colour-science-datasets-tests/
+colour-science-datasets-tests
         """
 
         datasets = "\n".join(
@@ -673,7 +670,7 @@ colour-science-datasets-tests/
                 "",
                 f"Datasets : {len(self)}",
                 f"Synced   : {synced}",
-                f'URL      : {self._data["community"]["links"]["html"]}',
+                f'URL      : {self._data["community"]["links"]["self_html"]}',
                 "",
                 "Datasets",
                 "--------",
@@ -696,14 +693,11 @@ colour-science-datasets-tests/
         Examples
         --------
         >>> community = Community.from_id("colour-science-datasets-tests")
-
-        # Doctests skip for Python 2.x compatibility.
         >>> print("\\n".join(repr(community).splitlines()[:4]))
-        ... # doctest: +SKIP
         Community(
-            {'community': {'created': '2019-06-09T10:45:47.999975+00:00',
-                           'curation_policy': '',
-                           'description': '',
+            {'community': {'access': {'member_policy': 'open',
+                                      'record_policy': 'open',
+                                      'review_policy': 'open',
         """
 
         data = "\n".join(
@@ -737,9 +731,7 @@ colour-science-datasets-tests/
         Examples
         --------
         >>> community = Community.from_id("colour-science-datasets-tests")
-
-        # Doctests skip for Python 2.x compatibility.
-        >>> community["3245883"].title  # doctest: +SKIP
+        >>> community["3245883"].title
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
@@ -756,7 +748,6 @@ colour-science-datasets-tests/
 
         Examples
         --------
-        # Doctests skip for Python 2.x compatibility.
         >>> for record in Community.from_id("colour-science-datasets-tests"):
         ...     print(record)  # doctest: +SKIP
         ...
@@ -811,9 +802,7 @@ colour-science-datasets-tests/
         Examples
         --------
         >>> community = Community.from_id("colour-science-datasets-tests")
-
-        # Doctests skip for Python 2.x compatibility.
-        >>> community["3245883"].title  # doctest: +SKIP
+        >>> community["3245883"].title
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
@@ -828,13 +817,6 @@ colour-science-datasets-tests/
         community_url = (
             f"{configuration.api_url}/communities/{configuration.community}"
         )
-        # NOTE: Retrieving 512 datasets at most. This should cover needs for
-        # the foreseeable future. There is likely an undocumented hard limit on
-        # "Zenodo" server side.
-        records_url = (
-            f"{configuration.api_url}/records/"
-            f"?q=communities:{configuration.community}&size=512"
-        )
 
         community_json_filename = os.path.join(
             configuration.repository,
@@ -846,7 +828,9 @@ colour-science-datasets-tests/
 
         try:
             community_data = json_open(community_url, retries)
-            records_data = json_open(records_url, retries)
+            records_data = json_open(
+                community_data["links"]["records"], retries
+            )
 
             for key, value in {
                 community_json_filename: community_data,

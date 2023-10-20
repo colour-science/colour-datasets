@@ -108,7 +108,9 @@ class TestRecord(unittest.TestCase):
         )
 
     def test__init__(self):
-        """Test :func:`colour_datasets.records.zenodo.Record.__init__` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Record.__init__` method.
+        """
 
         record = Record(self._data, self._configuration)
 
@@ -118,7 +120,9 @@ class TestRecord(unittest.TestCase):
         )
 
     def test__str__(self):
-        """Test :func:`colour_datasets.records.zenodo.Record.__str__` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Record.__str__` method.
+        """
 
         self.assertEqual(
             str(self._record),
@@ -129,10 +133,10 @@ Camera Spectral Sensitivity Database - Jiang et al. (2013) - 1.0.0
 
 Record ID        : 3245883
 Authors          : Jiang, Jun; Liu, Dengyu; Gu, Jinwei; Süsstrunk, Sabine
-License          : CC-BY-NC-SA-4.0
+License          : cc-by-nc-sa-4.0
 DOI              : 10.5281/zenodo.3245883
 Publication Date : 2019-06-14
-URL              : https://zenodo.org/record/3245883
+URL              : https://zenodo.org/records/3245883
 
 Description
 -----------
@@ -154,17 +158,18 @@ follows by measured spectral sensitivities in red, green and blue channel.
 Files
 -----
 
-- camlist&equipment.txt : https://zenodo.org/api/files/\
-a9c418ed-c354-4a90-abc7-5f88c89de741/camlist%26equipment.txt
-- camspec_database.txt : https://zenodo.org/api/files/\
-a9c418ed-c354-4a90-abc7-5f88c89de741/camspec_database.txt
-- urls.txt : https://zenodo.org/api/files/\
-a9c418ed-c354-4a90-abc7-5f88c89de741/urls.txt"""
+- camlist&equipment.txt : https://zenodo.org/api/records/3245883/files/\
+camlist&equipment.txt
+- camspec_database.txt : https://zenodo.org/api/records/3245883/files/\
+camspec_database.txt
+- urls.txt : https://zenodo.org/api/records/3245883/files/urls.txt"""
             )[1:],
         )
 
     def test__repr__(self):
-        """Test :func:`colour_datasets.records.zenodo.Record.__repr__` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Record.__repr__` method.
+        """
 
         self.assertIsInstance(
             eval(  # noqa: PGH001, S307
@@ -219,12 +224,9 @@ class TestCommunity(unittest.TestCase):
         """Initialise the common tests attributes."""
 
         community_data = json_open(
-            "https://zenodo.org/api/communities/colour-science-datasets"
+            "https://zenodo.org/api/communities/colour-science-datasets-tests"
         )
-        records_data = json_open(
-            "https://zenodo.org/api/records/?q=communities:"
-            "colour-science-datasets-tests"
-        )
+        records_data = json_open(community_data["links"]["records"])
 
         self._data = {
             "community": community_data,
@@ -275,7 +277,9 @@ class TestCommunity(unittest.TestCase):
         self.assertEqual(self._community.configuration, self._configuration)
 
     def test_data(self):
-        """Test :func:colour_datasets.records.zenodo.Community.data` property."""
+        """
+        Test :func:colour_datasets.records.zenodo.Community.data` property.
+        """
 
         self.assertEqual(self._community.data, self._data)
 
@@ -290,12 +294,16 @@ class TestCommunity(unittest.TestCase):
         )
 
     def test_records(self):
-        """Test :func:colour_datasets.records.zenodo.Community.records` property."""
+        """
+        Test :func:colour_datasets.records.zenodo.Community.records` property.
+        """
 
         self.assertIn("3245883", list(self._community.records))
 
     def test__init__(self):
-        """Test :func:`colour_datasets.records.zenodo.Community.__init__` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Community.__init__` method.
+        """
 
         community = Community(self._data, self._configuration)
 
@@ -305,7 +313,9 @@ class TestCommunity(unittest.TestCase):
         )
 
     def test__str__(self):
-        """Test :func:`colour_datasets.records.zenodo.Community.__str__` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Community.__str__` method.
+        """
 
         self._community.remove()
 
@@ -318,7 +328,7 @@ colour-science-datasets
 
 Datasets : 4
 Synced   : 0
-URL      : https://zenodo.org/communities/colour-science-datasets/
+URL      : https://zenodo.org/communities/colour-science-datasets-tests
 
 Datasets
 --------
@@ -332,7 +342,9 @@ Datasets
         )
 
     def test__repr__(self):
-        """Test :func:`colour_datasets.records.zenodo.Community.__repr__` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Community.__repr__` method.
+        """
 
         self.assertIsInstance(
             eval(  # noqa: PGH001, S307
@@ -372,7 +384,9 @@ Datasets
         self.assertEqual(len(self._community), len(self._community.records))
 
     def test_from_id(self):
-        """Test :func:`colour_datasets.records.zenodo.Community.from_id` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Community.from_id` method.
+        """
 
         community = Community.from_id("colour-science-datasets")
 
@@ -383,7 +397,9 @@ Datasets
         )
 
     def test_synced(self):
-        """Test :func:`colour_datasets.records.zenodo.Community.synced` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Community.synced` method.
+        """
 
         self._community.pull()
         self.assertTrue(self._community.synced())
@@ -391,14 +407,18 @@ Datasets
         self.assertFalse(self._community.synced())
 
     def test_pull(self):
-        """Test :func:`colour_datasets.records.zenodo.Community.pull` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Community.pull` method.
+        """
 
         self._community.remove()
         self._community.pull()
         self.assertTrue(self._community.synced())
 
     def test_remove(self):
-        """Test :func:`colour_datasets.records.zenodo.Community.remove` method."""
+        """
+        Test :func:`colour_datasets.records.zenodo.Community.remove` method.
+        """
 
         self._community.pull()
         self._community.remove()

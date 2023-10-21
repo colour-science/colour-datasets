@@ -16,16 +16,14 @@ Subpackages
 """
 
 import contextlib
-import numpy as np
 import os
 import subprocess
 
 import colour
+import numpy as np
 
-from .records import Configuration
-from .records import Community, Record, datasets
-from .records import sandbox
 from .loaders import load
+from .records import Community, Configuration, Record, datasets, sandbox
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"

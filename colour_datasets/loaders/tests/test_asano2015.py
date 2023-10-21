@@ -1,9 +1,9 @@
 # !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.asano2015` module."""
 
-import numpy as np
 import unittest
 
+import numpy as np
 from colour import SpectralShape
 
 from colour_datasets.loaders import DatasetLoader_Asano2015, build_Asano2015

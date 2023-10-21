@@ -19,10 +19,10 @@ References
 from __future__ import annotations
 
 import codecs
-import numpy as np
 import os
 import re
 
+import numpy as np
 from colour import SpectralShape
 from colour.characterisation import RGB_CameraSensitivities
 from colour.hints import Dict

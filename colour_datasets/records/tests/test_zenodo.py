@@ -4,10 +4,10 @@ module.
 """
 
 import os
-import unittest
 import textwrap
+import unittest
 
-from colour_datasets.records import Configuration, Record, Community
+from colour_datasets.records import Community, Configuration, Record
 from colour_datasets.utilities import json_open
 
 __author__ = "Colour Developers"

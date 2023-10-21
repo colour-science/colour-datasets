@@ -5,23 +5,23 @@ Invoke - Tasks
 
 from __future__ import annotations
 
-import biblib.bib
 import contextlib
 import fnmatch
+import inspect
 import os
 import re
 import uuid
 
-import colour_datasets
+import biblib.bib
 from colour.utilities import message_box
 
-import inspect
+import colour_datasets
 
 if not hasattr(inspect, "getargspec"):
     inspect.getargspec = inspect.getfullargspec  # pyright: ignore
 
-from invoke.tasks import task
 from invoke.context import Context
+from invoke.tasks import task
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"

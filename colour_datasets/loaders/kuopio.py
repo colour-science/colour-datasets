@@ -37,14 +37,14 @@ from __future__ import annotations
 
 import contextlib
 import functools
-import numpy as np
 import os
 import re
-import scipy.io
 import sys
 from collections import namedtuple
 from typing import ClassVar
 
+import numpy as np
+import scipy.io
 from colour import SpectralDistribution, SpectralShape
 from colour.hints import Any, Dict, Tuple, Type, cast
 

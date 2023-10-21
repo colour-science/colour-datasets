@@ -14,7 +14,6 @@ from __future__ import annotations
 import json
 import os
 import shutil
-import setuptools.archive_util
 import stat
 import tempfile
 import textwrap
@@ -24,6 +23,7 @@ from collections.abc import Mapping
 from html.parser import HTMLParser
 from pprint import pformat
 
+import setuptools.archive_util
 from colour.hints import (
     Any,
     Callable,
@@ -33,8 +33,8 @@ from colour.hints import (
 )
 from colour.utilities import optional, warning
 
-from colour_datasets.utilities import url_download, json_open
 from colour_datasets.records import Configuration
+from colour_datasets.utilities import json_open, url_download
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"

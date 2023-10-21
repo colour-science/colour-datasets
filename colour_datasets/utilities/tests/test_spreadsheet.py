@@ -5,14 +5,15 @@ module.
 
 import os
 import unittest
+
 import xlrd
 
 from colour_datasets.utilities import (
-    row_to_index,
-    index_to_row,
+    cell_range_values,
     column_to_index,
     index_to_column,
-    cell_range_values,
+    index_to_row,
+    row_to_index,
 )
 
 __author__ = "Colour Developers"

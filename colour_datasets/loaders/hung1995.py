@@ -18,10 +18,10 @@ References
 
 from __future__ import annotations
 
-import numpy as np
 import os
 from collections import namedtuple
 
+import numpy as np
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
 from colour.hints import Dict
 

@@ -5,7 +5,7 @@ module.
 
 import unittest
 
-from colour_datasets.records import Configuration, use_sandbox, sandbox
+from colour_datasets.records import Configuration, sandbox, use_sandbox
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"

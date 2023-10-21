@@ -19,9 +19,9 @@ SupportID=5884#
 from __future__ import annotations
 
 import codecs
-import numpy as np
 import os
 
+import numpy as np
 from colour import CCS_ILLUMINANTS, Lab_to_XYZ, XYZ_to_xyY
 from colour.characterisation import ColourChecker
 from colour.hints import Dict

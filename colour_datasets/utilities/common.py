@@ -12,15 +12,15 @@ import gzip
 import hashlib
 import json
 import os
-import setuptools.archive_util
 import shutil
 import sys
 import urllib.error
 import urllib.request
-from tqdm import tqdm
-from cachetools import cached, TTLCache
 
+import setuptools.archive_util
+from cachetools import TTLCache, cached
 from colour.hints import Any, Callable, Dict
+from tqdm import tqdm
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"

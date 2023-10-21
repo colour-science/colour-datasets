@@ -13,8 +13,8 @@ References
 from __future__ import annotations
 
 import re
-import xlrd
 
+import xlrd
 from colour.hints import Dict, List
 from colour.utilities import CanonicalMapping, attest
 

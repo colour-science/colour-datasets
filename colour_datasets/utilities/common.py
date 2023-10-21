@@ -159,7 +159,7 @@ def url_download(
                 unit="B",
                 unit_scale=True,
                 miniters=1,
-                desc=f"Downloading \"{url.split('/')[-1]}\" file",
+                desc=f'Downloading "{url}" url',
             ) as progress:
                 urllib.request.urlretrieve(  # noqa: S310
                     url,

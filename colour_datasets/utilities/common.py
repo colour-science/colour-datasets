@@ -39,6 +39,7 @@ __all__ = [
 ]
 
 
+# TODO: Use *colour* definition.
 class suppress_stdout:
     """A context manager and decorator temporarily suppressing standard output."""
 

@@ -17,10 +17,10 @@ References
 
 from __future__ import annotations
 
-import numpy as np
 import os
 
-from colour import LinearInterpolator, SpectralShape, SpectralDistribution
+import numpy as np
+from colour import LinearInterpolator, SpectralDistribution, SpectralShape
 from colour.hints import Dict
 from colour.utilities import as_int
 

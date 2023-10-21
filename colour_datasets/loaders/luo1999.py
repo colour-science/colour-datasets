@@ -26,10 +26,10 @@ References
 from __future__ import annotations
 
 import codecs
-import numpy as np
 import os
 from collections import namedtuple
 
+import numpy as np
 from colour.hints import Dict, Tuple, cast
 from colour.utilities import as_float_array
 

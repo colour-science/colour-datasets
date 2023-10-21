@@ -31,10 +31,10 @@ http://colour.derby.ac.uk:80/colour/info/lutchi/
 
 from __future__ import annotations
 
-import numpy as np
 import os
 from collections import namedtuple
 
+import numpy as np
 from colour.hints import Dict, Tuple
 from colour.utilities import as_float_array, usage_warning
 

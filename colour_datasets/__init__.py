@@ -16,16 +16,14 @@ Subpackages
 """
 
 import contextlib
-import numpy as np
 import os
 import subprocess
 
 import colour
+import numpy as np
 
-from .records import Configuration
-from .records import Community, Record, datasets
-from .records import sandbox
 from .loaders import load
+from .records import Community, Configuration, Record, datasets, sandbox
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -53,7 +51,7 @@ __application_name__ = "Colour - Datasets"
 
 __major_version__ = "0"
 __minor_version__ = "2"
-__change_version__ = "2"
+__change_version__ = "3"
 __version__ = ".".join(
     (__major_version__, __minor_version__, __change_version__)
 )

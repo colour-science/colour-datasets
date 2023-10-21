@@ -14,9 +14,9 @@ References
     doi:10.5281/zenodo.3245875
 """
 
-import numpy as np
 import os
 
+import numpy as np
 from colour import SpectralDistribution
 from colour.hints import Dict, Optional
 from colour.utilities import tsplit

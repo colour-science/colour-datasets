@@ -13,8 +13,8 @@ References
 from __future__ import annotations
 
 import re
-import xlrd
 
+import xlrd
 from colour.hints import Dict, List
 from colour.utilities import CanonicalMapping, attest
 
@@ -142,8 +142,7 @@ def index_to_row(index: int) -> str:
 
     Examples
     --------
-    # Doctests skip for Python 2.x compatibility.
-    >>> index_to_row(0)  # doctest: +SKIP
+    >>> index_to_row(0)
     '1'
     """
 
@@ -189,8 +188,7 @@ def index_to_column(index: int) -> str:
 
     Examples
     --------
-    # Doctests skip for Python 2.x compatibility.
-    >>> index_to_column(0)  # doctest: +SKIP
+    >>> index_to_column(0)
     'A'
     """
 

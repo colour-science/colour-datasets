@@ -1,25 +1,27 @@
 # !/usr/bin/env python
-"""Define the unit tests for the :mod:`colour_datasets.loaders.kuopio` module."""
+"""
+Define the unit tests for the :mod:`colour_datasets.loaders.kuopio` module.
 
-import numpy as np
+isort:skip_file
+"""
+
 import os
 import unittest
 
+import numpy as np
 from colour import SpectralShape
 
 from colour_datasets.loaders.kuopio import (
-    MatFileMetadata_KuopioUniversity,
-    read_sds_from_mat_file_KuopioUniversity,
-)
-from colour_datasets.loaders.kuopio import (
-    DatasetLoader_MunsellColorsMattSpectrofotometerMeasured,  # pyright: ignore
-    DatasetLoader_MunsellColorsMattAOTFMeasured,  # pyright: ignore
-    DatasetLoader_MunsellColorsGlossySpectrofotometerMeasured,  # pyright: ignore
-    DatasetLoader_MunsellColorsGlossyAllSpectrofotometerMeasured,  # pyright: ignore
+    DatasetLoader_AgfaIT872Set,  # pyright: ignore
     DatasetLoader_ForestColors,  # pyright: ignore
     DatasetLoader_PaperSpectra,  # pyright: ignore
     DatasetLoader_LumberSpectra,  # pyright: ignore
-    DatasetLoader_AgfaIT872Set,  # pyright: ignore
+    DatasetLoader_MunsellColorsGlossyAllSpectrofotometerMeasured,  # pyright: ignore
+    DatasetLoader_MunsellColorsGlossySpectrofotometerMeasured,  # pyright: ignore
+    DatasetLoader_MunsellColorsMattAOTFMeasured,  # pyright: ignore
+    DatasetLoader_MunsellColorsMattSpectrofotometerMeasured,  # pyright: ignore
+    MatFileMetadata_KuopioUniversity,
+    read_sds_from_mat_file_KuopioUniversity,
 )
 
 __author__ = "Colour Developers"

@@ -16,8 +16,8 @@ References
 
 from __future__ import annotations
 
-import json
 import glob
+import json
 import os
 
 from colour import MultiSpectralDistributions, SpectralDistribution

@@ -17,9 +17,9 @@ References
 
 from __future__ import annotations
 
-import numpy as np
 import os
 
+import numpy as np
 from colour.characterisation import RGB_CameraSensitivities
 from colour.hints import Dict
 

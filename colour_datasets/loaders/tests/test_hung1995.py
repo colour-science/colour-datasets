@@ -1,8 +1,9 @@
 # !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.hung1995` module."""
 
-import numpy as np
 import unittest
+
+import numpy as np
 
 from colour_datasets.loaders import DatasetLoader_Hung1995, build_Hung1995
 

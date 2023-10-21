@@ -2,16 +2,16 @@
 """Define the unit tests for the :mod:`colour_datasets.utilities.common` module."""
 
 import os
-import unittest
-import tempfile
 import shutil
+import tempfile
+import unittest
 
 from colour_datasets.loaders import build_Labsphere2019
 from colour_datasets.utilities import (
     hash_md5,
-    url_download,
     json_open,
     unpack_gzipfile,
+    url_download,
 )
 
 __author__ = "Colour Developers"

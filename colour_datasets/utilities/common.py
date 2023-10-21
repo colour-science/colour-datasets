@@ -12,15 +12,15 @@ import gzip
 import hashlib
 import json
 import os
-import setuptools.archive_util
 import shutil
 import sys
 import urllib.error
 import urllib.request
-from tqdm import tqdm
-from cachetools import cached, TTLCache
 
+import setuptools.archive_util
+from cachetools import TTLCache, cached
 from colour.hints import Any, Callable, Dict
+from tqdm import tqdm
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -159,7 +159,7 @@ def url_download(
                 unit="B",
                 unit_scale=True,
                 miniters=1,
-                desc=f"Downloading \"{url.split('/')[-1]}\" file",
+                desc=f'Downloading "{url}" url',
             ) as progress:
                 urllib.request.urlretrieve(  # noqa: S310
                     url,
@@ -213,7 +213,6 @@ def json_open(url: str, retries: int = 3) -> Dict:
 
     Examples
     --------
-    # Doctests skip for Python 2.x compatibility.
     >>> json_open("https://zenodo.org/api/records/3245883")
     ... # doctest: +SKIP
     '{"conceptdoi":"10.5281/zenodo.3245882"'

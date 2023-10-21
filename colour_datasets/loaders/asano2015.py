@@ -16,15 +16,15 @@ References
 
 from __future__ import annotations
 
-import numpy as np
 import os
-import xlrd
 from collections import namedtuple
 
+import numpy as np
+import xlrd
 from colour import SpectralShape
 from colour.colorimetry import (
-    XYZ_ColourMatchingFunctions,
     LMS_ConeFundamentals,
+    XYZ_ColourMatchingFunctions,
 )
 from colour.hints import Dict, NDArrayFloat
 from colour.utilities import as_float_array, tstack

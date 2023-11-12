@@ -342,3 +342,9 @@ def build_Asano2015(load: bool = True) -> DatasetLoader_Asano2015:
             _DATASET_LOADER_ASANO2015.load()
 
     return _DATASET_LOADER_ASANO2015
+
+
+if __name__ == "__main__":
+    import colour_datasets
+
+    colour_datasets.load("3252742")

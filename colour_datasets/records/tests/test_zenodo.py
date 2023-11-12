@@ -159,10 +159,10 @@ Files
 -----
 
 - camlist&equipment.txt : https://zenodo.org/api/records/3245883/files/\
-camlist&equipment.txt
+camlist&equipment.txt/content
 - camspec_database.txt : https://zenodo.org/api/records/3245883/files/\
-camspec_database.txt
-- urls.txt : https://zenodo.org/api/records/3245883/files/urls.txt"""
+camspec_database.txt/content
+- urls.txt : https://zenodo.org/api/records/3245883/files/urls.txt/content"""
             )[1:],
         )
 

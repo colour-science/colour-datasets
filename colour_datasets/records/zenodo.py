@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import stat
 import tempfile
@@ -204,8 +205,8 @@ class Record:
 
         files = "\n".join(
             [
-                f"- {file_data['filename']} : {file_data['links']['self']}"
-                for file_data in sorted(files, key=lambda x: x["filename"])
+                f'- {file_data["key"]} : {file_data["links"]["self"]}'
+                for file_data in sorted(files, key=lambda x: x["key"])
             ]
         )
 
@@ -388,22 +389,20 @@ class Record:
         # given by the content of :attr:`URLS_TXT_FILE` attribute file.
         urls_txt = None
         for file_data in self.data["files"]:
-            if file_data["filename"] == self._configuration.urls_txt_file:
+            if file_data["key"] == self._configuration.urls_txt_file:
                 urls_txt = file_data
                 break
 
-        def urls_download(urls: Dict, is_content_url=False):
+        def urls_download(urls: Dict) -> None:
             """Download given urls."""
 
             for url, md5 in urls.items():
+                filename = re.sub("/content$", "", url)
                 filename = os.path.join(
                     downloads_directory,
                     urllib.parse.unquote(  # pyright: ignore
-                        url.split("/")[-1]
+                        filename.split("/")[-1]
                     ),
-                )
-                url = (  # noqa: PLW2901
-                    f"{url}/content" if is_content_url else url
                 )
                 url_download(url, filename, md5.split(":")[-1], retries)
 
@@ -412,7 +411,7 @@ class Record:
                 urls = {}
                 urls_txt_file = tempfile.NamedTemporaryFile(delete=False).name
                 url_download(
-                    urls_txt["links"]["download"],
+                    urls_txt["links"]["self"],
                     urls_txt_file,
                     urls_txt["checksum"].split(":")[-1],
                     retries,
@@ -445,7 +444,7 @@ class Record:
 
             urls = {}
             for file_data in self.data["files"]:
-                if file_data["filename"] == self._configuration.urls_txt_file:
+                if file_data["key"] == self._configuration.urls_txt_file:
                     continue
 
                 # TODO: Remove the following space escaping: The new Zenodo API
@@ -457,7 +456,7 @@ class Record:
 
                 urls[url] = file_data["checksum"].split(":")[-1]
 
-            urls_download(urls, is_content_url=True)
+            urls_download(urls)
 
         deflate_directory = os.path.join(
             self.repository, self._configuration.deflate_directory

@@ -123,6 +123,6 @@ if __name__ == "__main__":
     os.chdir(os.path.dirname(__file__))
 
     export_todo_items(
-        extract_todo_items(os.path.join("..", "colour_checker_detection")),
+        extract_todo_items(os.path.join("..", "colour_datasets")),
         os.path.join("..", "TODO.rst"),
     )

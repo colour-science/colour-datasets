@@ -224,7 +224,7 @@ def json_open(url: str, retries: int = 3) -> Dict:
     attempt = 0
     while attempt != retries:
         try:
-            request = urllib.request.Request(url)
+            request = urllib.request.Request(url)  # noqa: S310
             with urllib.request.urlopen(request) as response:  # noqa: S310
                 return json.loads(response.read())
         except (urllib.error.URLError, ValueError):

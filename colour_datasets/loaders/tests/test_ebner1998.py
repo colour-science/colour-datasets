@@ -4,6 +4,7 @@
 import unittest
 
 import numpy as np
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_datasets.loaders import DatasetLoader_Ebner1998, build_Ebner1998
 
@@ -74,7 +75,7 @@ DatasetLoader_Ebner1998.load` method.
             ],
         )
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.load()["Constant Perceived-Hue Data"][96].XYZ_r,
             np.array(
                 [
@@ -83,9 +84,9 @@ DatasetLoader_Ebner1998.load` method.
                     1.088100000000000,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.load()["Constant Perceived-Hue Data"][96].XYZ_cr,
             np.array(
                 [
@@ -94,9 +95,9 @@ DatasetLoader_Ebner1998.load` method.
                     0.211200000000000,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.load()["Constant Perceived-Hue Data"][96].XYZ_ct,
             np.array(
                 [
@@ -122,7 +123,7 @@ DatasetLoader_Ebner1998.load` method.
                     [0.704427000000000, 0.763034000000000, 0.112490000000000],
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
 

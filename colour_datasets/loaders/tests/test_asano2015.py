@@ -5,6 +5,7 @@ import unittest
 
 import numpy as np
 from colour import SpectralShape
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_datasets.loaders import DatasetLoader_Asano2015, build_Asano2015
 
@@ -60,7 +61,7 @@ DatasetLoader_Asano2015.load` method.
             SpectralShape(390, 780, 5),
         )
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.content["Categorical Observers"][1].XYZ_2[390],
             np.array(
                 [
@@ -69,10 +70,10 @@ DatasetLoader_Asano2015.load` method.
                     0.017705556255144,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.content["Categorical Observers"][10].LMS_10[780],
             np.array(
                 [
@@ -81,15 +82,15 @@ DatasetLoader_Asano2015.load` method.
                     0.000000000000000,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
-        self.assertAlmostEqual(
+        np.testing.assert_allclose(
             dataset.content["Categorical Observers"][5].parameters[
                 "Shift in S [nm]"
             ],
             0.233255808,
-            places=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
         self.assertEqual(
@@ -97,7 +98,7 @@ DatasetLoader_Asano2015.load` method.
             SpectralShape(390, 780, 5),
         )
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.content["Colour Normal Observers"][1].XYZ_2[390],
             np.array(
                 [
@@ -106,10 +107,10 @@ DatasetLoader_Asano2015.load` method.
                     0.007492391403616,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.content["Colour Normal Observers"][10].LMS_10[780],
             np.array(
                 [
@@ -118,15 +119,15 @@ DatasetLoader_Asano2015.load` method.
                     0.000000000000000,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
-        self.assertAlmostEqual(
+        np.testing.assert_allclose(
             dataset.content["Colour Normal Observers"][5].parameters[
                 "Shift in S [nm]"
             ],
             0.000649602695013,
-            places=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
         self.assertEqual(

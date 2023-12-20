@@ -10,6 +10,7 @@ import unittest
 
 import numpy as np
 from colour import SpectralShape
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_datasets.loaders.kuopio import (
     DatasetLoader_AgfaIT872Set,  # pyright: ignore
@@ -59,7 +60,7 @@ read_sds_from_mat_file_KuopioUniversity` definition.
         sds = read_sds_from_mat_file_KuopioUniversity(mat_file, metadata)
         self.assertEqual(len(sds), 32)
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             sds["5R 6/8 (3)"].values,
             np.array(
                 [
@@ -96,7 +97,7 @@ read_sds_from_mat_file_KuopioUniversity` definition.
                     51.890000000000000,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
 
@@ -3614,10 +3615,10 @@ DatasetLoader_KuopioUniversity.load` method.
         }
         for dataset_loader, values in dataset_loaders.items():
             self.assertEqual(len(dataset_loader.load()[values[0]]), values[1])
-            np.testing.assert_array_almost_equal(
+            np.testing.assert_allclose(
                 dataset_loader.content[values[0]][values[2]].values,
                 values[3],
-                decimal=7,
+                atol=TOLERANCE_ABSOLUTE_TESTS,
             )
 
 

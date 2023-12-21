@@ -43,9 +43,9 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">= 3.9, < 3.12"
+python = ">= 3.9, < 3.13"
 cachetools = "*"
-colour-science = ">= 0.4.3"
+colour-science = ">= 0.4.4"
 imageio = ">= 2, < 3"
 numpy = ">= 1.22, < 2"
 opencv-python = ">= 4, < 5"
@@ -55,11 +55,8 @@ typing-extensions = ">= 4, < 5"
 xlrd = ">= 1.2, < 2"
 
 [tool.poetry.group.dev.dependencies]
-black = "*"
-blackdoc = "*"
 coverage = "!= 6.3"
 coveralls = "*"
-flynt = "*"
 invoke = "*"
 jupyter = "*"
 pre-commit = ">= 3.5"
@@ -67,7 +64,6 @@ pyright = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-xdist = "*"
-ruff = "*"
 toml = "*"
 twine = "*"
 

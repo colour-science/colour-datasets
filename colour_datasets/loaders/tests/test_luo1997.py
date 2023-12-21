@@ -4,6 +4,7 @@
 import unittest
 
 import numpy as np
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_datasets.loaders import DatasetLoader_Luo1997, build_Luo1997
 
@@ -51,7 +52,7 @@ load` method.
         dataset = DatasetLoader_Luo1997()
         self.assertEqual(len(dataset.load().keys()), 8)
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.content["R-HL"].phases["1"].JQCH_v,
             np.array(
                 [
@@ -162,7 +163,7 @@ load` method.
                     [45.66667000, 61.23224000, 387.50000000],
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
         self.assertEqual(

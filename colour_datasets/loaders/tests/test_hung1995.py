@@ -4,6 +4,7 @@
 import unittest
 
 import numpy as np
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_datasets.loaders import DatasetLoader_Hung1995, build_Hung1995
 
@@ -78,7 +79,7 @@ load` method.
             ],
         )
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.load()["Constant Hue Loci Data - CL"]["Cyan"].XYZ_r,
             np.array(
                 [
@@ -87,9 +88,9 @@ load` method.
                     1.182249493927126,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.load()["Constant Hue Loci Data - CL"]["Cyan"].XYZ_cr,
             np.array(
                 [
@@ -98,9 +99,9 @@ load` method.
                     1.149029086144775,
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.load()["Constant Hue Loci Data - CL"]["Cyan"].XYZ_ct,
             np.array(
                 [
@@ -110,7 +111,7 @@ load` method.
                     [0.495500000000000, 0.722700000000000, 1.149100000000000],
                 ]
             ),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
 

@@ -7,6 +7,7 @@ module.
 import unittest
 
 import numpy as np
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_datasets.loaders import (
     DatasetLoader_Winquist2022,
@@ -59,10 +60,10 @@ load` method.
         dataset = DatasetLoader_Winquist2022()
         self.assertEqual(len(dataset.load().keys()), 17)
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.load()["Canon EOS_1DX_Mark_II"][555],
             np.array([0.27472975, 0.88354587, 0.08992765]),
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
 

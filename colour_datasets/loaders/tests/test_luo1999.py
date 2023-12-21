@@ -4,6 +4,7 @@
 import unittest
 
 import numpy as np
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_datasets.loaders import DatasetLoader_Luo1999, build_Luo1999
 
@@ -51,7 +52,7 @@ load` method.
         dataset = DatasetLoader_Luo1999()
         self.assertEqual(len(dataset.load().keys()), 37)
 
-        np.testing.assert_array_almost_equal(
+        np.testing.assert_allclose(
             dataset.content["CSAJ-C - da"].XYZ_ct,
             np.array(
                 [
@@ -145,7 +146,7 @@ load` method.
                 ]
             )
             / 100,
-            decimal=7,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
         self.assertEqual(

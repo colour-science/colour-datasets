@@ -12,7 +12,7 @@ Colour - Datasets
     :target: https://coveralls.io/r/colour-science/colour-datasets
     :alt: Coverage Status
 .. |codacy| image:: https://img.shields.io/codacy/grade/83345fbde65545d2a4499f32e72866ed/develop.svg?style=flat-square
-    :target: https://www.codacy.com/app/colour-science/colour-datasets
+    :target: https://app.codacy.com/gh/colour-science/colour-datasets
     :alt: Code Grade
 .. |version| image:: https://img.shields.io/pypi/v/colour-datasets.svg?style=flat-square
     :target: https://pypi.org/project/colour-datasets

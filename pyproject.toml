@@ -84,6 +84,10 @@ exclude = '''
 )/
 '''
 
+[tool.codespell]
+ignore-words-list = 'exitance,seperately'
+skip = 'BIBLIOGRAPHY.bib,CONTRIBUTORS.rst'
+
 [tool.flynt]
 line_length=999
 

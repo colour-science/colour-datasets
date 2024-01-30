@@ -39,9 +39,7 @@ class TestUseSandbox(unittest.TestCase):
 
         self.assertEqual(Configuration().api_url, "https://zenodo.org/api")
         use_sandbox()
-        self.assertEqual(
-            Configuration().api_url, "https://sandbox.zenodo.org/api"
-        )
+        self.assertEqual(Configuration().api_url, "https://sandbox.zenodo.org/api")
         use_sandbox(False)
 
 
@@ -60,14 +58,10 @@ class TestSandbox(unittest.TestCase):
         self.assertEqual(Configuration().api_url, "https://zenodo.org/api")
 
         with sandbox():
-            self.assertEqual(
-                Configuration().api_url, "https://sandbox.zenodo.org/api"
-            )
+            self.assertEqual(Configuration().api_url, "https://sandbox.zenodo.org/api")
 
         with sandbox("https://www.colour-science.org", "colour-science"):
-            self.assertEqual(
-                Configuration().api_url, "https://www.colour-science.org"
-            )
+            self.assertEqual(Configuration().api_url, "https://www.colour-science.org")
             self.assertEqual(Configuration().community, "colour-science")
 
 

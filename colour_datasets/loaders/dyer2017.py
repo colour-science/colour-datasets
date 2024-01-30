@@ -319,8 +319,7 @@ __init__`
         if value is not None:
             attest(
                 is_string(value),
-                f'"measurement_equipment" property: "{value}" type is not '
-                f'"str"!',
+                f'"measurement_equipment" property: "{value}" type is not "str"!',
             )
 
         self._measurement_equipment = value
@@ -380,8 +379,7 @@ __init__`
         if value is not None:
             attest(
                 is_string(value),
-                f'"document_creation_date" property: "{value}" type is not '
-                f'"str"!',
+                f'"document_creation_date" property: "{value}" type is not "str"!',
             )
 
         self._document_creation_date = value
@@ -417,7 +415,7 @@ __init__`
         self._comments = value
 
     @property
-    def license(self) -> str | None:  # noqa: A003
+    def license(self) -> str | None:
         """
         Getter and setter property for the license.
 
@@ -435,7 +433,7 @@ __init__`
         return self._license
 
     @license.setter
-    def license(self, value: str | None):  # noqa: A003
+    def license(self, value: str | None):
         """Setter for the **self.license** property."""
 
         if value is not None:
@@ -815,8 +813,7 @@ __init__`
     @transmission_geometry.setter
     def transmission_geometry(
         self,
-        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        | None,
+        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None,
     ):
         """Setter for the **self.transmission_geometry** property."""
 
@@ -915,9 +912,7 @@ __init__`
                 "bandwidth_FWHM",
                 "bandwidth_corrected",
             ):
-                setattr(
-                    self, f"_{attribute}", content["spectral_data"][attribute]
-                )
+                setattr(self, f"_{attribute}", content["spectral_data"][attribute])
 
             data = content["spectral_data"]["data"]["main"]
 
@@ -1316,8 +1311,7 @@ __init__`
     @transmission_geometry.setter
     def transmission_geometry(
         self,
-        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        | None,
+        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None,
     ):
         """Setter for the **self.transmission_geometry** property."""
 
@@ -1416,16 +1410,12 @@ __init__`
                 "bandwidth_FWHM",
                 "bandwidth_corrected",
             ):
-                setattr(
-                    self, f"_{attribute}", content["spectral_data"][attribute]
-                )
+                setattr(self, f"_{attribute}", content["spectral_data"][attribute])
 
             index = content["spectral_data"]["index"]["main"]
             data = content["spectral_data"]["data"]["main"]
 
-            self.signals = MultiSignals.multi_signals_unpack_data(
-                data, labels=index
-            )
+            self.signals = MultiSignals.multi_signals_unpack_data(data, labels=index)
 
             # TODO: Re-instate "manufacturer", "model", "illuminant" and "type"
             # attributes according to outcome of
@@ -1448,9 +1438,7 @@ __init__`
 
             return self
         else:
-            raise ValueError(
-                "The multi-spectral distributions path is undefined!"
-            )
+            raise ValueError("The multi-spectral distributions path is undefined!")
 
 
 class DatasetLoader_Dyer2017(AbstractDatasetLoader):
@@ -1502,7 +1490,6 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Dyer2017()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         4
         """

@@ -80,7 +80,6 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Brendel2020()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         29
         """
@@ -95,9 +94,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
             self.record.repository, "dataset", "led_spd_350_700.csv"
         )
 
-        for i, values in enumerate(
-            np.loadtxt(csv_path, delimiter=",", skiprows=1)
-        ):
+        for i, values in enumerate(np.loadtxt(csv_path, delimiter=",", skiprows=1)):
             peak = as_int(wavelengths[np.argmax(values)])
             name = f"{peak}nm - LED {i} - Brendel (2020)"
 

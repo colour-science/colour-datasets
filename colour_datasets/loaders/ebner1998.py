@@ -115,7 +115,6 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Ebner1998()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         1
         """
@@ -132,18 +131,14 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
             """Parse float values from given data."""
 
             values = np.reshape(
-                as_float_array(
-                    [float(x) / 100 for x in data.split("\t") if x]
-                ),
+                as_float_array([float(x) / 100 for x in data.split("\t") if x]),
                 (-1, 3),
             )
 
             return np.squeeze(values)
 
         with codecs.open(datafile_path, encoding="utf-8") as database_file:
-            lines = filter(
-                None, (line.strip() for line in database_file.readlines())
-            )
+            lines = filter(None, (line.strip() for line in database_file.readlines()))
 
             for line in lines:
                 if line.startswith("White Point"):

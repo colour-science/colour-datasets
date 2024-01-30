@@ -62,9 +62,7 @@ DatasetLoader_Karge2015.load` method.
             ],
         )
         self.assertEqual(
-            dataset.content["Arri HMI"]["Raw"][
-                "Arri_Compact125W_HMI_Spot"
-            ].shape,
+            dataset.content["Arri HMI"]["Raw"]["Arri_Compact125W_HMI_Spot"].shape,
             SpectralShape(380, 780, 4),
         )
 

@@ -113,7 +113,6 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Hung1995()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         6
         """
@@ -134,9 +133,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         }
 
         for filename in filenames:
-            datafile_path = os.path.join(
-                self.record.repository, "dataset", filename
-            )
+            datafile_path = os.path.join(self.record.repository, "dataset", filename)
 
             self._content[filename.split(".")[0]] = np.genfromtxt(
                 datafile_path,
@@ -161,9 +158,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
             "Magenta-red",
         ]
 
-        XYZ_r = xy_to_XYZ(
-            CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"]["C"]
-        )
+        XYZ_r = xy_to_XYZ(CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"]["C"])
 
         for table, experiment in [("Table III", "CL"), ("Table IV", "VL")]:
             key = f"Constant Hue Loci Data - {experiment}"
@@ -189,9 +184,7 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
                     metadata["Color name"].append(sample_t[0])
                     metadata["C*uv"].append(sample_t[1])
 
-                self._content[key][
-                    hue
-                ] = ConstantPerceivedHueColourMatches_Hung1995(
+                self._content[key][hue] = ConstantPerceivedHueColourMatches_Hung1995(
                     hue, XYZ_r, XYZ_cr, np.vstack(XYZ_ct) / 100, metadata
                 )
 

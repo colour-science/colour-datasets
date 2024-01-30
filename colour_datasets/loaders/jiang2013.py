@@ -86,7 +86,6 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Jiang2013()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         28
         """
@@ -100,9 +99,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
             self.record.repository, "dataset", "camspec_database.txt"
         )
         with codecs.open(database_path, encoding="utf-8") as database_file:
-            lines = filter(
-                None, (line.strip() for line in database_file.readlines())
-            )
+            lines = filter(None, (line.strip() for line in database_file.readlines()))
             camera = None
             for line in lines:
                 if re.match("[a-zA-Z]+", line):

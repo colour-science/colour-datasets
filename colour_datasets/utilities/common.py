@@ -126,9 +126,7 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     return md5.hexdigest()
 
 
-def url_download(
-    url: str, filename: str, md5: str | None = None, retries: int = 3
-):
+def url_download(url: str, filename: str, md5: str | None = None, retries: int = 3):
     """
     Download given url and saves its content at given file.
 
@@ -148,9 +146,7 @@ def url_download(
     Examples
     --------
     >>> import os
-    >>> url_download(
-    ...     "https://github.com/colour-science/colour-datasets", os.devnull
-    ... )
+    >>> url_download("https://github.com/colour-science/colour-datasets", os.devnull)
     """
 
     attempt = 0
@@ -240,7 +236,9 @@ def json_open(url: str, retries: int = 3) -> Dict:
 
 
 def unpack_gzipfile(
-    filename: str, extraction_directory: str, *args: Any  # noqa: ARG001
+    filename: str,
+    extraction_directory: str,
+    *args: Any,  # noqa: ARG001
 ) -> bool:
     """
     Unpack given *GZIP* file to given extraction directory.

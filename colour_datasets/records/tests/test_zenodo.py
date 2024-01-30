@@ -289,9 +289,7 @@ class TestCommunity(unittest.TestCase):
         property.
         """
 
-        self.assertEqual(
-            self._community.repository, self._configuration.repository
-        )
+        self.assertEqual(self._community.repository, self._configuration.repository)
 
     def test_records(self):
         """
@@ -361,9 +359,7 @@ Datasets
         method.
         """
 
-        self.assertIs(
-            self._community["3245883"], self._community.records["3245883"]
-        )
+        self.assertIs(self._community["3245883"], self._community.records["3245883"])
 
     def test__iter__(self):
         """
@@ -371,9 +367,7 @@ Datasets
         method.
         """
 
-        self.assertListEqual(
-            list(self._community), list(self._community.records)
-        )
+        self.assertListEqual(list(self._community), list(self._community.records))
 
     def test__len__(self):
         """

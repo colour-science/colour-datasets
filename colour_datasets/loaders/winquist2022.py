@@ -81,7 +81,6 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Winquist2022()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         17
         """
@@ -90,9 +89,7 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
 
         self._content = {}
 
-        glob_pattern = os.path.join(
-            self.record.repository, "dataset", "*.json"
-        )
+        glob_pattern = os.path.join(self.record.repository, "dataset", "*.json")
         for path in glob.glob(glob_pattern):
             msds = MultiSpectralDistributions_AMPAS(path).read()
             self._content[msds.name] = msds

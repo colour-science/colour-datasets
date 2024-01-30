@@ -86,9 +86,7 @@ DatasetLoader_Asano2015.load` method.
         )
 
         np.testing.assert_allclose(
-            dataset.content["Categorical Observers"][5].parameters[
-                "Shift in S [nm]"
-            ],
+            dataset.content["Categorical Observers"][5].parameters["Shift in S [nm]"],
             0.233255808,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
@@ -123,9 +121,7 @@ DatasetLoader_Asano2015.load` method.
         )
 
         np.testing.assert_allclose(
-            dataset.content["Colour Normal Observers"][5].parameters[
-                "Shift in S [nm]"
-            ],
+            dataset.content["Colour Normal Observers"][5].parameters["Shift in S [nm]"],
             0.000649602695013,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )

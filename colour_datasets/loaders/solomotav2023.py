@@ -81,7 +81,6 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Solomotav2023()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         2
         >>> len(dataset.content["Estimated"].keys())
@@ -101,9 +100,9 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
                 f"*.csv"
             )
             for csv_file in csv_files:
-                camera_name = os.path.splitext(os.path.basename(csv_file))[
-                    0
-                ].replace("-", " ")
+                camera_name = os.path.splitext(os.path.basename(csv_file))[0].replace(
+                    "-", " "
+                )
                 self._content[key][camera_name] = RGB_CameraSensitivities(
                     read_sds_from_csv_file(csv_file), name=camera_name
                 )

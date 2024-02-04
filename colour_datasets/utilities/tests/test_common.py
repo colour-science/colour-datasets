@@ -43,18 +43,14 @@ class TestHashMd5(unittest.TestCase):
 
         self.assertEqual(
             hash_md5(
-                os.path.join(
-                    dataset.record.repository, "dataset", "SRS-99-020.txt"
-                )
+                os.path.join(dataset.record.repository, "dataset", "SRS-99-020.txt")
             ),
             "7c7a7b76c399e5c4e3afbd32e22b2b2e",
         )
 
         self.assertEqual(
             hash_md5(
-                os.path.join(
-                    dataset.record.repository, "dataset", "SRS-99-020.txt"
-                ),
+                os.path.join(dataset.record.repository, "dataset", "SRS-99-020.txt"),
                 chunk_size=8,
             ),
             "7c7a7b76c399e5c4e3afbd32e22b2b2e",
@@ -84,9 +80,7 @@ class TestUrlDownload(unittest.TestCase):
         dataset.load()
 
         md5 = hash_md5(
-            os.path.join(
-                dataset.record.repository, "dataset", "SRS-99-020.txt"
-            )
+            os.path.join(dataset.record.repository, "dataset", "SRS-99-020.txt")
         )
         url_download(
             "https://zenodo.org/api/files/"
@@ -157,9 +151,7 @@ class TestUnpackGzipfile(unittest.TestCase):
         """
 
         unpack_gzipfile(
-            os.path.join(
-                os.path.dirname(__file__), "resources", "example.txt.gz"
-            ),
+            os.path.join(os.path.dirname(__file__), "resources", "example.txt.gz"),
             self._temporary_directory,
         )
 
@@ -168,8 +160,7 @@ class TestUnpackGzipfile(unittest.TestCase):
         ) as file_handle:
             self.assertEqual(
                 file_handle.read(),
-                "This is the content of a text file stored "
-                'inside a "GZIP" file.',
+                'This is the content of a text file stored inside a "GZIP" file.',
             )
 
 

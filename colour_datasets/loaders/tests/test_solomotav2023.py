@@ -52,9 +52,7 @@ DatasetLoader_Solomotav2023.load` method.
         """
 
         dataset = DatasetLoader_Solomotav2023()
-        self.assertEqual(
-            list(dataset.load().keys()), ["Estimated", "Ground Truth"]
-        )
+        self.assertEqual(list(dataset.load().keys()), ["Estimated", "Ground Truth"])
 
         self.assertEqual(
             dataset.content["Estimated"]["Canon EOS 1D C"].shape,

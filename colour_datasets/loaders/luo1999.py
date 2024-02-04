@@ -154,7 +154,6 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Luo1999()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         37
         """
@@ -430,9 +429,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
             metadata,
         ) in corresponding_colour_datasets.items():
             for i, filename in enumerate(filenames):
-                path = os.path.join(
-                    self.record.repository, "dataset", filename
-                )
+                path = os.path.join(self.record.repository, "dataset", filename)
 
                 XYZ_r, XYZ_t = [], []
                 XYZ_cr, XYZ_ct = [], []

@@ -235,9 +235,7 @@ def cell_range_values(sheet: xlrd.sheet.Sheet, cell_range: str) -> List[str]:
 
     for row in range(row_in, row_out + 1, 1):
         table.append(
-            sheet.row_values(
-                row, start_colx=column_in, end_colx=column_out + 1
-            )
+            sheet.row_values(row, start_colx=column_in, end_colx=column_out + 1)
         )
 
     return table

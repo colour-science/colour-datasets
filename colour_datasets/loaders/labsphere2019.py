@@ -77,16 +77,13 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Labsphere2019()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         1
         """
 
         super().sync()
 
-        sd_path = os.path.join(
-            self.record.repository, "dataset", "SRS-99-020.txt"
-        )
+        sd_path = os.path.join(self.record.repository, "dataset", "SRS-99-020.txt")
 
         values = tsplit(np.loadtxt(sd_path, delimiter="\t", skiprows=2))
         self._content = {

@@ -242,10 +242,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
             ),
             "LT": (
                 10,
-                (
-                    "Cut-sheet transparency with luminances ranging "
-                    "2100-320 cd/m2"
-                ),
+                ("Cut-sheet transparency with luminances ranging 2100-320 cd/m2"),
                 3,
             ),
             "BIT": (

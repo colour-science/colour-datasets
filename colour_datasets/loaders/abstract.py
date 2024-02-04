@@ -79,7 +79,7 @@ class AbstractDatasetLoader(ABC):
         return self._record
 
     @property
-    def id(self) -> str:  # noqa: A003
+    def id(self) -> str:
         """
         Getter property for the dataset id.
 

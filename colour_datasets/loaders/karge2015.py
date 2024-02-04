@@ -84,7 +84,6 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Karge2015()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         7
         """

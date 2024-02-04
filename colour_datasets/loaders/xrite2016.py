@@ -86,7 +86,6 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_XRite2016()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         4
         """
@@ -108,23 +107,17 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
         # TODO: Implement support for "CGATS" file format in "Colour":
         # https://github.com/colour-science/colour/issues/354
-        illuminant = CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"][
-            "ICC D50"
-        ]
+        illuminant = CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"]["ICC D50"]
 
         self._content = {}
         for key, filename in zip(keys, filenames):
             directory = os.path.splitext(filename)[0]
-            path = os.path.join(
-                self.record.repository, "dataset", directory, filename
-            )
+            path = os.path.join(self.record.repository, "dataset", directory, filename)
 
             with codecs.open(path, encoding="utf-8") as xrite_file:
                 samples_data = []
                 is_data = False
-                lines = filter(
-                    None, (line.strip() for line in xrite_file.readlines())
-                )
+                lines = filter(None, (line.strip() for line in xrite_file.readlines()))
                 for line in lines:
                     if line == "END_DATA":
                         is_data = False

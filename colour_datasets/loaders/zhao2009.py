@@ -81,7 +81,6 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Zhao2009()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         12
         """
@@ -107,9 +106,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
 
         for i, camera in enumerate(cameras):
             data = np.loadtxt(
-                os.path.join(
-                    self.record.repository, "dataset", f"camera_{i}.spectra"
-                )
+                os.path.join(self.record.repository, "dataset", f"camera_{i}.spectra")
             )
             self._content[camera] = RGB_CameraSensitivities(
                 data[..., 1:], data[..., 0], name=camera

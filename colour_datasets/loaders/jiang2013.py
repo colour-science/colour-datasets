@@ -113,7 +113,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
 
         for camera, values in self._content.items():
             self._content[camera] = RGB_CameraSensitivities(
-                np.transpose(as_float_array(values).reshape([3, 33])),
+                np.transpose(np.reshape(as_float_array(values), (3, 33))),
                 shape.range(),
                 name=camera,
             )

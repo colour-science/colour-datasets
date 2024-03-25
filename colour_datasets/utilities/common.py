@@ -274,9 +274,10 @@ def unpack_gzipfile(
         os.makedirs(extraction_directory)
 
     try:
-        with gzip.open(filename) as gzip_file, open(
-            extraction_path, "wb"
-        ) as output_file:
+        with (
+            gzip.open(filename) as gzip_file,
+            open(extraction_path, "wb") as output_file,
+        ):
             shutil.copyfileobj(gzip_file, output_file)
     except Exception as error:
         print(error)  # noqa: T201

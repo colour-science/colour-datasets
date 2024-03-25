@@ -564,39 +564,45 @@ __init__`
         self.path = path
         self._header: SpectralDataHeader_AMPAS = SpectralDataHeader_AMPAS()
         self.header = optional(header, self._header)
-        self._units: Literal[
-            "absorptance",
-            "exitance",
-            "flux",
-            "intensity",
-            "irradiance",
-            "radiance",
-            "reflectance",
-            "relative",
-            "transmittance",
-            "R-Factor",
-            "T-Factor",
-            "other",
-        ] | None = None
+        self._units: (
+            Literal[
+                "absorptance",
+                "exitance",
+                "flux",
+                "intensity",
+                "irradiance",
+                "radiance",
+                "reflectance",
+                "relative",
+                "transmittance",
+                "R-Factor",
+                "T-Factor",
+                "other",
+            ]
+            | None
+        ) = None
         self.units = units
-        self._reflection_geometry: Literal[
-            "di:8",
-            "de:8",
-            "8:di",
-            "8:de",
-            "d:d",
-            "d:0",
-            "45a:0",
-            "45c:0",
-            "0:45a",
-            "45x:0",
-            "0:45x",
-            "other",
-        ] | None = None
+        self._reflection_geometry: (
+            Literal[
+                "di:8",
+                "de:8",
+                "8:di",
+                "8:de",
+                "d:d",
+                "d:0",
+                "45a:0",
+                "45c:0",
+                "0:45a",
+                "45x:0",
+                "0:45x",
+                "other",
+            ]
+            | None
+        ) = None
         self.reflection_geometry = reflection_geometry
-        self._transmission_geometry: Literal[
-            "0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"
-        ] | None = None
+        self._transmission_geometry: (
+            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None
+        ) = None
         self.transmission_geometry = transmission_geometry
         self._bandwidth_FWHM: float | None = None
         self.bandwidth_FWHM = bandwidth_FWHM
@@ -1062,39 +1068,45 @@ __init__`
         self.path = path
         self._header: SpectralDataHeader_AMPAS = SpectralDataHeader_AMPAS()
         self.header = optional(header, self._header)
-        self._units: Literal[
-            "absorptance",
-            "exitance",
-            "flux",
-            "intensity",
-            "irradiance",
-            "radiance",
-            "reflectance",
-            "relative",
-            "transmittance",
-            "R-Factor",
-            "T-Factor",
-            "other",
-        ] | None = None
+        self._units: (
+            Literal[
+                "absorptance",
+                "exitance",
+                "flux",
+                "intensity",
+                "irradiance",
+                "radiance",
+                "reflectance",
+                "relative",
+                "transmittance",
+                "R-Factor",
+                "T-Factor",
+                "other",
+            ]
+            | None
+        ) = None
         self.units = units
-        self._reflection_geometry: Literal[
-            "di:8",
-            "de:8",
-            "8:di",
-            "8:de",
-            "d:d",
-            "d:0",
-            "45a:0",
-            "45c:0",
-            "0:45a",
-            "45x:0",
-            "0:45x",
-            "other",
-        ] | None = None
+        self._reflection_geometry: (
+            Literal[
+                "di:8",
+                "de:8",
+                "8:di",
+                "8:de",
+                "d:d",
+                "d:0",
+                "45a:0",
+                "45c:0",
+                "0:45a",
+                "45x:0",
+                "0:45x",
+                "other",
+            ]
+            | None
+        ) = None
         self.reflection_geometry = reflection_geometry
-        self._transmission_geometry: Literal[
-            "0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"
-        ] | None = None
+        self._transmission_geometry: (
+            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None
+        ) = None
         self.transmission_geometry = transmission_geometry
         self._bandwidth_FWHM: float | None = None
         self.bandwidth_FWHM = bandwidth_FWHM

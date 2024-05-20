@@ -1,7 +1,4 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.abstract` module."""
-
-import unittest
 
 from colour_datasets.loaders import AbstractDatasetLoader
 
@@ -17,7 +14,7 @@ __all__ = [
 ]
 
 
-class TestAbstractDatasetLoader(unittest.TestCase):
+class TestAbstractDatasetLoader:
     """
     Define :class:`colour_datasets.loaders.abstract.AbstractDatasetLoader`
     class unit tests methods.
@@ -29,7 +26,7 @@ class TestAbstractDatasetLoader(unittest.TestCase):
         required_attributes = ("ID", "record", "id", "content")
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(AbstractDatasetLoader))
+            assert attribute in dir(AbstractDatasetLoader)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -37,8 +34,4 @@ class TestAbstractDatasetLoader(unittest.TestCase):
         required_methods = ("__init__", "load", "sync")
 
         for method in required_methods:
-            self.assertIn(method, dir(AbstractDatasetLoader))
-
-
-if __name__ == "__main__":
-    unittest.main()
+            assert method in dir(AbstractDatasetLoader)

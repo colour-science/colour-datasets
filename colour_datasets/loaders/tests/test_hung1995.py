@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.hung1995` module."""
 
-import unittest
 
 import numpy as np
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS
@@ -21,7 +19,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Hung1995(unittest.TestCase):
+class TestDatasetLoader_Hung1995:
     """
     Define :class:`colour_datasets.loaders.hung1995.DatasetLoader_Hung1995`
     class unit tests methods.
@@ -33,7 +31,7 @@ class TestDatasetLoader_Hung1995(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Hung1995))
+            assert attribute in dir(DatasetLoader_Hung1995)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -41,7 +39,7 @@ class TestDatasetLoader_Hung1995(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Hung1995))
+            assert method in dir(DatasetLoader_Hung1995)
 
     def test_load(self):
         """
@@ -50,34 +48,28 @@ load` method.
         """
 
         dataset = DatasetLoader_Hung1995()
-        self.assertListEqual(
-            list(dataset.load().keys()),
-            [
-                "Table I",
-                "Table II",
-                "Table III",
-                "Table IV",
-                "Constant Hue Loci Data - CL",
-                "Constant Hue Loci Data - VL",
-            ],
-        )
-        self.assertListEqual(
-            list(dataset.load()["Constant Hue Loci Data - CL"].keys()),
-            [
-                "Red",
-                "Red-yellow",
-                "Yellow",
-                "Yellow-green",
-                "Green",
-                "Green-cyan",
-                "Cyan",
-                "Cyan-blue",
-                "Blue",
-                "Blue-magenta",
-                "Magenta",
-                "Magenta-red",
-            ],
-        )
+        assert list(dataset.load().keys()) == [
+            "Table I",
+            "Table II",
+            "Table III",
+            "Table IV",
+            "Constant Hue Loci Data - CL",
+            "Constant Hue Loci Data - VL",
+        ]
+        assert list(dataset.load()["Constant Hue Loci Data - CL"].keys()) == [
+            "Red",
+            "Red-yellow",
+            "Yellow",
+            "Yellow-green",
+            "Green",
+            "Green-cyan",
+            "Cyan",
+            "Cyan-blue",
+            "Blue",
+            "Blue-magenta",
+            "Magenta",
+            "Magenta-red",
+        ]
 
         np.testing.assert_allclose(
             dataset.load()["Constant Hue Loci Data - CL"]["Cyan"].XYZ_r,
@@ -115,7 +107,7 @@ load` method.
         )
 
 
-class TestBuildHung1995(unittest.TestCase):
+class TestBuildHung1995:
     """
     Define :func:`colour_datasets.loaders.hung1995.build_Hung1995`
     definition unit tests methods.
@@ -127,8 +119,4 @@ class TestBuildHung1995(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Hung1995(), build_Hung1995())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Hung1995() is build_Hung1995()

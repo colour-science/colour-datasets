@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.luo1997` module."""
 
-import unittest
 
 import numpy as np
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS
@@ -21,7 +19,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Luo1997(unittest.TestCase):
+class TestDatasetLoader_Luo1997:
     """
     Define :class:`colour_datasets.loaders.luo1997.DatasetLoader_Luo1997`
     class unit tests methods.
@@ -33,7 +31,7 @@ class TestDatasetLoader_Luo1997(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Luo1997))
+            assert attribute in dir(DatasetLoader_Luo1997)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -41,7 +39,7 @@ class TestDatasetLoader_Luo1997(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Luo1997))
+            assert method in dir(DatasetLoader_Luo1997)
 
     def test_load(self):
         """
@@ -50,7 +48,7 @@ load` method.
         """
 
         dataset = DatasetLoader_Luo1997()
-        self.assertEqual(len(dataset.load().keys()), 8)
+        assert len(dataset.load().keys()) == 8
 
         np.testing.assert_allclose(
             dataset.content["R-HL"].phases["1"].JQCH_v,
@@ -166,13 +164,13 @@ load` method.
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
-        self.assertEqual(
-            dataset.content["R-HL"].metadata["Description of each data group"],
-            "Reflective media with luminances ranging 364-232 cd/m2",
+        assert (
+            dataset.content["R-HL"].metadata["Description of each data group"]
+            == "Reflective media with luminances ranging 364-232 cd/m2"
         )
 
 
-class TestBuildLuo1997(unittest.TestCase):
+class TestBuildLuo1997:
     """
     Define :func:`colour_datasets.loaders.luo1997.build_Luo1997`
     definition unit tests methods.
@@ -184,8 +182,4 @@ class TestBuildLuo1997(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Luo1997(), build_Luo1997())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Luo1997() is build_Luo1997()

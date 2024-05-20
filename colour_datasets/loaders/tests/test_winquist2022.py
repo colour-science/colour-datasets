@@ -1,10 +1,8 @@
-# !/usr/bin/env python
 """
 Define the unit tests for the :mod:`colour_datasets.loaders.winquist2022`
 module.
 """
 
-import unittest
 
 import numpy as np
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS
@@ -27,7 +25,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Winquist2022(unittest.TestCase):
+class TestDatasetLoader_Winquist2022:
     """
     Define
     :class:`colour_datasets.loaders.winquist2022.DatasetLoader_Winquist2022`
@@ -40,7 +38,7 @@ class TestDatasetLoader_Winquist2022(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Winquist2022))
+            assert attribute in dir(DatasetLoader_Winquist2022)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -48,7 +46,7 @@ class TestDatasetLoader_Winquist2022(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Winquist2022))
+            assert method in dir(DatasetLoader_Winquist2022)
 
     def test_load(self):
         """
@@ -58,7 +56,7 @@ load` method.
         """
 
         dataset = DatasetLoader_Winquist2022()
-        self.assertEqual(len(dataset.load().keys()), 17)
+        assert len(dataset.load().keys()) == 17
 
         np.testing.assert_allclose(
             dataset.load()["Canon EOS_1DX_Mark_II"][555],
@@ -67,7 +65,7 @@ load` method.
         )
 
 
-class TestBuildWinquist2022(unittest.TestCase):
+class TestBuildWinquist2022:
     """
     Define :func:`colour_datasets.loaders.winquist2022.build_Winquist2022`
     definition unit tests methods.
@@ -79,8 +77,4 @@ class TestBuildWinquist2022(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Winquist2022(), build_Winquist2022())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Winquist2022() is build_Winquist2022()

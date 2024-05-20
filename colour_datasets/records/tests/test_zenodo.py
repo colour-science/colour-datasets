@@ -417,7 +417,3 @@ Datasets
         self._community.pull()
         self._community.remove()
         self.assertFalse(self._community.synced())
-
-
-if __name__ == "__main__":
-    unittest.main()

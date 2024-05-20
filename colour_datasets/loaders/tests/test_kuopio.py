@@ -1,4 +1,3 @@
-# !/usr/bin/env python
 """
 Define the unit tests for the :mod:`colour_datasets.loaders.kuopio` module.
 
@@ -6,7 +5,6 @@ isort:skip_file
 """
 
 import os
-import unittest
 
 import numpy as np
 from colour import SpectralShape
@@ -38,7 +36,7 @@ __all__ = [
 ]
 
 
-class TestReadSdsFromMatFileKuopioUniversity(unittest.TestCase):
+class TestReadSdsFromMatFileKuopioUniversity:
     """
     Define :func:`colour_datasets.loaders.kuopio.\
 read_sds_from_mat_file_KuopioUniversity` definition unit tests methods.
@@ -58,7 +56,7 @@ read_sds_from_mat_file_KuopioUniversity` definition.
         )
 
         sds = read_sds_from_mat_file_KuopioUniversity(mat_file, metadata)
-        self.assertEqual(len(sds), 32)
+        assert len(sds) == 32
 
         np.testing.assert_allclose(
             sds["5R 6/8 (3)"].values,
@@ -101,7 +99,7 @@ read_sds_from_mat_file_KuopioUniversity` definition.
         )
 
 
-class TestDatasetLoader_KuopioUniversity(unittest.TestCase):
+class TestDatasetLoader_KuopioUniversity:
     """
     Define :class:`colour_datasets.loaders.kuopio.\
 DatasetLoader_KuopioUniversity` class unit tests methods.
@@ -123,7 +121,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
             DatasetLoader_AgfaIT872Set,
         ):
             for attribute in required_attributes:
-                self.assertIn(attribute, dir(dataset_loader))
+                assert attribute in dir(dataset_loader)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -141,7 +139,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
             DatasetLoader_AgfaIT872Set,
         ):
             for method in required_methods:
-                self.assertIn(method, dir(dataset_loader))
+                assert method in dir(dataset_loader)
 
     def test_load(self):
         """
@@ -3614,13 +3612,9 @@ DatasetLoader_KuopioUniversity.load` method.
             ),
         }
         for dataset_loader, values in dataset_loaders.items():
-            self.assertEqual(len(dataset_loader.load()[values[0]]), values[1])
+            assert len(dataset_loader.load()[values[0]]) == values[1]
             np.testing.assert_allclose(
                 dataset_loader.content[values[0]][values[2]].values,
                 values[3],
                 atol=TOLERANCE_ABSOLUTE_TESTS,
             )
-
-
-if __name__ == "__main__":
-    unittest.main()

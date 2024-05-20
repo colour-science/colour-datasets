@@ -1,10 +1,10 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.utilities.common` module."""
 
 import os
 import shutil
 import tempfile
-import unittest
+
+import pytest
 
 from colour_datasets.loaders import build_Labsphere2019
 from colour_datasets.utilities import (
@@ -29,7 +29,7 @@ __all__ = [
 ]
 
 
-class TestHashMd5(unittest.TestCase):
+class TestHashMd5:
     """
     Define :func:`colour_datasets.utilities.common.hash_md5` definition unit
     tests methods.
@@ -41,34 +41,34 @@ class TestHashMd5(unittest.TestCase):
         dataset = build_Labsphere2019()
         dataset.load()
 
-        self.assertEqual(
+        assert (
             hash_md5(
                 os.path.join(dataset.record.repository, "dataset", "SRS-99-020.txt")
-            ),
-            "7c7a7b76c399e5c4e3afbd32e22b2b2e",
+            )
+            == "7c7a7b76c399e5c4e3afbd32e22b2b2e"
         )
 
-        self.assertEqual(
+        assert (
             hash_md5(
                 os.path.join(dataset.record.repository, "dataset", "SRS-99-020.txt"),
                 chunk_size=8,
-            ),
-            "7c7a7b76c399e5c4e3afbd32e22b2b2e",
+            )
+            == "7c7a7b76c399e5c4e3afbd32e22b2b2e"
         )
 
 
-class TestUrlDownload(unittest.TestCase):
+class TestUrlDownload:
     """
     Define :func:`colour_datasets.utilities.common.url_download` definition
     unit tests methods.
     """
 
-    def setUp(self):
+    def setup_method(self):
         """Initialise the common tests attributes."""
 
         self._temporary_file = tempfile.NamedTemporaryFile(delete=False).name
 
-    def tearDown(self):
+    def teardown_method(self):
         """After tests actions."""
 
         os.remove(self._temporary_file)
@@ -88,7 +88,7 @@ class TestUrlDownload(unittest.TestCase):
             self._temporary_file,
         )
 
-        self.assertEqual(md5, hash_md5(self._temporary_file))
+        assert md5 == hash_md5(self._temporary_file)
 
         url_download(
             "https://zenodo.org/api/files/"
@@ -97,11 +97,11 @@ class TestUrlDownload(unittest.TestCase):
             md5,
         )
 
-        self.assertRaises(
+        pytest.raises(
             IOError,
             lambda: url_download("https://nemo.io", self._temporary_file),
         )
-        self.assertRaises(
+        pytest.raises(
             ValueError,
             lambda: url_download(
                 "https://zenodo.org/api/files/"
@@ -112,7 +112,7 @@ class TestUrlDownload(unittest.TestCase):
         )
 
 
-class TestJsonOpen(unittest.TestCase):
+class TestJsonOpen:
     """
     Define :func:`colour_datasets.utilities.common.json_open` definition
     unit tests methods.
@@ -123,23 +123,23 @@ class TestJsonOpen(unittest.TestCase):
 
         data = json_open("https://zenodo.org/api/records/3245883")
 
-        self.assertEqual(data["id"], 3245883)
+        assert data["id"] == 3245883
 
-        self.assertRaises(IOError, lambda: json_open("https://nemo.io"))
+        pytest.raises(IOError, lambda: json_open("https://nemo.io"))
 
 
-class TestUnpackGzipfile(unittest.TestCase):
+class TestUnpackGzipfile:
     """
     Define :func:`colour_datasets.utilities.common.unpack_gzipfile` definition
     unit tests methods.
     """
 
-    def setUp(self):
+    def setup_method(self):
         """Initialise the common tests attributes."""
 
         self._temporary_directory = tempfile.mkdtemp()
 
-    def tearDown(self):
+    def teardown_method(self):
         """After tests actions."""
 
         shutil.rmtree(self._temporary_directory)
@@ -158,11 +158,7 @@ class TestUnpackGzipfile(unittest.TestCase):
         with open(
             os.path.join(self._temporary_directory, "example.txt")
         ) as file_handle:
-            self.assertEqual(
-                file_handle.read(),
-                'This is the content of a text file stored inside a "GZIP" file.',
+            assert (
+                file_handle.read()
+                == 'This is the content of a text file stored inside a "GZIP" file.'
             )
-
-
-if __name__ == "__main__":
-    unittest.main()

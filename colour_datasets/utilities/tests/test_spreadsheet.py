@@ -4,8 +4,8 @@ module.
 """
 
 import os
-import unittest
 
+import pytest
 import xlrd
 
 from colour_datasets.utilities import (
@@ -32,7 +32,7 @@ __all__ = [
 ]
 
 
-class TestRowToIndex(unittest.TestCase):
+class TestRowToIndex:
     """
     Define :func:`colour_datasets.utilities.spreadsheet.row_to_index`
     definition unit tests methods.
@@ -44,16 +44,16 @@ class TestRowToIndex(unittest.TestCase):
         definition.
         """
 
-        self.assertEqual(row_to_index(1), 0)
+        assert row_to_index(1) == 0
 
-        self.assertEqual(row_to_index(10), 9)
+        assert row_to_index(10) == 9
 
-        self.assertEqual(row_to_index("100"), 99)
+        assert row_to_index("100") == 99
 
-        self.assertRaises(AssertionError, lambda: row_to_index(0))
+        pytest.raises(AssertionError, lambda: row_to_index(0))
 
 
-class TestIndexToRow(unittest.TestCase):
+class TestIndexToRow:
     """
     Define :func:`colour_datasets.utilities.spreadsheet.index_to_row`
     definition unit tests methods.
@@ -65,14 +65,14 @@ class TestIndexToRow(unittest.TestCase):
         definition.
         """
 
-        self.assertEqual(index_to_row(0), "1")
+        assert index_to_row(0) == "1"
 
-        self.assertEqual(index_to_row(9), "10")
+        assert index_to_row(9) == "10"
 
-        self.assertEqual(index_to_row(99), "100")
+        assert index_to_row(99) == "100"
 
 
-class TestColumnToIndex(unittest.TestCase):
+class TestColumnToIndex:
     """
     Define :func:`colour_datasets.utilities.spreadsheet.column_to_index`
     definition unit tests methods.
@@ -84,16 +84,16 @@ class TestColumnToIndex(unittest.TestCase):
         definition.
         """
 
-        self.assertEqual(column_to_index("A"), 0)
+        assert column_to_index("A") == 0
 
-        self.assertEqual(column_to_index("J"), 9)
+        assert column_to_index("J") == 9
 
-        self.assertEqual(column_to_index("AA"), 26)
+        assert column_to_index("AA") == 26
 
-        self.assertRaises(KeyError, lambda: column_to_index("AAAA"))
+        pytest.raises(KeyError, lambda: column_to_index("AAAA"))
 
 
-class TestIndexToColumn(unittest.TestCase):
+class TestIndexToColumn:
     """
     Define :func:`colour_datasets.utilities.spreadsheet.index_to_column`
     definition unit tests methods.
@@ -105,14 +105,14 @@ class TestIndexToColumn(unittest.TestCase):
         definition.
         """
 
-        self.assertEqual(index_to_column(0), "A")
+        assert index_to_column(0) == "A"
 
-        self.assertEqual(index_to_column(9), "J")
+        assert index_to_column(9) == "J"
 
-        self.assertEqual(index_to_column(26), "AA")
+        assert index_to_column(26) == "AA"
 
 
-class TestCellRangeValues(unittest.TestCase):
+class TestCellRangeValues:
     """
     Define :func:`colour_datasets.utilities.spreadsheet.cell_range_values`
     definition unit tests methods.
@@ -128,17 +128,10 @@ class TestCellRangeValues(unittest.TestCase):
             os.path.dirname(__file__), "resources", "Workbook.xlsx"
         )
         sheet = xlrd.open_workbook(workbook_path).sheet_by_index(0)
-        self.assertListEqual(
-            cell_range_values(sheet, "A1:E5"),
-            [
-                [1.0, 2.0, 3.0, 4.0, 5.0],
-                [2.0, 3.0, 4.0, 5.0, 6.0],
-                [3.0, 4.0, 5.0, 6.0, 7.0],
-                [4.0, 5.0, 6.0, 7.0, 8.0],
-                [5.0, 6.0, 7.0, 8.0, 9.0],
-            ],
-        )
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert cell_range_values(sheet, "A1:E5") == [
+            [1.0, 2.0, 3.0, 4.0, 5.0],
+            [2.0, 3.0, 4.0, 5.0, 6.0],
+            [3.0, 4.0, 5.0, 6.0, 7.0],
+            [4.0, 5.0, 6.0, 7.0, 8.0],
+            [5.0, 6.0, 7.0, 8.0, 9.0],
+        ]

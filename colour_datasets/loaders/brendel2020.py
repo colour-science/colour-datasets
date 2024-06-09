@@ -2,7 +2,7 @@
 Measured Commercial LED Spectra - Brendel (2020)
 ================================================
 
-Defines the objects implementing support for *Brendel (2020)*
+Define the objects implementing support for *Brendel (2020)*
 *Measured Commercial LED Spectra* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Brendel2020`

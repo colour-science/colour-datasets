@@ -2,7 +2,7 @@
 Constant Perceived-Hue Data - Ebner and Fairchild (1998)
 ========================================================
 
-Defines the objects implementing support for *Ebner and Fairchild (1998)*
+Define the objects implementing support for *Ebner and Fairchild (1998)*
 *Constant Perceived-Hue Data* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Ebner1998`

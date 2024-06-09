@@ -2,7 +2,7 @@
 Physlight - Camera Spectral Sensitivity Curves - Winquist et al. (2022)
 =======================================================================
 
-Defines the objects implementing support for *Winquist et al. (2022)*
+Define the objects implementing support for *Winquist et al. (2022)*
 *Physlight - Camera Spectral Sensitivity Curves* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Winquist2022`

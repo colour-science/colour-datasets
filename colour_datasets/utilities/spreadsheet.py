@@ -2,7 +2,7 @@
 Spreadsheet Utilities
 =====================
 
-Defines various spreadsheet related utilities.
+Define various spreadsheet related utilities.
 
 References
 ----------

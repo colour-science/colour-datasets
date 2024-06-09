@@ -2,7 +2,7 @@
 RAW to ACES Utility Data - Dyer et al. (2017)
 =============================================
 
-Defines the objects implementing support for *Dyer, Forsythe, Irons, Mansencal
+Define the objects implementing support for *Dyer, Forsythe, Irons, Mansencal
 and Zhu (2017)* *RAW to ACES Utility Data* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Dyer2017`

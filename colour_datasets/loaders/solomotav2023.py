@@ -2,7 +2,7 @@
 Camera Dataset - Solomatov and Akkaynak (2023)
 ==============================================
 
-Defines the objects implementing support for *Solomatov and Akkaynak (2023)*
+Define the objects implementing support for *Solomatov and Akkaynak (2023)*
 *Camera Dataset* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Solomotav2023`

@@ -2,7 +2,7 @@
 Configuration
 =============
 
-Defines various objects related to the configuration of *Colour - Datasets*.
+Define various objects related to the configuration of *Colour - Datasets*.
 """
 
 from __future__ import annotations

@@ -2,7 +2,7 @@
 LUTCHI Colour Appearance Data - Luo and Rhodes (1997)
 =====================================================
 
-Defines the objects implementing support for *Luo and Rhodes (1997)*
+Define the objects implementing support for *Luo and Rhodes (1997)*
 *LUTCHI Colour Appearance Data* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Luo1997`

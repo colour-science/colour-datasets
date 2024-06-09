@@ -2,7 +2,7 @@
 Spectral Database of Commonly Used Cine Lighting - Karge et al. (2015)
 ======================================================================
 
-Defines the objects implementing support for *Karge, Froehlich and Eberhardt
+Define the objects implementing support for *Karge, Froehlich and Eberhardt
 (2015)* *Spectral Database of Commonly Used Cine Lighting* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Karge2015`

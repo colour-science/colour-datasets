@@ -2,7 +2,7 @@
 Corresponding-Colour Datasets - Luo and Rhodes (1999)
 =====================================================
 
-Defines the objects implementing support for *Luo and Rhodes (1999)*
+Define the objects implementing support for *Luo and Rhodes (1999)*
 *Corresponding-Colour Datasets* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Luo1999`

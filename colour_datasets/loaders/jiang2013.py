@@ -2,7 +2,7 @@
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
 ==========================================================
 
-Defines the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
+Define the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
 (2013)* *Camera Spectral Sensitivity Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Jiang2013`

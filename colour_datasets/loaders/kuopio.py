@@ -2,7 +2,7 @@
 University of Kuopio
 ====================
 
-Defines the objects implementing support for the *University of Kuopio*
+Define the objects implementing support for the *University of Kuopio*
 datasets loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_KuopioUniversity`

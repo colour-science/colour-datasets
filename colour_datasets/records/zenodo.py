@@ -2,7 +2,7 @@
 Zenodo
 ======
 
-Defines the objects implementing support for a *Zenodo* community and its
+Define the objects implementing support for a *Zenodo* community and its
 records:
 
 -   :class:`colour_datasets.Record`

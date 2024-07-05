@@ -23,7 +23,7 @@ import os
 from colour import MultiSpectralDistributions, SpectralDistribution
 from colour.continuous import MultiSignals, Signal
 from colour.hints import Any, Dict, Literal
-from colour.utilities import attest, is_numeric, is_string, optional
+from colour.utilities import attest, is_numeric, optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -168,7 +168,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"schema_version" property: "{value}" type is not "str"!',
             )
 
@@ -198,7 +198,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"catalog_number" property: "{value}" type is not "str"!',
             )
 
@@ -228,7 +228,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"description" property: "{value}" type is not "str"!',
             )
 
@@ -258,7 +258,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"document_creator" property: "{value}" type is not "str"!',
             )
 
@@ -288,7 +288,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"unique_identifier" property: "{value}" type is not "str"!',
             )
 
@@ -318,7 +318,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"measurement_equipment" property: "{value}" type is not "str"!',
             )
 
@@ -348,7 +348,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"laboratory" property: "{value}" type is not "str"!',
             )
 
@@ -378,7 +378,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"document_creation_date" property: "{value}" type is not "str"!',
             )
 
@@ -408,7 +408,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"comments" property: "{value}" type is not "str"!',
             )
 
@@ -438,7 +438,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"license" property: "{value}" type is not "str"!',
             )
 
@@ -627,7 +627,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"path" property: "{value}" type is not "str"!',
             )
         self._path = value
@@ -719,7 +719,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"units" property: "{value}" type is not "str"!',
             )
 
@@ -784,7 +784,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"reflection_geometry" property: "{value}" type is not "str"!',
             )
 
@@ -819,7 +819,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"transmission_geometry" property: "{value}" type is not "str"!',
             )
 
@@ -1125,7 +1125,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"path" property: "{value}" type is not "str"!',
             )
         self._path = value
@@ -1217,7 +1217,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"units" property: "{value}" type is not "str"!',
             )
 
@@ -1282,7 +1282,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"reflection_geometry" property: "{value}" type is not "str"!',
             )
 
@@ -1317,7 +1317,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"transmission_geometry" property: "{value}" type is not "str"!',
             )
 

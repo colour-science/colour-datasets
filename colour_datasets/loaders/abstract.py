@@ -2,7 +2,7 @@
 Abstract Dataset Loader
 =======================
 
-Defines the abstract class implementing support for dataset loading:
+Define the abstract class implementing support for dataset loading:
 
 -   :class:`colour_datasets.loaders.AbstractDatasetLoader`
 """

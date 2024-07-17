@@ -2,7 +2,7 @@
 Spectral Upsampling Coefficient Tables - Jakob and Hanika (2019)
 ================================================================
 
-Defines the objects implementing support for *Jakob and Hanika (2019)*
+Define the objects implementing support for *Jakob and Hanika (2019)*
 *Spectral Upsampling Coefficient Tables* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Jakob2019`

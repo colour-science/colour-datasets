@@ -2,7 +2,7 @@
 Spectral Sensitivity Database - Zhao et al. (2009)
 ==================================================
 
-Defines the objects implementing support for *Zhao, Kawakami, Tan and Ikeuchi
+Define the objects implementing support for *Zhao, Kawakami, Tan and Ikeuchi
 (2009)* *Spectral Sensitivity Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Zhao2009`

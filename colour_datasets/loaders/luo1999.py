@@ -2,7 +2,7 @@
 Corresponding-Colour Datasets - Luo and Rhodes (1999)
 =====================================================
 
-Defines the objects implementing support for *Luo and Rhodes (1999)*
+Define the objects implementing support for *Luo and Rhodes (1999)*
 *Corresponding-Colour Datasets* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Luo1999`
@@ -199,7 +199,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                     20,
                     "D65",
                     "D65",
-                    np.repeat([10, 50, 1000, 3000], 2, -1).reshape(-1, 2),
+                    np.reshape(np.repeat([10, 50, 1000, 3000], 2, -1), (-1, 2)),
                     np.tile(20, [4, 2]),
                     "S",
                     "Refl.",
@@ -218,7 +218,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                     19,
                     "D65",
                     "D65",
-                    np.repeat([10, 50, 1000, 3000], 2, -1).reshape(-1, 2),
+                    np.reshape(np.repeat([10, 50, 1000, 3000], 2, -1), (-1, 2)),
                     np.tile(20, [4, 2]),
                     "S",
                     "Refl.",

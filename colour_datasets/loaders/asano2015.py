@@ -2,7 +2,7 @@
 Observer Function Database - Asano (2015)
 =========================================
 
-Defines the objects implementing support for *Asano (2015)* *Observer Function
+Define the objects implementing support for *Asano (2015)* *Observer Function
 Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Asano2015`

@@ -2,7 +2,7 @@
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
 ==========================================================
 
-Defines the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
+Define the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
 (2013)* *Camera Spectral Sensitivity Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Jiang2013`
@@ -113,7 +113,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
 
         for camera, values in self._content.items():
             self._content[camera] = RGB_CameraSensitivities(
-                np.transpose(as_float_array(values).reshape([3, 33])),
+                np.transpose(np.reshape(as_float_array(values), (3, 33))),
                 shape.range(),
                 name=camera,
             )

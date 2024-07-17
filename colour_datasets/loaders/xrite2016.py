@@ -2,7 +2,7 @@
 New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
 ===============================================================================
 
-Defines the objects implementing support for *X-Rite (2016)* *New Color
+Define the objects implementing support for *X-Rite (2016)* *New Color
 Specifications for ColorChecker SG and Classic Charts* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_XRite2016`
@@ -139,10 +139,10 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
             i, j = (6, 4) if len(samples_data) == 24 else (14, 10)
             samples = np.transpose(
-                np.array(samples_data, dtype=object).reshape([i, j, 2]),
+                np.reshape(np.array(samples_data, dtype=object), (i, j, 2)),
                 [1, 0, 2],
             )
-            keys, values = zip(*samples.reshape([-1, 2]))
+            keys, values = zip(*np.reshape(samples, (-1, 2)))
             values = XYZ_to_xyY(Lab_to_XYZ(values, illuminant))
             self._content[key] = ColourChecker(
                 key, dict(zip(keys, values)), illuminant, j, i

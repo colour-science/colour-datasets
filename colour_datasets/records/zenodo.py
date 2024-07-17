@@ -2,7 +2,7 @@
 Zenodo
 ======
 
-Defines the objects implementing support for a *Zenodo* community and its
+Define the objects implementing support for a *Zenodo* community and its
 records:
 
 -   :class:`colour_datasets.Record`
@@ -667,8 +667,8 @@ colour-science-datasets-tests
         >>> print("\\n".join(repr(community).splitlines()[:4]))
         Community(
             {'community': {'access': {'member_policy': 'open',
+                                      'members_visibility': 'public',
                                       'record_policy': 'open',
-                                      'review_policy': 'open',
         """
 
         data = "\n".join([f"    {line}" for line in pformat(self._data).splitlines()])

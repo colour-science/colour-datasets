@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.zhao2009` module."""
 
-import unittest
 
 from colour import SpectralShape
 
@@ -20,7 +18,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Zhao2009(unittest.TestCase):
+class TestDatasetLoader_Zhao2009:
     """
     Define :class:`colour_datasets.loaders.zhao2009.DatasetLoader_Zhao2009`
     class unit tests methods.
@@ -32,7 +30,7 @@ class TestDatasetLoader_Zhao2009(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Zhao2009))
+            assert attribute in dir(DatasetLoader_Zhao2009)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -40,7 +38,7 @@ class TestDatasetLoader_Zhao2009(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Zhao2009))
+            assert method in dir(DatasetLoader_Zhao2009)
 
     def test_load(self):
         """
@@ -49,31 +47,26 @@ DatasetLoader_Zhao2009.load` method.
         """
 
         dataset = DatasetLoader_Zhao2009()
-        self.assertEqual(
-            sorted(dataset.load().keys()),
-            sorted(
-                [
-                    "SONY DXC 930",
-                    "KODAK DCS 420",
-                    "NIKON D1X",
-                    "SONY DXC 9000",
-                    "CANON 10D",
-                    "NIKON D70",
-                    "KODAK DCS 460",
-                    "CANON 400D",
-                    "CANON 5D",
-                    "CANON 5D Mark 2",
-                    "Ladybug2",
-                    "KODAK DCS 200",
-                ]
-            ),
+        assert sorted(dataset.load().keys()) == sorted(
+            [
+                "SONY DXC 930",
+                "KODAK DCS 420",
+                "NIKON D1X",
+                "SONY DXC 9000",
+                "CANON 10D",
+                "NIKON D70",
+                "KODAK DCS 460",
+                "CANON 400D",
+                "CANON 5D",
+                "CANON 5D Mark 2",
+                "Ladybug2",
+                "KODAK DCS 200",
+            ]
         )
-        self.assertEqual(
-            dataset.content["SONY DXC 930"].shape, SpectralShape(400, 700, 4)
-        )
+        assert dataset.content["SONY DXC 930"].shape == SpectralShape(400, 700, 4)
 
 
-class TestBuildZhao2009(unittest.TestCase):
+class TestBuildZhao2009:
     """
     Define :func:`colour_datasets.loaders.zhao2009.build_Zhao2009`
     definition unit tests methods.
@@ -85,8 +78,4 @@ class TestBuildZhao2009(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Zhao2009(), build_Zhao2009())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Zhao2009() is build_Zhao2009()

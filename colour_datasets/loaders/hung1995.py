@@ -2,7 +2,7 @@
 Constant Hue Loci Data - Hung and Berns (1995)
 ==============================================
 
-Defines the objects implementing support for *Hung and Berns (1995)* *Constant
+Define the objects implementing support for *Hung and Berns (1995)* *Constant
 Hue Loci Data* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Hung1995`

@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.luo1999` module."""
 
-import unittest
 
 import numpy as np
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS
@@ -21,7 +19,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Luo1999(unittest.TestCase):
+class TestDatasetLoader_Luo1999:
     """
     Define :class:`colour_datasets.loaders.luo1999.DatasetLoader_Luo1999`
     class unit tests methods.
@@ -33,7 +31,7 @@ class TestDatasetLoader_Luo1999(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Luo1999))
+            assert attribute in dir(DatasetLoader_Luo1999)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -41,7 +39,7 @@ class TestDatasetLoader_Luo1999(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Luo1999))
+            assert method in dir(DatasetLoader_Luo1999)
 
     def test_load(self):
         """
@@ -50,7 +48,7 @@ load` method.
         """
 
         dataset = DatasetLoader_Luo1999()
-        self.assertEqual(len(dataset.load().keys()), 37)
+        assert len(dataset.load().keys()) == 37
 
         np.testing.assert_allclose(
             dataset.content["CSAJ-C - da"].XYZ_ct,
@@ -149,13 +147,13 @@ load` method.
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
-        self.assertEqual(
-            dataset.content["CSAJ-C - da"].metadata["Experimental Method"],
-            "Haploscopic",
+        assert (
+            dataset.content["CSAJ-C - da"].metadata["Experimental Method"]
+            == "Haploscopic"
         )
 
 
-class TestBuildLuo1999(unittest.TestCase):
+class TestBuildLuo1999:
     """
     Define :func:`colour_datasets.loaders.luo1999.build_Luo1999`
     definition unit tests methods.
@@ -167,8 +165,4 @@ class TestBuildLuo1999(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Luo1999(), build_Luo1999())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Luo1999() is build_Luo1999()

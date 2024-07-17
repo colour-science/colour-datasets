@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.dyer2017` module."""
 
-import unittest
 
 import numpy as np
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS
@@ -21,7 +19,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Dyer2017(unittest.TestCase):
+class TestDatasetLoader_Dyer2017:
     """
     Define :class:`colour_datasets.loaders.dyer2017.DatasetLoader_Dyer2017`
     class unit tests methods.
@@ -33,7 +31,7 @@ class TestDatasetLoader_Dyer2017(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Dyer2017))
+            assert attribute in dir(DatasetLoader_Dyer2017)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -41,7 +39,7 @@ class TestDatasetLoader_Dyer2017(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Dyer2017))
+            assert method in dir(DatasetLoader_Dyer2017)
 
     def test_load(self):
         """
@@ -50,10 +48,12 @@ load` method.
         """
 
         dataset = DatasetLoader_Dyer2017()
-        self.assertListEqual(
-            sorted(dataset.load().keys()),
-            ["camera", "cmf", "illuminant", "training"],
-        )
+        assert sorted(dataset.load().keys()) == [
+            "camera",
+            "cmf",
+            "illuminant",
+            "training",
+        ]
 
         np.testing.assert_allclose(
             dataset.load()["camera"]["canon eos 5d mark ii"][555],
@@ -282,7 +282,7 @@ load` method.
         )
 
 
-class TestBuildDyer2017(unittest.TestCase):
+class TestBuildDyer2017:
     """
     Define :func:`colour_datasets.loaders.dyer2017.build_Dyer2017`
     definition unit tests methods.
@@ -294,8 +294,4 @@ class TestBuildDyer2017(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Dyer2017(), build_Dyer2017())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Dyer2017() is build_Dyer2017()

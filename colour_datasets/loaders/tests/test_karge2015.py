@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.karge2015` module."""
 
-
 from colour import SpectralShape
 
 from colour_datasets.loaders import DatasetLoader_Karge2015, build_Karge2015

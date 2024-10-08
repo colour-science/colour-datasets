@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.asano2015` module."""
 
-
 import numpy as np
 from colour import SpectralShape
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS

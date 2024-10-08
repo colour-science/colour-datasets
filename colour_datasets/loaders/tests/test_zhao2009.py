@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.zhao2009` module."""
 
-
 from colour import SpectralShape
 
 from colour_datasets.loaders import DatasetLoader_Zhao2009, build_Zhao2009

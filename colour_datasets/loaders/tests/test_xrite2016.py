@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.xrite2016` module."""
 
-
 from colour.characterisation import ColourChecker
 
 from colour_datasets.loaders import DatasetLoader_XRite2016, build_XRite2016

@@ -3,7 +3,6 @@ Define the unit tests for the :mod:`colour_datasets.loaders.winquist2022`
 module.
 """
 
-
 import numpy as np
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 

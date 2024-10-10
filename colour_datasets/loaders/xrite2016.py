@@ -63,7 +63,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
     """
 
     ID: str = "3245895"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_XRite2016.ID])

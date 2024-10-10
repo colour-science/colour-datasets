@@ -44,7 +44,7 @@ when trying to access or use colour science datasets:
 
 - No straightforward ingestion path for dataset content.
 - No simple loading mechanism for dataset content.
-- Unavailability of the dataset, e.g. download url is down, dataset content is
+- Unavailability of the dataset, e.g., download url is down, dataset content is
   passed directly from hand to hand.
 - No information regarding the definitive origination of the dataset.
 

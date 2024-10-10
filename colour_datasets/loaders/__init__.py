@@ -138,13 +138,13 @@ titles.
 
 def load(dataset: int | str) -> Any:
     """
-    Load given dataset: The dataset is pulled locally, i.e. synced if required
+    Load given dataset: The dataset is pulled locally, i.e., synced if required
     and then its data is loaded.
 
     Parameters
     ----------
     dataset
-        Dataset id, i.e. the *Zenodo* record number or title.
+        Dataset id, i.e., the *Zenodo* record number or title.
 
     Returns
     -------

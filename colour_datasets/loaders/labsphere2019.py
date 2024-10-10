@@ -56,7 +56,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
     """
 
     ID: str = "3245875"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Labsphere2019.ID])

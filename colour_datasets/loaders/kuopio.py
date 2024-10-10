@@ -154,7 +154,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     """
 
     ID: str = "Undefined"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     METADATA: ClassVar[Dict] = {}
     """
@@ -203,7 +203,7 @@ def _build_dataset_loader_class_KuopioUniversity(
     Parameters
     ----------
     id_
-        Dataset record id, i.e. the *Zenodo* record number.
+        Dataset record id, i.e., the *Zenodo* record number.
     title
         *University of Kuopio* dataset loader title.
     citation_key

@@ -59,7 +59,7 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
     """
 
     ID: str = "8314702"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Solomotav2023.ID])

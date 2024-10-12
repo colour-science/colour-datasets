@@ -44,7 +44,7 @@ when trying to access or use colour science datasets:
 
 - No straightforward ingestion path for dataset content.
 - No simple loading mechanism for dataset content.
-- Unavailability of the dataset, e.g. download url is down, dataset content is
+- Unavailability of the dataset, e.g., download url is down, dataset content is
   passed directly from hand to hand.
 - No information regarding the definitive origination of the dataset.
 
@@ -160,14 +160,14 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
-- `python >= 3.9, < 4 <https://www.python.org/download/releases>`__
+- `python >= 3.10, < 3.14 <https://www.python.org/download/releases>`__
 - `cachetools <https://pypi.org/project/cachetools>`__
-- `colour-science >= 4.3 <https://pypi.org/project/colour-science>`__
+- `colour-science >= 4.4 <https://pypi.org/project/colour-science>`__
 - `imageio >= 2, < 3 <https://imageio.github.io>`__
-- `numpy >= 1.22, < 2 <https://pypi.org/project/numpy>`__
-- `scipy >= 1.8, < 2 <https://pypi.org/project/scipy>`__
+- `numpy >= 1.24, < 3 <https://pypi.org/project/numpy>`__
+- `scipy >= 1.10, < 2 <https://pypi.org/project/scipy>`__
 - `tqdm <https://pypi.org/project/tqdm>`__
-- `xlrd <https://pypi.org/project/xlrd>`__
+- `xlrd >=1.2, <2 <https://pypi.org/project/xlrd>`__
 
 Pypi
 ~~~~

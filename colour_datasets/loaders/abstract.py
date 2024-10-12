@@ -59,7 +59,7 @@ class AbstractDatasetLoader(ABC):
     """
 
     ID: str = "Undefined"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self, record: Record) -> None:
         self._record: Record = record
@@ -119,12 +119,12 @@ class AbstractDatasetLoader(ABC):
         -----
         -   Sub-classes are required to call
             :meth:`colour_datasets.loaders.AbstractDatasetLoader.sync` method
-            when they implement it, e.g. ``super().sync()``.
+            when they implement it, e.g., ``super().sync()``.
         """
 
     def sync(self):
         """
-        Sync the dataset content, i.e. checks whether it is synced and pulls
+        Sync the dataset content, i.e., checks whether it is synced and pulls
         it if required.
         """
 

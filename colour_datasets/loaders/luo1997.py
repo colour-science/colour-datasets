@@ -61,7 +61,7 @@ class ExperimentalGroupLuo1997(
 ):
     """
     Define a *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data*
-    experimental group, i.e. a group of experimental phases.
+    experimental group, i.e., a group of experimental phases.
 
     Parameters
     ----------
@@ -112,7 +112,7 @@ class ExperimentalPhaseLuo1997(
         and measured using a telespectroradiometer (TSR).
     S_Y_c
         Scaling factor :math:`S_Y` of the Y values used for adjusting those in
-        the colorimetric file, i.e. *CIE xyY* colourspace array :math:`xyY_c`.
+        the colorimetric file, i.e., *CIE xyY* colourspace array :math:`xyY_c`.
     Y_b
         Relative luminance of background :math:`Y_b` in :math:`cd/m^2`.
     Y_r
@@ -144,7 +144,7 @@ class DatasetLoader_Luo1997(AbstractDatasetLoader):
     """
 
     ID: str = "4394536"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Luo1997.ID])

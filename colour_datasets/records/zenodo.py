@@ -668,7 +668,7 @@ colour-science-datasets-tests
         Community(
             {'community': {'access': {'member_policy': 'open',
                                       'members_visibility': 'public',
-                                      'record_policy': 'open',
+                                      'record_submission_policy': 'open',
         """
 
         data = "\n".join([f"    {line}" for line in pformat(self._data).splitlines()])

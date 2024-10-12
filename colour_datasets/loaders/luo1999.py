@@ -118,7 +118,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
     """
 
     ID: str = "3270903"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Luo1999.ID])
@@ -141,9 +141,9 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
         -   The illuminance in :math:`Lux` for *Breneman (1987)* datasets given
             by *Luo and Rhodes (1999)* is in domain [50, 3870] while
             *Breneman (1987)* reports luminance in :math:`cd/m^2` in domain
-            [15, 11100], i.e. [47, 34871.69] in :math:`Lux`. The metadata has
+            [15, 11100], i.e., [47, 34871.69] in :math:`Lux`. The metadata has
             been corrected accordingly.
-        -   The illuminance values, i.e. 14 and 40, for
+        -   The illuminance values, i.e., 14 and 40, for
             *McCann, McKee and Taylor (1976)* datasets given by
             *Luo and Rhodes (1999)* were not found in :cite:`McCann1976`. The
             values in use are the average of both.

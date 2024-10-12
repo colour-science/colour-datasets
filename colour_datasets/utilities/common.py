@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import shutil
+import socket
 import sys
 import urllib.error
 import urllib.request
@@ -158,12 +159,17 @@ def url_download(url: str, filename: str, md5: str | None = None, retries: int =
                 miniters=1,
                 desc=f'Downloading "{url}" url',
             ) as progress:
-                urllib.request.urlretrieve(  # noqa: S310
-                    url,
-                    filename=filename,
-                    reporthook=progress.update_to,
-                    data=None,
-                )
+                timeout = socket.getdefaulttimeout()
+                try:
+                    socket.setdefaulttimeout(10)
+                    urllib.request.urlretrieve(  # noqa: S310
+                        url,
+                        filename=filename,
+                        reporthook=progress.update_to,
+                        data=None,
+                    )
+                finally:
+                    socket.setdefaulttimeout(timeout)
 
             if md5 is not None and md5.lower() != hash_md5(filename):
                 raise ValueError(  # noqa: TRY301

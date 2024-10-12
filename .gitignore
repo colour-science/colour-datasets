@@ -6,6 +6,7 @@
 .fleet
 .idea
 .ipynb_checkpoints
+.python-version
 .sandbox
 .vs
 .vscode
@@ -18,4 +19,4 @@ docs/_build
 docs/generated
 references
 zenodo
-poetry.lock
+uv.lock

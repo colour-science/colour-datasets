@@ -2,7 +2,7 @@
 Spectral Sensitivity Database - Zhao et al. (2009)
 ==================================================
 
-Defines the objects implementing support for *Zhao, Kawakami, Tan and Ikeuchi
+Define the objects implementing support for *Zhao, Kawakami, Tan and Ikeuchi
 (2009)* *Spectral Sensitivity Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Zhao2009`
@@ -59,7 +59,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
     """
 
     ID: str = "4297288"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Zhao2009.ID])
@@ -81,7 +81,6 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Zhao2009()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         12
         """
@@ -107,9 +106,7 @@ class DatasetLoader_Zhao2009(AbstractDatasetLoader):
 
         for i, camera in enumerate(cameras):
             data = np.loadtxt(
-                os.path.join(
-                    self.record.repository, "dataset", f"camera_{i}.spectra"
-                )
+                os.path.join(self.record.repository, "dataset", f"camera_{i}.spectra")
             )
             self._content[camera] = RGB_CameraSensitivities(
                 data[..., 1:], data[..., 0], name=camera

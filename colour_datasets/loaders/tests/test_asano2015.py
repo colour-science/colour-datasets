@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.asano2015` module."""
 
-import unittest
 
 import numpy as np
 from colour import SpectralShape
@@ -22,7 +20,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Asano2015(unittest.TestCase):
+class TestDatasetLoader_Asano2015:
     """
     Define :class:`colour_datasets.loaders.asano2015.DatasetLoader_Asano2015`
     class unit tests methods.
@@ -34,7 +32,7 @@ class TestDatasetLoader_Asano2015(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Asano2015))
+            assert attribute in dir(DatasetLoader_Asano2015)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -42,7 +40,7 @@ class TestDatasetLoader_Asano2015(unittest.TestCase):
         required_methods = ("__init__", "load", "parse_workbook_Asano2015")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Asano2015))
+            assert method in dir(DatasetLoader_Asano2015)
 
     def test_load(self):
         """
@@ -51,14 +49,13 @@ DatasetLoader_Asano2015.load` method.
         """
 
         dataset = DatasetLoader_Asano2015()
-        self.assertEqual(
-            sorted(dataset.load().keys()),
-            ["Categorical Observers", "Colour Normal Observers"],
-        )
+        assert sorted(dataset.load().keys()) == [
+            "Categorical Observers",
+            "Colour Normal Observers",
+        ]
 
-        self.assertEqual(
-            dataset.content["Categorical Observers"][1].XYZ_2.shape,
-            SpectralShape(390, 780, 5),
+        assert dataset.content["Categorical Observers"][1].XYZ_2.shape == SpectralShape(
+            390, 780, 5
         )
 
         np.testing.assert_allclose(
@@ -86,17 +83,14 @@ DatasetLoader_Asano2015.load` method.
         )
 
         np.testing.assert_allclose(
-            dataset.content["Categorical Observers"][5].parameters[
-                "Shift in S [nm]"
-            ],
+            dataset.content["Categorical Observers"][5].parameters["Shift in S [nm]"],
             0.233255808,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
-        self.assertEqual(
-            dataset.content["Colour Normal Observers"][1].XYZ_2.shape,
-            SpectralShape(390, 780, 5),
-        )
+        assert dataset.content["Colour Normal Observers"][
+            1
+        ].XYZ_2.shape == SpectralShape(390, 780, 5)
 
         np.testing.assert_allclose(
             dataset.content["Colour Normal Observers"][1].XYZ_2[390],
@@ -123,20 +117,18 @@ DatasetLoader_Asano2015.load` method.
         )
 
         np.testing.assert_allclose(
-            dataset.content["Colour Normal Observers"][5].parameters[
-                "Shift in S [nm]"
-            ],
+            dataset.content["Colour Normal Observers"][5].parameters["Shift in S [nm]"],
             0.000649602695013,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
-        self.assertEqual(
-            dataset.content["Colour Normal Observers"][151].others["Location"],
-            "Darmstadt",
+        assert (
+            dataset.content["Colour Normal Observers"][151].others["Location"]
+            == "Darmstadt"
         )
 
 
-class TestBuildAsano2015(unittest.TestCase):
+class TestBuildAsano2015:
     """
     Define :func:`colour_datasets.loaders.asano2015.build_Asano2015`
     definition unit tests methods.
@@ -148,8 +140,4 @@ class TestBuildAsano2015(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Asano2015(), build_Asano2015())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Asano2015() is build_Asano2015()

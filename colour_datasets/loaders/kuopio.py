@@ -2,7 +2,7 @@
 University of Kuopio
 ====================
 
-Defines the objects implementing support for the *University of Kuopio*
+Define the objects implementing support for the *University of Kuopio*
 datasets loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_KuopioUniversity`
@@ -154,7 +154,7 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
     """
 
     ID: str = "Undefined"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     METADATA: ClassVar[Dict] = {}
     """
@@ -184,9 +184,9 @@ class DatasetLoader_KuopioUniversity(AbstractDatasetLoader):
         for path, metadata in self.METADATA.items():
             mat_path = os.path.join(self.record.repository, "dataset", *path)
 
-            self._content[
-                metadata.key
-            ] = read_sds_from_mat_file_KuopioUniversity(mat_path, metadata)
+            self._content[metadata.key] = read_sds_from_mat_file_KuopioUniversity(
+                mat_path, metadata
+            )
 
         return self._content
 
@@ -195,9 +195,7 @@ def _build_dataset_loader_class_KuopioUniversity(
     id_: str,
     title: str,
     citation_key: str,
-    metadata: Dict[
-        str, Tuple[str, str, Dict[Tuple, MatFileMetadata_KuopioUniversity]]
-    ],
+    metadata: Dict[str, Tuple[str, str, Dict[Tuple, MatFileMetadata_KuopioUniversity]]],
 ) -> Any:
     """
     Class factory building *University of Kuopio* dataset loaders.
@@ -205,7 +203,7 @@ def _build_dataset_loader_class_KuopioUniversity(
     Parameters
     ----------
     id_
-        Dataset record id, i.e. the *Zenodo* record number.
+        Dataset record id, i.e., the *Zenodo* record number.
     title
         *University of Kuopio* dataset loader title.
     citation_key
@@ -236,9 +234,7 @@ def _build_dataset_loader_class_KuopioUniversity(
 
     References
     ----------
-    :cite:`{citation_key}`"""[
-        1:
-    ]
+    :cite:`{citation_key}`"""[1:]
 
     load_method_docstring = f"""
         Sync, parse, convert and return the *University of Kuopio* *{title}*
@@ -247,9 +243,7 @@ def _build_dataset_loader_class_KuopioUniversity(
         Returns
         -------
         dict
-            *University of Kuopio* *{title}* dataset content."""[
-        1:
-    ]
+            *University of Kuopio* *{title}* dataset content."""[1:]
 
     module = sys.modules["colour_datasets.loaders.kuopio"]
 
@@ -482,9 +476,7 @@ _singleton_factory_docstring_template: str = """
 
     References
     ----------
-    :cite:`{2}`"""[
-    1:
-]
+    :cite:`{2}`"""[1:]
 
 DATASET_LOADERS_KUOPIO_UNIVERSITY: Dict = {}
 """
@@ -498,12 +490,8 @@ References
 
 for _id, _data in DATA_KUOPIO_UNIVERSITY.items():
     _module = sys.modules["colour_datasets.loaders.kuopio"]
-    _dataset_loader_class = _build_dataset_loader_class_KuopioUniversity(
-        _id, *_data
-    )
-    _partial_function = functools.partial(
-        build_KuopioUniversity, _dataset_loader_class
-    )
+    _dataset_loader_class = _build_dataset_loader_class_KuopioUniversity(_id, *_data)
+    _partial_function = functools.partial(build_KuopioUniversity, _dataset_loader_class)
     _partial_function.__doc__ = _singleton_factory_docstring_template.format(
         _dataset_loader_class.__name__, *_data[:-1]
     )

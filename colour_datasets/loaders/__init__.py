@@ -138,13 +138,13 @@ titles.
 
 def load(dataset: int | str) -> Any:
     """
-    Load given dataset: The dataset is pulled locally, i.e. synced if required
+    Load given dataset: The dataset is pulled locally, i.e., synced if required
     and then its data is loaded.
 
     Parameters
     ----------
     dataset
-        Dataset id, i.e. the *Zenodo* record number or title.
+        Dataset id, i.e., the *Zenodo* record number or title.
 
     Returns
     -------
@@ -156,9 +156,7 @@ def load(dataset: int | str) -> Any:
     >>> len(load("3245883").keys())  # doctest: +SKIP
     28
     >>> len(
-    ...     load(
-    ...         "Camera Spectral Sensitivity Database - " "Jiang et al. (2013)"
-    ...     ).keys()
+    ...     load("Camera Spectral Sensitivity Database - " "Jiang et al. (2013)").keys()
     ... )
     ... # doctest: +SKIP
     28
@@ -174,9 +172,7 @@ def load(dataset: int | str) -> Any:
 
             title = dataset_loader.title
             if title in DATASET_LOADERS:
-                warning(
-                    f'"{title}" key is already defined in the dataset loaders!'
-                )
+                warning(f'"{title}" key is already defined in the dataset loaders!')
             DATASET_LOADERS[title] = DATASET_LOADERS[key]
         _HAS_TITLE_KEYS = True
 

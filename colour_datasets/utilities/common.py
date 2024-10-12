@@ -2,7 +2,7 @@
 Common Utilities
 ================
 
-Defines the common utilities objects that don't fall in any specific category.
+Define the common utilities objects that don't fall in any specific category.
 """
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import shutil
+import socket
 import sys
 import urllib.error
 import urllib.request
@@ -126,9 +127,7 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     return md5.hexdigest()
 
 
-def url_download(
-    url: str, filename: str, md5: str | None = None, retries: int = 3
-):
+def url_download(url: str, filename: str, md5: str | None = None, retries: int = 3):
     """
     Download given url and saves its content at given file.
 
@@ -148,9 +147,7 @@ def url_download(
     Examples
     --------
     >>> import os
-    >>> url_download(
-    ...     "https://github.com/colour-science/colour-datasets", os.devnull
-    ... )
+    >>> url_download("https://github.com/colour-science/colour-datasets", os.devnull)
     """
 
     attempt = 0
@@ -162,12 +159,17 @@ def url_download(
                 miniters=1,
                 desc=f'Downloading "{url}" url',
             ) as progress:
-                urllib.request.urlretrieve(  # noqa: S310
-                    url,
-                    filename=filename,
-                    reporthook=progress.update_to,
-                    data=None,
-                )
+                timeout = socket.getdefaulttimeout()
+                try:
+                    socket.setdefaulttimeout(10)
+                    urllib.request.urlretrieve(  # noqa: S310
+                        url,
+                        filename=filename,
+                        reporthook=progress.update_to,
+                        data=None,
+                    )
+                finally:
+                    socket.setdefaulttimeout(timeout)
 
             if md5 is not None and md5.lower() != hash_md5(filename):
                 raise ValueError(  # noqa: TRY301
@@ -240,7 +242,9 @@ def json_open(url: str, retries: int = 3) -> Dict:
 
 
 def unpack_gzipfile(
-    filename: str, extraction_directory: str, *args: Any  # noqa: ARG001
+    filename: str,
+    extraction_directory: str,
+    *args: Any,  # noqa: ARG001
 ) -> bool:
     """
     Unpack given *GZIP* file to given extraction directory.

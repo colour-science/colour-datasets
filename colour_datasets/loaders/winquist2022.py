@@ -2,7 +2,7 @@
 Physlight - Camera Spectral Sensitivity Curves - Winquist et al. (2022)
 =======================================================================
 
-Defines the objects implementing support for *Winquist et al. (2022)*
+Define the objects implementing support for *Winquist et al. (2022)*
 *Physlight - Camera Spectral Sensitivity Curves* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Winquist2022`
@@ -59,7 +59,7 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
     """
 
     ID: str = "6590768"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Winquist2022.ID])
@@ -81,7 +81,6 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Winquist2022()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         17
         """
@@ -90,9 +89,7 @@ class DatasetLoader_Winquist2022(AbstractDatasetLoader):
 
         self._content = {}
 
-        glob_pattern = os.path.join(
-            self.record.repository, "dataset", "*.json"
-        )
+        glob_pattern = os.path.join(self.record.repository, "dataset", "*.json")
         for path in glob.glob(glob_pattern):
             msds = MultiSpectralDistributions_AMPAS(path).read()
             self._content[msds.name] = msds

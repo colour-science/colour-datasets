@@ -1,4 +1,4 @@
-"""Showcases *Colour - Datasets* loading."""
+"""Showcase *Colour - Datasets* loading."""
 
 from colour.utilities import message_box
 

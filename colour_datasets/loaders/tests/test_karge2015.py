@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.karge2015` module."""
 
-import unittest
 
 from colour import SpectralShape
 
@@ -20,7 +18,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Karge2015(unittest.TestCase):
+class TestDatasetLoader_Karge2015:
     """
     Define :class:`colour_datasets.loaders.karge2015.DatasetLoader_Karge2015`
     class unit tests methods.
@@ -32,7 +30,7 @@ class TestDatasetLoader_Karge2015(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Karge2015))
+            assert attribute in dir(DatasetLoader_Karge2015)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -40,7 +38,7 @@ class TestDatasetLoader_Karge2015(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Karge2015))
+            assert method in dir(DatasetLoader_Karge2015)
 
     def test_load(self):
         """
@@ -49,27 +47,21 @@ DatasetLoader_Karge2015.load` method.
         """
 
         dataset = DatasetLoader_Karge2015()
-        self.assertEqual(
-            sorted(dataset.load().keys()),
-            [
-                "Arri HMI",
-                "Arri LED",
-                "Arri TU",
-                "Bron Kobold FL",
-                "Bron Kobold HMI",
-                "CMT Kinoflo FL",
-                "Dedolight TU",
-            ],
-        )
-        self.assertEqual(
-            dataset.content["Arri HMI"]["Raw"][
-                "Arri_Compact125W_HMI_Spot"
-            ].shape,
-            SpectralShape(380, 780, 4),
-        )
+        assert sorted(dataset.load().keys()) == [
+            "Arri HMI",
+            "Arri LED",
+            "Arri TU",
+            "Bron Kobold FL",
+            "Bron Kobold HMI",
+            "CMT Kinoflo FL",
+            "Dedolight TU",
+        ]
+        assert dataset.content["Arri HMI"]["Raw"][
+            "Arri_Compact125W_HMI_Spot"
+        ].shape == SpectralShape(380, 780, 4)
 
 
-class TestBuildKarge2015(unittest.TestCase):
+class TestBuildKarge2015:
     """
     Define :func:`colour_datasets.loaders.karge2015.build_Karge2015`
     definition unit tests methods.
@@ -81,8 +73,4 @@ class TestBuildKarge2015(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Karge2015(), build_Karge2015())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Karge2015() is build_Karge2015()

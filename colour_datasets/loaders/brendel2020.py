@@ -2,7 +2,7 @@
 Measured Commercial LED Spectra - Brendel (2020)
 ================================================
 
-Defines the objects implementing support for *Brendel (2020)*
+Define the objects implementing support for *Brendel (2020)*
 *Measured Commercial LED Spectra* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Brendel2020`
@@ -59,7 +59,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
     """
 
     ID: str = "4051012"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Brendel2020.ID])
@@ -80,7 +80,6 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Brendel2020()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         29
         """
@@ -95,9 +94,7 @@ class DatasetLoader_Brendel2020(AbstractDatasetLoader):
             self.record.repository, "dataset", "led_spd_350_700.csv"
         )
 
-        for i, values in enumerate(
-            np.loadtxt(csv_path, delimiter=",", skiprows=1)
-        ):
+        for i, values in enumerate(np.loadtxt(csv_path, delimiter=",", skiprows=1)):
             peak = as_int(wavelengths[np.argmax(values)])
             name = f"{peak}nm - LED {i} - Brendel (2020)"
 

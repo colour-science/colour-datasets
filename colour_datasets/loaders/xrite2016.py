@@ -2,7 +2,7 @@
 New Color Specifications for ColorChecker SG and Classic Charts - X-Rite (2016)
 ===============================================================================
 
-Defines the objects implementing support for *X-Rite (2016)* *New Color
+Define the objects implementing support for *X-Rite (2016)* *New Color
 Specifications for ColorChecker SG and Classic Charts* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_XRite2016`
@@ -63,7 +63,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
     """
 
     ID: str = "3245895"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_XRite2016.ID])
@@ -86,7 +86,6 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_XRite2016()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         4
         """
@@ -108,23 +107,17 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
         # TODO: Implement support for "CGATS" file format in "Colour":
         # https://github.com/colour-science/colour/issues/354
-        illuminant = CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"][
-            "ICC D50"
-        ]
+        illuminant = CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"]["ICC D50"]
 
         self._content = {}
         for key, filename in zip(keys, filenames):
             directory = os.path.splitext(filename)[0]
-            path = os.path.join(
-                self.record.repository, "dataset", directory, filename
-            )
+            path = os.path.join(self.record.repository, "dataset", directory, filename)
 
             with codecs.open(path, encoding="utf-8") as xrite_file:
                 samples_data = []
                 is_data = False
-                lines = filter(
-                    None, (line.strip() for line in xrite_file.readlines())
-                )
+                lines = filter(None, (line.strip() for line in xrite_file.readlines()))
                 for line in lines:
                     if line == "END_DATA":
                         is_data = False
@@ -146,10 +139,10 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
 
             i, j = (6, 4) if len(samples_data) == 24 else (14, 10)
             samples = np.transpose(
-                np.array(samples_data, dtype=object).reshape([i, j, 2]),
+                np.reshape(np.array(samples_data, dtype=object), (i, j, 2)),
                 [1, 0, 2],
             )
-            keys, values = zip(*samples.reshape([-1, 2]))
+            keys, values = zip(*np.reshape(samples, (-1, 2)))
             values = XYZ_to_xyY(Lab_to_XYZ(values, illuminant))
             self._content[key] = ColourChecker(
                 key, dict(zip(keys, values)), illuminant, j, i

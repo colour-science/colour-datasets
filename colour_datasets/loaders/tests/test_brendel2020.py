@@ -3,8 +3,6 @@ Define the unit tests for the :mod:`colour_datasets.loaders.brendel2020`
 module.
 """
 
-import unittest
-
 from colour import SpectralShape
 
 from colour_datasets.loaders import (
@@ -25,7 +23,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Brendel2020(unittest.TestCase):
+class TestDatasetLoader_Brendel2020:
     """
     Define :class:`colour_datasets.loaders.brendel2020.\
 DatasetLoader_Brendel2020` class unit tests methods.
@@ -37,7 +35,7 @@ DatasetLoader_Brendel2020` class unit tests methods.
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Brendel2020))
+            assert attribute in dir(DatasetLoader_Brendel2020)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -45,7 +43,7 @@ DatasetLoader_Brendel2020` class unit tests methods.
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Brendel2020))
+            assert method in dir(DatasetLoader_Brendel2020)
 
     def test_load(self):
         """
@@ -55,15 +53,14 @@ DatasetLoader_Brendel2020.load` method.
 
         dataset = DatasetLoader_Brendel2020()
 
-        self.assertEqual(len(dataset.load()), 29)
+        assert len(dataset.load()) == 29
 
-        self.assertEqual(
-            dataset.content["556nm - LED 11 - Brendel (2020)"].shape,
-            SpectralShape(350, 700, 2),
-        )
+        assert dataset.content[
+            "556nm - LED 11 - Brendel (2020)"
+        ].shape == SpectralShape(350, 700, 2)
 
 
-class TestBuildBrendel2020(unittest.TestCase):
+class TestBuildBrendel2020:
     """
     Define :func:`colour_datasets.loaders.brendel2020.build_Brendel2020`
     definition unit tests methods.
@@ -75,8 +72,4 @@ class TestBuildBrendel2020(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Brendel2020(), build_Brendel2020())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Brendel2020() is build_Brendel2020()

@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.xrite2016` module."""
 
-import unittest
 
 from colour.characterisation import ColourChecker
 
@@ -20,7 +18,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_XRite2016(unittest.TestCase):
+class TestDatasetLoader_XRite2016:
     """
     Define :class:`colour_datasets.loaders.xrite2016.DatasetLoader_XRite2016`
     class unit tests methods.
@@ -32,7 +30,7 @@ class TestDatasetLoader_XRite2016(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_XRite2016))
+            assert attribute in dir(DatasetLoader_XRite2016)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -40,7 +38,7 @@ class TestDatasetLoader_XRite2016(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_XRite2016))
+            assert method in dir(DatasetLoader_XRite2016)
 
     def test_load(self):
         """
@@ -49,22 +47,21 @@ DatasetLoader_XRite2016.load` method.
         """
 
         dataset = DatasetLoader_XRite2016()
-        self.assertEqual(
-            sorted(dataset.load().keys()),
-            [
-                "ColorChecker24 - After November 2014",
-                "ColorChecker24 - Before November 2014",
-                "ColorCheckerSG - After November 2014",
-                "ColorCheckerSG - Before November 2014",
-            ],
-        )
-        self.assertIsInstance(
-            dataset.content["ColorChecker24 - After November 2014"],
-            ColourChecker,
+        assert sorted(dataset.load().keys()) == [
+            "ColorChecker24 - After November 2014",
+            "ColorChecker24 - Before November 2014",
+            "ColorCheckerSG - After November 2014",
+            "ColorCheckerSG - Before November 2014",
+        ]
+        assert (
+            isinstance(
+                dataset.content["ColorChecker24 - After November 2014"], ColourChecker
+            )
+            is True
         )
 
 
-class TestBuildXRite2016(unittest.TestCase):
+class TestBuildXRite2016:
     """
     Define :func:`colour_datasets.loaders.xrite2016.build_XRite2016`
     definition unit tests methods.
@@ -76,8 +73,4 @@ class TestBuildXRite2016(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_XRite2016(), build_XRite2016())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_XRite2016() is build_XRite2016()

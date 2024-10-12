@@ -2,7 +2,7 @@
 Constant Perceived-Hue Data - Ebner and Fairchild (1998)
 ========================================================
 
-Defines the objects implementing support for *Ebner and Fairchild (1998)*
+Define the objects implementing support for *Ebner and Fairchild (1998)*
 *Constant Perceived-Hue Data* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Ebner1998`
@@ -91,7 +91,7 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
     """
 
     ID: str = "3362536"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Ebner1998.ID])
@@ -115,7 +115,6 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Ebner1998()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         1
         """
@@ -132,18 +131,14 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
             """Parse float values from given data."""
 
             values = np.reshape(
-                as_float_array(
-                    [float(x) / 100 for x in data.split("\t") if x]
-                ),
+                as_float_array([float(x) / 100 for x in data.split("\t") if x]),
                 (-1, 3),
             )
 
             return np.squeeze(values)
 
         with codecs.open(datafile_path, encoding="utf-8") as database_file:
-            lines = filter(
-                None, (line.strip() for line in database_file.readlines())
-            )
+            lines = filter(None, (line.strip() for line in database_file.readlines()))
 
             for line in lines:
                 if line.startswith("White Point"):

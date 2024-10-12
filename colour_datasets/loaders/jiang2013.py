@@ -2,7 +2,7 @@
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
 ==========================================================
 
-Defines the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
+Define the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
 (2013)* *Camera Spectral Sensitivity Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Jiang2013`
@@ -64,7 +64,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
     """
 
     ID: str = "3245883"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Jiang2013.ID])
@@ -86,7 +86,6 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Jiang2013()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         28
         """
@@ -100,9 +99,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
             self.record.repository, "dataset", "camspec_database.txt"
         )
         with codecs.open(database_path, encoding="utf-8") as database_file:
-            lines = filter(
-                None, (line.strip() for line in database_file.readlines())
-            )
+            lines = filter(None, (line.strip() for line in database_file.readlines()))
             camera = None
             for line in lines:
                 if re.match("[a-zA-Z]+", line):
@@ -116,7 +113,7 @@ class DatasetLoader_Jiang2013(AbstractDatasetLoader):
 
         for camera, values in self._content.items():
             self._content[camera] = RGB_CameraSensitivities(
-                np.transpose(as_float_array(values).reshape([3, 33])),
+                np.transpose(np.reshape(as_float_array(values), (3, 33))),
                 shape.range(),
                 name=camera,
             )

@@ -1,7 +1,5 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.solomotav2023` module."""
 
-import unittest
 
 from colour import SpectralShape
 
@@ -23,7 +21,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Solomotav2023(unittest.TestCase):
+class TestDatasetLoader_Solomotav2023:
     """
     Define :class:`colour_datasets.loaders.solomotav2023.DatasetLoader_Solomotav2023`
     class unit tests methods.
@@ -35,7 +33,7 @@ class TestDatasetLoader_Solomotav2023(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Solomotav2023))
+            assert attribute in dir(DatasetLoader_Solomotav2023)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -43,7 +41,7 @@ class TestDatasetLoader_Solomotav2023(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Solomotav2023))
+            assert method in dir(DatasetLoader_Solomotav2023)
 
     def test_load(self):
         """
@@ -52,17 +50,14 @@ DatasetLoader_Solomotav2023.load` method.
         """
 
         dataset = DatasetLoader_Solomotav2023()
-        self.assertEqual(
-            list(dataset.load().keys()), ["Estimated", "Ground Truth"]
-        )
+        assert list(dataset.load().keys()) == ["Estimated", "Ground Truth"]
 
-        self.assertEqual(
-            dataset.content["Estimated"]["Canon EOS 1D C"].shape,
-            SpectralShape(400, 700, 10),
+        assert dataset.content["Estimated"]["Canon EOS 1D C"].shape == SpectralShape(
+            400, 700, 10
         )
 
 
-class TestBuildSolomotav2023(unittest.TestCase):
+class TestBuildSolomotav2023:
     """
     Define :func:`colour_datasets.loaders.solomotav2023.build_Solomotav2023`
     definition unit tests methods.
@@ -74,8 +69,4 @@ class TestBuildSolomotav2023(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Solomotav2023(), build_Solomotav2023())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Solomotav2023() is build_Solomotav2023()

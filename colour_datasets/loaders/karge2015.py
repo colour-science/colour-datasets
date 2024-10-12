@@ -2,7 +2,7 @@
 Spectral Database of Commonly Used Cine Lighting - Karge et al. (2015)
 ======================================================================
 
-Defines the objects implementing support for *Karge, Froehlich and Eberhardt
+Define the objects implementing support for *Karge, Froehlich and Eberhardt
 (2015)* *Spectral Database of Commonly Used Cine Lighting* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Karge2015`
@@ -62,7 +62,7 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
     """
 
     ID: str = "4642271"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Karge2015.ID])
@@ -84,7 +84,6 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Karge2015()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         7
         """

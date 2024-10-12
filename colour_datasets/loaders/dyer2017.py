@@ -2,7 +2,7 @@
 RAW to ACES Utility Data - Dyer et al. (2017)
 =============================================
 
-Defines the objects implementing support for *Dyer, Forsythe, Irons, Mansencal
+Define the objects implementing support for *Dyer, Forsythe, Irons, Mansencal
 and Zhu (2017)* *RAW to ACES Utility Data* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Dyer2017`
@@ -23,7 +23,7 @@ import os
 from colour import MultiSpectralDistributions, SpectralDistribution
 from colour.continuous import MultiSignals, Signal
 from colour.hints import Any, Dict, Literal
-from colour.utilities import attest, is_numeric, is_string, optional
+from colour.utilities import attest, is_numeric, optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -168,7 +168,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"schema_version" property: "{value}" type is not "str"!',
             )
 
@@ -198,7 +198,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"catalog_number" property: "{value}" type is not "str"!',
             )
 
@@ -228,7 +228,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"description" property: "{value}" type is not "str"!',
             )
 
@@ -258,7 +258,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"document_creator" property: "{value}" type is not "str"!',
             )
 
@@ -288,7 +288,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"unique_identifier" property: "{value}" type is not "str"!',
             )
 
@@ -318,9 +318,8 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
-                f'"measurement_equipment" property: "{value}" type is not '
-                f'"str"!',
+                isinstance(value, str),
+                f'"measurement_equipment" property: "{value}" type is not "str"!',
             )
 
         self._measurement_equipment = value
@@ -349,7 +348,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"laboratory" property: "{value}" type is not "str"!',
             )
 
@@ -379,9 +378,8 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
-                f'"document_creation_date" property: "{value}" type is not '
-                f'"str"!',
+                isinstance(value, str),
+                f'"document_creation_date" property: "{value}" type is not "str"!',
             )
 
         self._document_creation_date = value
@@ -410,14 +408,14 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"comments" property: "{value}" type is not "str"!',
             )
 
         self._comments = value
 
     @property
-    def license(self) -> str | None:  # noqa: A003
+    def license(self) -> str | None:
         """
         Getter and setter property for the license.
 
@@ -435,12 +433,12 @@ __init__`
         return self._license
 
     @license.setter
-    def license(self, value: str | None):  # noqa: A003
+    def license(self, value: str | None):
         """Setter for the **self.license** property."""
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"license" property: "{value}" type is not "str"!',
             )
 
@@ -629,7 +627,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"path" property: "{value}" type is not "str"!',
             )
         self._path = value
@@ -721,7 +719,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"units" property: "{value}" type is not "str"!',
             )
 
@@ -786,7 +784,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"reflection_geometry" property: "{value}" type is not "str"!',
             )
 
@@ -815,14 +813,13 @@ __init__`
     @transmission_geometry.setter
     def transmission_geometry(
         self,
-        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        | None,
+        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None,
     ):
         """Setter for the **self.transmission_geometry** property."""
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"transmission_geometry" property: "{value}" type is not "str"!',
             )
 
@@ -915,9 +912,7 @@ __init__`
                 "bandwidth_FWHM",
                 "bandwidth_corrected",
             ):
-                setattr(
-                    self, f"_{attribute}", content["spectral_data"][attribute]
-                )
+                setattr(self, f"_{attribute}", content["spectral_data"][attribute])
 
             data = content["spectral_data"]["data"]["main"]
 
@@ -1130,7 +1125,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"path" property: "{value}" type is not "str"!',
             )
         self._path = value
@@ -1222,7 +1217,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"units" property: "{value}" type is not "str"!',
             )
 
@@ -1287,7 +1282,7 @@ __init__`
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"reflection_geometry" property: "{value}" type is not "str"!',
             )
 
@@ -1316,14 +1311,13 @@ __init__`
     @transmission_geometry.setter
     def transmission_geometry(
         self,
-        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"]
-        | None,
+        value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None,
     ):
         """Setter for the **self.transmission_geometry** property."""
 
         if value is not None:
             attest(
-                is_string(value),
+                isinstance(value, str),
                 f'"transmission_geometry" property: "{value}" type is not "str"!',
             )
 
@@ -1416,16 +1410,12 @@ __init__`
                 "bandwidth_FWHM",
                 "bandwidth_corrected",
             ):
-                setattr(
-                    self, f"_{attribute}", content["spectral_data"][attribute]
-                )
+                setattr(self, f"_{attribute}", content["spectral_data"][attribute])
 
             index = content["spectral_data"]["index"]["main"]
             data = content["spectral_data"]["data"]["main"]
 
-            self.signals = MultiSignals.multi_signals_unpack_data(
-                data, labels=index
-            )
+            self.signals = MultiSignals.multi_signals_unpack_data(data, labels=index)
 
             # TODO: Re-instate "manufacturer", "model", "illuminant" and "type"
             # attributes according to outcome of
@@ -1448,9 +1438,7 @@ __init__`
 
             return self
         else:
-            raise ValueError(
-                "The multi-spectral distributions path is undefined!"
-            )
+            raise ValueError("The multi-spectral distributions path is undefined!")
 
 
 class DatasetLoader_Dyer2017(AbstractDatasetLoader):
@@ -1473,7 +1461,7 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
     """
 
     ID: str = "3372171"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Dyer2017.ID])
@@ -1502,7 +1490,6 @@ class DatasetLoader_Dyer2017(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Dyer2017()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         4
         """

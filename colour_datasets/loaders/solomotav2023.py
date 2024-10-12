@@ -2,7 +2,7 @@
 Camera Dataset - Solomatov and Akkaynak (2023)
 ==============================================
 
-Defines the objects implementing support for *Solomatov and Akkaynak (2023)*
+Define the objects implementing support for *Solomatov and Akkaynak (2023)*
 *Camera Dataset* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Solomotav2023`
@@ -59,7 +59,7 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
     """
 
     ID: str = "8314702"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Solomotav2023.ID])
@@ -81,7 +81,6 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Solomotav2023()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         2
         >>> len(dataset.content["Estimated"].keys())
@@ -101,9 +100,9 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
                 f"*.csv"
             )
             for csv_file in csv_files:
-                camera_name = os.path.splitext(os.path.basename(csv_file))[
-                    0
-                ].replace("-", " ")
+                camera_name = os.path.splitext(os.path.basename(csv_file))[0].replace(
+                    "-", " "
+                )
                 self._content[key][camera_name] = RGB_CameraSensitivities(
                     read_sds_from_csv_file(csv_file), name=camera_name
                 )

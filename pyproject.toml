@@ -1,13 +1,16 @@
-[tool.poetry]
+[project]
 name = "colour-datasets"
-version = "0.2.5"
+version = "0.2.6"
 description = "Colour science datasets for use with Colour"
-license = "BSD-3-Clause"
-authors = [ "Colour Developers <colour-developers@colour-science.org>" ]
-maintainers = [ "Colour Developers <colour-developers@colour-science.org>" ]
-readme = 'README.rst'
-repository = "https://github.com/colour-science/colour-datasets"
-homepage = "https://www.colour-science.org/"
+readme = "README.rst"
+requires-python = ">=3.10,<3.14"
+authors = [
+    { name = "Colour Developers", email = "colour-developers@colour-science.org" },
+]
+maintainers = [
+    { name = "Colour Developers", email = "colour-developers@colour-science.org" }
+]
+license = { text = "BSD-3-Clause" }
 keywords = [
     "color",
     "color-science",
@@ -41,48 +44,64 @@ classifiers = [
     "Topic :: Scientific/Engineering",
     "Topic :: Software Development"
 ]
+dependencies = [
+    "cachetools",
+    "colour-science>=0.4.4",
+    "imageio>=2,<3",
+    "numpy>=1.24,<3",
+    "opencv-python>=4,<5",
+    "scipy>=1.10,<2",
+    "tqdm",
+    "typing-extensions>=4,<5",
+    "xlrd>=1.2,<2",
+]
 
-[tool.poetry.dependencies]
-python = ">= 3.9, < 3.13"
-cachetools = "*"
-colour-science = ">= 0.4.4"
-imageio = ">= 2, < 3"
-numpy = ">= 1.22, < 2"
-opencv-python = ">= 4, < 5"
-scipy = ">= 1.8, < 2"
-tqdm = "*"
-typing-extensions = ">= 4, < 5"
-xlrd = ">= 1.2, < 2"
+[project.optional-dependencies]
+optional = [
+    "matplotlib>=3.7",
+]
+docs = [
+    "biblib-simple",
+    "pydata-sphinx-theme",
+    "restructuredtext-lint",
+    "sphinx",
+    "sphinxcontrib-bibtex",
+]
 
-[tool.poetry.group.dev.dependencies]
-coverage = "!= 6.3"
-coveralls = "*"
-invoke = "*"
-jupyter = "*"
-pre-commit = ">= 3.5"
-pyright = "*"
-pytest = "*"
-pytest-cov = "*"
-pytest-xdist = "*"
-toml = "*"
-twine = "*"
+[project.urls]
+Homepage = "https://www.colour-science.org"
+Documentation = "https://colour-datasets.readthedocs.org"
+Repository = "https://github.com/colour-science/colour-datasets"
+Issues = "https://github.com/colour-science/colour-datasets/issues"
+Changelog = "https://github.com/colour-science/colour-datasets/releases"
 
-[tool.poetry.group.docs.dependencies]
-biblib-simple = "*"
-pydata-sphinx-theme = "*"
-restructuredtext-lint = "*"
-sphinx = "*"
-sphinxcontrib-bibtex = "*"
+[tool.uv]
+package = true
+dev-dependencies = [
+    "coverage",
+    "coveralls",
+    "hatch",
+    "invoke",
+    "jupyter",
+    "pre-commit",
+    "pyright",
+    "pytest",
+    "pytest-cov",
+    "pytest-xdist",
+    "toml",
+    "twine",
+]
 
-[tool.black]
-line-length = 79
-exclude = '''
-/(
-    \.git
-  | build
-  | dist
-)/
-'''
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [ "colour_datasets" ]
+
+[tool.codespell]
+ignore-words-list = "exitance,seperately"
+skip = "BIBLIOGRAPHY.bib,CONTRIBUTORS.rst"
 
 [tool.flynt]
 line_length=999
@@ -198,9 +217,9 @@ convention = "numpy"
 "colour_datasets/examples/*" = ["INP", "T201", "T203"]
 "docs/*" = ["INP"]
 "tasks.py" = ["INP"]
+"test_*" = ["S101"]
 "utilities/*" = ["EXE001", "INP"]
 "utilities/unicode_to_ascii.py" = ["RUF001"]
 
-[build-system]
-requires = [ "poetry_core>=1.0.0" ]
-build-backend = "poetry.core.masonry.api"
+[tool.ruff.format]
+docstring-code-format = true

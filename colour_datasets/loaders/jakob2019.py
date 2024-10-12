@@ -2,7 +2,7 @@
 Spectral Upsampling Coefficient Tables - Jakob and Hanika (2019)
 ================================================================
 
-Defines the objects implementing support for *Jakob and Hanika (2019)*
+Define the objects implementing support for *Jakob and Hanika (2019)*
 *Spectral Upsampling Coefficient Tables* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Jakob2019`
@@ -59,7 +59,7 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
     """
 
     ID: str = "4050598"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Jakob2019.ID])
@@ -81,7 +81,6 @@ class DatasetLoader_Jakob2019(AbstractDatasetLoader):
         >>> dataset = DatasetLoader_Jakob2019()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         4
         """

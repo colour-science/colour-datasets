@@ -2,7 +2,7 @@
 Zenodo
 ======
 
-Defines the objects implementing support for a *Zenodo* community and its
+Define the objects implementing support for a *Zenodo* community and its
 records:
 
 -   :class:`colour_datasets.Record`
@@ -89,13 +89,9 @@ class Record:
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
-    def __init__(
-        self, data: dict, configuration: Configuration | None = None
-    ) -> None:
+    def __init__(self, data: dict, configuration: Configuration | None = None) -> None:
         self._data: dict = data
-        self._configuration: Configuration = optional(
-            configuration, Configuration()
-        )
+        self._configuration: Configuration = optional(configuration, Configuration())
 
     @property
     def data(self) -> dict:
@@ -137,7 +133,7 @@ class Record:
         return os.path.join(self._configuration.repository, self.id)
 
     @property
-    def id(self) -> str:  # noqa: A003
+    def id(self) -> str:
         """
         Getter property for the *Zenodo* record id.
 
@@ -194,14 +190,10 @@ class Record:
             return "".join(parts)
 
         metadata = self._data["metadata"]
-        authors = "; ".join(
-            [creator["name"] for creator in metadata["creators"]]
-        )
+        authors = "; ".join([creator["name"] for creator in metadata["creators"]])
         files = self._data["files"]
 
-        description = "\n".join(
-            textwrap.wrap(strip_html(metadata["description"]), 79)
-        )
+        description = "\n".join(textwrap.wrap(strip_html(metadata["description"]), 79))
 
         files = "\n".join(
             [
@@ -254,15 +246,10 @@ class Record:
              'created': '2019-06-14T09:34:15.765924+00:00',
         """
 
-        data = "\n".join(
-            [f"    {line}" for line in pformat(self._data).splitlines()]
-        )
+        data = "\n".join([f"    {line}" for line in pformat(self._data).splitlines()])
 
         configuration = "\n".join(
-            [
-                f"        {line}"
-                for line in pformat(self._configuration).splitlines()
-            ]
+            [f"        {line}" for line in pformat(self._configuration).splitlines()]
         )
         configuration = f"    Configuration(\n{configuration}\n    )"
 
@@ -299,9 +286,7 @@ class Record:
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
-        configuration = (
-            Configuration() if configuration is None else configuration
-        )
+        configuration = Configuration() if configuration is None else configuration
 
         if not os.path.exists(configuration.repository):
             os.makedirs(configuration.repository)
@@ -326,7 +311,6 @@ class Record:
         >>> record = Record.from_id("3245883")
         >>> with suppress_stdout():
         ...     record.pull()
-        ...
         >>> record.synced()
         True
         >>> record.remove()
@@ -369,7 +353,6 @@ class Record:
         >>> record.remove()
         >>> with suppress_stdout():
         ...     record.pull()
-        ...
         >>> record.synced()
         True
         """
@@ -483,14 +466,10 @@ class Record:
                 unpacking_directory = os.path.join(deflate_directory, basename)
 
                 print(f'Unpacking "{filename}" archive...')  # noqa: T201
-                setuptools.archive_util.unpack_archive(
-                    filename, unpacking_directory
-                )
+                setuptools.archive_util.unpack_archive(filename, unpacking_directory)
                 os.remove(filename)
 
-        with open(
-            os.path.join(self.repository, "record.json"), "w"
-        ) as record_json:
+        with open(os.path.join(self.repository, "record.json"), "w") as record_json:
             json.dump(self.data, record_json, indent=4, sort_keys=True)
 
     def remove(self):
@@ -503,7 +482,6 @@ class Record:
         >>> record = Record.from_id("3245883")
         >>> with suppress_stdout():
         ...     record.pull()
-        ...
         >>> record.remove()
         >>> record.synced()
         False
@@ -560,13 +538,9 @@ class Community(Mapping):
     'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
     """
 
-    def __init__(
-        self, data: Dict, configuration: Configuration | None = None
-    ) -> None:
+    def __init__(self, data: Dict, configuration: Configuration | None = None) -> None:
         self._data: Dict = data
-        self._configuration: Configuration = optional(
-            configuration, Configuration()
-        )
+        self._configuration: Configuration = optional(configuration, Configuration())
 
         hits = self._data["records"]["hits"]["hits"]
         self._records: Dict = {
@@ -658,9 +632,7 @@ colour-science-datasets-tests
             ]
         )
 
-        synced = len(
-            [dataset for dataset in self.values() if dataset.synced()]
-        )
+        synced = len([dataset for dataset in self.values() if dataset.synced()])
 
         representation = "\n".join(
             [
@@ -695,19 +667,14 @@ colour-science-datasets-tests
         >>> print("\\n".join(repr(community).splitlines()[:4]))
         Community(
             {'community': {'access': {'member_policy': 'open',
-                                      'record_policy': 'open',
-                                      'review_policy': 'open',
+                                      'members_visibility': 'public',
+                                      'record_submission_policy': 'open',
         """
 
-        data = "\n".join(
-            [f"    {line}" for line in pformat(self._data).splitlines()]
-        )
+        data = "\n".join([f"    {line}" for line in pformat(self._data).splitlines()])
 
         configuration = "\n".join(
-            [
-                f"        {line}"
-                for line in pformat(self._configuration).splitlines()
-            ]
+            [f"        {line}" for line in pformat(self._configuration).splitlines()]
         )
         configuration = f"    Configuration(\n{configuration}\n    )"
 
@@ -749,7 +716,6 @@ colour-science-datasets-tests
         --------
         >>> for record in Community.from_id("colour-science-datasets-tests"):
         ...     print(record)  # doctest: +SKIP
-        ...
         """
 
         yield from self._records
@@ -805,17 +771,13 @@ colour-science-datasets-tests
         'Camera Spectral Sensitivity Database - Jiang et al. (2013)'
         """
 
-        configuration = (
-            Configuration() if configuration is None else configuration
-        )
+        configuration = Configuration() if configuration is None else configuration
         configuration.community = id_
 
         if not os.path.exists(configuration.repository):
             os.makedirs(configuration.repository)
 
-        community_url = (
-            f"{configuration.api_url}/communities/{configuration.community}"
-        )
+        community_url = f"{configuration.api_url}/communities/{configuration.community}"
 
         community_json_filename = os.path.join(
             configuration.repository,
@@ -827,9 +789,7 @@ colour-science-datasets-tests
 
         try:
             community_data = json_open(community_url, retries)
-            records_data = json_open(
-                community_data["links"]["records"], retries
-            )
+            records_data = json_open(community_data["links"]["records"], retries)
 
             for key, value in {
                 community_json_filename: community_data,
@@ -849,9 +809,7 @@ colour-science-datasets-tests
                     os.path.exists(records_json_filename),
                 ]
             ):
-                raise RuntimeError(
-                    "Local files were not found, aborting!"
-                ) from error
+                raise RuntimeError("Local files were not found, aborting!") from error
 
             with open(community_json_filename) as json_file:
                 community_data = json.loads(json_file.read())
@@ -883,7 +841,6 @@ colour-science-datasets-tests
         >>> community = Community.from_id("colour-science-datasets-tests")
         >>> with suppress_stdout():
         ...     community.pull()  # doctest: +SKIP
-        ...
         >>> community.synced()  # doctest: +SKIP
         True
         >>> community.remove()
@@ -915,7 +872,6 @@ colour-science-datasets-tests
         >>> community.remove()
         >>> with suppress_stdout():
         ...     community.pull()  # doctest: +SKIP
-        ...
         >>> community.synced()  # doctest: +SKIP
         True
         """
@@ -936,7 +892,6 @@ colour-science-datasets-tests
         >>> community = Community.from_id("colour-science-datasets-tests")
         >>> with suppress_stdout():
         ...     community.pull()  # doctest: +SKIP
-        ...
         >>> community.remove()
         >>> community.synced()
         False
@@ -947,7 +902,9 @@ colour-science-datasets-tests
 
 
 def _remove_readonly(
-    function: Callable, path: str, excinfo: Any  # noqa: ARG001
+    function: Callable,
+    path: str,
+    excinfo: Any,  # noqa: ARG001
 ):
     """
     Error handler for :func:`shutil.rmtree` definition that removes read-only

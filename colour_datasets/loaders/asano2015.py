@@ -2,7 +2,7 @@
 Observer Function Database - Asano (2015)
 =========================================
 
-Defines the objects implementing support for *Asano (2015)* *Observer Function
+Define the objects implementing support for *Asano (2015)* *Observer Function
 Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Asano2015`
@@ -91,9 +91,7 @@ class Specification_Asano2015(
         class.
         """
 
-        return super().__new__(
-            cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others
-        )
+        return super().__new__(cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others)
 
 
 class DatasetLoader_Asano2015(AbstractDatasetLoader):
@@ -117,7 +115,7 @@ parse_workbook_Asano2015`
     """
 
     ID: str = "3252742"
-    """Dataset record id, i.e. the *Zenodo* record number."""
+    """Dataset record id, i.e., the *Zenodo* record number."""
 
     def __init__(self) -> None:
         super().__init__(datasets()[DatasetLoader_Asano2015.ID])
@@ -138,7 +136,6 @@ parse_workbook_Asano2015`
         >>> dataset = DatasetLoader_Asano2015()
         >>> with suppress_stdout():
         ...     dataset.load()
-        ...
         >>> len(dataset.content.keys())
         2
         """
@@ -160,9 +157,7 @@ parse_workbook_Asano2015`
         for index, observer in self.parse_workbook_Asano2015(
             workbook_path, template, observers
         ).items():
-            self._content["Categorical Observers"][
-                index
-            ] = Specification_Asano2015(
+            self._content["Categorical Observers"][index] = Specification_Asano2015(
                 observer["XYZ_2"],
                 observer["XYZ_10"],
                 observer["LMS_2"],
@@ -196,13 +191,9 @@ parse_workbook_Asano2015`
 
         template = "Asano 2015 {0} Colour Normal Observer No. {1} {2}"
         for i, (index, observer) in enumerate(
-            self.parse_workbook_Asano2015(
-                workbook_path, template, observers
-            ).items()
+            self.parse_workbook_Asano2015(workbook_path, template, observers).items()
         ):
-            self._content["Colour Normal Observers"][
-                index
-            ] = Specification_Asano2015(
+            self._content["Colour Normal Observers"][index] = Specification_Asano2015(
                 observer["XYZ_2"],
                 observer["XYZ_10"],
                 observer["LMS_2"],
@@ -253,9 +244,7 @@ parse_workbook_Asano2015`
                 (LMS_ConeFundamentals, "LMS"),
             ]
         ):
-            for j, degree in enumerate(
-                [(2, "2$^\\circ$"), (10, "10$^\\circ$")]
-            ):
+            for j, degree in enumerate([(2, "2$^\\circ$"), (10, "10$^\\circ$")]):
                 sheet = book.sheet_by_index(j + (i * 2))
 
                 x = np.transpose(
@@ -279,9 +268,7 @@ parse_workbook_Asano2015`
                         rgb,
                         domain=wavelengths,
                         name=template.format(degree[0], observer, cmfs[1]),
-                        display_name=template.format(
-                            degree[0], observer, cmfs[1]
-                        ),
+                        display_name=template.format(degree[0], observer, cmfs[1]),
                     )
 
         # Parameters
@@ -291,17 +278,13 @@ parse_workbook_Asano2015`
         )
 
         values = np.transpose(
-            cell_range_values(
-                book.sheet_by_index(4), f"{column_in}2:{column_out}10"
-            )
+            cell_range_values(book.sheet_by_index(4), f"{column_in}2:{column_out}10")
         )
         header, values = values[0], values[1:]
 
         for i in range(observers[1]):
             observer = i + 1
-            data[observer]["parameters"] = dict(
-                zip(header, as_float_array(values[i]))
-            )
+            data[observer]["parameters"] = dict(zip(header, as_float_array(values[i])))
 
         return data
 

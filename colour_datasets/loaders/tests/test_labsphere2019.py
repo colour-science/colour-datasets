@@ -3,7 +3,6 @@ Define the unit tests for the :mod:`colour_datasets.loaders.labsphere2019`
 module.
 """
 
-import unittest
 
 from colour import SpectralShape
 
@@ -25,7 +24,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Labsphere2019(unittest.TestCase):
+class TestDatasetLoader_Labsphere2019:
     """
     Define :class:`colour_datasets.loaders.labsphere2019.\
 DatasetLoader_Labsphere2019` class unit tests methods.
@@ -37,7 +36,7 @@ DatasetLoader_Labsphere2019` class unit tests methods.
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Labsphere2019))
+            assert attribute in dir(DatasetLoader_Labsphere2019)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -45,7 +44,7 @@ DatasetLoader_Labsphere2019` class unit tests methods.
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Labsphere2019))
+            assert method in dir(DatasetLoader_Labsphere2019)
 
     def test_load(self):
         """
@@ -54,16 +53,13 @@ DatasetLoader_Labsphere2019.load` method.
         """
 
         dataset = DatasetLoader_Labsphere2019()
-        self.assertEqual(
-            sorted(dataset.load().keys()), ["Labsphere SRS-99-020"]
-        )
-        self.assertEqual(
-            dataset.content["Labsphere SRS-99-020"].shape,
-            SpectralShape(250, 2500, 1),
+        assert sorted(dataset.load().keys()) == ["Labsphere SRS-99-020"]
+        assert dataset.content["Labsphere SRS-99-020"].shape == SpectralShape(
+            250, 2500, 1
         )
 
 
-class TestBuildLabsphere2019(unittest.TestCase):
+class TestBuildLabsphere2019:
     """
     Define :func:`colour_datasets.loaders.labsphere2019.build_Labsphere2019`
     definition unit tests methods.
@@ -75,8 +71,4 @@ class TestBuildLabsphere2019(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Labsphere2019(), build_Labsphere2019())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Labsphere2019() is build_Labsphere2019()

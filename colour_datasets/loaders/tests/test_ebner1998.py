@@ -1,7 +1,4 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_datasets.loaders.ebner1998` module."""
-
-import unittest
 
 import numpy as np
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS
@@ -21,7 +18,7 @@ __all__ = [
 ]
 
 
-class TestDatasetLoader_Ebner1998(unittest.TestCase):
+class TestDatasetLoader_Ebner1998:
     """
     Define :class:`colour_datasets.loaders.ebner1998.DatasetLoader_Ebner1998`
     class unit tests methods.
@@ -33,7 +30,7 @@ class TestDatasetLoader_Ebner1998(unittest.TestCase):
         required_attributes = ("ID",)
 
         for attribute in required_attributes:
-            self.assertIn(attribute, dir(DatasetLoader_Ebner1998))
+            assert attribute in dir(DatasetLoader_Ebner1998)
 
     def test_required_methods(self):
         """Test the presence of required methods."""
@@ -41,7 +38,7 @@ class TestDatasetLoader_Ebner1998(unittest.TestCase):
         required_methods = ("__init__", "load")
 
         for method in required_methods:
-            self.assertIn(method, dir(DatasetLoader_Ebner1998))
+            assert method in dir(DatasetLoader_Ebner1998)
 
     def test_load(self):
         """
@@ -50,30 +47,25 @@ DatasetLoader_Ebner1998.load` method.
         """
 
         dataset = DatasetLoader_Ebner1998()
-        self.assertListEqual(
-            sorted(dataset.load().keys()), ["Constant Perceived-Hue Data"]
-        )
+        assert sorted(dataset.load().keys()) == ["Constant Perceived-Hue Data"]
 
-        self.assertListEqual(
-            sorted(dataset.load()["Constant Perceived-Hue Data"].keys()),
-            [
-                0,
-                24,
-                48,
-                72,
-                96,
-                120,
-                144,
-                168,
-                192,
-                216,
-                240,
-                264,
-                288,
-                312,
-                336,
-            ],
-        )
+        assert sorted(dataset.load()["Constant Perceived-Hue Data"].keys()) == [
+            0,
+            24,
+            48,
+            72,
+            96,
+            120,
+            144,
+            168,
+            192,
+            216,
+            240,
+            264,
+            288,
+            312,
+            336,
+        ]
 
         np.testing.assert_allclose(
             dataset.load()["Constant Perceived-Hue Data"][96].XYZ_r,
@@ -127,7 +119,7 @@ DatasetLoader_Ebner1998.load` method.
         )
 
 
-class TestBuildEbner1998(unittest.TestCase):
+class TestBuildEbner1998:
     """
     Define :func:`colour_datasets.loaders.ebner1998.build_Ebner1998`
     definition unit tests methods.
@@ -139,8 +131,4 @@ class TestBuildEbner1998(unittest.TestCase):
         definition.
         """
 
-        self.assertIs(build_Ebner1998(), build_Ebner1998())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert build_Ebner1998() is build_Ebner1998()

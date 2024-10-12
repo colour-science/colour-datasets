@@ -162,7 +162,7 @@ Primary Dependencies
 
 - `python >= 3.10, < 3.14 <https://www.python.org/download/releases>`__
 - `cachetools <https://pypi.org/project/cachetools>`__
-- `colour-science >= 4.4 <https://pypi.org/project/colour-science>`__
+- `colour-science >= 4.5 <https://pypi.org/project/colour-science>`__
 - `imageio >= 2, < 3 <https://imageio.github.io>`__
 - `numpy >= 1.24, < 3 <https://pypi.org/project/numpy>`__
 - `scipy >= 1.10, < 2 <https://pypi.org/project/scipy>`__

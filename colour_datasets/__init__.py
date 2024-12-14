@@ -15,6 +15,10 @@ Subpackages
 -   utilities:  Various utilities.
 """
 
+# isort: skip_file
+
+from __future__ import annotations
+
 import contextlib
 import os
 import subprocess

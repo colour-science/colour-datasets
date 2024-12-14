@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.solomotav2023` module."""
 
-
 from colour import SpectralShape
 
 from colour_datasets.loaders import (

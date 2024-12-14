@@ -148,14 +148,14 @@ class DatasetLoader_Ebner1998(AbstractDatasetLoader):
                     attribute, value = line.split("\t", 1)
                     hue, data = int(attribute), _parse_float_values(value)
 
-                    self._content["Constant Perceived-Hue Data"][
-                        hue
-                    ] = ConstantPerceivedHueColourMatches_Ebner1998(
-                        f"Reference Hue Angle - {hue}",
-                        XYZ_r,
-                        data[0],
-                        data[1:],
-                        {"h": hue},
+                    self._content["Constant Perceived-Hue Data"][hue] = (
+                        ConstantPerceivedHueColourMatches_Ebner1998(
+                            f"Reference Hue Angle - {hue}",
+                            XYZ_r,
+                            data[0],
+                            data[1:],
+                            {"h": hue},
+                        )
                     )
 
         return self._content

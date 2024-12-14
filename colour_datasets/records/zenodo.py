@@ -392,7 +392,7 @@ class Record:
         try:
             if use_urls_txt_file and urls_txt:
                 urls = {}
-                urls_txt_file = tempfile.NamedTemporaryFile(delete=False).name
+                urls_txt_file = tempfile.NamedTemporaryFile(delete=False).name  # noqa: SIM115
                 url_download(
                     urls_txt["links"]["self"],
                     urls_txt_file,

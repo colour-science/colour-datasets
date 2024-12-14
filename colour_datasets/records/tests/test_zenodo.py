@@ -172,7 +172,7 @@ camspec_database.txt/content
         """
 
         self.assertIsInstance(
-            eval(  # noqa: PGH001, S307
+            eval(  # noqa: S307
                 repr(self._record),
                 {},
                 {"Record": Record, "Configuration": Configuration},
@@ -345,7 +345,7 @@ Datasets
         """
 
         self.assertIsInstance(
-            eval(  # noqa: PGH001, S307
+            eval(  # noqa: S307
                 repr(self._community),
                 {},
                 {"Community": Community, "Configuration": Configuration},

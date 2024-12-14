@@ -74,7 +74,7 @@ class Specification_Asano2015(
     References
     ----------
     :cite:`Asano2015`
-    """  # noqa: D405, D407, D410, D411
+    """
 
     def __new__(
         cls,

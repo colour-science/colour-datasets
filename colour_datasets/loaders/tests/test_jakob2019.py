@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.jakob2019` module."""
 
-
 from colour_datasets.loaders import DatasetLoader_Jakob2019, build_Jakob2019
 
 __author__ = "Colour Developers"

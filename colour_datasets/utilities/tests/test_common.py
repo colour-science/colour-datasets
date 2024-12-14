@@ -66,7 +66,7 @@ class TestUrlDownload:
     def setup_method(self):
         """Initialise the common tests attributes."""
 
-        self._temporary_file = tempfile.NamedTemporaryFile(delete=False).name
+        self._temporary_file = tempfile.NamedTemporaryFile(delete=False).name  # noqa: SIM115
 
     def teardown_method(self):
         """After tests actions."""

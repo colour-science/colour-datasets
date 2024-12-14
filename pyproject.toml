@@ -100,11 +100,8 @@ build-backend = "hatchling.build"
 packages = [ "colour_datasets" ]
 
 [tool.codespell]
-ignore-words-list = "exitance,seperately"
+ignore-words-list = "assertIn,exitance,seperately,socio-economic"
 skip = "BIBLIOGRAPHY.bib,CONTRIBUTORS.rst"
-
-[tool.flynt]
-line_length=999
 
 [tool.isort]
 ensure_newline_before_comments = true

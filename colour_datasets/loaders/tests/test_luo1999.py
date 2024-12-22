@@ -24,7 +24,7 @@ class TestDatasetLoader_Luo1999:
     class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -32,7 +32,7 @@ class TestDatasetLoader_Luo1999:
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Luo1999)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -40,7 +40,7 @@ class TestDatasetLoader_Luo1999:
         for method in required_methods:
             assert method in dir(DatasetLoader_Luo1999)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.luo1999.DatasetLoader_Luo1999.\
 load` method.
@@ -158,7 +158,7 @@ class TestBuildLuo1999:
     definition unit tests methods.
     """
 
-    def test_build_Luo1999(self):
+    def test_build_Luo1999(self) -> None:
         """
         Test :func:`colour_datasets.loaders.luo1999.build_Luo1999`
         definition.

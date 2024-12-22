@@ -42,7 +42,7 @@ class TestReadSdsFromMatFileKuopioUniversity:
 read_sds_from_mat_file_KuopioUniversity` definition unit tests methods.
     """
 
-    def test_read_sds_from_mat_file_KuopioUniversity(self):
+    def test_read_sds_from_mat_file_KuopioUniversity(self) -> None:
         """
         Test :func:`colour_datasets.loaders.kuopio.\
 read_sds_from_mat_file_KuopioUniversity` definition.
@@ -105,7 +105,7 @@ class TestDatasetLoader_KuopioUniversity:
 DatasetLoader_KuopioUniversity` class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID", "METADATA")
@@ -123,7 +123,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
             for attribute in required_attributes:
                 assert attribute in dir(dataset_loader)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -141,7 +141,7 @@ DatasetLoader_KuopioUniversity` class unit tests methods.
             for method in required_methods:
                 assert method in dir(dataset_loader)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.kuopio.\
 DatasetLoader_KuopioUniversity.load` method.

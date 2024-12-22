@@ -32,10 +32,14 @@ http://colour.derby.ac.uk:80/colour/info/lutchi/
 from __future__ import annotations
 
 import os
-from collections import namedtuple
+import typing
+from dataclasses import dataclass
 
 import numpy as np
-from colour.hints import Dict, Tuple
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict, NDArrayFloat, Tuple
+
 from colour.utilities import as_float_array, usage_warning
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -56,9 +60,8 @@ __all__ = [
 ]
 
 
-class ExperimentalGroupLuo1997(
-    namedtuple("ExperimentalGroupLuo1997", ("name", "phases", "metadata"))
-):
+@dataclass(frozen=True)
+class ExperimentalGroupLuo1997:
     """
     Define a *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data*
     experimental group, i.e., a group of experimental phases.
@@ -74,22 +77,13 @@ class ExperimentalGroupLuo1997(
         Experimental group metadata.
     """
 
+    name: str
+    phases: Dict
+    metadata: Dict
 
-class ExperimentalPhaseLuo1997(
-    namedtuple(
-        "ExperimentalPhaseLuo1997",
-        (
-            "name",
-            "JQCH_v",
-            "xyY_c",
-            "S_Y_c",
-            "Y_b",
-            "Y_r",
-            "XYZ_o",
-            "metadata",
-        ),
-    )
-):
+
+@dataclass(frozen=True)
+class ExperimentalPhaseLuo1997:
     """
     Define a *Luo and Rhodes (1997)* *LUTCHI Colour Appearance Data*
     experimental phase.
@@ -122,6 +116,15 @@ class ExperimentalPhaseLuo1997(
     metadata
         Experimental phase metadata.
     """
+
+    name: str
+    JQCH_v: NDArrayFloat
+    xyY_c: NDArrayFloat
+    S_Y_c: NDArrayFloat
+    Y_b: float
+    Y_r: float
+    XYZ_o: NDArrayFloat
+    metadata: Dict
 
 
 class DatasetLoader_Luo1997(AbstractDatasetLoader):
@@ -1032,6 +1035,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                         zip(
                             phase_metadata_headers,
                             [samples_count, (neutrals_start, neutrals_end)],
+                            strict=False,
                         )
                     ),
                 )
@@ -1043,6 +1047,7 @@ http://colour.derby.ac.uk/colour/info/lutchi/data/cold65wnl is empty. Mark
                     zip(
                         group_metadata_headers,
                         experimental_groups_summary[group],
+                        strict=False,
                     )
                 ),
             )

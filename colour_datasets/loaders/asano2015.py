@@ -17,7 +17,8 @@ References
 from __future__ import annotations
 
 import os
-from collections import namedtuple
+import typing
+from dataclasses import dataclass, field
 
 import numpy as np
 import xlrd
@@ -26,7 +27,10 @@ from colour.colorimetry import (
     LMS_ConeFundamentals,
     XYZ_ColourMatchingFunctions,
 )
-from colour.hints import Dict, NDArrayFloat
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
+
 from colour.utilities import as_float_array, tstack
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -47,12 +51,8 @@ __all__ = [
 ]
 
 
-class Specification_Asano2015(
-    namedtuple(
-        "Specification_Asano2015",
-        ("XYZ_2", "XYZ_10", "LMS_2", "LMS_10", "parameters", "others"),
-    )
-):
+@dataclass(frozen=True)
+class Specification_Asano2015:
     """
     Define the *Asano (2015)* specification for an observer.
 
@@ -76,22 +76,12 @@ class Specification_Asano2015(
     :cite:`Asano2015`
     """
 
-    def __new__(
-        cls,
-        XYZ_2: XYZ_ColourMatchingFunctions,
-        XYZ_10: XYZ_ColourMatchingFunctions,
-        LMS_2: LMS_ConeFundamentals,
-        LMS_10: LMS_ConeFundamentals,
-        parameters: NDArrayFloat,
-        others: Dict | None = None,
-    ):
-        """
-        Return a new instance of the
-        :class:`colour_datasets.loaders.asano2015.Specification_Asano2015`
-        class.
-        """
-
-        return super().__new__(cls, XYZ_2, XYZ_10, LMS_2, LMS_10, parameters, others)
+    XYZ_2: XYZ_ColourMatchingFunctions
+    XYZ_10: XYZ_ColourMatchingFunctions
+    LMS_2: LMS_ConeFundamentals
+    LMS_10: LMS_ConeFundamentals
+    parameters: Dict
+    others: Dict = field(default_factory=dict)
 
 
 class DatasetLoader_Asano2015(AbstractDatasetLoader):
@@ -199,7 +189,7 @@ parse_workbook_Asano2015`
                 observer["LMS_2"],
                 observer["LMS_10"],
                 observer["parameters"],
-                dict(zip(header, values[i])),
+                dict(zip(header, values[i], strict=False)),
             )
 
         return self._content
@@ -284,7 +274,9 @@ parse_workbook_Asano2015`
 
         for i in range(observers[1]):
             observer = i + 1
-            data[observer]["parameters"] = dict(zip(header, as_float_array(values[i])))
+            data[observer]["parameters"] = dict(
+                zip(header, as_float_array(values[i]), strict=False)
+            )
 
         return data
 

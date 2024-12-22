@@ -19,8 +19,11 @@ from __future__ import annotations
 
 import glob
 import os
+import typing
 
-from colour.hints import Dict
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
+
 from colour.recovery import LUT3D_Jakob2019
 
 from colour_datasets.loaders import AbstractDatasetLoader

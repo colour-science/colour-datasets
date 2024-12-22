@@ -20,10 +20,14 @@ from __future__ import annotations
 
 import codecs
 import os
-from collections import namedtuple
+import typing
+from dataclasses import dataclass
 
 import numpy as np
-from colour.hints import Dict, NDArrayFloat
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict, NDArrayFloat
+
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -43,12 +47,8 @@ __all__ = [
 ]
 
 
-class ConstantPerceivedHueColourMatches_Ebner1998(
-    namedtuple(
-        "ConstantPerceivedHueColourMatches_Ebner1998",
-        ("name", "XYZ_r", "XYZ_cr", "XYZ_ct", "metadata"),
-    )
-):
+@dataclass(frozen=True)
+class ConstantPerceivedHueColourMatches_Ebner1998:
     """
     Define *Ebner and Fairchild (1998)* *Constant Perceived-Hue Data*
     colour matches data for a given hue angle.
@@ -69,6 +69,19 @@ class ConstantPerceivedHueColourMatches_Ebner1998(
     metadata
         Dataset metadata.
     """
+
+    name: str
+    XYZ_r: NDArrayFloat
+    XYZ_cr: NDArrayFloat
+    XYZ_ct: NDArrayFloat
+    metadata: Dict
+
+    def __post_init__(self) -> None:
+        """Post-initialise the class."""
+
+        object.__setattr__(self, "XYZ_r", as_float_array(self.XYZ_r))
+        object.__setattr__(self, "XYZ_cr", as_float_array(self.XYZ_cr))
+        object.__setattr__(self, "XYZ_ct", as_float_array(self.XYZ_ct))
 
 
 class DatasetLoader_Ebner1998(AbstractDatasetLoader):

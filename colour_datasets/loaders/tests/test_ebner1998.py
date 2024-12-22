@@ -24,7 +24,7 @@ class TestDatasetLoader_Ebner1998:
     class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -32,7 +32,7 @@ class TestDatasetLoader_Ebner1998:
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Ebner1998)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -40,7 +40,7 @@ class TestDatasetLoader_Ebner1998:
         for method in required_methods:
             assert method in dir(DatasetLoader_Ebner1998)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.ebner1998.\
 DatasetLoader_Ebner1998.load` method.
@@ -125,7 +125,7 @@ class TestBuildEbner1998:
     definition unit tests methods.
     """
 
-    def test_build_Ebner1998(self):
+    def test_build_Ebner1998(self) -> None:
         """
         Test :func:`colour_datasets.loaders.ebner1998.build_Ebner1998`
         definition.

@@ -23,7 +23,7 @@ class TestDatasetLoader_Jiang2013:
     class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -31,7 +31,7 @@ class TestDatasetLoader_Jiang2013:
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Jiang2013)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -39,7 +39,7 @@ class TestDatasetLoader_Jiang2013:
         for method in required_methods:
             assert method in dir(DatasetLoader_Jiang2013)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.jiang2013.\
 DatasetLoader_Jiang2013.load` method.
@@ -85,7 +85,7 @@ class TestBuildJiang2013:
     definition unit tests methods.
     """
 
-    def test_build_Jiang2013(self):
+    def test_build_Jiang2013(self) -> None:
         """
         Test :func:`colour_datasets.loaders.jiang2013.build_Jiang2013`
         definition.

@@ -20,10 +20,14 @@ from __future__ import annotations
 
 import os
 import re
+import typing
 from collections import defaultdict
 
 from colour.algebra import LinearInterpolator
-from colour.hints import Dict
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
+
 from colour.io import read_sds_from_csv_file
 
 from colour_datasets.loaders import AbstractDatasetLoader

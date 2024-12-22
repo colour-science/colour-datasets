@@ -23,7 +23,7 @@ class TestDatasetLoader_Karge2015:
     class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -31,7 +31,7 @@ class TestDatasetLoader_Karge2015:
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Karge2015)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -39,7 +39,7 @@ class TestDatasetLoader_Karge2015:
         for method in required_methods:
             assert method in dir(DatasetLoader_Karge2015)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.karge2015.\
 DatasetLoader_Karge2015.load` method.
@@ -66,7 +66,7 @@ class TestBuildKarge2015:
     definition unit tests methods.
     """
 
-    def test_build_Karge2015(self):
+    def test_build_Karge2015(self) -> None:
         """
         Test :func:`colour_datasets.loaders.karge2015.build_Karge2015`
         definition.

@@ -18,6 +18,7 @@ import shutil
 import stat
 import tempfile
 import textwrap
+import typing
 import urllib
 import urllib.error
 from collections.abc import Mapping
@@ -25,17 +26,19 @@ from html.parser import HTMLParser
 from pprint import pformat
 
 import setuptools.archive_util
-from colour.hints import (
-    Any,
-    Callable,
-    Dict,
-    Generator,
-    List,
-)
 from colour.utilities import optional, warning
 
 from colour_datasets.records import Configuration
 from colour_datasets.utilities import json_open, url_download
+
+if typing.TYPE_CHECKING:
+    from colour.hints import (
+        Any,
+        Callable,
+        Dict,
+        Generator,
+        List,
+    )
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -202,7 +205,7 @@ class Record:
             ]
         )
 
-        representation = "\n".join(
+        return "\n".join(
             [
                 f'{metadata["title"]} - {metadata["version"]}',
                 f'{"=" * (len(self.title) + 3 + len(metadata["version"]))}',
@@ -224,8 +227,6 @@ class Record:
                 f"{files}",
             ]
         )
-
-        return representation
 
     def __repr__(self) -> str:
         """
@@ -331,7 +332,7 @@ class Record:
             ]
         )
 
-    def pull(self, use_urls_txt_file: bool = True, retries: int = 3):
+    def pull(self, use_urls_txt_file: bool = True, retries: int = 3) -> None:
         """
         Pull the *Zenodo* record data to the local repository.
 
@@ -414,9 +415,12 @@ class Record:
 
                 urls_download(urls)
             else:
-                raise ValueError(  # noqa: TRY301
+                msg = (
                     f'"{self._configuration.urls_txt_file}" file was not '
                     f"found in record data!"
+                )
+                raise ValueError(  # noqa: TRY301
+                    msg
                 )
         except (urllib.error.URLError, ValueError) as error:
             warning(
@@ -472,7 +476,7 @@ class Record:
         with open(os.path.join(self.repository, "record.json"), "w") as record_json:
             json.dump(self.data, record_json, indent=4, sort_keys=True)
 
-    def remove(self):
+    def remove(self) -> None:
         """
         Remove the *Zenodo* record data local repository.
 
@@ -634,7 +638,7 @@ colour-science-datasets-tests
 
         synced = len([dataset for dataset in self.values() if dataset.synced()])
 
-        representation = "\n".join(
+        return "\n".join(
             [
                 f"{self._configuration.community}",
                 f'{"=" * len(self._configuration.community)}',
@@ -649,8 +653,6 @@ colour-science-datasets-tests
                 f"{datasets}",
             ]
         )
-
-        return representation
 
     def __repr__(self) -> str:
         """
@@ -809,7 +811,8 @@ colour-science-datasets-tests
                     os.path.exists(records_json_filename),
                 ]
             ):
-                raise RuntimeError("Local files were not found, aborting!") from error
+                msg = "Local files were not found, aborting!"
+                raise RuntimeError(msg) from error
 
             with open(community_json_filename) as json_file:
                 community_data = json.loads(json_file.read())
@@ -850,7 +853,7 @@ colour-science-datasets-tests
 
         return all(record.synced() for record in self._records.values())
 
-    def pull(self, use_urls_txt_file: bool = True, retries: int = 3):
+    def pull(self, use_urls_txt_file: bool = True, retries: int = 3) -> None:
         """
         Pull the *Zenodo* community data to the local repository.
 
@@ -882,7 +885,7 @@ colour-science-datasets-tests
         for record in self._records.values():
             record.pull(use_urls_txt_file, retries)
 
-    def remove(self):
+    def remove(self) -> None:
         """
         Remove the *Zenodo* community data local repository.
 
@@ -905,7 +908,7 @@ def _remove_readonly(
     function: Callable,
     path: str,
     excinfo: Any,  # noqa: ARG001
-):
+) -> None:
     """
     Error handler for :func:`shutil.rmtree` definition that removes read-only
     files.

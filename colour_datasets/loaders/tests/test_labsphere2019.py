@@ -29,7 +29,7 @@ class TestDatasetLoader_Labsphere2019:
 DatasetLoader_Labsphere2019` class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -37,7 +37,7 @@ DatasetLoader_Labsphere2019` class unit tests methods.
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Labsphere2019)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -45,7 +45,7 @@ DatasetLoader_Labsphere2019` class unit tests methods.
         for method in required_methods:
             assert method in dir(DatasetLoader_Labsphere2019)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.labsphere2019.\
 DatasetLoader_Labsphere2019.load` method.
@@ -64,7 +64,7 @@ class TestBuildLabsphere2019:
     definition unit tests methods.
     """
 
-    def test_build_Labsphere2019(self):
+    def test_build_Labsphere2019(self) -> None:
         """
         Test :func:`colour_datasets.loaders.labsphere2019.build_Labsphere2019`
         definition.

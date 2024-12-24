@@ -24,12 +24,12 @@ class TestUseSandbox:
     definition unit tests methods.
     """
 
-    def teardown_method(self):
+    def teardown_method(self) -> None:
         """After tests actions."""
 
         use_sandbox(False)
 
-    def test_use_sandbox(self):
+    def test_use_sandbox(self) -> None:
         """
         Test :func:`colour_datasets.records.configuration.use_sandbox`
         definition.
@@ -47,7 +47,7 @@ class TestSandbox:
     definition unit tests methods.
     """
 
-    def test_sandbox(self):
+    def test_sandbox(self) -> None:
         """
         Test :func:`colour_datasets.records.configuration.sandbox`
         definition.

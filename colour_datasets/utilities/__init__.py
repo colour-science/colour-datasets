@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .common import (
     suppress_stdout,
     hash_md5,

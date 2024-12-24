@@ -40,13 +40,18 @@ import functools
 import os
 import re
 import sys
-from collections import namedtuple
+import typing
+from dataclasses import dataclass
 from typing import ClassVar
 
 import numpy as np
 import scipy.io
 from colour import SpectralDistribution, SpectralShape
-from colour.hints import Any, Dict, Tuple, Type, cast
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Any, Dict, Tuple, Type
+
+from colour.hints import cast
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -68,12 +73,8 @@ __all__ = [
 ]
 
 
-class MatFileMetadata_KuopioUniversity(
-    namedtuple(
-        "MatFileMetadata_KuopioUniversity",
-        ("key", "shape", "transpose", "identifiers"),
-    )
-):
+@dataclass(frozen=True)
+class MatFileMetadata_KuopioUniversity:
     """
     Metadata storage for an *University of Kuopio* dataset spectral
     distributions.
@@ -89,6 +90,11 @@ class MatFileMetadata_KuopioUniversity(
     identifiers
         Identifiers for the spectral distributions.
     """
+
+    key: str
+    shape: SpectralShape
+    transpose: bool
+    identifiers: str | None
 
 
 def read_sds_from_mat_file_KuopioUniversity(
@@ -132,7 +138,7 @@ def read_sds_from_mat_file_KuopioUniversity(
             identifier = f"{identifier} ({i})"
 
         sds[identifier] = SpectralDistribution(
-            dict(zip(wavelengths, data)), name=identifier
+            dict(zip(wavelengths, data, strict=False)), name=identifier
         )
 
     return sds

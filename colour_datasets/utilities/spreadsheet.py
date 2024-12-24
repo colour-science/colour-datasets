@@ -13,10 +13,13 @@ References
 from __future__ import annotations
 
 import re
+import typing
 
 import xlrd
-from colour.hints import Dict, List
 from colour.utilities import CanonicalMapping, attest
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict, List
 
 __author__ = "Colour Developers, Openpyxl Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -234,7 +237,7 @@ def cell_range_values(sheet: xlrd.sheet.Sheet, cell_range: str) -> List[str]:
     row_out = row_to_index(groups["row_out"])
 
     for row in range(row_in, row_out + 1, 1):
-        table.append(
+        table.append(  # noqa: PERF401
             sheet.row_values(row, start_colx=column_in, end_colx=column_out + 1)
         )
 

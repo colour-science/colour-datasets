@@ -19,9 +19,13 @@ from __future__ import annotations
 
 import glob
 import os
+import typing
 
 from colour.characterisation import RGB_CameraSensitivities
-from colour.hints import Dict
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
+
 from colour.io import read_sds_from_csv_file
 
 from colour_datasets.loaders import AbstractDatasetLoader

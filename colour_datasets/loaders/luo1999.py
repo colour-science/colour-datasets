@@ -27,10 +27,15 @@ from __future__ import annotations
 
 import codecs
 import os
-from collections import namedtuple
+import typing
+from dataclasses import dataclass
 
 import numpy as np
-from colour.hints import Dict, Tuple, cast
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict, NDArrayFloat, Tuple
+
+from colour.hints import cast
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -50,23 +55,8 @@ __all__ = [
 ]
 
 
-class CorrespondingColourDataset_Luo1999(
-    namedtuple(
-        "CorrespondingColourDataset_Luo1999",
-        (
-            "name",
-            "XYZ_r",
-            "XYZ_t",
-            "XYZ_cr",
-            "XYZ_ct",
-            "Y_r",
-            "Y_t",
-            "B_r",
-            "B_t",
-            "metadata",
-        ),
-    )
-):
+@dataclass(frozen=True)
+class CorrespondingColourDataset_Luo1999:
     """
     Define a *Luo and Rhodes (1999)* *Corresponding-Colour Datasets* dataset.
 
@@ -96,6 +86,17 @@ class CorrespondingColourDataset_Luo1999(
     metadata
         Dataset metadata.
     """
+
+    name: str
+    XYZ_r: NDArrayFloat
+    XYZ_t: NDArrayFloat
+    XYZ_cr: NDArrayFloat
+    XYZ_ct: NDArrayFloat
+    Y_r: float
+    Y_t: float
+    B_r: float
+    B_t: float
+    metadata: Dict
 
 
 class DatasetLoader_Luo1999(AbstractDatasetLoader):
@@ -449,7 +450,7 @@ class DatasetLoader_Luo1999(AbstractDatasetLoader):
                             XYZ_ct.append(list(map(float, values[3:])))
 
                 name = f"{key} - {filename.split('.')[1]}"
-                dataset_metadata = dict(zip(metadata_headers, metadata))
+                dataset_metadata = dict(zip(metadata_headers, metadata, strict=False))
 
                 Y_r = dataset_metadata["Illuminance (lux)"][i][0]
                 Y_t = dataset_metadata["Illuminance (lux)"][i][1]

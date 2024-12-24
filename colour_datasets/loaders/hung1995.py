@@ -19,11 +19,16 @@ References
 from __future__ import annotations
 
 import os
-from collections import namedtuple
+import typing
+from dataclasses import dataclass
 
 import numpy as np
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
-from colour.hints import Dict
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict, NDArrayFloat
+
+from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -42,12 +47,8 @@ __all__ = [
 ]
 
 
-class ConstantPerceivedHueColourMatches_Hung1995(
-    namedtuple(
-        "ConstantPerceivedHueColourMatches_Hung1995",
-        ("name", "XYZ_r", "XYZ_cr", "XYZ_ct", "metadata"),
-    )
-):
+@dataclass(frozen=True)
+class ConstantPerceivedHueColourMatches_Hung1995:
     """
     Define *Hung and Berns (1995)* *Constant Hue Loci Data*
     colour matches data for a given hue angle.
@@ -68,6 +69,19 @@ class ConstantPerceivedHueColourMatches_Hung1995(
     metadata
         Dataset metadata.
     """
+
+    name: str
+    XYZ_r: NDArrayFloat
+    XYZ_cr: NDArrayFloat
+    XYZ_ct: NDArrayFloat
+    metadata: Dict
+
+    def __post_init__(self) -> None:
+        """Post-initialise the class."""
+
+        object.__setattr__(self, "XYZ_r", as_float_array(self.XYZ_r))
+        object.__setattr__(self, "XYZ_cr", as_float_array(self.XYZ_cr))
+        object.__setattr__(self, "XYZ_ct", as_float_array(self.XYZ_ct))
 
 
 class DatasetLoader_Hung1995(AbstractDatasetLoader):

@@ -35,7 +35,7 @@ class TestHashMd5:
     tests methods.
     """
 
-    def test_hash_md5(self):
+    def test_hash_md5(self) -> None:
         """Test :func:`colour_datasets.utilities.common.hash_md5` definition."""
 
         dataset = build_Labsphere2019()
@@ -63,17 +63,17 @@ class TestUrlDownload:
     unit tests methods.
     """
 
-    def setup_method(self):
+    def setup_method(self) -> None:
         """Initialise the common tests attributes."""
 
-        self._temporary_file = tempfile.NamedTemporaryFile(delete=False).name
+        self._temporary_file = tempfile.NamedTemporaryFile(delete=False).name  # noqa: SIM115
 
-    def teardown_method(self):
+    def teardown_method(self) -> None:
         """After tests actions."""
 
         os.remove(self._temporary_file)
 
-    def test_url_download(self):
+    def test_url_download(self) -> None:
         """Test :func:`colour_datasets.utilities.common.url_download` definition."""
 
         dataset = build_Labsphere2019()
@@ -118,7 +118,7 @@ class TestJsonOpen:
     unit tests methods.
     """
 
-    def test_json_open(self):
+    def test_json_open(self) -> None:
         """Test :func:`colour_datasets.utilities.common.json_open` definition."""
 
         data = json_open("https://zenodo.org/api/records/3245883")
@@ -134,17 +134,17 @@ class TestUnpackGzipfile:
     unit tests methods.
     """
 
-    def setup_method(self):
+    def setup_method(self) -> None:
         """Initialise the common tests attributes."""
 
         self._temporary_directory = tempfile.mkdtemp()
 
-    def teardown_method(self):
+    def teardown_method(self) -> None:
         """After tests actions."""
 
         shutil.rmtree(self._temporary_directory)
 
-    def test_unpack_gzipfile(self):
+    def test_unpack_gzipfile(self) -> None:
         """
         Test :func:`colour_datasets.utilities.common.unpack_gzipfile`
         definition.

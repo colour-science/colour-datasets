@@ -1,5 +1,6 @@
-from __future__ import annotations
+# isort: skip_file
 
+from __future__ import annotations
 
 from .configuration import Configuration, sandbox, use_sandbox
 from .zenodo import Community, Record

@@ -19,10 +19,14 @@ from __future__ import annotations
 import glob
 import json
 import os
+import typing
 
 from colour import MultiSpectralDistributions, SpectralDistribution
 from colour.continuous import MultiSignals, Signal
-from colour.hints import Any, Dict, Literal
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Any, Dict, Literal
+
 from colour.utilities import attest, is_numeric, optional
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -163,7 +167,7 @@ __init__`
         return self._schema_version
 
     @schema_version.setter
-    def schema_version(self, value: str | None):
+    def schema_version(self, value: str | None) -> None:
         """Setter for the **self.schema_version** property."""
 
         if value is not None:
@@ -193,7 +197,7 @@ __init__`
         return self._catalog_number
 
     @catalog_number.setter
-    def catalog_number(self, value: str | None):
+    def catalog_number(self, value: str | None) -> None:
         """Setter for the **self.catalog_number** property."""
 
         if value is not None:
@@ -223,7 +227,7 @@ __init__`
         return self._description
 
     @description.setter
-    def description(self, value: str | None):
+    def description(self, value: str | None) -> None:
         """Setter for the **self.description** property."""
 
         if value is not None:
@@ -253,7 +257,7 @@ __init__`
         return self._document_creator
 
     @document_creator.setter
-    def document_creator(self, value: str | None):
+    def document_creator(self, value: str | None) -> None:
         """Setter for the **self.document_creator** property."""
 
         if value is not None:
@@ -283,7 +287,7 @@ __init__`
         return self._unique_identifier
 
     @unique_identifier.setter
-    def unique_identifier(self, value: str | None):
+    def unique_identifier(self, value: str | None) -> None:
         """Setter for the **self.unique_identifier** property."""
 
         if value is not None:
@@ -313,7 +317,7 @@ __init__`
         return self._measurement_equipment
 
     @measurement_equipment.setter
-    def measurement_equipment(self, value: str | None):
+    def measurement_equipment(self, value: str | None) -> None:
         """Setter for the **self.measurement_equipment** property."""
 
         if value is not None:
@@ -343,7 +347,7 @@ __init__`
         return self._laboratory
 
     @laboratory.setter
-    def laboratory(self, value: str | None):
+    def laboratory(self, value: str | None) -> None:
         """Setter for the **self.measurement_equipment** property."""
 
         if value is not None:
@@ -373,7 +377,7 @@ __init__`
         return self._document_creation_date
 
     @document_creation_date.setter
-    def document_creation_date(self, value: str | None):
+    def document_creation_date(self, value: str | None) -> None:
         """Setter for the **self.document_creation_date** property."""
 
         if value is not None:
@@ -403,7 +407,7 @@ __init__`
         return self._comments
 
     @comments.setter
-    def comments(self, value: str | None):
+    def comments(self, value: str | None) -> None:
         """Setter for the **self.comments** property."""
 
         if value is not None:
@@ -433,7 +437,7 @@ __init__`
         return self._license
 
     @license.setter
-    def license(self, value: str | None):
+    def license(self, value: str | None) -> None:
         """Setter for the **self.license** property."""
 
         if value is not None:
@@ -564,39 +568,45 @@ __init__`
         self.path = path
         self._header: SpectralDataHeader_AMPAS = SpectralDataHeader_AMPAS()
         self.header = optional(header, self._header)
-        self._units: Literal[
-            "absorptance",
-            "exitance",
-            "flux",
-            "intensity",
-            "irradiance",
-            "radiance",
-            "reflectance",
-            "relative",
-            "transmittance",
-            "R-Factor",
-            "T-Factor",
-            "other",
-        ] | None = None
+        self._units: (
+            Literal[
+                "absorptance",
+                "exitance",
+                "flux",
+                "intensity",
+                "irradiance",
+                "radiance",
+                "reflectance",
+                "relative",
+                "transmittance",
+                "R-Factor",
+                "T-Factor",
+                "other",
+            ]
+            | None
+        ) = None
         self.units = units
-        self._reflection_geometry: Literal[
-            "di:8",
-            "de:8",
-            "8:di",
-            "8:de",
-            "d:d",
-            "d:0",
-            "45a:0",
-            "45c:0",
-            "0:45a",
-            "45x:0",
-            "0:45x",
-            "other",
-        ] | None = None
+        self._reflection_geometry: (
+            Literal[
+                "di:8",
+                "de:8",
+                "8:di",
+                "8:de",
+                "d:d",
+                "d:0",
+                "45a:0",
+                "45c:0",
+                "0:45a",
+                "45x:0",
+                "0:45x",
+                "other",
+            ]
+            | None
+        ) = None
         self.reflection_geometry = reflection_geometry
-        self._transmission_geometry: Literal[
-            "0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"
-        ] | None = None
+        self._transmission_geometry: (
+            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None
+        ) = None
         self.transmission_geometry = transmission_geometry
         self._bandwidth_FWHM: float | None = None
         self.bandwidth_FWHM = bandwidth_FWHM
@@ -622,7 +632,7 @@ __init__`
         return self._path
 
     @path.setter
-    def path(self, value: str | None):
+    def path(self, value: str | None) -> None:
         """Setter for the **self.path** property."""
 
         if value is not None:
@@ -651,7 +661,7 @@ __init__`
         return self._header
 
     @header.setter
-    def header(self, value: SpectralDataHeader_AMPAS):
+    def header(self, value: SpectralDataHeader_AMPAS) -> None:
         """Setter for the **self.header** property."""
 
         attest(
@@ -714,7 +724,7 @@ __init__`
             "other",
         ]
         | None,
-    ):
+    ) -> None:
         """Setter for the **self.units** property."""
 
         if value is not None:
@@ -779,7 +789,7 @@ __init__`
             "other",
         ]
         | None,
-    ):
+    ) -> None:
         """Setter for the **self.reflection_geometry** property."""
 
         if value is not None:
@@ -814,7 +824,7 @@ __init__`
     def transmission_geometry(
         self,
         value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None,
-    ):
+    ) -> None:
         """Setter for the **self.transmission_geometry** property."""
 
         if value is not None:
@@ -844,7 +854,7 @@ __init__`
         return self._bandwidth_FWHM
 
     @bandwidth_FWHM.setter
-    def bandwidth_FWHM(self, value: float | None):
+    def bandwidth_FWHM(self, value: float | None) -> None:
         """Setter for the **self.bandwidth_FWHM** property."""
 
         if value is not None:
@@ -875,7 +885,7 @@ __init__`
         return self._bandwidth_corrected
 
     @bandwidth_corrected.setter
-    def bandwidth_corrected(self, value: bool | None):
+    def bandwidth_corrected(self, value: bool | None) -> None:
         """Setter for the **self.bandwidth_corrected** property."""
 
         if value is not None:
@@ -924,23 +934,23 @@ __init__`
             # attributes according to outcome of
             # https://github.com/ampas/rawtoaces/issues/114.
             if (
-                "manufacturer" in self._header._kwargs
-                and "model" in self._header._kwargs
+                "manufacturer" in self._header._kwargs  # noqa: SLF001
+                and "model" in self._header._kwargs  # noqa: SLF001
             ):
                 self.name = (
-                    f"{self._header._kwargs['manufacturer']} "
-                    f"{self._header._kwargs['model']}"
+                    f"{self._header._kwargs['manufacturer']} "  # noqa: SLF001
+                    f"{self._header._kwargs['model']}"  # noqa: SLF001
                 )
-            elif "illuminant" in self._header._kwargs:
-                self.name = self._header._kwargs["illuminant"]
-            elif "type" in self._header._kwargs:
-                self.name = self._header._kwargs["type"]
+            elif "illuminant" in self._header._kwargs:  # noqa: SLF001
+                self.name = self._header._kwargs["illuminant"]  # noqa: SLF001
+            elif "type" in self._header._kwargs:  # noqa: SLF001
+                self.name = self._header._kwargs["type"]  # noqa: SLF001
 
             self.display_name = self.name
 
             return self
-        else:
-            raise ValueError("The spectral distribution path is undefined!")
+        msg = "The spectral distribution path is undefined!"
+        raise ValueError(msg)
 
 
 class MultiSpectralDistributions_AMPAS(MultiSpectralDistributions):
@@ -1062,39 +1072,45 @@ __init__`
         self.path = path
         self._header: SpectralDataHeader_AMPAS = SpectralDataHeader_AMPAS()
         self.header = optional(header, self._header)
-        self._units: Literal[
-            "absorptance",
-            "exitance",
-            "flux",
-            "intensity",
-            "irradiance",
-            "radiance",
-            "reflectance",
-            "relative",
-            "transmittance",
-            "R-Factor",
-            "T-Factor",
-            "other",
-        ] | None = None
+        self._units: (
+            Literal[
+                "absorptance",
+                "exitance",
+                "flux",
+                "intensity",
+                "irradiance",
+                "radiance",
+                "reflectance",
+                "relative",
+                "transmittance",
+                "R-Factor",
+                "T-Factor",
+                "other",
+            ]
+            | None
+        ) = None
         self.units = units
-        self._reflection_geometry: Literal[
-            "di:8",
-            "de:8",
-            "8:di",
-            "8:de",
-            "d:d",
-            "d:0",
-            "45a:0",
-            "45c:0",
-            "0:45a",
-            "45x:0",
-            "0:45x",
-            "other",
-        ] | None = None
+        self._reflection_geometry: (
+            Literal[
+                "di:8",
+                "de:8",
+                "8:di",
+                "8:de",
+                "d:d",
+                "d:0",
+                "45a:0",
+                "45c:0",
+                "0:45a",
+                "45x:0",
+                "0:45x",
+                "other",
+            ]
+            | None
+        ) = None
         self.reflection_geometry = reflection_geometry
-        self._transmission_geometry: Literal[
-            "0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"
-        ] | None = None
+        self._transmission_geometry: (
+            Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None
+        ) = None
         self.transmission_geometry = transmission_geometry
         self._bandwidth_FWHM: float | None = None
         self.bandwidth_FWHM = bandwidth_FWHM
@@ -1120,7 +1136,7 @@ __init__`
         return self._path
 
     @path.setter
-    def path(self, value: str | None):
+    def path(self, value: str | None) -> None:
         """Setter for the **self.path** property."""
 
         if value is not None:
@@ -1149,7 +1165,7 @@ __init__`
         return self._header
 
     @header.setter
-    def header(self, value: SpectralDataHeader_AMPAS):
+    def header(self, value: SpectralDataHeader_AMPAS) -> None:
         """Setter for the **self.header** property."""
 
         attest(
@@ -1212,7 +1228,7 @@ __init__`
             "other",
         ]
         | None,
-    ):
+    ) -> None:
         """Setter for the **self.units** property."""
 
         if value is not None:
@@ -1277,7 +1293,7 @@ __init__`
             "other",
         ]
         | None,
-    ):
+    ) -> None:
         """Setter for the **self.reflection_geometry** property."""
 
         if value is not None:
@@ -1312,7 +1328,7 @@ __init__`
     def transmission_geometry(
         self,
         value: Literal["0:0", "di:0", "de:0", "0:di", "0:de", "d:d", "other"] | None,
-    ):
+    ) -> None:
         """Setter for the **self.transmission_geometry** property."""
 
         if value is not None:
@@ -1342,7 +1358,7 @@ __init__`
         return self._bandwidth_FWHM
 
     @bandwidth_FWHM.setter
-    def bandwidth_FWHM(self, value: float | None):
+    def bandwidth_FWHM(self, value: float | None) -> None:
         """Setter for the **self.bandwidth_FWHM** property."""
 
         if value is not None:
@@ -1373,7 +1389,7 @@ __init__`
         return self._bandwidth_corrected
 
     @bandwidth_corrected.setter
-    def bandwidth_corrected(self, value: bool | None):
+    def bandwidth_corrected(self, value: bool | None) -> None:
         """Setter for the **self.bandwidth_corrected** property."""
 
         if value is not None:
@@ -1421,24 +1437,24 @@ __init__`
             # attributes according to outcome of
             # https://github.com/ampas/rawtoaces/issues/114.
             if (
-                "manufacturer" in self._header._kwargs
-                and "model" in self._header._kwargs
+                "manufacturer" in self._header._kwargs  # noqa: SLF001
+                and "model" in self._header._kwargs  # noqa: SLF001
             ):
                 self.name = (
-                    f"{self._header._kwargs['manufacturer']} "
-                    f"{self._header._kwargs['model']}"
+                    f"{self._header._kwargs['manufacturer']} "  # noqa: SLF001
+                    f"{self._header._kwargs['model']}"  # noqa: SLF001
                 )
-            elif "illuminant" in self._header._kwargs:
-                self.name = self._header._kwargs["illuminant"]
-            elif "type" in self._header._kwargs:
-                self.name = self._header._kwargs["type"]
+            elif "illuminant" in self._header._kwargs:  # noqa: SLF001
+                self.name = self._header._kwargs["illuminant"]  # noqa: SLF001
+            elif "type" in self._header._kwargs:  # noqa: SLF001
+                self.name = self._header._kwargs["type"]  # noqa: SLF001
 
             self.display_name = self.name
             self.display_labels = self.labels
 
             return self
-        else:
-            raise ValueError("The multi-spectral distributions path is undefined!")
+        msg = "The multi-spectral distributions path is undefined!"
+        raise ValueError(msg)
 
 
 class DatasetLoader_Dyer2017(AbstractDatasetLoader):

@@ -20,8 +20,10 @@ from __future__ import annotations
 
 import glob
 import os
+import typing
 
-from colour.hints import Dict
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.loaders.dyer2017 import MultiSpectralDistributions_AMPAS

@@ -1,8 +1,13 @@
+# isort: skip_file
+
 from __future__ import annotations
 
 import sys
+import typing
 
-from colour.hints import Any
+if typing.TYPE_CHECKING:
+    from colour.hints import Any
+
 from colour.utilities import CanonicalMapping, warning
 
 from colour_datasets.records import datasets

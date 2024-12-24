@@ -3,7 +3,6 @@ Define the unit tests for the :mod:`colour_datasets.loaders.winquist2022`
 module.
 """
 
-
 import numpy as np
 from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
@@ -32,7 +31,7 @@ class TestDatasetLoader_Winquist2022:
     class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -40,7 +39,7 @@ class TestDatasetLoader_Winquist2022:
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Winquist2022)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -48,7 +47,7 @@ class TestDatasetLoader_Winquist2022:
         for method in required_methods:
             assert method in dir(DatasetLoader_Winquist2022)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test
         :func:`colour_datasets.loaders.winquist2022.DatasetLoader_Winquist2022.\
@@ -71,7 +70,7 @@ class TestBuildWinquist2022:
     definition unit tests methods.
     """
 
-    def test_build_Winquist2022(self):
+    def test_build_Winquist2022(self) -> None:
         """
         Test :func:`colour_datasets.loaders.winquist2022.build_Winquist2022`
         definition.

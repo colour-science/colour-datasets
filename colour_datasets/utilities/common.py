@@ -15,13 +15,17 @@ import os
 import shutil
 import socket
 import sys
+import typing
 import urllib.error
 import urllib.request
 
 import setuptools.archive_util
 from cachetools import TTLCache, cached
-from colour.hints import Any, Callable, Dict
 from tqdm import tqdm
+from typing_extensions import Self
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Any, Callable, Dict
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -44,15 +48,15 @@ __all__ = [
 class suppress_stdout:
     """A context manager and decorator temporarily suppressing standard output."""
 
-    def __enter__(self) -> suppress_stdout:
+    def __enter__(self) -> Self:
         """Redirect the standard output upon entering the context manager."""
 
         self._stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")  # noqa: SIM115
+        sys.stdout = open(os.devnull, "w")
 
         return self
 
-    def __exit__(self, *args: Any):
+    def __exit__(self, *args: Any) -> None:
         """Restore the standard output upon exiting the context manager."""
 
         sys.stdout.close()
@@ -77,7 +81,7 @@ class TqdmUpTo(tqdm):
         chunks_count: int = 1,
         chunk_size: int = 1,
         total_size: int | None = None,
-    ):
+    ) -> None:
         """
         Report the progress of an action.
 
@@ -127,7 +131,9 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     return md5.hexdigest()
 
 
-def url_download(url: str, filename: str, md5: str | None = None, retries: int = 3):
+def url_download(
+    url: str, filename: str, md5: str | None = None, retries: int = 3
+) -> None:
     """
     Download given url and saves its content at given file.
 
@@ -172,13 +178,16 @@ def url_download(url: str, filename: str, md5: str | None = None, retries: int =
                     socket.setdefaulttimeout(timeout)
 
             if md5 is not None and md5.lower() != hash_md5(filename):
-                raise ValueError(  # noqa: TRY301
+                msg = (
                     f'"MD5" hash of "{filename}" file does not match the '
                     f"expected hash!"
                 )
+                raise ValueError(  # noqa: TRY301
+                    msg
+                )
 
             attempt = retries
-        except (urllib.error.URLError, OSError, ValueError):
+        except (urllib.error.URLError, OSError, ValueError):  # noqa: PERF203
             attempt += 1
             print(  # noqa: T201
                 f'An error occurred while downloading "{filename}" file '
@@ -229,7 +238,7 @@ def json_open(url: str, retries: int = 3) -> Dict:
             request = urllib.request.Request(url)  # noqa: S310
             with urllib.request.urlopen(request) as response:  # noqa: S310
                 return json.loads(response.read())
-        except (urllib.error.URLError, ValueError):
+        except (urllib.error.URLError, ValueError):  # noqa: PERF203
             attempt += 1
             print(  # noqa: T201
                 f'An error occurred while opening "{url}" url during attempt '
@@ -280,15 +289,15 @@ def unpack_gzipfile(
         os.makedirs(extraction_directory)
 
     try:
-        with gzip.open(filename) as gzip_file, open(
-            extraction_path, "wb"
-        ) as output_file:
+        with (
+            gzip.open(filename) as gzip_file,
+            open(extraction_path, "wb") as output_file,
+        ):
             shutil.copyfileobj(gzip_file, output_file)
     except Exception as error:
         print(error)  # noqa: T201
-        raise setuptools.archive_util.UnrecognizedFormat(
-            f'{filename} is not a "GZIP" file!'
-        ) from error
+        msg = f'{filename} is not a "GZIP" file!'
+        raise setuptools.archive_util.UnrecognizedFormat(msg) from error
 
     return True
 

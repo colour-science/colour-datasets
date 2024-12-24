@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.xrite2016` module."""
 
-
 from colour.characterisation import ColourChecker
 
 from colour_datasets.loaders import DatasetLoader_XRite2016, build_XRite2016
@@ -24,7 +23,7 @@ class TestDatasetLoader_XRite2016:
     class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -32,7 +31,7 @@ class TestDatasetLoader_XRite2016:
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_XRite2016)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -40,7 +39,7 @@ class TestDatasetLoader_XRite2016:
         for method in required_methods:
             assert method in dir(DatasetLoader_XRite2016)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.xrite2016.\
 DatasetLoader_XRite2016.load` method.
@@ -67,7 +66,7 @@ class TestBuildXRite2016:
     definition unit tests methods.
     """
 
-    def test_build_XRite2016(self):
+    def test_build_XRite2016(self) -> None:
         """
         Test :func:`colour_datasets.loaders.xrite2016.build_XRite2016`
         definition.

@@ -20,11 +20,14 @@ from __future__ import annotations
 
 import codecs
 import os
+import typing
 
 import numpy as np
 from colour import CCS_ILLUMINANTS, Lab_to_XYZ, XYZ_to_xyY
 from colour.characterisation import ColourChecker
-from colour.hints import Dict
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -110,7 +113,7 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
         illuminant = CCS_ILLUMINANTS["CIE 1931 2 Degree Standard Observer"]["ICC D50"]
 
         self._content = {}
-        for key, filename in zip(keys, filenames):
+        for key, filename in zip(keys, filenames, strict=False):
             directory = os.path.splitext(filename)[0]
             path = os.path.join(self.record.repository, "dataset", directory, filename)
 
@@ -142,10 +145,10 @@ class DatasetLoader_XRite2016(AbstractDatasetLoader):
                 np.reshape(np.array(samples_data, dtype=object), (i, j, 2)),
                 [1, 0, 2],
             )
-            keys, values = zip(*np.reshape(samples, (-1, 2)))
+            keys, values = zip(*np.reshape(samples, (-1, 2)), strict=False)
             values = XYZ_to_xyY(Lab_to_XYZ(values, illuminant))
             self._content[key] = ColourChecker(
-                key, dict(zip(keys, values)), illuminant, j, i
+                key, dict(zip(keys, values, strict=False)), illuminant, j, i
             )
 
         return self._content

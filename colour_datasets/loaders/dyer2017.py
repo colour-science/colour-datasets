@@ -160,7 +160,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Schema version.
         """
 
@@ -190,7 +190,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Catalog number.
         """
 
@@ -220,7 +220,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Description.
         """
 
@@ -250,7 +250,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Document creator.
         """
 
@@ -280,7 +280,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Unique identifier.
         """
 
@@ -310,7 +310,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Measurement equipment.
         """
 
@@ -340,7 +340,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Laboratory.
         """
 
@@ -370,7 +370,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Document creation date.
         """
 
@@ -400,7 +400,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Comments.
         """
 
@@ -430,7 +430,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Comments.
         """
 
@@ -625,7 +625,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Path.
         """
 
@@ -700,7 +700,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Spectral units.
         """
 
@@ -765,7 +765,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Reflection geometry.
         """
 
@@ -814,7 +814,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Transmission geometry.
         """
 
@@ -847,7 +847,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`numpy.floating`
+        :class:`float` or :py:data:`None`
             Full-width half-maximum bandwidth.
         """
 
@@ -878,7 +878,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`bool`
+        :class:`bool` or :py:data:`None`
             Whether bandwidth correction has been applied to the measured data.
         """
 
@@ -1129,7 +1129,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Path.
         """
 
@@ -1204,7 +1204,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Spectral units.
         """
 
@@ -1269,7 +1269,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Reflection geometry.
         """
 
@@ -1318,7 +1318,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`str`
+        :class:`str` or :py:data:`None`
             Transmission geometry.
         """
 
@@ -1351,7 +1351,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`numpy.floating`
+        :class:`float` or :py:data:`None`
             Full-width half-maximum bandwidth.
         """
 
@@ -1382,7 +1382,7 @@ __init__`
 
         Returns
         -------
-        :py:data:`None` or :class:`bool`
+        :class:`bool` or :py:data:`None`
             Whether bandwidth correction has been applied to the measured data.
         """
 

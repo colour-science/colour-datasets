@@ -1,3 +1,14 @@
+"""
+Records
+=======
+
+Zenodo records management and configuration.
+
+This subpackage provides interfaces for managing Zenodo community records,
+configuration handling, and dataset metadata retrieval from the Colour Science
+Datasets community on Zenodo.
+"""
+
 # isort: skip_file
 
 from __future__ import annotations

@@ -1,3 +1,14 @@
+"""
+Loaders
+=======
+
+Dataset loading and parsing utilities.
+
+This subpackage provides dataset loaders for various colour science datasets
+hosted on Zenodo, including spectral power distributions, colour matching
+functions, and experimental data from research publications.
+"""
+
 # isort: skip_file
 
 from __future__ import annotations
@@ -143,7 +154,7 @@ titles.
 
 def load(dataset: int | str) -> Any:
     """
-    Load given dataset: The dataset is pulled locally, i.e., synced if required
+    Load specified dataset: The dataset is pulled locally, i.e., synced if required
     and then its data is loaded.
 
     Parameters

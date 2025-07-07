@@ -1,3 +1,13 @@
+"""
+Utilities
+=========
+
+Common utilities for dataset processing and manipulation.
+
+This subpackage provides file handling utilities, data compression tools,
+and spreadsheet processing functions to support dataset operations.
+"""
+
 # isort: skip_file
 
 from .common import (

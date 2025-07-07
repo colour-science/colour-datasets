@@ -8,11 +8,15 @@ manipulating colours. The datasets are hosted in
 `Zenodo <https://zenodo.org>`__ under the `Colour Science - Datasets \
 <https://zenodo.org/communities/colour-science-datasets>`__ community.
 
+This package provides access to standardised colour science datasets including
+spectral power distributions, colour matching functions, and experimental data
+from research publications.
+
 Subpackages
 -----------
--   loaders: Dataset loaders.
--   records: *Zenodo* records management.
--   utilities:  Various utilities.
+-   loaders: Dataset loading and parsing utilities.
+-   records: *Zenodo* records management and configuration.
+-   utilities: Common utilities for dataset processing.
 """
 
 # isort: skip_file

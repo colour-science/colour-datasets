@@ -9,8 +9,6 @@ hosted on Zenodo, including spectral power distributions, colour matching
 functions, and experimental data from research publications.
 """
 
-# isort: skip_file
-
 from __future__ import annotations
 
 import sys
@@ -22,6 +20,8 @@ if typing.TYPE_CHECKING:
 from colour.utilities import CanonicalMapping, warning
 
 from colour_datasets.records import datasets
+
+# isort: split
 
 from .abstract import AbstractDatasetLoader
 from .asano2015 import DatasetLoader_Asano2015, build_Asano2015

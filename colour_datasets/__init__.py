@@ -19,8 +19,6 @@ Subpackages
 -   utilities: Common utilities for dataset processing.
 """
 
-# isort: skip_file
-
 from __future__ import annotations
 
 import contextlib
@@ -30,7 +28,12 @@ import subprocess
 import colour
 import numpy as np
 
+# isort: split
+
 from .loaders import load
+
+# isort: split
+
 from .records import Community, Configuration, Record, datasets, sandbox
 
 __author__ = "Colour Developers"
@@ -41,18 +44,14 @@ __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
 
 __all__ = [
-    "Configuration",
+    "load",
 ]
 __all__ += [
     "Community",
+    "Configuration",
     "Record",
     "datasets",
-]
-__all__ += [
     "sandbox",
-]
-__all__ += [
-    "load",
 ]
 
 __application_name__ = "Colour - Datasets"

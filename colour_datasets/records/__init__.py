@@ -9,11 +9,12 @@ configuration handling, and dataset metadata retrieval from the Colour Science
 Datasets community on Zenodo.
 """
 
-# isort: skip_file
-
 from __future__ import annotations
 
 from .configuration import Configuration, sandbox, use_sandbox
+
+# isort: split
+
 from .zenodo import Community, Record
 
 __all__ = [

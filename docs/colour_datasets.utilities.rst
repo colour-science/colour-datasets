@@ -11,8 +11,8 @@ Common
 .. autosummary::
     :toctree: generated/
 
-    json_open
     hash_md5
+    json_open
     suppress_stdout
     url_download
 
@@ -26,8 +26,8 @@ Spreadsheet
 .. autosummary::
     :toctree: generated/
 
-    row_to_index
-    index_to_row
+    cell_range_values
     column_to_index
     index_to_column
-    cell_range_values
+    index_to_row
+    row_to_index

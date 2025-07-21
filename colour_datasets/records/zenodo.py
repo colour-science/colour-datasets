@@ -200,22 +200,22 @@ class Record:
 
         files = "\n".join(
             [
-                f'- {file_data["key"]} : {file_data["links"]["self"]}'
+                f"- {file_data['key']} : {file_data['links']['self']}"
                 for file_data in sorted(files, key=lambda x: x["key"])
             ]
         )
 
         return "\n".join(
             [
-                f'{metadata["title"]} - {metadata["version"]}',
-                f'{"=" * (len(self.title) + 3 + len(metadata["version"]))}',
+                f"{metadata['title']} - {metadata['version']}",
+                f"{'=' * (len(self.title) + 3 + len(metadata['version']))}",
                 "",
                 f"Record ID        : {self.id}",
                 f"Authors          : {authors}",
-                f'License          : {metadata["license"]["id"]}',
-                f'DOI              : {metadata["doi"]}',
-                f'Publication Date : {metadata["publication_date"]}',
-                f'URL              : {self._data["links"]["self_html"]}\n',
+                f"License          : {metadata['license']['id']}",
+                f"DOI              : {metadata['doi']}",
+                f"Publication Date : {metadata['publication_date']}",
+                f"URL              : {self._data['links']['self_html']}\n",
                 "Description",
                 "-----------",
                 "",
@@ -628,10 +628,7 @@ colour-science-datasets-tests
 
         datasets = "\n".join(
             [
-                (
-                    f"[{'x' if dataset.synced() else ' '}] "
-                    f"{dataset.id} : {dataset.title}"
-                )
+                (f"[{'x' if dataset.synced() else ' '}] {dataset.id} : {dataset.title}")
                 for dataset in sorted(self.values(), key=lambda x: x.title)
             ]
         )
@@ -641,11 +638,11 @@ colour-science-datasets-tests
         return "\n".join(
             [
                 f"{self._configuration.community}",
-                f'{"=" * len(self._configuration.community)}',
+                f"{'=' * len(self._configuration.community)}",
                 "",
                 f"Datasets : {len(self)}",
                 f"Synced   : {synced}",
-                f'URL      : {self._data["community"]["links"]["self_html"]}',
+                f"URL      : {self._data['community']['links']['self_html']}",
                 "",
                 "Datasets",
                 "--------",

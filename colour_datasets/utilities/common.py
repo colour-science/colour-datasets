@@ -179,8 +179,7 @@ def url_download(
 
             if md5 is not None and md5.lower() != hash_md5(filename):
                 msg = (
-                    f'"MD5" hash of "{filename}" file does not match the '
-                    f"expected hash!"
+                    f'"MD5" hash of "{filename}" file does not match the expected hash!'
                 )
                 raise ValueError(  # noqa: TRY301
                     msg

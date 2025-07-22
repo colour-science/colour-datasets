@@ -623,7 +623,7 @@ class Community(Mapping):
         Datasets : ...
         Synced   : ...
         URL      : https://zenodo.org/communities/\
-colour-science-datasets-tests
+colour-science-datasets-tests/
         """
 
         datasets = "\n".join(

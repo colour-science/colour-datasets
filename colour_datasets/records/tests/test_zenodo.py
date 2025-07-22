@@ -326,7 +326,7 @@ colour-science-datasets
 
 Datasets : 4
 Synced   : 0
-URL      : https://zenodo.org/communities/colour-science-datasets-tests
+URL      : https://zenodo.org/communities/colour-science-datasets-tests/
 
 Datasets
 --------

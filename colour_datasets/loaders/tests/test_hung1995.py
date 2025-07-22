@@ -118,4 +118,4 @@ class TestBuildHung1995:
         definition.
         """
 
-        assert build_Hung1995() is build_Hung1995()
+        assert isinstance(build_Hung1995(), DatasetLoader_Hung1995) is True

@@ -72,4 +72,4 @@ class TestBuildBrendel2020:
         definition.
         """
 
-        assert build_Brendel2020() is build_Brendel2020()
+        assert isinstance(build_Brendel2020(), DatasetLoader_Brendel2020) is True

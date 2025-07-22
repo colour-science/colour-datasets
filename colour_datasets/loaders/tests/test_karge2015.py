@@ -72,4 +72,4 @@ class TestBuildKarge2015:
         definition.
         """
 
-        assert build_Karge2015() is build_Karge2015()
+        assert isinstance(build_Karge2015(), DatasetLoader_Karge2015) is True

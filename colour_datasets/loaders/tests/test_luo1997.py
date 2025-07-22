@@ -181,4 +181,4 @@ class TestBuildLuo1997:
         definition.
         """
 
-        assert build_Luo1997() is build_Luo1997()
+        assert isinstance(build_Luo1997(), DatasetLoader_Luo1997) is True

@@ -76,4 +76,4 @@ class TestBuildWinquist2022:
         definition.
         """
 
-        assert build_Winquist2022() is build_Winquist2022()
+        assert isinstance(build_Winquist2022(), DatasetLoader_Winquist2022) is True

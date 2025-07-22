@@ -139,4 +139,4 @@ class TestBuildAsano2015:
         definition.
         """
 
-        assert build_Asano2015() is build_Asano2015()
+        assert isinstance(build_Asano2015(), DatasetLoader_Asano2015) is True

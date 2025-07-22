@@ -42,8 +42,8 @@ __all__ = [
 
 # https://stackoverflow.com/questions/64264563/\
 # attributeerror-elementtree-object-has-no-attribute-getiterator-when-trying
-xlrd.xlsx.ensure_elementtree_imported(False, None)
-xlrd.xlsx.Element_has_iter = True
+xlrd.xlsx.ensure_elementtree_imported(False, None)  # pyright: ignore
+xlrd.xlsx.Element_has_iter = True  # pyright: ignore
 
 
 def _column_number_to_letters(number: int) -> str:
@@ -238,7 +238,9 @@ def cell_range_values(sheet: xlrd.sheet.Sheet, cell_range: str) -> List[str]:
 
     for row in range(row_in, row_out + 1, 1):
         table.append(  # noqa: PERF401
-            sheet.row_values(row, start_colx=column_in, end_colx=column_out + 1)
+            sheet.row_values(  # pyright: ignore
+                row, start_colx=column_in, end_colx=column_out + 1
+            )
         )
 
     return table

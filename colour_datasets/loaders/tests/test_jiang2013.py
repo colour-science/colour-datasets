@@ -91,4 +91,4 @@ class TestBuildJiang2013:
         definition.
         """
 
-        assert build_Jiang2013() is build_Jiang2013()
+        assert isinstance(build_Jiang2013(), DatasetLoader_Jiang2013) is True

@@ -77,4 +77,4 @@ class TestBuildZhao2009:
         definition.
         """
 
-        assert build_Zhao2009() is build_Zhao2009()
+        assert isinstance(build_Zhao2009(), DatasetLoader_Zhao2009) is True

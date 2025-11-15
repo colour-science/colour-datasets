@@ -100,8 +100,7 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
             ("Ground Truth", "ground-truths"),
         ]:
             csv_files = glob.glob(
-                f'{os.path.join(self.record.repository, "dataset", path, path)}/'
-                f"*.csv"
+                f"{os.path.join(self.record.repository, 'dataset', path, path)}/*.csv"
             )
             for csv_file in csv_files:
                 camera_name = os.path.splitext(os.path.basename(csv_file))[0].replace(

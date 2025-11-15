@@ -2,7 +2,7 @@
 Common Utilities
 ================
 
-Define the common utilities objects that don't fall in any specific category.
+Define common utility objects for file operations and data processing.
 """
 
 from __future__ import annotations
@@ -103,7 +103,7 @@ class TqdmUpTo(tqdm):
 
 def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     """
-    Compute the *Message Digest 5 (MD5)* hash of given file.
+    Compute the *Message Digest 5 (MD5)* hash of specified file.
 
     Parameters
     ----------
@@ -115,7 +115,7 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     Returns
     -------
     :class:`str`
-        *MD5* hash of given file.
+        *MD5* hash of specified file.
     """
 
     md5 = hashlib.md5()  # noqa: S324
@@ -135,7 +135,7 @@ def url_download(
     url: str, filename: str, md5: str | None = None, retries: int = 3
 ) -> None:
     """
-    Download given url and saves its content at given file.
+    Download specified url and saves its content at specified file.
 
     Parameters
     ----------
@@ -144,8 +144,8 @@ def url_download(
     filename
         File to save the url content at.
     md5
-        *Message Digest 5 (MD5)* hash of the content at given url. If provided
-        the saved content at given file will be hashed and compared to ``md5``.
+        *Message Digest 5 (MD5)* hash of the content at specified url. If provided
+        the saved content at specified file will be hashed and compared to ``md5``.
     retries
         Number of retries in case where a networking error occurs or the *MD5*
         hash is not matching.
@@ -179,8 +179,7 @@ def url_download(
 
             if md5 is not None and md5.lower() != hash_md5(filename):
                 msg = (
-                    f'"MD5" hash of "{filename}" file does not match the '
-                    f"expected hash!"
+                    f'"MD5" hash of "{filename}" file does not match the expected hash!'
                 )
                 raise ValueError(  # noqa: TRY301
                     msg
@@ -200,7 +199,7 @@ def url_download(
 @cached(cache=TTLCache(maxsize=256, ttl=300))
 def json_open(url: str, retries: int = 3) -> Dict:
     """
-    Open given url and return its content as *JSON*.
+    Open specified url and return its content as *JSON*.
 
     Parameters
     ----------
@@ -256,7 +255,7 @@ def unpack_gzipfile(
     *args: Any,  # noqa: ARG001
 ) -> bool:
     """
-    Unpack given *GZIP* file to given extraction directory.
+    Unpack specified *GZIP* file to specified extraction directory.
 
     Parameters
     ----------

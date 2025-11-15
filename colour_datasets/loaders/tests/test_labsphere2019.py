@@ -70,4 +70,4 @@ class TestBuildLabsphere2019:
         definition.
         """
 
-        assert build_Labsphere2019() is build_Labsphere2019()
+        assert isinstance(build_Labsphere2019(), DatasetLoader_Labsphere2019) is True

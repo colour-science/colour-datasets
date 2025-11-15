@@ -293,4 +293,4 @@ class TestBuildDyer2017:
         definition.
         """
 
-        assert build_Dyer2017() is build_Dyer2017()
+        assert isinstance(build_Dyer2017(), DatasetLoader_Dyer2017) is True

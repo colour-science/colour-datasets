@@ -68,4 +68,4 @@ class TestBuildSolomotav2023:
         definition.
         """
 
-        assert build_Solomotav2023() is build_Solomotav2023()
+        assert isinstance(build_Solomotav2023(), DatasetLoader_Solomotav2023) is True

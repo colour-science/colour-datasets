@@ -64,4 +64,4 @@ class TestBuildJakob2019:
         definition.
         """
 
-        assert build_Jakob2019() is build_Jakob2019()
+        assert isinstance(build_Jakob2019(), DatasetLoader_Jakob2019) is True

@@ -131,4 +131,4 @@ class TestBuildEbner1998:
         definition.
         """
 
-        assert build_Ebner1998() is build_Ebner1998()
+        assert isinstance(build_Ebner1998(), DatasetLoader_Ebner1998) is True

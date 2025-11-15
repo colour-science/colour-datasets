@@ -256,7 +256,7 @@ def _build_dataset_loader_class_KuopioUniversity(
     prefix = re.sub("\\.|\\(|\\)|/|\\s", "", title)
     class_attribute = f"DatasetLoader_{prefix}"
     dataset_loader_class = cast(
-        DatasetLoader_KuopioUniversity,
+        "DatasetLoader_KuopioUniversity",
         type(
             str(class_attribute),
             (DatasetLoader_KuopioUniversity,),

@@ -42,13 +42,13 @@ __all__ = [
 
 # https://stackoverflow.com/questions/64264563/\
 # attributeerror-elementtree-object-has-no-attribute-getiterator-when-trying
-xlrd.xlsx.ensure_elementtree_imported(False, None)
-xlrd.xlsx.Element_has_iter = True
+xlrd.xlsx.ensure_elementtree_imported(False, None)  # pyright: ignore
+xlrd.xlsx.Element_has_iter = True  # pyright: ignore
 
 
 def _column_number_to_letters(number: int) -> str:
     """
-    Convert given column number into a column letters.
+    Convert specified column number into a column letters.
 
     Right shifts the column index by 26 to find column letters in reverse
     order. These numbers are 1-based, and can be converted to ASCII
@@ -104,7 +104,7 @@ for i in range(1, 18279):
 
 def row_to_index(row: int | str) -> int:
     """
-    Return the 0-based index of given row name.
+    Return the 0-based index of specified row name.
 
     Parameters
     ----------
@@ -131,7 +131,7 @@ def row_to_index(row: int | str) -> int:
 
 def index_to_row(index: int) -> str:
     """
-    Return the row name of given 0-based index.
+    Return the row name of specified 0-based index.
 
     Parameters
     ----------
@@ -154,7 +154,7 @@ def index_to_row(index: int) -> str:
 
 def column_to_index(column: str) -> int:
     """
-    Return the 0-based index of given column letters.
+    Return the 0-based index of specified column letters.
 
     Parameters
     ----------
@@ -177,7 +177,7 @@ def column_to_index(column: str) -> int:
 
 def index_to_column(index: int) -> str:
     """
-    Return the column letters of given 0-based index.
+    Return the column letters of specified 0-based index.
 
     Parameters
     ----------
@@ -207,8 +207,8 @@ _CELL_RANGE_REGEX: re.Pattern = re.compile(
 
 def cell_range_values(sheet: xlrd.sheet.Sheet, cell_range: str) -> List[str]:
     """
-    Return given workbook sheet cell range values, i.e., the values of the
-    rows and columns for given cell range.
+    Return specified workbook sheet cell range values, i.e., the values of the
+    rows and columns for specified cell range.
 
     Parameters
     ----------
@@ -238,7 +238,9 @@ def cell_range_values(sheet: xlrd.sheet.Sheet, cell_range: str) -> List[str]:
 
     for row in range(row_in, row_out + 1, 1):
         table.append(  # noqa: PERF401
-            sheet.row_values(row, start_colx=column_in, end_colx=column_out + 1)
+            sheet.row_values(  # pyright: ignore
+                row, start_colx=column_in, end_colx=column_out + 1
+            )
         )
 
     return table

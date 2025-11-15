@@ -140,10 +140,8 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
             "Table II.csv": "Intra- and interobserver variances for each "
             "reference hue expressed in circumferential "
             "hue-angle difference.",
-            "Table III.csv": "Weight-averaged constant hue loci for the CL "
-            "experiment.",
-            "Table IV.csv": "Weight-averaged constant hue loci for the VL "
-            "experiment.",
+            "Table III.csv": "Weight-averaged constant hue loci for the CL experiment.",
+            "Table IV.csv": "Weight-averaged constant hue loci for the VL experiment.",
         }
 
         for filename in filenames:

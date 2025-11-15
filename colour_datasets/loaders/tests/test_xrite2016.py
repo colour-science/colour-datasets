@@ -72,4 +72,4 @@ class TestBuildXRite2016:
         definition.
         """
 
-        assert build_XRite2016() is build_XRite2016()
+        assert isinstance(build_XRite2016(), DatasetLoader_XRite2016) is True

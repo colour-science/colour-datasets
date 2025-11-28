@@ -18,11 +18,11 @@ import sys
 import typing
 import urllib.error
 import urllib.request
+from typing import Self
 
 import setuptools.archive_util
 from cachetools import TTLCache, cached
 from tqdm import tqdm
-from typing_extensions import Self
 
 if typing.TYPE_CHECKING:
     from colour.hints import Any, Callable, Dict
@@ -186,7 +186,7 @@ def url_download(
                 )
 
             attempt = retries
-        except (urllib.error.URLError, OSError, ValueError):  # noqa: PERF203
+        except (urllib.error.URLError, OSError, ValueError):
             attempt += 1
             print(  # noqa: T201
                 f'An error occurred while downloading "{filename}" file '
@@ -237,7 +237,7 @@ def json_open(url: str, retries: int = 3) -> Dict:
             request = urllib.request.Request(url)  # noqa: S310
             with urllib.request.urlopen(request) as response:  # noqa: S310
                 return json.loads(response.read())
-        except (urllib.error.URLError, ValueError):  # noqa: PERF203
+        except (urllib.error.URLError, ValueError):
             attempt += 1
             print(  # noqa: T201
                 f'An error occurred while opening "{url}" url during attempt '

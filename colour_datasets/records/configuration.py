@@ -10,13 +10,13 @@ from __future__ import annotations
 import functools
 import os
 import typing
+from typing import Self
 
 from colour.utilities import Structure
 from colour.utilities.documentation import (
     DocstringDict,
     is_documentation_building,
 )
-from typing_extensions import Self
 
 if typing.TYPE_CHECKING:
     from colour.hints import Any, Callable, Dict

@@ -18,6 +18,7 @@ References
 
 from __future__ import annotations
 
+import csv
 import os
 import typing
 from dataclasses import dataclass
@@ -147,13 +148,23 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
         for filename in filenames:
             datafile_path = os.path.join(self.record.repository, "dataset", filename)
 
-            self._content[filename.split(".")[0]] = np.genfromtxt(
-                datafile_path,
-                delimiter=",",
-                names=True,
-                dtype=None,
-                encoding="utf-8",
-            )
+            # NOTE: Use csv module to avoid NumPy 2.x genfromtxt dtype=None errors
+            with open(datafile_path, encoding="utf-8") as csvfile:
+                reader = csv.reader(csvfile)
+                headers = [h.strip().replace(" ", "_") for h in next(reader)]
+                rows = []
+                for row in reader:
+                    converted = []
+                    for value in row:
+                        try:
+                            converted.append(float(value))
+                        except ValueError:
+                            converted.append(value)
+                    rows.append(tuple(converted))
+
+            dtypes = [(name, object) for name in headers]
+            data = np.array(rows, dtype=dtypes)
+            self._content[filename.split(".")[0]] = data
 
         hues = [
             "Red",

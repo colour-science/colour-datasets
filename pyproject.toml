@@ -46,13 +46,12 @@ classifiers = [
 ]
 dependencies = [
     "cachetools",
-    "colour-science>=0.4.5",
+    "colour-science>=0.4.7",
     "imageio>=2,<3",
     "numpy>=2.0.0,<3",
     "opencv-python>=4,<5",
     "scipy>=1.13.0,<2",
     "tqdm",
-    "typing-extensions>=4,<5",
     "xlrd>=1.2,<2",
 ]
 

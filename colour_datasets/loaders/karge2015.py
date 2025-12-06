@@ -24,6 +24,7 @@ import typing
 from collections import defaultdict
 
 from colour.algebra import LinearInterpolator
+from colour.utilities import suppress_warnings
 
 if typing.TYPE_CHECKING:
     from colour.hints import Dict
@@ -113,14 +114,15 @@ class DatasetLoader_Karge2015(AbstractDatasetLoader):
             path = os.path.join(database_root, path)  # noqa: PLW2901
 
             sds = {}
-            for name, sd in read_sds_from_csv_file(
-                path, transpose=True, delimiter=";"
-            ).items():
-                if re.match("f\\d", name):
-                    continue
+            with suppress_warnings(colour_runtime_warnings=True):
+                for name, sd in read_sds_from_csv_file(
+                    path, transpose=True, delimiter=";"
+                ).items():
+                    if re.match("f\\d", name):
+                        continue
 
-                sd.interpolator = LinearInterpolator
-                sds[name] = sd
+                    sd.interpolator = LinearInterpolator
+                    sds[name] = sd
 
             self._content[type_][category] = sds
 

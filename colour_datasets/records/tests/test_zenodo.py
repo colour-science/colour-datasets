@@ -5,6 +5,7 @@ module.
 
 import os
 import textwrap
+import unicodedata
 import unittest
 
 from colour_datasets.records import Community, Configuration, Record
@@ -125,14 +126,16 @@ class TestRecord(unittest.TestCase):
         """
 
         self.assertEqual(
-            str(self._record),
-            textwrap.dedent(
-                """
+            unicodedata.normalize("NFC", str(self._record)),
+            unicodedata.normalize(
+                "NFC",
+                textwrap.dedent(
+                    """
 Camera Spectral Sensitivity Database - Jiang et al. (2013) - 1.0.0
 ==================================================================
 
 Record ID        : 3245883
-Authors          : Jiang, Jun; Liu, Dengyu; Gu, Jinwei; Süsstrunk, Sabine
+Authors          : Jiang, Jun; Liu, Dengyu; Gu, Jinwei; Süsstrunk, Sabine
 License          : cc-by-nc-sa-4.0
 DOI              : 10.5281/zenodo.3245883
 Publication Date : 2019-06-14
@@ -158,12 +161,11 @@ follows by measured spectral sensitivities in red, green and blue channel.
 Files
 -----
 
-- camlist&equipment.txt : https://zenodo.org/api/records/3245883/files/\
-camlist&equipment.txt/content
-- camspec_database.txt : https://zenodo.org/api/records/3245883/files/\
-camspec_database.txt/content
+- camlist&equipment.txt : https://zenodo.org/api/records/3245883/files/camlist&equipment.txt/content
+- camspec_database.txt : https://zenodo.org/api/records/3245883/files/camspec_database.txt/content
 - urls.txt : https://zenodo.org/api/records/3245883/files/urls.txt/content"""
-            )[1:],
+                )[1:],
+            ),
         )
 
     def test__repr__(self) -> None:

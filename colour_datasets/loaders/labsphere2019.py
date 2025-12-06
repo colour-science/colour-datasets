@@ -14,11 +14,17 @@ References
     doi:10.5281/zenodo.3245875
 """
 
+from __future__ import annotations
+
 import os
+import typing
 
 import numpy as np
 from colour import SpectralDistribution
-from colour.hints import Dict, Optional
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
+
 from colour.utilities import tsplit
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -95,7 +101,7 @@ class DatasetLoader_Labsphere2019(AbstractDatasetLoader):
         return self._content
 
 
-_DATASET_LOADER_LABSPHERE2019: Optional[DatasetLoader_Labsphere2019] = None
+_DATASET_LOADER_LABSPHERE2019: DatasetLoader_Labsphere2019 | None = None
 """
 Singleton instance of the *Labsphere (2019)* *Labsphere SRS-99-020* dataset
 loader.

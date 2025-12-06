@@ -9,11 +9,13 @@ Define the abstract class implementing support for dataset loading:
 
 from __future__ import annotations
 
+import typing
 from abc import ABC, abstractmethod
 
-from colour.hints import Any
+if typing.TYPE_CHECKING:
+    from colour.hints import Any
 
-from colour_datasets.records import Record
+    from colour_datasets.records import Record
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -122,7 +124,7 @@ class AbstractDatasetLoader(ABC):
             when they implement it, e.g., ``super().sync()``.
         """
 
-    def sync(self):
+    def sync(self) -> None:
         """
         Sync the dataset content, i.e., checks whether it is synced and pulls
         it if required.

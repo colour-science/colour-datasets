@@ -9,13 +9,17 @@ from __future__ import annotations
 
 import functools
 import os
+import typing
+from typing import Self
 
-from colour.hints import Any, Callable, Dict
 from colour.utilities import Structure
 from colour.utilities.documentation import (
     DocstringDict,
     is_documentation_building,
 )
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Any, Callable, Dict
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -75,7 +79,7 @@ def use_sandbox(
     state: bool = True,
     api_url: str = "https://sandbox.zenodo.org/api",
     community: str = "colour-science-datasets",
-):
+) -> None:
     """
     Modify the *Colour - Datasets* configuration to use *Zenodo* sandbox.
 
@@ -120,7 +124,7 @@ class sandbox:
         self._api_url = api_url
         self._community = community
 
-    def __enter__(self) -> sandbox:
+    def __enter__(self) -> Self:
         """
         Set the configuration to the *Zenodo* sandbox upon entering the context
         manager.
@@ -130,7 +134,7 @@ class sandbox:
 
         return self
 
-    def __exit__(self, *args: Any):
+    def __exit__(self, *args: Any) -> None:
         """Restore the configuration upon exiting the context manager."""
 
         use_sandbox(False)

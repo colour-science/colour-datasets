@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.solomotav2023` module."""
 
-
 from colour import SpectralShape
 
 from colour_datasets.loaders import (
@@ -27,7 +26,7 @@ class TestDatasetLoader_Solomotav2023:
     class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -35,7 +34,7 @@ class TestDatasetLoader_Solomotav2023:
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Solomotav2023)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -43,7 +42,7 @@ class TestDatasetLoader_Solomotav2023:
         for method in required_methods:
             assert method in dir(DatasetLoader_Solomotav2023)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.solomotav2023.\
 DatasetLoader_Solomotav2023.load` method.
@@ -63,10 +62,10 @@ class TestBuildSolomotav2023:
     definition unit tests methods.
     """
 
-    def test_build_Solomotav2023(self):
+    def test_build_Solomotav2023(self) -> None:
         """
         Test :func:`colour_datasets.loaders.solomotav2023.build_Solomotav2023`
         definition.
         """
 
-        assert build_Solomotav2023() is build_Solomotav2023()
+        assert isinstance(build_Solomotav2023(), DatasetLoader_Solomotav2023) is True

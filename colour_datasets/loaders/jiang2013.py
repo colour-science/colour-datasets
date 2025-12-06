@@ -2,7 +2,7 @@
 Camera Spectral Sensitivity Database - Jiang et al. (2013)
 ==========================================================
 
-Define the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
+Define the objects implementing support for *Jiang, Liu, Gu and Süsstrunk
 (2013)* *Camera Spectral Sensitivity Database* dataset loading:
 
 -   :class:`colour_datasets.loaders.DatasetLoader_Jiang2013`
@@ -21,11 +21,15 @@ from __future__ import annotations
 import codecs
 import os
 import re
+import typing
 
 import numpy as np
 from colour import SpectralShape
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
+
 from colour.characterisation import RGB_CameraSensitivities
-from colour.hints import Dict
 from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader

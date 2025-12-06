@@ -1,11 +1,27 @@
+"""
+Loaders
+=======
+
+Dataset loading and parsing utilities.
+
+This subpackage provides dataset loaders for various colour science datasets
+hosted on Zenodo, including spectral power distributions, colour matching
+functions, and experimental data from research publications.
+"""
+
 from __future__ import annotations
 
 import sys
+import typing
 
-from colour.hints import Any
+if typing.TYPE_CHECKING:
+    from colour.hints import Any
+
 from colour.utilities import CanonicalMapping, warning
 
 from colour_datasets.records import datasets
+
+# isort: split
 
 from .abstract import AbstractDatasetLoader
 from .asano2015 import DatasetLoader_Asano2015, build_Asano2015
@@ -138,7 +154,7 @@ titles.
 
 def load(dataset: int | str) -> Any:
     """
-    Load given dataset: The dataset is pulled locally, i.e., synced if required
+    Load specified dataset: The dataset is pulled locally, i.e., synced if required
     and then its data is loaded.
 
     Parameters
@@ -155,9 +171,7 @@ def load(dataset: int | str) -> Any:
     --------
     >>> len(load("3245883").keys())  # doctest: +SKIP
     28
-    >>> len(
-    ...     load("Camera Spectral Sensitivity Database - " "Jiang et al. (2013)").keys()
-    ... )
+    >>> len(load("Camera Spectral Sensitivity Database - Jiang et al. (2013)").keys())
     ... # doctest: +SKIP
     28
     """

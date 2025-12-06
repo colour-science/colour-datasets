@@ -28,7 +28,7 @@ SUBSTITUTIONS: dict[str, str] = {
 }
 
 
-def unicode_to_ascii(root_directory: str):
+def unicode_to_ascii(root_directory: str) -> None:
     """
     Recursively convert from unicode to ASCII *.py*, *.bib* and *.rst* files
     in given directory.
@@ -68,4 +68,4 @@ def unicode_to_ascii(root_directory: str):
 if __name__ == "__main__":
     os.chdir(os.path.dirname(__file__))
 
-    unicode_to_ascii(os.path.join("..", "colour_checker_detection"))
+    unicode_to_ascii(os.path.join("..", "colour_datasets"))

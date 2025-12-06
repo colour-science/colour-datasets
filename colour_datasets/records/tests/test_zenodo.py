@@ -5,6 +5,7 @@ module.
 
 import os
 import textwrap
+import unicodedata
 import unittest
 
 from colour_datasets.records import Community, Configuration, Record
@@ -29,7 +30,7 @@ class TestRecord(unittest.TestCase):
     methods.
     """
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Initialise the common tests attributes."""
 
         self._data = json_open("https://zenodo.org/api/records/3245883")
@@ -37,7 +38,7 @@ class TestRecord(unittest.TestCase):
 
         self._record = Record(self._data, self._configuration)
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = (
@@ -51,7 +52,7 @@ class TestRecord(unittest.TestCase):
         for attribute in required_attributes:
             self.assertIn(attribute, dir(Record))
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = (
@@ -67,7 +68,7 @@ class TestRecord(unittest.TestCase):
         for method in required_methods:
             self.assertIn(method, dir(Record))
 
-    def test_configuration(self):
+    def test_configuration(self) -> None:
         """
         Test :func:colour_datasets.records.zenodo.Record.configuration`
         property.
@@ -75,12 +76,12 @@ class TestRecord(unittest.TestCase):
 
         self.assertEqual(self._record.configuration, self._configuration)
 
-    def test_data(self):
+    def test_data(self) -> None:
         """Test :func:colour_datasets.records.zenodo.Record.data` property."""
 
         self.assertEqual(self._record.data, self._data)
 
-    def test_repository(self):
+    def test_repository(self) -> None:
         """
         Test :func:colour_datasets.records.zenodo.Record.repository`
         property.
@@ -91,12 +92,12 @@ class TestRecord(unittest.TestCase):
             os.path.join(self._configuration.repository, "3245883"),
         )
 
-    def test_id(self):
+    def test_id(self) -> None:
         """Test :func:colour_datasets.records.zenodo.Record.id` property."""
 
         self.assertEqual(self._record.id, "3245883")
 
-    def test_title(self):
+    def test_title(self) -> None:
         """
         Test :func:colour_datasets.records.zenodo.Record.title`
         property.
@@ -107,7 +108,7 @@ class TestRecord(unittest.TestCase):
             "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
         )
 
-    def test__init__(self):
+    def test__init__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Record.__init__` method.
         """
@@ -119,20 +120,22 @@ class TestRecord(unittest.TestCase):
             "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
         )
 
-    def test__str__(self):
+    def test__str__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Record.__str__` method.
         """
 
         self.assertEqual(
-            str(self._record),
-            textwrap.dedent(
-                """
+            unicodedata.normalize("NFC", str(self._record)),
+            unicodedata.normalize(
+                "NFC",
+                textwrap.dedent(
+                    """
 Camera Spectral Sensitivity Database - Jiang et al. (2013) - 1.0.0
 ==================================================================
 
 Record ID        : 3245883
-Authors          : Jiang, Jun; Liu, Dengyu; Gu, Jinwei; Süsstrunk, Sabine
+Authors          : Jiang, Jun; Liu, Dengyu; Gu, Jinwei; Süsstrunk, Sabine
 License          : cc-by-nc-sa-4.0
 DOI              : 10.5281/zenodo.3245883
 Publication Date : 2019-06-14
@@ -158,21 +161,20 @@ follows by measured spectral sensitivities in red, green and blue channel.
 Files
 -----
 
-- camlist&equipment.txt : https://zenodo.org/api/records/3245883/files/\
-camlist&equipment.txt/content
-- camspec_database.txt : https://zenodo.org/api/records/3245883/files/\
-camspec_database.txt/content
+- camlist&equipment.txt : https://zenodo.org/api/records/3245883/files/camlist&equipment.txt/content
+- camspec_database.txt : https://zenodo.org/api/records/3245883/files/camspec_database.txt/content
 - urls.txt : https://zenodo.org/api/records/3245883/files/urls.txt/content"""
-            )[1:],
+                )[1:],
+            ),
         )
 
-    def test__repr__(self):
+    def test__repr__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Record.__repr__` method.
         """
 
         self.assertIsInstance(
-            eval(  # noqa: PGH001, S307
+            eval(  # noqa: S307
                 repr(self._record),
                 {},
                 {"Record": Record, "Configuration": Configuration},
@@ -180,7 +182,7 @@ camspec_database.txt/content
             Record,
         )
 
-    def test_from_id(self):
+    def test_from_id(self) -> None:
         """Test :func:`colour_datasets.records.zenodo.Record.from_id` method."""
 
         record = Record.from_id("3245883")
@@ -191,7 +193,7 @@ camspec_database.txt/content
             "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
         )
 
-    def test_synced(self):
+    def test_synced(self) -> None:
         """Test :func:`colour_datasets.records.zenodo.Record.synced` method."""
 
         self._record.pull()
@@ -199,14 +201,14 @@ camspec_database.txt/content
         self._record.remove()
         self.assertFalse(self._record.synced())
 
-    def test_pull(self):
+    def test_pull(self) -> None:
         """Test :func:`colour_datasets.records.zenodo.Record.pull` method."""
 
         self._record.remove()
         self._record.pull()
         self.assertTrue(self._record.synced())
 
-    def test_remove(self):
+    def test_remove(self) -> None:
         """Test :func:`colour_datasets.records.zenodo.Record.remove` method."""
 
         self._record.pull()
@@ -220,7 +222,7 @@ class TestCommunity(unittest.TestCase):
     methods.
     """
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Initialise the common tests attributes."""
 
         community_data = json_open(
@@ -236,7 +238,7 @@ class TestCommunity(unittest.TestCase):
 
         self._community = Community(self._data, self._configuration)
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = (
@@ -249,7 +251,7 @@ class TestCommunity(unittest.TestCase):
         for attribute in required_attributes:
             self.assertIn(attribute, dir(Community))
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = (
@@ -268,7 +270,7 @@ class TestCommunity(unittest.TestCase):
         for method in required_methods:
             self.assertIn(method, dir(Community))
 
-    def test_configuration(self):
+    def test_configuration(self) -> None:
         """
         Test :func:colour_datasets.records.zenodo.Community.configuration`
         property.
@@ -276,14 +278,14 @@ class TestCommunity(unittest.TestCase):
 
         self.assertEqual(self._community.configuration, self._configuration)
 
-    def test_data(self):
+    def test_data(self) -> None:
         """
         Test :func:colour_datasets.records.zenodo.Community.data` property.
         """
 
         self.assertEqual(self._community.data, self._data)
 
-    def test_repository(self):
+    def test_repository(self) -> None:
         """
         Test :func:colour_datasets.records.zenodo.Community.repository`
         property.
@@ -291,14 +293,14 @@ class TestCommunity(unittest.TestCase):
 
         self.assertEqual(self._community.repository, self._configuration.repository)
 
-    def test_records(self):
+    def test_records(self) -> None:
         """
         Test :func:colour_datasets.records.zenodo.Community.records` property.
         """
 
         self.assertIn("3245883", list(self._community.records))
 
-    def test__init__(self):
+    def test__init__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.__init__` method.
         """
@@ -310,7 +312,7 @@ class TestCommunity(unittest.TestCase):
             "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
         )
 
-    def test__str__(self):
+    def test__str__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.__str__` method.
         """
@@ -326,7 +328,7 @@ colour-science-datasets
 
 Datasets : 4
 Synced   : 0
-URL      : https://zenodo.org/communities/colour-science-datasets-tests
+URL      : https://zenodo.org/communities/colour-science-datasets-tests/
 
 Datasets
 --------
@@ -339,13 +341,13 @@ Datasets
             )[1:],
         )
 
-    def test__repr__(self):
+    def test__repr__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.__repr__` method.
         """
 
         self.assertIsInstance(
-            eval(  # noqa: PGH001, S307
+            eval(  # noqa: S307
                 repr(self._community),
                 {},
                 {"Community": Community, "Configuration": Configuration},
@@ -353,7 +355,7 @@ Datasets
             Community,
         )
 
-    def test__getitem__(self):
+    def test__getitem__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.__getitem__`
         method.
@@ -361,7 +363,7 @@ Datasets
 
         self.assertIs(self._community["3245883"], self._community.records["3245883"])
 
-    def test__iter__(self):
+    def test__iter__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.__iter__`
         method.
@@ -369,7 +371,7 @@ Datasets
 
         self.assertListEqual(list(self._community), list(self._community.records))
 
-    def test__len__(self):
+    def test__len__(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.__getitem__`
         method.
@@ -377,7 +379,7 @@ Datasets
 
         self.assertEqual(len(self._community), len(self._community.records))
 
-    def test_from_id(self):
+    def test_from_id(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.from_id` method.
         """
@@ -390,7 +392,7 @@ Datasets
             "Camera Spectral Sensitivity Database - Jiang et al. (2013)",
         )
 
-    def test_synced(self):
+    def test_synced(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.synced` method.
         """
@@ -400,7 +402,7 @@ Datasets
         self._community.remove()
         self.assertFalse(self._community.synced())
 
-    def test_pull(self):
+    def test_pull(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.pull` method.
         """
@@ -409,7 +411,7 @@ Datasets
         self._community.pull()
         self.assertTrue(self._community.synced())
 
-    def test_remove(self):
+    def test_remove(self) -> None:
         """
         Test :func:`colour_datasets.records.zenodo.Community.remove` method.
         """

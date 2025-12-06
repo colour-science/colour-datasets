@@ -38,7 +38,7 @@ class TestRowToIndex:
     definition unit tests methods.
     """
 
-    def test_row_to_index(self):
+    def test_row_to_index(self) -> None:
         """
         Test :func:`colour_datasets.utilities.spreadsheet.row_to_index`
         definition.
@@ -59,7 +59,7 @@ class TestIndexToRow:
     definition unit tests methods.
     """
 
-    def test_index_to_row(self):
+    def test_index_to_row(self) -> None:
         """
         Test :func:`colour_datasets.utilities.spreadsheet.index_to_row`
         definition.
@@ -78,7 +78,7 @@ class TestColumnToIndex:
     definition unit tests methods.
     """
 
-    def test_column_to_index(self):
+    def test_column_to_index(self) -> None:
         """
         Test :func:`colour_datasets.utilities.spreadsheet.column_to_index`
         definition.
@@ -99,7 +99,7 @@ class TestIndexToColumn:
     definition unit tests methods.
     """
 
-    def test_index_to_column(self):
+    def test_index_to_column(self) -> None:
         """
         Test :func:`colour_datasets.utilities.spreadsheet.index_to_column`
         definition.
@@ -118,7 +118,7 @@ class TestCellRangeValues:
     definition unit tests methods.
     """
 
-    def test_cell_range_values(self):
+    def test_cell_range_values(self) -> None:
         """
         Test :func:`colour_datasets.utilities.spreadsheet.cell_range_values`
         definition.

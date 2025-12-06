@@ -2,7 +2,7 @@
 Common Utilities
 ================
 
-Define the common utilities objects that don't fall in any specific category.
+Define common utility objects for file operations and data processing.
 """
 
 from __future__ import annotations
@@ -15,13 +15,17 @@ import os
 import shutil
 import socket
 import sys
+import typing
 import urllib.error
 import urllib.request
+from typing import Self
 
 import setuptools.archive_util
 from cachetools import TTLCache, cached
-from colour.hints import Any, Callable, Dict
 from tqdm import tqdm
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Any, Callable, Dict
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2019 Colour Developers"
@@ -44,15 +48,15 @@ __all__ = [
 class suppress_stdout:
     """A context manager and decorator temporarily suppressing standard output."""
 
-    def __enter__(self) -> suppress_stdout:
+    def __enter__(self) -> Self:
         """Redirect the standard output upon entering the context manager."""
 
         self._stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")  # noqa: SIM115
+        sys.stdout = open(os.devnull, "w")
 
         return self
 
-    def __exit__(self, *args: Any):
+    def __exit__(self, *args: Any) -> None:
         """Restore the standard output upon exiting the context manager."""
 
         sys.stdout.close()
@@ -77,7 +81,7 @@ class TqdmUpTo(tqdm):
         chunks_count: int = 1,
         chunk_size: int = 1,
         total_size: int | None = None,
-    ):
+    ) -> None:
         """
         Report the progress of an action.
 
@@ -99,7 +103,7 @@ class TqdmUpTo(tqdm):
 
 def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     """
-    Compute the *Message Digest 5 (MD5)* hash of given file.
+    Compute the *Message Digest 5 (MD5)* hash of specified file.
 
     Parameters
     ----------
@@ -111,7 +115,7 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     Returns
     -------
     :class:`str`
-        *MD5* hash of given file.
+        *MD5* hash of specified file.
     """
 
     md5 = hashlib.md5()  # noqa: S324
@@ -127,9 +131,11 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     return md5.hexdigest()
 
 
-def url_download(url: str, filename: str, md5: str | None = None, retries: int = 3):
+def url_download(
+    url: str, filename: str, md5: str | None = None, retries: int = 3
+) -> None:
     """
-    Download given url and saves its content at given file.
+    Download specified url and saves its content at specified file.
 
     Parameters
     ----------
@@ -138,8 +144,8 @@ def url_download(url: str, filename: str, md5: str | None = None, retries: int =
     filename
         File to save the url content at.
     md5
-        *Message Digest 5 (MD5)* hash of the content at given url. If provided
-        the saved content at given file will be hashed and compared to ``md5``.
+        *Message Digest 5 (MD5)* hash of the content at specified url. If provided
+        the saved content at specified file will be hashed and compared to ``md5``.
     retries
         Number of retries in case where a networking error occurs or the *MD5*
         hash is not matching.
@@ -172,9 +178,11 @@ def url_download(url: str, filename: str, md5: str | None = None, retries: int =
                     socket.setdefaulttimeout(timeout)
 
             if md5 is not None and md5.lower() != hash_md5(filename):
+                msg = (
+                    f'"MD5" hash of "{filename}" file does not match the expected hash!'
+                )
                 raise ValueError(  # noqa: TRY301
-                    f'"MD5" hash of "{filename}" file does not match the '
-                    f"expected hash!"
+                    msg
                 )
 
             attempt = retries
@@ -191,7 +199,7 @@ def url_download(url: str, filename: str, md5: str | None = None, retries: int =
 @cached(cache=TTLCache(maxsize=256, ttl=300))
 def json_open(url: str, retries: int = 3) -> Dict:
     """
-    Open given url and return its content as *JSON*.
+    Open specified url and return its content as *JSON*.
 
     Parameters
     ----------
@@ -247,7 +255,7 @@ def unpack_gzipfile(
     *args: Any,  # noqa: ARG001
 ) -> bool:
     """
-    Unpack given *GZIP* file to given extraction directory.
+    Unpack specified *GZIP* file to specified extraction directory.
 
     Parameters
     ----------
@@ -280,15 +288,15 @@ def unpack_gzipfile(
         os.makedirs(extraction_directory)
 
     try:
-        with gzip.open(filename) as gzip_file, open(
-            extraction_path, "wb"
-        ) as output_file:
+        with (
+            gzip.open(filename) as gzip_file,
+            open(extraction_path, "wb") as output_file,
+        ):
             shutil.copyfileobj(gzip_file, output_file)
     except Exception as error:
         print(error)  # noqa: T201
-        raise setuptools.archive_util.UnrecognizedFormat(
-            f'{filename} is not a "GZIP" file!'
-        ) from error
+        msg = f'{filename} is not a "GZIP" file!'
+        raise setuptools.archive_util.UnrecognizedFormat(msg) from error
 
     return True
 

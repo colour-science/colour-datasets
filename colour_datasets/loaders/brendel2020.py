@@ -18,10 +18,14 @@ References
 from __future__ import annotations
 
 import os
+import typing
 
 import numpy as np
 from colour import LinearInterpolator, SpectralDistribution, SpectralShape
-from colour.hints import Dict
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
+
 from colour.utilities import as_int
 
 from colour_datasets.loaders import AbstractDatasetLoader

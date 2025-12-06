@@ -1,6 +1,5 @@
 """Define the unit tests for the :mod:`colour_datasets.loaders.zhao2009` module."""
 
-
 from colour import SpectralShape
 
 from colour_datasets.loaders import DatasetLoader_Zhao2009, build_Zhao2009
@@ -24,7 +23,7 @@ class TestDatasetLoader_Zhao2009:
     class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -32,7 +31,7 @@ class TestDatasetLoader_Zhao2009:
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Zhao2009)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -40,7 +39,7 @@ class TestDatasetLoader_Zhao2009:
         for method in required_methods:
             assert method in dir(DatasetLoader_Zhao2009)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.zhao2009.\
 DatasetLoader_Zhao2009.load` method.
@@ -72,10 +71,10 @@ class TestBuildZhao2009:
     definition unit tests methods.
     """
 
-    def test_build_Zhao2009(self):
+    def test_build_Zhao2009(self) -> None:
         """
         Test :func:`colour_datasets.loaders.zhao2009.build_Zhao2009`
         definition.
         """
 
-        assert build_Zhao2009() is build_Zhao2009()
+        assert isinstance(build_Zhao2009(), DatasetLoader_Zhao2009) is True

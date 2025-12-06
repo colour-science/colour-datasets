@@ -18,12 +18,18 @@ References
 
 from __future__ import annotations
 
+import csv
 import os
-from collections import namedtuple
+import typing
+from dataclasses import dataclass
 
 import numpy as np
 from colour import CCS_ILLUMINANTS, xy_to_XYZ, xyY_to_XYZ
-from colour.hints import Dict
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict, NDArrayFloat
+
+from colour.utilities import as_float_array
 
 from colour_datasets.loaders import AbstractDatasetLoader
 from colour_datasets.records import datasets
@@ -42,12 +48,8 @@ __all__ = [
 ]
 
 
-class ConstantPerceivedHueColourMatches_Hung1995(
-    namedtuple(
-        "ConstantPerceivedHueColourMatches_Hung1995",
-        ("name", "XYZ_r", "XYZ_cr", "XYZ_ct", "metadata"),
-    )
-):
+@dataclass(frozen=True)
+class ConstantPerceivedHueColourMatches_Hung1995:
     """
     Define *Hung and Berns (1995)* *Constant Hue Loci Data*
     colour matches data for a given hue angle.
@@ -68,6 +70,19 @@ class ConstantPerceivedHueColourMatches_Hung1995(
     metadata
         Dataset metadata.
     """
+
+    name: str
+    XYZ_r: NDArrayFloat
+    XYZ_cr: NDArrayFloat
+    XYZ_ct: NDArrayFloat
+    metadata: Dict
+
+    def __post_init__(self) -> None:
+        """Post-initialise the class."""
+
+        object.__setattr__(self, "XYZ_r", as_float_array(self.XYZ_r))
+        object.__setattr__(self, "XYZ_cr", as_float_array(self.XYZ_cr))
+        object.__setattr__(self, "XYZ_ct", as_float_array(self.XYZ_ct))
 
 
 class DatasetLoader_Hung1995(AbstractDatasetLoader):
@@ -126,22 +141,30 @@ class DatasetLoader_Hung1995(AbstractDatasetLoader):
             "Table II.csv": "Intra- and interobserver variances for each "
             "reference hue expressed in circumferential "
             "hue-angle difference.",
-            "Table III.csv": "Weight-averaged constant hue loci for the CL "
-            "experiment.",
-            "Table IV.csv": "Weight-averaged constant hue loci for the VL "
-            "experiment.",
+            "Table III.csv": "Weight-averaged constant hue loci for the CL experiment.",
+            "Table IV.csv": "Weight-averaged constant hue loci for the VL experiment.",
         }
 
         for filename in filenames:
             datafile_path = os.path.join(self.record.repository, "dataset", filename)
 
-            self._content[filename.split(".")[0]] = np.genfromtxt(
-                datafile_path,
-                delimiter=",",
-                names=True,
-                dtype=None,
-                encoding="utf-8",
-            )
+            # NOTE: Use csv module to avoid NumPy 2.x genfromtxt dtype=None errors
+            with open(datafile_path, encoding="utf-8") as csvfile:
+                reader = csv.reader(csvfile)
+                headers = [h.strip().replace(" ", "_") for h in next(reader)]
+                rows = []
+                for row in reader:
+                    converted = []
+                    for value in row:
+                        try:
+                            converted.append(float(value))
+                        except ValueError:
+                            converted.append(value)
+                    rows.append(tuple(converted))
+
+            dtypes = [(name, object) for name in headers]
+            data = np.array(rows, dtype=dtypes)
+            self._content[filename.split(".")[0]] = data
 
         hues = [
             "Red",

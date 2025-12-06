@@ -19,9 +19,13 @@ from __future__ import annotations
 
 import glob
 import os
+import typing
 
 from colour.characterisation import RGB_CameraSensitivities
-from colour.hints import Dict
+
+if typing.TYPE_CHECKING:
+    from colour.hints import Dict
+
 from colour.io import read_sds_from_csv_file
 
 from colour_datasets.loaders import AbstractDatasetLoader
@@ -96,8 +100,7 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
             ("Ground Truth", "ground-truths"),
         ]:
             csv_files = glob.glob(
-                f'{os.path.join(self.record.repository, "dataset", path, path)}/'
-                f"*.csv"
+                f"{os.path.join(self.record.repository, 'dataset', path, path)}/*.csv"
             )
             for csv_file in csv_files:
                 camera_name = os.path.splitext(os.path.basename(csv_file))[0].replace(

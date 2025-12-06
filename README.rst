@@ -162,7 +162,7 @@ Primary Dependencies
 
 - `python >= 3.10, < 3.14 <https://www.python.org/download/releases>`__
 - `cachetools <https://pypi.org/project/cachetools>`__
-- `colour-science >= 4.4 <https://pypi.org/project/colour-science>`__
+- `colour-science >= 4.5 <https://pypi.org/project/colour-science>`__
 - `imageio >= 2, < 3 <https://imageio.github.io>`__
 - `numpy >= 1.24, < 3 <https://pypi.org/project/numpy>`__
 - `scipy >= 1.10, < 2 <https://pypi.org/project/scipy>`__
@@ -217,7 +217,8 @@ The *Colour Developers* can be reached via different means:
 - `Facebook <https://www.facebook.com/python.colour.science>`__
 - `Github Discussions <https://github.com/colour-science/colour-datasets/discussions>`__
 - `Gitter <https://gitter.im/colour-science/colour>`__
-- `Twitter <https://twitter.com/colour_science>`__
+- `X <https://x.com/colour_science>`__
+- `Bluesky <https://bsky.app/profile/colour-science.bsky.social>`__
 
 About
 -----

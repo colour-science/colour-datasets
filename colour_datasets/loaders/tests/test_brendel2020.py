@@ -29,7 +29,7 @@ class TestDatasetLoader_Brendel2020:
 DatasetLoader_Brendel2020` class unit tests methods.
     """
 
-    def test_required_attributes(self):
+    def test_required_attributes(self) -> None:
         """Test the presence of required attributes."""
 
         required_attributes = ("ID",)
@@ -37,7 +37,7 @@ DatasetLoader_Brendel2020` class unit tests methods.
         for attribute in required_attributes:
             assert attribute in dir(DatasetLoader_Brendel2020)
 
-    def test_required_methods(self):
+    def test_required_methods(self) -> None:
         """Test the presence of required methods."""
 
         required_methods = ("__init__", "load")
@@ -45,7 +45,7 @@ DatasetLoader_Brendel2020` class unit tests methods.
         for method in required_methods:
             assert method in dir(DatasetLoader_Brendel2020)
 
-    def test_load(self):
+    def test_load(self) -> None:
         """
         Test :func:`colour_datasets.loaders.brendel2020.\
 DatasetLoader_Brendel2020.load` method.
@@ -66,10 +66,10 @@ class TestBuildBrendel2020:
     definition unit tests methods.
     """
 
-    def test_build_Brendel2020(self):
+    def test_build_Brendel2020(self) -> None:
         """
         Test :func:`colour_datasets.loaders.brendel2020.build_Brendel2020`
         definition.
         """
 
-        assert build_Brendel2020() is build_Brendel2020()
+        assert isinstance(build_Brendel2020(), DatasetLoader_Brendel2020) is True

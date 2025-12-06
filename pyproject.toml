@@ -1,6 +1,6 @@
 [project]
 name = "colour-datasets"
-version = "0.2.6"
+version = "0.2.7"
 description = "Colour science datasets for use with Colour"
 readme = "README.rst"
 requires-python = ">=3.11,<3.15"

@@ -317,6 +317,20 @@ Physlight - Camera Spectral Sensitivity Curves - Winquist et al. (2022)
 
     build_Winquist2022
 
+Prague Sky Model Datasets - Wilkie et al. (2021)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autosummary::
+    :toctree: generated/
+    :template: class.rst
+
+    DatasetLoader_Wilkie2021
+
+.. autosummary::
+    :toctree: generated/
+
+    build_Wilkie2021
+
 RAW to ACES Utility Data - Dyer et al. (2017)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -214,12 +214,13 @@ def json_open(url: str, retries: int = 3) -> Dict:
 
     Raises
     ------
-    urllib.error.URLError, ValueError
+    OSError, ValueError
         If the url cannot be opened or parsed as *JSON*.
 
     Notes
     -----
     -   The definition caches the request *JSON* output for 5 minutes.
+    -   Each network request times out after 10 seconds.
 
     Examples
     --------
@@ -234,9 +235,9 @@ def json_open(url: str, retries: int = 3) -> Dict:
     while attempt != retries:
         try:
             request = urllib.request.Request(url)  # noqa: S310
-            with urllib.request.urlopen(request) as response:  # noqa: S310
+            with urllib.request.urlopen(request, timeout=10) as response:  # noqa: S310
                 return json.loads(response.read())
-        except (urllib.error.URLError, ValueError):
+        except (OSError, ValueError):
             attempt += 1
             print(  # noqa: T201
                 f'An error occurred while opening "{url}" url during attempt '

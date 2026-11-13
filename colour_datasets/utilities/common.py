@@ -7,6 +7,7 @@ Define common utility objects for file operations and data processing.
 
 from __future__ import annotations
 
+import contextlib
 import functools
 import gzip
 import hashlib
@@ -15,9 +16,11 @@ import os
 import shutil
 import socket
 import sys
+import time
 import typing
 import urllib.error
 import urllib.request
+from email.utils import parsedate_to_datetime
 from typing import Self
 
 from cachetools import TTLCache, cached
@@ -130,6 +133,24 @@ def hash_md5(filename: str, chunk_size: int = 2**16) -> str:
     return md5.hexdigest()
 
 
+def _wait_for_retry(error: Exception, attempt: int) -> None:
+    """Wait before retrying a rate limited or unavailable HTTP service."""
+
+    if not isinstance(error, urllib.error.HTTPError) or error.code not in (429, 503):
+        return
+
+    delay = 30.0 * attempt
+    retry_after = error.headers.get("Retry-After") if error.headers else None
+    if retry_after is not None:
+        try:
+            delay = float(retry_after)
+        except ValueError:
+            with contextlib.suppress(TypeError, ValueError, OverflowError):
+                delay = parsedate_to_datetime(retry_after).timestamp() - time.time()
+
+    time.sleep(min(max(delay, 0), 120))
+
+
 def url_download(
     url: str, filename: str, md5: str | None = None, retries: int = 3
 ) -> None:
@@ -153,6 +174,11 @@ def url_download(
     --------
     >>> import os
     >>> url_download("https://github.com/colour-science/colour-datasets", os.devnull)
+
+    Notes
+    -----
+    -   Rate limited or unavailable services are retried after the server
+        requested delay, capped at 120 seconds per retry.
     """
 
     attempt = 0
@@ -185,7 +211,7 @@ def url_download(
                 )
 
             attempt = retries
-        except (urllib.error.URLError, OSError, ValueError):
+        except (urllib.error.URLError, OSError, ValueError) as error:
             attempt += 1
             print(  # noqa: T201
                 f'An error occurred while downloading "{filename}" file '
@@ -193,6 +219,7 @@ def url_download(
             )
             if attempt == retries:
                 raise
+            _wait_for_retry(error, attempt)
 
 
 @cached(cache=TTLCache(maxsize=256, ttl=300))
@@ -221,6 +248,8 @@ def json_open(url: str, retries: int = 3) -> Dict:
     -----
     -   The definition caches the request *JSON* output for 5 minutes.
     -   Each network request times out after 10 seconds.
+    -   Rate limited or unavailable services are retried after the server
+        requested delay, capped at 120 seconds per retry.
 
     Examples
     --------
@@ -237,7 +266,7 @@ def json_open(url: str, retries: int = 3) -> Dict:
             request = urllib.request.Request(url)  # noqa: S310
             with urllib.request.urlopen(request, timeout=10) as response:  # noqa: S310
                 return json.loads(response.read())
-        except (OSError, ValueError):
+        except (OSError, ValueError) as error:
             attempt += 1
             print(  # noqa: T201
                 f'An error occurred while opening "{url}" url during attempt '
@@ -245,6 +274,7 @@ def json_open(url: str, retries: int = 3) -> Dict:
             )
             if attempt == retries:
                 raise
+            _wait_for_retry(error, attempt)
 
     return data
 

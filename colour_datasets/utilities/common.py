@@ -20,7 +20,6 @@ import urllib.error
 import urllib.request
 from typing import Self
 
-import setuptools.archive_util
 from cachetools import TTLCache, cached
 from tqdm import tqdm
 
@@ -277,7 +276,7 @@ def unpack_gzipfile(
     Notes
     -----
     -   This definition is used as an extra driver for
-        :func:`setuptools.archive_util.unpack archive` definition.
+        archive extraction in :meth:`colour_datasets.Record.pull`.
     """
 
     extraction_path = os.path.join(
@@ -296,14 +295,6 @@ def unpack_gzipfile(
     except Exception as error:
         print(error)  # noqa: T201
         msg = f'{filename} is not a "GZIP" file!'
-        raise setuptools.archive_util.UnrecognizedFormat(msg) from error
+        raise shutil.ReadError(msg) from error
 
     return True
-
-
-setuptools.archive_util.extraction_drivers = (
-    setuptools.archive_util.unpack_directory,
-    setuptools.archive_util.unpack_zipfile,
-    setuptools.archive_util.unpack_tarfile,
-    unpack_gzipfile,
-)

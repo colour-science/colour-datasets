@@ -25,11 +25,10 @@ from collections.abc import Mapping
 from html.parser import HTMLParser
 from pprint import pformat
 
-import setuptools.archive_util
 from colour.utilities import optional, warning
 
 from colour_datasets.records import Configuration
-from colour_datasets.utilities import json_open, url_download
+from colour_datasets.utilities import json_open, unpack_gzipfile, url_download
 
 if typing.TYPE_CHECKING:
     from colour.hints import (
@@ -470,7 +469,12 @@ class Record:
                 unpacking_directory = os.path.join(deflate_directory, basename)
 
                 print(f'Unpacking "{filename}" archive...')  # noqa: T201
-                setuptools.archive_util.unpack_archive(filename, unpacking_directory)
+                try:
+                    shutil.unpack_archive(filename, unpacking_directory)
+                except shutil.ReadError:
+                    if extension.lower() != ".gz":
+                        raise
+                    unpack_gzipfile(filename, unpacking_directory)
                 os.remove(filename)
 
         with open(os.path.join(self.repository, "record.json"), "w") as record_json:

@@ -10,7 +10,7 @@ Define the objects implementing support for *Solomatov and Akkaynak (2023)*
 
 References
 ----------
--   :cite:`Solomotav2023` : Solomatov, G., & Akkaynak, D. (2023, July).
+-   :cite:`Solomatov2023` : Solomatov, G., & Akkaynak, D. (2023, July).
     Spectral sensitivity estimation without a camera. IEEE International
     Conference on Computational Photography (ICCP).
 """
@@ -61,7 +61,7 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
 
     References
     ----------
-    :cite:`Solomotav2023`
+    :cite:`Solomatov2023`
     """
 
     ID: str = "8314702"
@@ -158,7 +158,7 @@ def build_Solomotav2023(load: bool = True) -> DatasetLoader_Solomotav2023:
 
     References
     ----------
-    :cite:`Solomotav2023`
+    :cite:`Solomatov2023`
     """
 
     global _DATASET_LOADER_SOLOMOTAV2023  # noqa: PLW0603

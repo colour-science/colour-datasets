@@ -18,6 +18,7 @@ import typing
 import uuid
 from pathlib import Path
 from shlex import quote
+from tempfile import TemporaryDirectory
 
 import biblib.bib
 from colour.utilities import message_box
@@ -239,11 +240,15 @@ def examples(ctx: Context) -> None:
 
     message_box("Running examples...")
 
-    for root, _dirnames, filenames in os.walk(
-        os.path.join(PYTHON_PACKAGE_NAME, "examples")
-    ):
-        for filename in fnmatch.filter(filenames, "*.py"):
-            ctx.run(f"python {os.path.join(root, filename)}")
+    with TemporaryDirectory(prefix="colour-datasets-examples-") as repository:
+        for root, _dirnames, filenames in os.walk(
+            os.path.join(PYTHON_PACKAGE_NAME, "examples")
+        ):
+            for filename in fnmatch.filter(filenames, "*.py"):
+                ctx.run(
+                    f"python {os.path.join(root, filename)}",
+                    env={"COLOUR_SCIENCE__COLOUR_DATASETS__REPOSITORY": repository},
+                )
 
 
 @task(formatting, quality, prek, tests, examples)

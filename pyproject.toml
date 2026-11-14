@@ -3,7 +3,7 @@ name = "colour-datasets"
 version = "0.2.7"
 description = "Colour science datasets for use with Colour"
 readme = "README.rst"
-requires-python = ">=3.11,<3.15"
+requires-python = ">=3.13,<3.16"
 authors = [
     { name = "Colour Developers", email = "colour-developers@colour-science.org" },
 ]
@@ -48,16 +48,16 @@ dependencies = [
     "cachetools",
     "colour-science>=0.4.7",
     "imageio>=2,<3",
-    "numpy>=2.0.0,<3",
+    "numpy>=2.2,<3",
     "opencv-python>=4,<5",
-    "scipy>=1.13.0,<2",
+    "scipy>=1.15,<2",
     "tqdm",
     "xlrd>=1.2,<2",
 ]
 
 [project.optional-dependencies]
 optional = [
-    "matplotlib>=3.9",
+    "matplotlib>=3.10",
 ]
 docs = [
     "biblib-simple",
@@ -76,6 +76,9 @@ Changelog = "https://github.com/colour-science/colour-datasets/releases"
 
 [tool.uv]
 package = true
+
+[tool.uv.sources]
+colour-science = { git = "https://github.com/colour-science/colour.git", branch = "feature/array-api-review" }
 
 [dependency-groups]
 dev = [
@@ -126,7 +129,7 @@ reportUnusedExpression = false
 addopts = "--durations=5"
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py313"
 line-length = 88
 select = ["ALL"]
 ignore = [

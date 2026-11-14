@@ -17,9 +17,11 @@ References
 
 from __future__ import annotations
 
-import glob
 import os
+import shutil
+import tempfile
 import typing
+import zipfile
 
 from colour.characterisation import RGB_CameraSensitivities
 
@@ -99,16 +101,34 @@ class DatasetLoader_Solomotav2023(AbstractDatasetLoader):
             ("Estimated", "csv"),
             ("Ground Truth", "ground-truths"),
         ]:
-            csv_files = glob.glob(
-                f"{os.path.join(self.record.repository, 'dataset', path, path)}/*.csv"
+            archive_path = os.path.join(
+                self.record.repository,
+                self.record.configuration.downloads_directory,
+                f"{path}.zip",
             )
-            for csv_file in csv_files:
-                camera_name = os.path.splitext(os.path.basename(csv_file))[0].replace(
-                    "-", " "
-                )
-                self._content[key][camera_name] = RGB_CameraSensitivities(
-                    read_sds_from_csv_file(csv_file), name=camera_name
-                )
+            # Some camera names contain characters that cannot be extracted on
+            # Windows, e.g., "Pentax-*istD". Retain their original names while
+            # parsing each member through a portable temporary CSV path.
+            with (
+                zipfile.ZipFile(archive_path) as archive,
+                tempfile.TemporaryDirectory() as directory,
+            ):
+                csv_path = os.path.join(directory, "sensitivity.csv")
+                for member in archive.infolist():
+                    if not (
+                        member.filename.startswith(f"{path}/")
+                        and member.filename.endswith(".csv")
+                        and member.filename.count("/") == 1
+                    ):
+                        continue
+                    camera_name = os.path.splitext(os.path.basename(member.filename))[
+                        0
+                    ].replace("-", " ")
+                    with archive.open(member) as source, open(csv_path, "wb") as target:
+                        shutil.copyfileobj(source, target)
+                    self._content[key][camera_name] = RGB_CameraSensitivities(
+                        read_sds_from_csv_file(csv_path), name=camera_name
+                    )
 
         return self._content
 

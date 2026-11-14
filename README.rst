@@ -160,12 +160,12 @@ Primary Dependencies
 
 **Colour - Datasets** requires various dependencies in order to run:
 
-- `python >= 3.10, < 3.14 <https://www.python.org/download/releases>`__
+- `python >= 3.13, < 3.16 <https://www.python.org/download/releases>`__
 - `cachetools <https://pypi.org/project/cachetools>`__
-- `colour-science >= 4.5 <https://pypi.org/project/colour-science>`__
+- `colour-science >= 0.4.7 <https://pypi.org/project/colour-science>`__
 - `imageio >= 2, < 3 <https://imageio.github.io>`__
-- `numpy >= 1.24, < 3 <https://pypi.org/project/numpy>`__
-- `scipy >= 1.10, < 2 <https://pypi.org/project/scipy>`__
+- `numpy >= 2.2, < 3 <https://pypi.org/project/numpy>`__
+- `scipy >= 1.15, < 2 <https://pypi.org/project/scipy>`__
 - `tqdm <https://pypi.org/project/tqdm>`__
 - `xlrd >=1.2, <2 <https://pypi.org/project/xlrd>`__
 
@@ -180,7 +180,7 @@ issuing this command in a shell::
 
 The overall development dependencies are installed as follows::
 
-    pip install --user 'colour-datasets[development]'
+    uv sync --all-extras
 
 Contributing
 ^^^^^^^^^^^^

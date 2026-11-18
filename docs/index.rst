@@ -11,8 +11,6 @@ community.
 It is open source and freely available under the
 `BSD-3-Clause <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
 
-.. sectnum::
-
 Features
 --------
 

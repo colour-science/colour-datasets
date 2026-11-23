@@ -37,7 +37,7 @@ def test_remove():
     environment = dict(os.environ, HOME=str(home), USERPROFILE=str(home))
     environment.pop("COLOUR_SCIENCE__COLOUR_DATASETS__REPOSITORY", None)
     environment.pop("PYTEST_ADDOPTS", None)
-    result = subprocess.run(  # noqa: S603
+    result = subprocess.run(
         [
             sys.executable,
             "-m",
